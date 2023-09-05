@@ -21,7 +21,7 @@ TestCase subclass: #CustomerBookTest
 	poolDictionaries: ''
 	category: 'CodigoRepetido-Ejercicio'!
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'camila 9/5/2023 17:27:10'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'CJF 9/5/2023 19:20:55'!
 test01AddingCustomerShouldNotTakeMoreThan50Milliseconds
 
 	| customerBook |
@@ -34,7 +34,7 @@ test01AddingCustomerShouldNotTakeMoreThan50Milliseconds
 	
 ! !
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'camila 9/5/2023 17:27:10'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'CJF 9/5/2023 19:20:55'!
 test02RemovingCustomerShouldNotTakeMoreThan100Milliseconds
 
 	| customerBook paulMcCartney |
@@ -48,7 +48,7 @@ test02RemovingCustomerShouldNotTakeMoreThan100Milliseconds
 	
 ! !
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'camila 9/5/2023 17:11:30'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'CJF 9/5/2023 19:20:55'!
 test03CanNotAddACustomerWithEmptyName 
 
 	| customerBook |
@@ -61,7 +61,7 @@ test03CanNotAddACustomerWithEmptyName
 			self assert: anError messageText = CustomerBook customerCanNotBeEmptyErrorMessage.
 			self assert: customerBook isEmpty ]! !
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'camila 9/5/2023 17:14:59'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'CJF 9/5/2023 19:20:55'!
 test04CanNotRemoveAnInvalidCustomer
 	
 	| customerBook johnLennon |
@@ -77,7 +77,7 @@ test04CanNotRemoveAnInvalidCustomer
 			self assert: (customerBook includesCustomerNamed: johnLennon) ]
 ! !
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'camila 9/5/2023 17:35:47'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'CJF 9/5/2023 19:20:55'!
 test05SuspendingACustomerShouldNotRemoveItFromCustomerBook
 
 	| customerBook paulMcCartney|
@@ -95,7 +95,7 @@ test05SuspendingACustomerShouldNotRemoveItFromCustomerBook
 	
 ! !
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'camila 9/5/2023 17:36:00'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'CJF 9/5/2023 19:20:55'!
 test06RemovingASuspendedCustomerShouldRemoveItFromCustomerBook
 
 	| customerBook paulMcCartney|
@@ -114,7 +114,7 @@ test06RemovingASuspendedCustomerShouldRemoveItFromCustomerBook
 	
 ! !
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'camila 9/5/2023 18:33:46'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'CJF 9/5/2023 19:20:55'!
 test07CanNotSuspendAnInvalidCustomer
 	
 	| customerBook johnLennon |
@@ -127,7 +127,7 @@ test07CanNotSuspendAnInvalidCustomer
 	
 ! !
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'camila 9/5/2023 18:33:41'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'CJF 9/5/2023 19:20:55'!
 test08CanNotSuspendAnAlreadySuspendedCustomer
 	
 	| customerBook johnLennon |
@@ -142,7 +142,7 @@ test08CanNotSuspendAnAlreadySuspendedCustomer
 ! !
 
 
-!CustomerBookTest methodsFor: 'assertions' stamp: 'camila 9/5/2023 18:31:11'!
+!CustomerBookTest methodsFor: 'assertions' stamp: 'CJF 9/5/2023 19:20:55'!
 assertIfThisCustomerBook: customerBook withSuspendedCustomer: suspendedCustomer hasThisCustomer: anotherCustomer
 	
 	self evaluate:[ customerBook suspendCustomerNamed: suspendedCustomer.]
@@ -152,7 +152,7 @@ assertIfThisCustomerBook: customerBook withSuspendedCustomer: suspendedCustomer 
 			self assert: (customerBook includesCustomerNamed: anotherCustomer) ]
 ! !
 
-!CustomerBookTest methodsFor: 'assertions' stamp: 'camila 9/5/2023 17:27:10'!
+!CustomerBookTest methodsFor: 'assertions' stamp: 'CJF 9/5/2023 19:20:55'!
 checkIfThisCollaboration: aBlockClosure takesLessThan: timeInMilliseconds
 	
 	| millisecondsAfterRunning millisecondsBeforeRunning |
@@ -168,7 +168,7 @@ checkIfThisCollaboration: aBlockClosure takesLessThan: timeInMilliseconds
 	
 ! !
 
-!CustomerBookTest methodsFor: 'assertions' stamp: 'camila 9/5/2023 17:37:33'!
+!CustomerBookTest methodsFor: 'assertions' stamp: 'CJF 9/5/2023 19:20:55'!
 checkIfThisCustomerBookHas: customerBook activeCustomers: active suspendedCustomers: suspended totalCustomers: total
 	
 	self assert: active equals: customerBook numberOfActiveCustomers.
@@ -179,7 +179,7 @@ checkIfThisCustomerBookHas: customerBook activeCustomers: active suspendedCustom
 	
 ! !
 
-!CustomerBookTest methodsFor: 'assertions' stamp: 'camila 9/5/2023 17:13:22'!
+!CustomerBookTest methodsFor: 'assertions' stamp: 'CJF 9/5/2023 19:20:55'!
 evaluate:collaboration mustRaise: anException thenAssert: collaborationInCaseOfException
 
 	[collaboration value.
@@ -195,25 +195,25 @@ Object subclass: #CustomerBook
 	poolDictionaries: ''
 	category: 'CodigoRepetido-Ejercicio'!
 
-!CustomerBook methodsFor: 'testing' stamp: 'NR 4/3/2019 10:14:26'!
+!CustomerBook methodsFor: 'testing' stamp: 'CJF 9/5/2023 19:20:54'!
 includesCustomerNamed: aName
 
 	^(active includes: aName) or: [ suspended includes: aName ]! !
 
-!CustomerBook methodsFor: 'testing' stamp: 'NR 4/3/2019 10:14:26'!
+!CustomerBook methodsFor: 'testing' stamp: 'CJF 9/5/2023 19:20:54'!
 isEmpty
 	
 	^active isEmpty and: [ suspended isEmpty ]! !
 
 
-!CustomerBook methodsFor: 'initialization' stamp: 'NR 9/17/2020 07:23:04'!
+!CustomerBook methodsFor: 'initialization' stamp: 'CJF 9/5/2023 19:20:54'!
 initialize
 
 	active := OrderedCollection new.
 	suspended:= OrderedCollection new.! !
 
 
-!CustomerBook methodsFor: 'customer management' stamp: 'NR 4/3/2019 10:14:26'!
+!CustomerBook methodsFor: 'customer management' stamp: 'CJF 9/5/2023 19:20:55'!
 addCustomerNamed: aName
 
 	aName isEmpty ifTrue: [ self signalCustomerNameCannotBeEmpty ].
@@ -221,56 +221,50 @@ addCustomerNamed: aName
 	
 	active add: aName ! !
 
-!CustomerBook methodsFor: 'customer management' stamp: 'NR 4/3/2019 10:14:26'!
+!CustomerBook methodsFor: 'customer management' stamp: 'CJF 9/5/2023 19:20:55'!
 numberOfActiveCustomers
 	
 	^active size! !
 
-!CustomerBook methodsFor: 'customer management' stamp: 'NR 4/3/2019 10:14:26'!
+!CustomerBook methodsFor: 'customer management' stamp: 'CJF 9/5/2023 19:20:54'!
 numberOfCustomers
 	
 	^active size + suspended size! !
 
-!CustomerBook methodsFor: 'customer management' stamp: 'NR 9/19/2018 17:36:09'!
+!CustomerBook methodsFor: 'customer management' stamp: 'CJF 9/5/2023 19:20:55'!
 numberOfSuspendedCustomers
 	
 	^suspended size! !
 
-!CustomerBook methodsFor: 'customer management' stamp: 'NR 4/3/2019 10:14:26'!
-removeCustomerNamed: aName 
- 
-	1 to: active size do: 
-	[ :index |
-		aName = (active at: index)
-			ifTrue: [
-				active removeAt: index.
-				^ aName 
-			] 
-	].
-
-	1 to: suspended size do: 	
-	[ :index |
-		aName = (suspended at: index)
-			ifTrue: [
-				suspended removeAt: index.
-				^ aName 
-			] 
-	].
+!CustomerBook methodsFor: 'customer management' stamp: 'CJF 9/5/2023 20:05:04'!
+remove: aCustomerName from:aListOfCustomers evaluateIfFound: aBlock
 	
+	(aListOfCustomers includes: aCustomerName ) ifTrue: [ 
+			aListOfCustomers remove: aCustomerName.
+			^aBlock value.
+			]
+! !
+
+!CustomerBook methodsFor: 'customer management' stamp: 'CJF 9/5/2023 19:58:39'!
+removeCustomerNamed: aName 
+
+	self remove: aName from: active evaluateIfFound: [^aName ]. 
+ 	self remove: aName from: suspended evaluateIfFound: [^aName ].
+
 	^ NotFound signal.
 ! !
 
-!CustomerBook methodsFor: 'customer management' stamp: 'HernanWilkinson 7/6/2011 17:52'!
+!CustomerBook methodsFor: 'customer management' stamp: 'CJF 9/5/2023 19:20:54'!
 signalCustomerAlreadyExists 
 
 	self error: self class customerAlreadyExistsErrorMessage! !
 
-!CustomerBook methodsFor: 'customer management' stamp: 'HernanWilkinson 7/6/2011 17:51'!
+!CustomerBook methodsFor: 'customer management' stamp: 'CJF 9/5/2023 19:20:54'!
 signalCustomerNameCannotBeEmpty 
 
 	self error: self class customerCanNotBeEmptyErrorMessage ! !
 
-!CustomerBook methodsFor: 'customer management' stamp: 'NR 4/3/2019 10:14:26'!
+!CustomerBook methodsFor: 'customer management' stamp: 'CJF 9/5/2023 19:20:55'!
 suspendCustomerNamed: aName 
 	
 	(active includes: aName) ifFalse: [^CantSuspend signal].
@@ -286,12 +280,12 @@ suspendCustomerNamed: aName
 CustomerBook class
 	instanceVariableNames: ''!
 
-!CustomerBook class methodsFor: 'error messages' stamp: 'NR 9/4/2023 17:02:48'!
+!CustomerBook class methodsFor: 'error messages' stamp: 'CJF 9/5/2023 19:20:55'!
 customerAlreadyExistsErrorMessage
 
 	^'Customer already exists!!!!!!'! !
 
-!CustomerBook class methodsFor: 'error messages' stamp: 'NR 9/4/2023 17:02:52'!
+!CustomerBook class methodsFor: 'error messages' stamp: 'CJF 9/5/2023 19:20:55'!
 customerCanNotBeEmptyErrorMessage
 
 	^'Customer name cannot be empty!!!!!!'! !
