@@ -417,24 +417,7 @@ dividirAEsteEntero: enteroQueQuieroDividir
 !Entero methodsFor: 'arithmetic operations' stamp: 'CJF 9/14/2023 14:58:07'!
 fibonacci
 	self subclassResponsibility.
-"	| one two |
-	
-	one := Entero with: 1.
-	two := Entero with: 2.
-	
-	self isNegative ifTrue: [self error: Entero negativeFibonacciErrorDescription ].	
-	self isZero ifTrue: [^one].
-	self isOne ifTrue: [^one].
-	
-	^ (self - one) fibonacci + (self - two) fibonacci
-"
-"la idea es que uno y cero sean numeros especiales, no deberían tener value sino que deberían 
-actuar como objetos singleton
-mas que nada porque son casos especiales para fibonacci. Por otro lado estos objetos tambien interactuan con otros enteros asi
-que deberían interactuar con ellos tambien ... por lo que tienen que implementar los mensajes *-+/ // etc
-Negativos y Positivos por otro lado interactuan de forma normal pero deberíamos subclasificarlos mas que nada porque fibonacci no
-esta definido en los numeros negativos
-"	! !
+	! !
 
 !Entero methodsFor: 'arithmetic operations' stamp: 'CJF 9/13/2023 20:18:12'!
 greatestCommonDivisorWith: anEntero 
