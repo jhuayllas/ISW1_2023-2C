@@ -160,22 +160,27 @@ initialize
 isEmpty
 	^stack isEmpty .! !
 
-!OOStack methodsFor: 'as yet unclassified' stamp: 'camila 9/15/2023 22:16:01'!
+!OOStack methodsFor: 'as yet unclassified' stamp: 'camila 9/15/2023 22:24:20'!
 pop
-	stack isEmpty ifTrue:  [^'mensaje error'].
+	stack isEmpty ifTrue:  [^self signalCantPopEmptyStack].
 	stack isEmpty ifFalse: [^stack removeLast]. ! !
 
 !OOStack methodsFor: 'as yet unclassified' stamp: 'camila 9/14/2023 21:40:35'!
 push: aValue
 	stack add: aValue! !
 
+!OOStack methodsFor: 'as yet unclassified' stamp: 'camila 9/15/2023 22:25:05'!
+signalCantPopEmptyStack
+	self error: self class stackEmptyErrorDescription 
+! !
+
 !OOStack methodsFor: 'as yet unclassified' stamp: 'camila 9/15/2023 22:14:13'!
 size
 	^stack size! !
 
-!OOStack methodsFor: 'as yet unclassified' stamp: 'camila 9/15/2023 22:20:15'!
+!OOStack methodsFor: 'as yet unclassified' stamp: 'camila 9/15/2023 22:25:44'!
 top
-	stack isEmpty ifTrue:  [^'mensaje error'].
+	stack isEmpty ifTrue:  [^self signalCantPopEmptyStack].
 	stack isEmpty ifFalse: [^stack last]. 
 	 ! !
 
