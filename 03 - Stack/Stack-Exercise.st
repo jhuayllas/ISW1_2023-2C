@@ -163,8 +163,8 @@ test01IfPrefixNotInStackReturnEmpty
 	
 	self assert: sentencesFounded isEmpty.! !
 
-!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'CJF 9/18/2023 12:00:21'!
-test02IfPrefixInStackReturnAllThatMatch
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'CJF 9/18/2023 16:03:10'!
+test02PrefixNoMatchReturnEmpty
 
 	| sentenceFinder  sentencesFounded |
 	
@@ -230,72 +230,43 @@ test07SentencesFindedAreSentencesInStack
 
 !classDefinition: #OOStack category: 'Stack-Exercise'!
 Object subclass: #OOStack
-	instanceVariableNames: 'stack state'
+	instanceVariableNames: 'current'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!OOStack methodsFor: 'private' stamp: 'CJF 9/17/2023 23:08:51'!
-stackElement
-	^stack! !
 
-
-!OOStack methodsFor: 'initialization' stamp: 'CJF 9/17/2023 23:08:51'!
+!OOStack methodsFor: 'initialization' stamp: 'CJF 9/18/2023 15:48:39'!
 initialize
-	stack := OrderedCollection new.
-	state := StateVacio new! !
-
-!OOStack methodsFor: 'initialization' stamp: 'CJF 9/17/2023 23:08:51'!
-initializeWith: oldStack
-	oldStack isEmpty ifTrue:
-	 [	state := StateVacio new.
-		stack := OrderedCollection new. ].
-	
-	state := StateConCosas new.
-	stack := oldStack.! !
+	current := OOStackEmptyElement new.! !
 
 
-!OOStack methodsFor: 'signals' stamp: 'CJF 9/17/2023 23:08:51'!
-signalCantPopEmptyStack
-	self error: self class stackEmptyErrorDescription 
-! !
 
-
-!OOStack methodsFor: 'observation' stamp: 'CJF 9/17/2023 23:08:51'!
+!OOStack methodsFor: 'observation' stamp: 'CJF 9/18/2023 15:52:25'!
 isEmpty
-	"^state isEmpty ."
-	^stack isEmpty! !
+	^current size isZero.! !
 
-!OOStack methodsFor: 'observation' stamp: 'CJF 9/17/2023 23:08:51'!
+!OOStack methodsFor: 'observation' stamp: 'CJF 9/18/2023 15:51:34'!
 size
-	^stack size! !
+	^current size.! !
 
-!OOStack methodsFor: 'observation' stamp: 'CJF 9/17/2023 23:08:51'!
+!OOStack methodsFor: 'observation' stamp: 'CJF 9/18/2023 15:51:48'!
 top
-	^state topFromThisStack: stack.
-	"stack isEmpty ifTrue:  [^self signalCantPopEmptyStack].
-	stack isEmpty ifFalse: [^stack last]." 
-	 ! !
+	^current top.! !
 
 
-!OOStack methodsFor: 'actions' stamp: 'CJF 9/17/2023 23:08:51'!
+!OOStack methodsFor: 'actions' stamp: 'CJF 9/18/2023 15:50:05'!
 pop
-	| topElement |
-	topElement := state popFromThisStack: stack.
-	
-	stack isEmpty ifTrue: [state := StateVacio new.].
-	^topElement
-	
-	"stack isEmpty ifTrue:  [^self signalCantPopEmptyStack].
-	stack isEmpty ifFalse: [^stack removeLast]. "
-	
-	
+	| element |
+	element := current top.
+	current := current pop.
+	^element.
 	! !
 
-!OOStack methodsFor: 'actions' stamp: 'CJF 9/17/2023 23:08:51'!
-push: aValue
-	stack add: aValue.
-	state := StateConCosas new.! !
+!OOStack methodsFor: 'actions' stamp: 'CJF 9/18/2023 15:51:12'!
+push: anElement
+	current := OOStackWithElement put: anElement over: current.
+	! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -309,13 +280,75 @@ stackEmptyErrorDescription
 	^ 'stack is empty!!!!!!'! !
 
 
+!classDefinition: #OOStackElement category: 'Stack-Exercise'!
+Object subclass: #OOStackElement
+	instanceVariableNames: 'previous element size'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+
+!classDefinition: #OOStackEmptyElement category: 'Stack-Exercise'!
+OOStackElement subclass: #OOStackEmptyElement
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+!OOStackEmptyElement methodsFor: 'as yet unclassified' stamp: 'CJF 9/18/2023 15:56:35'!
+pop
+	self error: OOStack stackEmptyErrorDescription.! !
+
+!OOStackEmptyElement methodsFor: 'as yet unclassified' stamp: 'CJF 9/18/2023 15:56:48'!
+size
+	^0.! !
+
+!OOStackEmptyElement methodsFor: 'as yet unclassified' stamp: 'CJF 9/18/2023 15:57:10'!
+top
+	self error: OOStack stackEmptyErrorDescription.! !
+
+
+!classDefinition: #OOStackWithElement category: 'Stack-Exercise'!
+OOStackElement subclass: #OOStackWithElement
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+!OOStackWithElement methodsFor: 'as yet unclassified' stamp: 'CJF 9/18/2023 15:57:47'!
+pop
+	^previous.! !
+
+!OOStackWithElement methodsFor: 'as yet unclassified' stamp: 'CJF 9/18/2023 15:58:22'!
+put: anElement over: anotherElement
+	element := anElement.
+	previous := anotherElement.! !
+
+!OOStackWithElement methodsFor: 'as yet unclassified' stamp: 'CJF 9/18/2023 15:58:40'!
+size
+	^1 + previous size.! !
+
+!OOStackWithElement methodsFor: 'as yet unclassified' stamp: 'CJF 9/18/2023 15:58:55'!
+top
+	^element.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'OOStackWithElement class' category: 'Stack-Exercise'!
+OOStackWithElement class
+	instanceVariableNames: ''!
+
+!OOStackWithElement class methodsFor: 'as yet unclassified' stamp: 'CJF 9/18/2023 15:59:40'!
+put: anElement over: anotherElement.
+	^self new put: anElement over: anotherElement.! !
+
+
 !classDefinition: #SentenceFinderByPrefix category: 'Stack-Exercise'!
 Object subclass: #SentenceFinderByPrefix
 	instanceVariableNames: 'StringStack prefixToFind stackWithSentences foundedSentences stackToRestore'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
-
 
 !SentenceFinderByPrefix methodsFor: 'initialize' stamp: 'CJF 9/18/2023 09:13:18'!
 initializeFind: prefix on: stack 
@@ -377,58 +410,3 @@ blanksInPrefixErrorDescription
 !SentenceFinderByPrefix class methodsFor: 'error descriptions' stamp: 'CJF 9/18/2023 00:53:31'!
 emptyErrorDescription
 	^'Prefix provided is empty'! !
-
-
-!classDefinition: #StackState category: 'Stack-Exercise'!
-Object subclass: #StackState
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Stack-Exercise'!
-
-
-!classDefinition: #StateConCosas category: 'Stack-Exercise'!
-StackState subclass: #StateConCosas
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Stack-Exercise'!
-
-!StateConCosas methodsFor: 'as yet unclassified' stamp: 'CJF 9/17/2023 23:08:52'!
-isEmpty
-	^false! !
-
-!StateConCosas methodsFor: 'as yet unclassified' stamp: 'CJF 9/17/2023 23:08:52'!
-popFromThisStack: stack
-^stack removeLast .
-	"| elem |
-	   elem := stackSaved removeLast.
-	   stackSaved = OOStack with: stackSaved stackElement
-	   ^elem"! !
-
-!StateConCosas methodsFor: 'as yet unclassified' stamp: 'CJF 9/17/2023 23:08:52'!
-topFromThisStack: stack
-	^stack last 
-	"stack isEmpty ifFalse: [^stack removeLast]."! !
-
-
-!classDefinition: #StateVacio category: 'Stack-Exercise'!
-StackState subclass: #StateVacio
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Stack-Exercise'!
-
-!StateVacio methodsFor: 'as yet unclassified' stamp: 'CJF 9/17/2023 23:08:52'!
-isEmpty
-	^true! !
-
-!StateVacio methodsFor: 'as yet unclassified' stamp: 'CJF 9/17/2023 23:08:52'!
-popFromThisStack: stack
-	stack signalCantPopEmptyStack .
-	"^signalCantPopEmptyStack"! !
-
-!StateVacio methodsFor: 'as yet unclassified' stamp: 'CJF 9/17/2023 23:08:52'!
-topFromThisStack: stack
-	^stack signalCantPopEmptyStack .
-	"^signalCantPopEmptyStack"! !
