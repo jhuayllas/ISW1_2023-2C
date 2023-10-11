@@ -1,0 +1,862 @@
+
+
+----QUIT----(13 August 2023 19:14:09) CuisUniversity-5981.image priorSource: 5713367!
+
+----STARTUP---- (13 August 2023 19:14:10) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5981.image!
+
+
+----QUIT----(13 August 2023 19:14:10) CuisUniversity-5981.image priorSource: 10197065!
+
+----STARTUP---- (9 October 2023 20:27:33) as /home/camila/Desktop/linux64/CuisUniversity-5981.image!
+
+
+----SNAPSHOT----(9 October 2023 20:27:45) CuisUniversity-5981.image priorSource: 10197292!
+
+----End fileIn of /home/camila/Desktop/linux64/Portfolio-Ejercicio.st----!
+
+----SNAPSHOT----(9 October 2023 20:32:37) CuisUniversity-5981.image priorSource: 10197483!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'camila 10/9/2023 20:32:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 20:32:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 20:32:40'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'camila 10/9/2023 20:32:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'camila 10/9/2023 20:32:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'camila 10/9/2023 20:32:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'camila 10/9/2023 20:32:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 20:32:40'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'camila 10/9/2023 20:32:45'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'camila 10/9/2023 20:32:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'camila 10/9/2023 20:32:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'camila 10/9/2023 20:32:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 20:32:52'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 20:32:52'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 20:32:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'camila 10/9/2023 20:32:57'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 20:33:00'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 20:33:00'!
+FAILURE!
+
+----SNAPSHOT----(9 October 2023 20:33:13) CuisUniversity-5981.image priorSource: 10204820!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 20:40:30'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 20:40:30'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'camila 10/9/2023 20:47:09' prior: 50650539!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		(aTransaction isWithdraw) ifTrue: aTransaction value negated .
+		(aTransaction isDeposit) ifTrue: aTransaction value. ] ifEmpty: [ 0 ]! !
+!AccountTransaction methodsFor: 'value' stamp: 'camila 10/9/2023 20:47:21'!
+isWithdraw
+
+	self subclassResponsibility ! !
+!AccountTransaction methodsFor: 'value' stamp: 'camila 10/9/2023 20:47:26'!
+isDeposit
+
+	self subclassResponsibility ! !
+!Deposit methodsFor: 'value' stamp: 'camila 10/9/2023 20:47:31' overrides: 50650649!
+isDeposit
+
+	self subclassResponsibility ! !
+!Withdraw methodsFor: 'value' stamp: 'camila 10/9/2023 20:47:31' overrides: 50650649!
+isDeposit
+
+	self subclassResponsibility ! !
+!AccountTransaction methodsFor: 'value' stamp: 'camila 10/9/2023 20:47:31' prior: 50650649!
+isDeposit
+
+	self subclassResponsibility! !
+!Deposit methodsFor: 'value' stamp: 'camila 10/9/2023 20:47:34' overrides: 50650645!
+isWithdraw
+
+	self subclassResponsibility ! !
+!Withdraw methodsFor: 'value' stamp: 'camila 10/9/2023 20:47:34' overrides: 50650645!
+isWithdraw
+
+	self subclassResponsibility ! !
+!AccountTransaction methodsFor: 'value' stamp: 'camila 10/9/2023 20:47:34' prior: 50650645!
+isWithdraw
+
+	self subclassResponsibility! !
+!Deposit methodsFor: 'value' stamp: 'camila 10/9/2023 20:47:40' prior: 50650654 overrides: 50650664!
+isDeposit
+
+	^true! !
+!Deposit methodsFor: 'value' stamp: 'camila 10/9/2023 20:47:44' prior: 50650668 overrides: 50650678!
+isWithdraw
+
+	^false! !
+!Withdraw methodsFor: 'value' stamp: 'camila 10/9/2023 20:47:51' prior: 50650659 overrides: 50650664!
+isDeposit
+
+	^false ! !
+!Withdraw methodsFor: 'value' stamp: 'camila 10/9/2023 20:47:56' prior: 50650673 overrides: 50650678!
+isWithdraw
+
+	^true! !
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 20:48:03'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 20:48:03'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'camila 10/9/2023 20:48:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 20:48:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 20:48:13'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 20:48:13'!
+ERROR!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'camila 10/9/2023 20:48:50' prior: 50650636!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		(aTransaction isWithdraw) ifTrue: (aTransaction value) negated .
+		(aTransaction isDeposit) ifTrue: aTransaction value. ] ifEmpty: [ 0 ]! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'camila 10/9/2023 20:48:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 20:48:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 20:48:53'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'camila 10/9/2023 20:48:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'camila 10/9/2023 20:48:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'camila 10/9/2023 20:48:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'camila 10/9/2023 20:48:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 20:48:53'!
+ERROR!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'camila 10/9/2023 20:50:16' prior: 50650723!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		(aTransaction isWithdraw) ifTrue: (aTransaction value)  * -1 .
+		(aTransaction isDeposit) ifTrue: aTransaction value. ] ifEmpty: [ 0 ]! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'camila 10/9/2023 20:50:47' prior: 50650763!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		(aTransaction isWithdraw) ifTrue:[aTransaction value * -1 ].
+		(aTransaction isDeposit) ifTrue: [aTransaction value.] ] ifEmpty: [ 0 ]! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'camila 10/9/2023 20:50:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 20:50:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 20:50:53'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'camila 10/9/2023 20:50:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'camila 10/9/2023 20:50:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'camila 10/9/2023 20:50:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'camila 10/9/2023 20:50:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 20:50:53'!
+ERROR!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'camila 10/9/2023 20:51:45' prior: 50650772!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		(aTransaction isWithdraw) ifTrue:[^(aTransaction value * -1) ].
+		(aTransaction isDeposit) ifTrue: [^(aTransaction value).] ] ifEmpty: [ 0 ]! !
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 20:51:48'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'camila 10/9/2023 20:53:23' prior: 50650812!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		(aTransaction isWithdraw) ifTrue:[(aTransaction value * -1) ].
+		(aTransaction isDeposit) ifTrue: [(aTransaction value).] ] ifEmpty: [ 0 ]! !
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 20:53:55'!
+ERROR!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'camila 10/9/2023 20:54:32' prior: 50650825!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		(aTransaction isWithdraw) ifTrue:[((aTransaction value) * -1) ].
+		(aTransaction isDeposit) ifTrue: [(aTransaction value).] ] ifEmpty: [ 0 ]! !
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 20:54:35'!
+ERROR!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'camila 10/9/2023 20:56:07' prior: 50650838!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		(aTransaction isWithdraw) ifTrue:[(aTransaction value) * -1 ].
+		(aTransaction isDeposit) ifTrue: [(aTransaction value).] ] ifEmpty: [ 0 ]! !
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 20:56:13'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 20:56:13'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'camila 10/9/2023 20:57:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 20:57:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 20:57:08'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'camila 10/9/2023 20:57:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'camila 10/9/2023 20:57:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'camila 10/9/2023 20:57:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'camila 10/9/2023 20:57:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 20:57:08'!
+ERROR!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'camila 10/9/2023 20:57:26' prior: 50650851!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		(aTransaction isWithdraw) ifTrue:[(aTransaction value) * -1 ].
+		(aTransaction isDeposit) ifTrue: [(aTransaction value)] ] ifEmpty: [ 0 ]! !
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 20:57:58'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 20:57:58'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 20:58:02'!
+ERROR!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'camila 10/9/2023 20:59:23' prior: 50650899!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		(aTransaction isWithdraw) ifTrue: [(aTransaction value) * -1 ] value.
+		(aTransaction isDeposit) ifTrue:   [(aTransaction value)] value ] ifEmpty: [ 0 ]! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'camila 10/9/2023 20:59:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 20:59:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 20:59:24'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'camila 10/9/2023 20:59:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'camila 10/9/2023 20:59:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'camila 10/9/2023 20:59:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'camila 10/9/2023 20:59:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 20:59:24'!
+ERROR!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'camila 10/9/2023 20:59:31' prior: 50650920!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		(aTransaction isWithdraw) ifTrue: [(aTransaction value) * -1 ] .
+		(aTransaction isDeposit) ifTrue:   [(aTransaction value)]  ] ifEmpty: [ 0 ]! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'camila 10/9/2023 21:00:52' prior: 50650961!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		(aTransaction isWithdraw) ifTrue: [(aTransaction value) * -1 ] .
+		(aTransaction isDeposit) ifTrue:   [(aTransaction value)]  ] ifEmpty: [ 0 ]! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'camila 10/9/2023 21:00:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 21:00:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 21:00:53'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'camila 10/9/2023 21:00:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'camila 10/9/2023 21:00:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'camila 10/9/2023 21:00:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'camila 10/9/2023 21:00:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 21:00:53'!
+ERROR!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'camila 10/9/2023 21:07:08' prior: 50650970!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		(aTransaction isWithdraw) ifTrue: [(aTransaction value) ] .
+		(aTransaction isDeposit) ifTrue:   [(aTransaction value)]  ] ifEmpty: [ 0 ]! !
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 21:07:13'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 21:07:13'!
+ERROR!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'camila 10/9/2023 21:09:56' prior: 50651011!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		(aTransaction isWithdraw) ifTrue: [(aTransaction value) ] .
+		  ] ifEmpty: [ 0 ]! !
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 21:10:00'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 21:10:00'!
+ERROR!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'camila 10/9/2023 21:00:52' prior: 50651028!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		(aTransaction isWithdraw) ifTrue: [(aTransaction value) * -1 ] .
+		(aTransaction isDeposit) ifTrue:   [(aTransaction value)]  ] ifEmpty: [ 0 ]! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'camila 10/9/2023 21:15:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 21:15:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 21:15:27'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'camila 10/9/2023 21:15:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'camila 10/9/2023 21:15:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'camila 10/9/2023 21:15:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'camila 10/9/2023 21:15:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 21:15:27'!
+ERROR!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'camila 10/9/2023 21:17:04' prior: 50651043!
+balance
+
+	| totalBalance |
+	totalBalance := 0.
+	transactions do: [:aTransaction | 
+			(aTransaction isWithdraw) ifTrue: [totalBalance := totalBalance - (aTransaction value)].
+			(aTransaction isDeposit) ifTrue: [totalBalance := totalBalance + (aTransaction value)].
+			]
+	^totalBalance.! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'camila 10/9/2023 21:17:10'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 21:17:10'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 21:17:10'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'camila 10/9/2023 21:17:10'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'camila 10/9/2023 21:17:10'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'camila 10/9/2023 21:17:10'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'camila 10/9/2023 21:17:10'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'camila 10/9/2023 21:17:22'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'camila 10/9/2023 21:17:34'!
+ERROR!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'camila 10/9/2023 21:17:44' prior: 50651084!
+balance
+
+	| totalBalance |
+	totalBalance := 0.
+	transactions do: [:aTransaction | 
+			(aTransaction isWithdraw) ifTrue: [totalBalance := totalBalance - (aTransaction value)].
+			(aTransaction isDeposit) ifTrue: [totalBalance := totalBalance + (aTransaction value)].
+			].
+	^totalBalance.! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'camila 10/9/2023 21:17:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 21:17:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 21:17:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'camila 10/9/2023 21:17:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'camila 10/9/2023 21:17:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'camila 10/9/2023 21:17:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'camila 10/9/2023 21:17:46'!
+PASSED!
+
+----SNAPSHOT----(9 October 2023 21:17:50) CuisUniversity-5981.image priorSource: 10207164!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'camila 10/9/2023 21:18:09' prior: 50651131!
+balance
+
+	| totalBalance |
+	totalBalance := 0.
+	transactions do: [:aTransaction | 
+			(aTransaction isWithdraw) ifTrue: [totalBalance := totalBalance - (aTransaction value)].
+			(aTransaction isDeposit) ifTrue: [totalBalance := totalBalance + (aTransaction value)].   ].
+	^totalBalance.! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'camila 10/9/2023 21:18:36' prior: 50651173!
+balance
+
+	| totalBalance |
+	totalBalance := 0.
+	
+	transactions do: [:aTransaction | 
+			(aTransaction isWithdraw) ifTrue: [totalBalance := totalBalance - (aTransaction value)].
+			(aTransaction isDeposit) ifTrue: [totalBalance := totalBalance + (aTransaction value)].   ].
+	^totalBalance.! !
+
+----SNAPSHOT----(9 October 2023 21:18:58) CuisUniversity-5981.image priorSource: 10224615!
+
+Object subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions currentBalance'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio' stamp: 'camila 10/9/2023 21:19:58'!
+Object subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions currentBalance'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'camila 10/9/2023 21:20:12' prior: 50651185!
+balance
+
+	
+	transactions do: [:aTransaction | 
+			(aTransaction isWithdraw) ifTrue: [currentBalance := currentBalance - (aTransaction value)].
+			(aTransaction isDeposit) ifTrue: [currentBalance := currentBalance + (aTransaction value)].   ].
+	^currentBalance.! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'camila 10/9/2023 21:20:13'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 21:20:13'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 21:20:13'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'camila 10/9/2023 21:20:13'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'camila 10/9/2023 21:20:13'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'camila 10/9/2023 21:20:13'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'camila 10/9/2023 21:20:13'!
+PASSED!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'camila 10/9/2023 21:20:34' prior: 50651214!
+balance
+
+	transactions do: [:aTransaction | 
+			(aTransaction isWithdraw) ifTrue: [currentBalance := currentBalance - (aTransaction value)].
+			(aTransaction isDeposit) ifTrue: [currentBalance := currentBalance + (aTransaction value)].   ].
+		
+	^currentBalance.! !
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'camila 10/9/2023 21:20:55' prior: 50650525 overrides: 16920235!
+initialize
+
+	transactions := OrderedCollection new.
+	currentBalance := 0.! !
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'camila 10/9/2023 21:22:44' prior: 50650530!
+register: aTransaction
+
+	transactions add: aTransaction .
+	aTransaction doTransactionOn: self.
+! !
+!AccountTransaction methodsFor: 'nil' stamp: 'camila 10/9/2023 21:23:03'!
+doTransactionOn: aReceptiveAccount
+	self subclassResponsibility .! !
+!Deposit methodsFor: 'as yet unclassified' stamp: 'camila 10/9/2023 21:23:10' overrides: 50651277!
+doTransactionOn: aReceptiveAccount
+	self subclassResponsibility .! !
+!Withdraw methodsFor: 'as yet unclassified' stamp: 'camila 10/9/2023 21:23:10' overrides: 50651277!
+doTransactionOn: aReceptiveAccount
+	self subclassResponsibility .! !
+!AccountTransaction methodsFor: 'as yet unclassified' stamp: 'camila 10/9/2023 21:23:10' prior: 50651277!
+doTransactionOn: aReceptiveAccount
+
+	self subclassResponsibility! !
+!Deposit methodsFor: 'as yet unclassified' stamp: 'camila 10/9/2023 21:23:32' prior: 50651283 overrides: 50651295!
+doTransactionOn: aReceptiveAccount
+	aReceptiveAccount doDepositWithValue: self value.! !
+!Withdraw methodsFor: 'as yet unclassified' stamp: 'camila 10/9/2023 21:23:57' prior: 50651289 overrides: 50651295!
+doTransactionOn: aReceptiveAccount
+	aReceptiveAccount doWithdrawWithValue: self value.! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'camila 10/9/2023 21:24:27'!
+doDepositWithValue: aDepositValue
+	currentBalance := currentBalance + aDepositValue .! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'camila 10/9/2023 21:24:45'!
+doWithdrawWithValue: aWithdrawValue
+	currentBalance := currentBalance + aWithdrawValue .! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'camila 10/9/2023 21:24:52' prior: 50651253!
+balance
+
+	^currentBalance.! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'camila 10/9/2023 21:24:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 21:24:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 21:24:55'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'camila 10/9/2023 21:24:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'camila 10/9/2023 21:24:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'camila 10/9/2023 21:24:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'camila 10/9/2023 21:24:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 21:24:55'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 21:25:04'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 21:25:04'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'camila 10/9/2023 21:26:26' prior: 50651320!
+doWithdrawWithValue: aWithdrawValue
+	currentBalance := currentBalance - aWithdrawValue .! !
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 21:26:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'camila 10/9/2023 21:26:29'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 21:26:29'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 21:26:29'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'camila 10/9/2023 21:26:29'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'camila 10/9/2023 21:26:29'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'camila 10/9/2023 21:26:29'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'camila 10/9/2023 21:26:29'!
+PASSED!
+
+----SNAPSHOT----(9 October 2023 21:26:35) CuisUniversity-5981.image priorSource: 10225475!
+
+----SNAPSHOT----(9 October 2023 21:33:40) CuisUniversity-5981.image priorSource: 10232159!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'camila 10/9/2023 21:20:34' prior: 50651326!
+balance
+
+	transactions do: [:aTransaction | 
+			(aTransaction isWithdraw) ifTrue: [currentBalance := currentBalance - (aTransaction value)].
+			(aTransaction isDeposit) ifTrue: [currentBalance := currentBalance + (aTransaction value)].   ].
+		
+	^currentBalance.! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'camila 10/9/2023 21:50:20' prior: 50651412!
+balance
+
+	| totalBalance |
+	totalBalance := 0.
+
+	transactions do: [:aTransaction | aTransaction calculateFinalBalance: totalBalance.   ].
+		
+	^totalBalance.! !
+!AccountTransaction methodsFor: 'as yet unclassified' stamp: 'camila 10/9/2023 21:50:41'!
+calculateFinalBalance: aBalance
+
+	self subclassResponsibility! !
+!Deposit methodsFor: 'as yet unclassified' stamp: 'camila 10/9/2023 21:50:46' overrides: 50651432!
+calculateFinalBalance: aBalance
+
+	self subclassResponsibility! !
+!Withdraw methodsFor: 'as yet unclassified' stamp: 'camila 10/9/2023 21:50:46' overrides: 50651432!
+calculateFinalBalance: aBalance
+
+	self subclassResponsibility! !
+!AccountTransaction methodsFor: 'as yet unclassified' stamp: 'camila 10/9/2023 21:50:46' prior: 50651432!
+calculateFinalBalance: aBalance
+
+	self subclassResponsibility! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'camila 10/9/2023 21:51:01' prior: 50651424!
+balance
+
+	| totalBalance |
+	totalBalance := 0.
+
+	transactions do: [:aTransaction | totalBalance := aTransaction calculateFinalBalance: totalBalance.   ].
+		
+	^totalBalance.! !
+!AccountTransaction methodsFor: 'as yet unclassified' stamp: 'camila 10/9/2023 21:52:01'!
+modifyBalance: aBalance
+
+	self subclassResponsibility! !
+!Deposit methodsFor: 'as yet unclassified' stamp: 'camila 10/9/2023 21:52:01' overrides: 50651464!
+modifyBalance: aBalance
+
+	self subclassResponsibility! !
+!Withdraw methodsFor: 'as yet unclassified' stamp: 'camila 10/9/2023 21:52:01' overrides: 50651464!
+modifyBalance: aBalance
+
+	self subclassResponsibility! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'camila 10/9/2023 21:52:01' prior: 50651455!
+balance
+
+	| totalBalance |
+	totalBalance := 0.
+
+	transactions do: [:aTransaction | totalBalance := aTransaction modifyBalance: totalBalance.   ].
+		
+	^totalBalance.! !
+
+!methodRemoval: AccountTransaction #calculateFinalBalance: stamp: 'camila 10/9/2023 21:52:01'!
+calculateFinalBalance: aBalance
+
+	self subclassResponsibility!
+
+!methodRemoval: Deposit #calculateFinalBalance: stamp: 'camila 10/9/2023 21:52:01'!
+calculateFinalBalance: aBalance
+
+	self subclassResponsibility!
+
+!methodRemoval: Withdraw #calculateFinalBalance: stamp: 'camila 10/9/2023 21:52:01'!
+calculateFinalBalance: aBalance
+
+	self subclassResponsibility!
+!Deposit methodsFor: 'as yet unclassified' stamp: 'camila 10/9/2023 21:52:17' prior: 50651469 overrides: 50651464!
+modifyBalance: aBalance
+
+	^aBalance + self value! !
+!Withdraw methodsFor: 'as yet unclassified' stamp: 'camila 10/9/2023 21:52:30' prior: 50651474 overrides: 50651464!
+modifyBalance: aBalance
+
+	^aBalance - self value! !
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'camila 10/9/2023 21:52:38' prior: 50651271!
+register: aTransaction
+
+	transactions add: aTransaction .
+! !
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'camila 10/9/2023 21:52:46' prior: 50651265 overrides: 16920235!
+initialize
+
+	transactions := OrderedCollection new.! !
+
+Object subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions '
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio' stamp: 'camila 10/9/2023 21:52:51'!
+Object subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!methodRemoval: ReceptiveAccount #doWithdrawWithValue: stamp: 'camila 10/9/2023 21:52:59'!
+doWithdrawWithValue: aWithdrawValue
+	currentBalance := currentBalance - aWithdrawValue .!
+
+!methodRemoval: ReceptiveAccount #doDepositWithValue: stamp: 'camila 10/9/2023 21:53:02'!
+doDepositWithValue: aDepositValue
+	currentBalance := currentBalance + aDepositValue .!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'camila 10/9/2023 21:53:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 21:53:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 21:53:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'camila 10/9/2023 21:53:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'camila 10/9/2023 21:53:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'camila 10/9/2023 21:53:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'camila 10/9/2023 21:53:07'!
+PASSED!
+
+!methodRemoval: AccountTransaction #isWithdraw stamp: 'camila 10/9/2023 21:53:22'!
+isWithdraw
+
+	self subclassResponsibility!
+
+!methodRemoval: AccountTransaction #isDeposit stamp: 'camila 10/9/2023 21:53:23'!
+isDeposit
+
+	self subclassResponsibility!
+
+!methodRemoval: Deposit #isDeposit stamp: 'camila 10/9/2023 21:53:26'!
+isDeposit
+
+	^true!
+
+!methodRemoval: Deposit #isWithdraw stamp: 'camila 10/9/2023 21:53:26'!
+isWithdraw
+
+	^false!
+
+!methodRemoval: Withdraw #isDeposit stamp: 'camila 10/9/2023 21:53:29'!
+isDeposit
+
+	^false !
+
+!methodRemoval: Withdraw #isWithdraw stamp: 'camila 10/9/2023 21:53:30'!
+isWithdraw
+
+	^true!
+
+!methodRemoval: Withdraw #doTransactionOn: stamp: 'camila 10/9/2023 21:53:32'!
+doTransactionOn: aReceptiveAccount
+	aReceptiveAccount doWithdrawWithValue: self value.!
+
+!methodRemoval: Deposit #doTransactionOn: stamp: 'camila 10/9/2023 21:53:33'!
+doTransactionOn: aReceptiveAccount
+	aReceptiveAccount doDepositWithValue: self value.!
+
+!methodRemoval: AccountTransaction #doTransactionOn: stamp: 'camila 10/9/2023 21:53:36'!
+doTransactionOn: aReceptiveAccount
+
+	self subclassResponsibility!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'camila 10/9/2023 21:53:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 21:53:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'camila 10/9/2023 21:53:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'camila 10/9/2023 21:53:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'camila 10/9/2023 21:53:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'camila 10/9/2023 21:53:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'camila 10/9/2023 21:53:37'!
+PASSED!
+
+----SNAPSHOT----(9 October 2023 21:53:40) CuisUniversity-5981.image priorSource: 10232251!
+
+----SNAPSHOT----(9 October 2023 21:54:08) CuisUniversity-5981.image priorSource: 10239616!
