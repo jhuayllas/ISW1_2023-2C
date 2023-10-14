@@ -1,3 +1,209 @@
+!classDefinition: #PortfolioTest category: 'Portfolio-Ejercicio'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!PortfolioTest methodsFor: 'tests' stamp: 'CJF 10/12/2023 19:57:34'!
+test01EmptyPortfolioReturnBalanceZero
+	self assert: (Portfolio new) balance equals: 0.! !
+
+!PortfolioTest methodsFor: 'tests' stamp: 'CJF 10/12/2023 20:08:08'!
+test02PortfolioWithSingleAccountReturnBalanceOfAccount
+	|anAccount aPortfolio|
+	anAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anAccount.
+	
+	aPortfolio := Portfolio new.
+	aPortfolio addAccount: anAccount .
+	self assert: (aPortfolio balance )equals: (anAccount balance )
+	! !
+
+!PortfolioTest methodsFor: 'tests' stamp: 'CJF 10/12/2023 21:16:05'!
+test03PortfolioWithMultipleAccountsReturnBalanceAsSumOfThem
+	|firstAccount secondAccount aPortfolio|
+	firstAccount := ReceptiveAccount new.
+	Deposit register: 100 on: firstAccount.
+	
+	secondAccount := ReceptiveAccount new.
+	Withdraw register: 50 on: secondAccount .
+	
+	aPortfolio := Portfolio new.
+	aPortfolio addAccount: firstAccount.
+	aPortfolio addAccount: secondAccount .
+	
+	self assert: (aPortfolio balance )equals: (firstAccount balance + secondAccount balance)
+	! !
+
+!PortfolioTest methodsFor: 'tests' stamp: 'CJF 10/13/2023 20:17:24'!
+test04PortfolioWithAnEmptyPortfolioReturnBalanceZero
+	|aPortfolio aSecondPorftfolio|
+	aSecondPorftfolio := Portfolio new. 
+	aPortfolio := Portfolio new. 
+	
+	aPortfolio addPortfolio: aSecondPorftfolio.
+	
+	self assert: aPortfolio balance equals: aSecondPorftfolio balance. ! !
+
+!PortfolioTest methodsFor: 'tests' stamp: 'CJF 10/13/2023 20:31:06'!
+test05PortfolioWithPortfolioWithAccountWithdrawReturnNoZeroBalance
+	|aPortfolio aSecondPorftfolio accountWithdraw|
+	accountWithdraw := ReceptiveAccount new.
+	Withdraw register: 50 on: accountWithdraw .
+	aSecondPorftfolio := Portfolio new. 
+	aSecondPorftfolio addAccount: accountWithdraw .
+	
+	aPortfolio := Portfolio new. 
+	aPortfolio addPortfolio: aSecondPorftfolio.
+	
+	self assert: (aPortfolio balance) equals: (aSecondPorftfolio balance). ! !
+
+!PortfolioTest methodsFor: 'tests' stamp: 'CJF 10/13/2023 20:40:31'!
+test06PortfolioWithManyPortfoliosReturnBalanceAsSumOfThem
+	|aPortfolio aSecondPorftfolio aThirdPortfolio accountWithdraw accountDesposit|
+	accountWithdraw := ReceptiveAccount new.
+	Withdraw register: 50 on: accountWithdraw .
+	
+	accountDesposit := ReceptiveAccount new.
+	Deposit register: 100 on: accountDesposit .
+	
+	aSecondPorftfolio := Portfolio new. 
+	aSecondPorftfolio addAccount: accountWithdraw .
+	
+	aThirdPortfolio := Portfolio new.
+	aThirdPortfolio addAccount: accountDesposit .
+	
+	aPortfolio := Portfolio new. 
+	aPortfolio addPortfolio: aSecondPorftfolio.
+	aPortfolio addPortfolio: aThirdPortfolio .
+	
+	self assert: (aPortfolio balance) equals: (aSecondPorftfolio balance) + ( aThirdPortfolio balance ). ! !
+
+!PortfolioTest methodsFor: 'tests' stamp: 'CJF 10/13/2023 20:52:13'!
+test07PortfolioWithAccountAndPortfolioReturnBalanceAsSumOfThem
+	|aPortfolio aSecondPorftfolio  accountWithdraw accountDesposit|
+	accountWithdraw := ReceptiveAccount new.
+	Withdraw register: 50 on: accountWithdraw .
+	
+	accountDesposit := ReceptiveAccount new.
+	Deposit register: 100 on: accountDesposit .
+	
+	aSecondPorftfolio := Portfolio new. 
+	aSecondPorftfolio addAccount: accountWithdraw .
+	
+		
+	aPortfolio := Portfolio new. 
+	aPortfolio addPortfolio: aSecondPorftfolio.
+	aPortfolio addAccount: accountDesposit.
+		
+	self assert: (aPortfolio balance) equals: (aSecondPorftfolio balance) + ( accountDesposit balance ). ! !
+
+!PortfolioTest methodsFor: 'tests' stamp: 'CJF 10/13/2023 21:05:02'!
+test08TransactionsOfEmptyPortfolioIsEmptyList
+	self assert: (Portfolio new) transactions isEmpty.! !
+
+!PortfolioTest methodsFor: 'tests' stamp: 'CJF 10/13/2023 21:13:12'!
+test09PortfolioWithSingleAccountHasSameTransactionsThanAccount
+	| aPortfolio anAccount |
+	
+	anAccount := ReceptiveAccount new. 
+	Deposit register: 100 on: anAccount .
+	
+	aPortfolio := Portfolio new.
+	aPortfolio addAccount: anAccount .
+	
+	self assert: (aPortfolio transactions) equals: (anAccount transactions ).! !
+
+!PortfolioTest methodsFor: 'tests' stamp: 'CJF 10/13/2023 21:17:11'!
+test10PortfolioManyAccountsHasSameTransactionsCombined
+	| aPortfolio firstAccount secondAccount alltransactions |
+	
+	firstAccount := ReceptiveAccount new. 
+	Deposit register: 100 on: firstAccount .
+
+	secondAccount := ReceptiveAccount new. 
+	Withdraw register: 50 on: secondAccount .
+	
+	aPortfolio := Portfolio new.
+	aPortfolio addAccount: firstAccount .
+	aPortfolio addAccount: secondAccount.
+	
+	alltransactions := firstAccount transactions .
+	alltransactions addAll: secondAccount transactions .
+	
+	self assert: (aPortfolio transactions) equals: alltransactions .! !
+
+!PortfolioTest methodsFor: 'tests' stamp: 'CJF 10/13/2023 21:19:12'!
+test11PortfolioWithdAccountAndPortfolioReturnTransactionsCombined
+	| aPortfolio secondPortfolio firstAccount secondAccount alltransactions |
+	
+	firstAccount := ReceptiveAccount new. 
+	Deposit register: 100 on: firstAccount .
+
+	secondAccount := ReceptiveAccount new. 
+	Withdraw register: 50 on: secondAccount .
+	
+	secondPortfolio := Portfolio new.
+	secondPortfolio addAccount: secondAccount .
+		
+	aPortfolio := Portfolio new.
+	aPortfolio addAccount: firstAccount .
+	aPortfolio addPortfolio: secondPortfolio.
+	
+	alltransactions := firstAccount transactions .
+	alltransactions addAll: secondPortfolio transactions .
+	
+	self assert: (aPortfolio transactions) equals: alltransactions .! !
+
+!PortfolioTest methodsFor: 'tests' stamp: 'CJF 10/13/2023 21:30:40'!
+test12EmptyPortfolioHasNoRegisteredTranstractions
+	self deny: ((Portfolio new) hasRegistered: (Deposit register: 100 on: (ReceptiveAccount new)) ).! !
+
+!PortfolioTest methodsFor: 'tests' stamp: 'CJF 10/13/2023 21:49:45'!
+test13PortfolioWithSingleAccountHasRegisterAccountTransactions
+	| aPortfolio anAccount deposit |
+	anAccount := ReceptiveAccount new. 
+	deposit := Deposit register: 100 on: anAccount .
+	
+	aPortfolio := Portfolio new. 
+	aPortfolio addAccount: anAccount .
+		
+	self assert: (aPortfolio hasRegistered: deposit). ! !
+
+!PortfolioTest methodsFor: 'tests' stamp: 'CJF 10/13/2023 21:55:38'!
+test14PortfolioWIthPortfolioWithTransactionsHasSameTransactionsRegistered
+	| aPortfolio anAccount deposit aSecondPortfolio |
+	anAccount := ReceptiveAccount new. 
+	deposit := Deposit register: 100 on: anAccount .
+	
+	aSecondPortfolio := Portfolio new.
+	aSecondPortfolio addAccount: anAccount .
+	
+	aPortfolio := Portfolio new. 
+	aPortfolio addPortfolio: aSecondPortfolio.
+		
+	self assert: (aPortfolio hasRegistered: deposit). ! !
+
+!PortfolioTest methodsFor: 'tests' stamp: 'CJF 10/13/2023 21:59:01'!
+test15PortfolioWithAccountAndPortfolioHasRegisteredAllTransactions
+	| aPortfolio anAccount deposit aSecondPortfolio aSecondAccount withdraw|
+	anAccount := ReceptiveAccount new. 
+	deposit := Deposit register: 100 on: anAccount .
+	
+	aSecondPortfolio := Portfolio new.
+	aSecondPortfolio addAccount: anAccount .
+	
+	aSecondAccount := ReceptiveAccount new. 
+	withdraw  :=  Withdraw register: 50 on: aSecondAccount .
+	
+	aPortfolio := Portfolio new. 
+	aPortfolio addPortfolio: aSecondPortfolio.
+	aPortfolio addAccount: aSecondAccount .	
+	self assert: (aPortfolio hasRegistered: deposit). 
+	self assert: (aPortfolio hasRegistered: withdraw )! !
+
+
 !classDefinition: #ReceptiveAccountTest category: 'Portfolio-Ejercicio'!
 TestCase subclass: #ReceptiveAccountTest
 	instanceVariableNames: ''
@@ -101,12 +307,6 @@ value
 
 	self subclassResponsibility ! !
 
-
-!AccountTransaction methodsFor: 'as yet unclassified' stamp: 'camila 10/9/2023 21:52:01'!
-modifyBalance: aBalance
-
-	self subclassResponsibility! !
-
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'AccountTransaction class' category: 'Portfolio-Ejercicio'!
@@ -143,10 +343,9 @@ value
 	^ value! !
 
 
-!Deposit methodsFor: 'as yet unclassified' stamp: 'camila 10/9/2023 21:52:17'!
-modifyBalance: aBalance
-
-	^aBalance + self value! !
+!Deposit methodsFor: 'balance' stamp: 'CJF 10/9/2023 21:25:53'!
+impactBalance: calculatedBalance
+	^(calculatedBalance + value)! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -179,10 +378,9 @@ value
 	^ value! !
 
 
-!Withdraw methodsFor: 'as yet unclassified' stamp: 'camila 10/9/2023 21:52:30'!
-modifyBalance: aBalance
-
-	^aBalance - self value! !
+!Withdraw methodsFor: 'balance' stamp: 'CJF 10/9/2023 21:23:14'!
+impactBalance: calculatedBalance
+	^calculatedBalance - value! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -196,6 +394,56 @@ for: aValue
 	^ self new initializeFor: aValue ! !
 
 
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'accounts portfolios'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!Portfolio methodsFor: 'balance' stamp: 'CJF 10/13/2023 20:44:51'!
+balance
+	| accountsBalance portfoliosBalance |
+	accounts isEmpty ifFalse: [
+	accountsBalance := accounts  sum: [ :anAccount | anAccount balance ] ] ifTrue: [ accountsBalance  := 0].
+	portfolios isEmpty ifFalse:[ portfoliosBalance := portfolios sum: [ :aPortfolio | aPortfolio balance] ] 
+					ifTrue: [ portfoliosBalance := 0].
+	^accountsBalance + portfoliosBalance .! !
+
+!Portfolio methodsFor: 'balance' stamp: 'CJF 10/13/2023 20:41:30'!
+initialize
+	accounts := OrderedCollection new.
+	portfolios := OrderedCollection new.! !
+
+
+!Portfolio methodsFor: 'administration' stamp: 'CJF 10/13/2023 20:29:35'!
+addAccount: anAccount 
+	
+	accounts add: anAccount.! !
+
+!Portfolio methodsFor: 'administration' stamp: 'CJF 10/13/2023 20:42:04'!
+addPortfolio: aPortfolio
+	portfolios add: aPortfolio.! !
+
+!Portfolio methodsFor: 'administration' stamp: 'CJF 10/13/2023 22:00:14'!
+hasRegistered: anAccountTransaction
+	^self transactions includes: anAccountTransaction 
+	"| res |
+	res := false.
+	accounts do: [ :anAccount  | res := res or: (anAccount hasRegistered: anAccountTransaction )  ].
+	portfolios do: [ :aPortfolio | res := res or: ( aPortfolio hasRegistered: anAccountTransaction ) ].
+	^res. "! !
+
+
+!Portfolio methodsFor: 'transactions' stamp: 'CJF 10/13/2023 21:20:09'!
+transactions
+	|res|
+	res := OrderedCollection new.
+	accounts do:[ :anAccount | res addAll: anAccount transactions ].
+	portfolios do:[ :aPortfolio | res addAll: aPortfolio transactions ].
+	^res! !
+
+
 !classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio'!
 Object subclass: #ReceptiveAccount
 	instanceVariableNames: 'transactions'
@@ -203,16 +451,16 @@ Object subclass: #ReceptiveAccount
 	poolDictionaries: ''
 	category: 'Portfolio-Ejercicio'!
 
-!ReceptiveAccount methodsFor: 'initialization' stamp: 'camila 10/9/2023 21:52:46'!
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'NR 10/17/2019 15:06:56'!
 initialize
 
 	transactions := OrderedCollection new.! !
 
 
-!ReceptiveAccount methodsFor: 'transactions' stamp: 'camila 10/9/2023 21:52:38'!
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'HernanWilkinson 7/13/2011 18:37'!
 register: aTransaction
 
-	transactions add: aTransaction .
+	transactions add: aTransaction 
 ! !
 
 !ReceptiveAccount methodsFor: 'transactions' stamp: 'HernanWilkinson 7/13/2011 18:37'!
@@ -221,15 +469,14 @@ transactions
 	^ transactions copy! !
 
 
-!ReceptiveAccount methodsFor: 'balance' stamp: 'camila 10/9/2023 21:52:01'!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'CJF 10/9/2023 21:27:30'!
 balance
-
-	| totalBalance |
-	totalBalance := 0.
-
-	transactions do: [:aTransaction | totalBalance := aTransaction modifyBalance: totalBalance.   ].
-		
-	^totalBalance.! !
+	| balance |
+	balance := 0.
+	transactions do: [ :aTransaction |  balance:= aTransaction impactBalance: balance. self].
+	^balance
+	"^transactions sum: [ :aTransaction | aTransaction impactBalance: self
+		] ifEmpty: [ 0 ]"! !
 
 
 !ReceptiveAccount methodsFor: 'testing' stamp: 'NR 10/17/2019 03:28:43'!
