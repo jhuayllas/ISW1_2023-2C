@@ -4316,3 +4316,2213 @@ PASSED!
 ----SNAPSHOT----(14 October 2023 08:34:53) CuisUniversity-5981.image priorSource: 10586172!
 
 ----QUIT----(14 October 2023 08:35:03) CuisUniversity-5981.image priorSource: 10586265!
+
+----STARTUP---- (16 October 2023 19:06:29) as C:\Users\crist\Desktop\Inge1 2c 2023\cuis para tdd\CuisUniversity-5981.image!
+
+
+Object subclass: #Account
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Account category: 'Portfolio-Ejercicio' stamp: 'CJF 10/16/2023 19:32:44'!
+Object subclass: #Account
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classRenamed: #Account as: #CollectionAccount stamp: 'CJF 10/16/2023 19:33:37'!
+Smalltalk renameClassNamed: #Account as: #CollectionAccount!
+
+CollectionAccount subclass: #Portfolio
+	instanceVariableNames: 'accounts portfolios'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'CJF 10/16/2023 19:34:18'!
+CollectionAccount subclass: #Portfolio
+	instanceVariableNames: 'accounts portfolios'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+CollectionAccount subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio' stamp: 'CJF 10/16/2023 19:34:27'!
+CollectionAccount subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'administration' stamp: 'CJF 10/16/2023 19:37:05'!
+add: aCollectionAccount
+	(aCollectionAccount isKindOf: Portfolio ) ifTrue: [ self addPortfolio: aCollectionAccount ].
+	(aCollectionAccount isKindOf: ReceptiveAccount ) ifTrue: [ self addAccount: aCollectionAccount ].! !
+!Portfolio methodsFor: 'administration' stamp: 'CJF 10/16/2023 19:38:06'!
+add2: aCollectionAccount
+	(aCollectionAccount isKindOf: Portfolio ) ifTrue: [ self addPortfolio: aCollectionAccount ].
+	(aCollectionAccount isKindOf: ReceptiveAccount ) ifTrue: [ self addAccount: aCollectionAccount ].! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'CJF 10/16/2023 19:38:06' prior: 50661001!
+addPortfolio: aPortfolio
+	portfolios add2: aPortfolio.! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'CJF 10/16/2023 19:38:06' prior: 50659593!
+register: aTransaction
+
+	transactions add2: aTransaction 
+! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'CJF 10/16/2023 19:38:06' prior: 50660781!
+addAccount: anAccount 
+	
+	accounts add2: anAccount.! !
+
+!methodRemoval: Portfolio #add: stamp: 'CJF 10/16/2023 19:38:06'!
+add: aCollectionAccount
+	(aCollectionAccount isKindOf: Portfolio ) ifTrue: [ self addPortfolio: aCollectionAccount ].
+	(aCollectionAccount isKindOf: ReceptiveAccount ) ifTrue: [ self addAccount: aCollectionAccount ].!
+!Portfolio methodsFor: 'administration' stamp: 'CJF 10/16/2023 19:38:51'!
+add: aCollectionAccount
+	(aCollectionAccount isKindOf: Portfolio ) ifTrue: [ self addPortfolio: aCollectionAccount ].
+	(aCollectionAccount isKindOf: ReceptiveAccount ) ifTrue: [ self addAccount: aCollectionAccount ].! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'CJF 10/16/2023 19:38:51' prior: 50662549!
+register: aTransaction
+
+	transactions add: aTransaction 
+! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'CJF 10/16/2023 19:38:51' prior: 50662544!
+addPortfolio: aPortfolio
+	portfolios add: aPortfolio.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'CJF 10/16/2023 19:38:51' prior: 50662554!
+addAccount: anAccount 
+	
+	accounts add: anAccount.! !
+
+!methodRemoval: Portfolio #add2: stamp: 'CJF 10/16/2023 19:38:51'!
+add2: aCollectionAccount
+	(aCollectionAccount isKindOf: Portfolio ) ifTrue: [ self addPortfolio: aCollectionAccount ].
+	(aCollectionAccount isKindOf: ReceptiveAccount ) ifTrue: [ self addAccount: aCollectionAccount ].!
+!PortfolioTest methodsFor: 'tests' stamp: 'CJF 10/16/2023 19:39:47' prior: 50660353!
+test02PortfolioWithSingleAccountReturnBalanceOfAccount
+	|anAccount aPortfolio|
+	anAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anAccount.
+	
+	aPortfolio := Portfolio new.
+	aPortfolio add: anAccount .
+	self assert: (aPortfolio balance )equals: (anAccount balance )
+	! !
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountReturnBalanceOfAccount stamp: 'CJF 10/16/2023 19:39:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 19:39:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountReturnBalanceOfAccount stamp: 'CJF 10/16/2023 19:39:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 19:39:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithAnEmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 19:39:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithPortfolioWithAccountWithdrawReturnNoZeroBalance stamp: 'CJF 10/16/2023 19:39:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithManyPortfoliosReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 19:39:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountAndPortfolioReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 19:39:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test08TransactionsOfEmptyPortfolioIsEmptyList stamp: 'CJF 10/16/2023 19:39:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithSingleAccountHasSameTransactionsThanAccount stamp: 'CJF 10/16/2023 19:39:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioManyAccountsHasSameTransactionsCombined stamp: 'CJF 10/16/2023 19:39:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioWithdAccountAndPortfolioReturnTransactionsCombined stamp: 'CJF 10/16/2023 19:39:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test12EmptyPortfolioHasNoRegisteredTranstractions stamp: 'CJF 10/16/2023 19:39:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioWithSingleAccountHasRegisterAccountTransactions stamp: 'CJF 10/16/2023 19:39:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioWIthPortfolioWithTransactionsHasSameTransactionsRegistered stamp: 'CJF 10/16/2023 19:39:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioWithAccountAndPortfolioHasRegisteredAllTransactions stamp: 'CJF 10/16/2023 19:39:49'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'CJF 10/16/2023 19:40:06' prior: 50660590!
+test03PortfolioWithMultipleAccountsReturnBalanceAsSumOfThem
+	|firstAccount secondAccount aPortfolio|
+	firstAccount := ReceptiveAccount new.
+	Deposit register: 100 on: firstAccount.
+	
+	secondAccount := ReceptiveAccount new.
+	Withdraw register: 50 on: secondAccount .
+	
+	aPortfolio := Portfolio new.
+	aPortfolio add: firstAccount.
+	aPortfolio add: secondAccount .
+	
+	self assert: (aPortfolio balance )equals: (firstAccount balance + secondAccount balance)
+	! !
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 19:40:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 19:40:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountReturnBalanceOfAccount stamp: 'CJF 10/16/2023 19:40:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 19:40:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithAnEmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 19:40:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithPortfolioWithAccountWithdrawReturnNoZeroBalance stamp: 'CJF 10/16/2023 19:40:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithManyPortfoliosReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 19:40:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountAndPortfolioReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 19:40:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test08TransactionsOfEmptyPortfolioIsEmptyList stamp: 'CJF 10/16/2023 19:40:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithSingleAccountHasSameTransactionsThanAccount stamp: 'CJF 10/16/2023 19:40:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioManyAccountsHasSameTransactionsCombined stamp: 'CJF 10/16/2023 19:40:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioWithdAccountAndPortfolioReturnTransactionsCombined stamp: 'CJF 10/16/2023 19:40:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test12EmptyPortfolioHasNoRegisteredTranstractions stamp: 'CJF 10/16/2023 19:40:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioWithSingleAccountHasRegisterAccountTransactions stamp: 'CJF 10/16/2023 19:40:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioWIthPortfolioWithTransactionsHasSameTransactionsRegistered stamp: 'CJF 10/16/2023 19:40:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioWithAccountAndPortfolioHasRegisteredAllTransactions stamp: 'CJF 10/16/2023 19:40:08'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'CJF 10/16/2023 19:40:19' prior: 50660651!
+test04PortfolioWithAnEmptyPortfolioReturnBalanceZero
+	|aPortfolio aSecondPorftfolio|
+	aSecondPorftfolio := Portfolio new. 
+	aPortfolio := Portfolio new. 
+	
+	aPortfolio add: aSecondPorftfolio.
+	
+	self assert: aPortfolio balance equals: aSecondPorftfolio balance. ! !
+
+!testRun: #PortfolioTest #test04PortfolioWithAnEmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 19:40:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 19:40:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountReturnBalanceOfAccount stamp: 'CJF 10/16/2023 19:40:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 19:40:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithAnEmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 19:40:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithPortfolioWithAccountWithdrawReturnNoZeroBalance stamp: 'CJF 10/16/2023 19:40:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithManyPortfoliosReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 19:40:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountAndPortfolioReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 19:40:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test08TransactionsOfEmptyPortfolioIsEmptyList stamp: 'CJF 10/16/2023 19:40:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithSingleAccountHasSameTransactionsThanAccount stamp: 'CJF 10/16/2023 19:40:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioManyAccountsHasSameTransactionsCombined stamp: 'CJF 10/16/2023 19:40:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioWithdAccountAndPortfolioReturnTransactionsCombined stamp: 'CJF 10/16/2023 19:40:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test12EmptyPortfolioHasNoRegisteredTranstractions stamp: 'CJF 10/16/2023 19:40:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioWithSingleAccountHasRegisterAccountTransactions stamp: 'CJF 10/16/2023 19:40:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioWIthPortfolioWithTransactionsHasSameTransactionsRegistered stamp: 'CJF 10/16/2023 19:40:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioWithAccountAndPortfolioHasRegisteredAllTransactions stamp: 'CJF 10/16/2023 19:40:20'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'CJF 10/16/2023 19:40:31' prior: 50660795!
+test05PortfolioWithPortfolioWithAccountWithdrawReturnNoZeroBalance
+	|aPortfolio aSecondPorftfolio accountWithdraw|
+	accountWithdraw := ReceptiveAccount new.
+	Withdraw register: 50 on: accountWithdraw .
+	aSecondPorftfolio := Portfolio new. 
+	aSecondPorftfolio addAccount: accountWithdraw .
+	
+	aPortfolio := Portfolio new. 
+	aPortfolio add: aSecondPorftfolio.
+	
+	self assert: (aPortfolio balance) equals: (aSecondPorftfolio balance). ! !
+
+!testRun: #PortfolioTest #test05PortfolioWithPortfolioWithAccountWithdrawReturnNoZeroBalance stamp: 'CJF 10/16/2023 19:40:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 19:40:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountReturnBalanceOfAccount stamp: 'CJF 10/16/2023 19:40:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 19:40:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithAnEmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 19:40:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithPortfolioWithAccountWithdrawReturnNoZeroBalance stamp: 'CJF 10/16/2023 19:40:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithManyPortfoliosReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 19:40:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountAndPortfolioReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 19:40:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test08TransactionsOfEmptyPortfolioIsEmptyList stamp: 'CJF 10/16/2023 19:40:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithSingleAccountHasSameTransactionsThanAccount stamp: 'CJF 10/16/2023 19:40:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioManyAccountsHasSameTransactionsCombined stamp: 'CJF 10/16/2023 19:40:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioWithdAccountAndPortfolioReturnTransactionsCombined stamp: 'CJF 10/16/2023 19:40:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test12EmptyPortfolioHasNoRegisteredTranstractions stamp: 'CJF 10/16/2023 19:40:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioWithSingleAccountHasRegisterAccountTransactions stamp: 'CJF 10/16/2023 19:40:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioWIthPortfolioWithTransactionsHasSameTransactionsRegistered stamp: 'CJF 10/16/2023 19:40:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioWithAccountAndPortfolioHasRegisteredAllTransactions stamp: 'CJF 10/16/2023 19:40:32'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'CJF 10/16/2023 19:40:44' prior: 50660961!
+test06PortfolioWithManyPortfoliosReturnBalanceAsSumOfThem
+	|aPortfolio aSecondPorftfolio aThirdPortfolio accountWithdraw accountDesposit|
+	accountWithdraw := ReceptiveAccount new.
+	Withdraw register: 50 on: accountWithdraw .
+	
+	accountDesposit := ReceptiveAccount new.
+	Deposit register: 100 on: accountDesposit .
+	
+	aSecondPorftfolio := Portfolio new. 
+	aSecondPorftfolio add: accountWithdraw .
+	
+	aThirdPortfolio := Portfolio new.
+	aThirdPortfolio addAccount: accountDesposit .
+	
+	aPortfolio := Portfolio new. 
+	aPortfolio addPortfolio: aSecondPorftfolio.
+	aPortfolio addPortfolio: aThirdPortfolio .
+	
+	self assert: (aPortfolio balance) equals: (aSecondPorftfolio balance) + ( aThirdPortfolio balance ). ! !
+!PortfolioTest methodsFor: 'tests' stamp: 'CJF 10/16/2023 19:40:49' prior: 50662915!
+test06PortfolioWithManyPortfoliosReturnBalanceAsSumOfThem
+	|aPortfolio aSecondPorftfolio aThirdPortfolio accountWithdraw accountDesposit|
+	accountWithdraw := ReceptiveAccount new.
+	Withdraw register: 50 on: accountWithdraw .
+	
+	accountDesposit := ReceptiveAccount new.
+	Deposit register: 100 on: accountDesposit .
+	
+	aSecondPorftfolio := Portfolio new. 
+	aSecondPorftfolio add: accountWithdraw .
+	
+	aThirdPortfolio := Portfolio new.
+	aThirdPortfolio add: accountDesposit .
+	
+	aPortfolio := Portfolio new. 
+	aPortfolio addPortfolio: aSecondPorftfolio.
+	aPortfolio addPortfolio: aThirdPortfolio .
+	
+	self assert: (aPortfolio balance) equals: (aSecondPorftfolio balance) + ( aThirdPortfolio balance ). ! !
+!PortfolioTest methodsFor: 'tests' stamp: 'CJF 10/16/2023 19:40:53' prior: 50662940!
+test06PortfolioWithManyPortfoliosReturnBalanceAsSumOfThem
+	|aPortfolio aSecondPorftfolio aThirdPortfolio accountWithdraw accountDesposit|
+	accountWithdraw := ReceptiveAccount new.
+	Withdraw register: 50 on: accountWithdraw .
+	
+	accountDesposit := ReceptiveAccount new.
+	Deposit register: 100 on: accountDesposit .
+	
+	aSecondPorftfolio := Portfolio new. 
+	aSecondPorftfolio add: accountWithdraw .
+	
+	aThirdPortfolio := Portfolio new.
+	aThirdPortfolio add: accountDesposit .
+	
+	aPortfolio := Portfolio new. 
+	aPortfolio add: aSecondPorftfolio.
+	aPortfolio addPortfolio: aThirdPortfolio .
+	
+	self assert: (aPortfolio balance) equals: (aSecondPorftfolio balance) + ( aThirdPortfolio balance ). ! !
+!PortfolioTest methodsFor: 'tests' stamp: 'CJF 10/16/2023 19:40:56' prior: 50662965!
+test06PortfolioWithManyPortfoliosReturnBalanceAsSumOfThem
+	|aPortfolio aSecondPorftfolio aThirdPortfolio accountWithdraw accountDesposit|
+	accountWithdraw := ReceptiveAccount new.
+	Withdraw register: 50 on: accountWithdraw .
+	
+	accountDesposit := ReceptiveAccount new.
+	Deposit register: 100 on: accountDesposit .
+	
+	aSecondPorftfolio := Portfolio new. 
+	aSecondPorftfolio add: accountWithdraw .
+	
+	aThirdPortfolio := Portfolio new.
+	aThirdPortfolio add: accountDesposit .
+	
+	aPortfolio := Portfolio new. 
+	aPortfolio add: aSecondPorftfolio.
+	aPortfolio add: aThirdPortfolio .
+	
+	self assert: (aPortfolio balance) equals: (aSecondPorftfolio balance) + ( aThirdPortfolio balance ). ! !
+
+!testRun: #PortfolioTest #test06PortfolioWithManyPortfoliosReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 19:40:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 19:40:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountReturnBalanceOfAccount stamp: 'CJF 10/16/2023 19:40:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 19:40:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithAnEmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 19:40:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithPortfolioWithAccountWithdrawReturnNoZeroBalance stamp: 'CJF 10/16/2023 19:40:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithManyPortfoliosReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 19:40:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountAndPortfolioReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 19:40:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test08TransactionsOfEmptyPortfolioIsEmptyList stamp: 'CJF 10/16/2023 19:40:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithSingleAccountHasSameTransactionsThanAccount stamp: 'CJF 10/16/2023 19:40:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioManyAccountsHasSameTransactionsCombined stamp: 'CJF 10/16/2023 19:40:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioWithdAccountAndPortfolioReturnTransactionsCombined stamp: 'CJF 10/16/2023 19:40:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test12EmptyPortfolioHasNoRegisteredTranstractions stamp: 'CJF 10/16/2023 19:40:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioWithSingleAccountHasRegisterAccountTransactions stamp: 'CJF 10/16/2023 19:40:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioWIthPortfolioWithTransactionsHasSameTransactionsRegistered stamp: 'CJF 10/16/2023 19:40:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioWithAccountAndPortfolioHasRegisteredAllTransactions stamp: 'CJF 10/16/2023 19:40:58'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'CJF 10/16/2023 19:41:07' prior: 50661166!
+test07PortfolioWithAccountAndPortfolioReturnBalanceAsSumOfThem
+	|aPortfolio aSecondPorftfolio  accountWithdraw accountDesposit|
+	accountWithdraw := ReceptiveAccount new.
+	Withdraw register: 50 on: accountWithdraw .
+	
+	accountDesposit := ReceptiveAccount new.
+	Deposit register: 100 on: accountDesposit .
+	
+	aSecondPorftfolio := Portfolio new. 
+	aSecondPorftfolio add: accountWithdraw .
+	
+		
+	aPortfolio := Portfolio new. 
+	aPortfolio addPortfolio: aSecondPorftfolio.
+	aPortfolio addAccount: accountDesposit.
+		
+	self assert: (aPortfolio balance) equals: (aSecondPorftfolio balance) + ( accountDesposit balance ). ! !
+!PortfolioTest methodsFor: 'tests' stamp: 'CJF 10/16/2023 19:41:17' prior: 50663078!
+test07PortfolioWithAccountAndPortfolioReturnBalanceAsSumOfThem
+	|aPortfolio aSecondPorftfolio  accountWithdraw accountDesposit|
+	accountWithdraw := ReceptiveAccount new.
+	Withdraw register: 50 on: accountWithdraw .
+	
+	accountDesposit := ReceptiveAccount new.
+	Deposit register: 100 on: accountDesposit .
+	
+	aSecondPorftfolio := Portfolio new. 
+	aSecondPorftfolio add: accountWithdraw .
+	
+		
+	aPortfolio := Portfolio new. 
+	aPortfolio add: aSecondPorftfolio.
+	aPortfolio add: accountDesposit.
+		
+	self assert: (aPortfolio balance) equals: (aSecondPorftfolio balance) + ( accountDesposit balance ). ! !
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountAndPortfolioReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 19:41:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 19:41:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountReturnBalanceOfAccount stamp: 'CJF 10/16/2023 19:41:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 19:41:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithAnEmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 19:41:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithPortfolioWithAccountWithdrawReturnNoZeroBalance stamp: 'CJF 10/16/2023 19:41:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithManyPortfoliosReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 19:41:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountAndPortfolioReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 19:41:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test08TransactionsOfEmptyPortfolioIsEmptyList stamp: 'CJF 10/16/2023 19:41:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithSingleAccountHasSameTransactionsThanAccount stamp: 'CJF 10/16/2023 19:41:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioManyAccountsHasSameTransactionsCombined stamp: 'CJF 10/16/2023 19:41:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioWithdAccountAndPortfolioReturnTransactionsCombined stamp: 'CJF 10/16/2023 19:41:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test12EmptyPortfolioHasNoRegisteredTranstractions stamp: 'CJF 10/16/2023 19:41:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioWithSingleAccountHasRegisterAccountTransactions stamp: 'CJF 10/16/2023 19:41:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioWIthPortfolioWithTransactionsHasSameTransactionsRegistered stamp: 'CJF 10/16/2023 19:41:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioWithAccountAndPortfolioHasRegisteredAllTransactions stamp: 'CJF 10/16/2023 19:41:18'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'CJF 10/16/2023 19:41:30' prior: 50661646!
+test09PortfolioWithSingleAccountHasSameTransactionsThanAccount
+	| aPortfolio anAccount |
+	
+	anAccount := ReceptiveAccount new. 
+	Deposit register: 100 on: anAccount .
+	
+	aPortfolio := Portfolio new.
+	aPortfolio add: anAccount .
+	
+	self assert: (aPortfolio transactions) equals: (anAccount transactions ).! !
+!PortfolioTest methodsFor: 'tests' stamp: 'CJF 10/16/2023 19:41:36' prior: 50661727!
+test10PortfolioManyAccountsHasSameTransactionsCombined
+	| aPortfolio firstAccount secondAccount alltransactions |
+	
+	firstAccount := ReceptiveAccount new. 
+	Deposit register: 100 on: firstAccount .
+
+	secondAccount := ReceptiveAccount new. 
+	Withdraw register: 50 on: secondAccount .
+	
+	aPortfolio := Portfolio new.
+	aPortfolio add: firstAccount .
+	aPortfolio addAccount: secondAccount.
+	
+	alltransactions := firstAccount transactions .
+	alltransactions addAll: secondAccount transactions .
+	
+	self assert: (aPortfolio transactions) equals: alltransactions .! !
+!PortfolioTest methodsFor: 'tests' stamp: 'CJF 10/16/2023 19:41:43' prior: 50663199!
+test10PortfolioManyAccountsHasSameTransactionsCombined
+	| aPortfolio firstAccount secondAccount alltransactions |
+	
+	firstAccount := ReceptiveAccount new. 
+	Deposit register: 100 on: firstAccount .
+
+	secondAccount := ReceptiveAccount new. 
+	Withdraw register: 50 on: secondAccount .
+	
+	aPortfolio := Portfolio new.
+	aPortfolio add: firstAccount .
+	aPortfolio add: secondAccount.
+	
+	alltransactions := firstAccount transactions .
+	alltransactions addAll: secondAccount transactions .
+	
+	self assert: (aPortfolio transactions) equals: alltransactions .! !
+
+!testRun: #PortfolioTest #test10PortfolioManyAccountsHasSameTransactionsCombined stamp: 'CJF 10/16/2023 19:41:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioManyAccountsHasSameTransactionsCombined stamp: 'CJF 10/16/2023 19:41:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 19:41:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountReturnBalanceOfAccount stamp: 'CJF 10/16/2023 19:41:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 19:41:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithAnEmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 19:41:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithPortfolioWithAccountWithdrawReturnNoZeroBalance stamp: 'CJF 10/16/2023 19:41:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithManyPortfoliosReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 19:41:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountAndPortfolioReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 19:41:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test08TransactionsOfEmptyPortfolioIsEmptyList stamp: 'CJF 10/16/2023 19:41:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithSingleAccountHasSameTransactionsThanAccount stamp: 'CJF 10/16/2023 19:41:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioManyAccountsHasSameTransactionsCombined stamp: 'CJF 10/16/2023 19:41:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioWithdAccountAndPortfolioReturnTransactionsCombined stamp: 'CJF 10/16/2023 19:41:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test12EmptyPortfolioHasNoRegisteredTranstractions stamp: 'CJF 10/16/2023 19:41:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioWithSingleAccountHasRegisterAccountTransactions stamp: 'CJF 10/16/2023 19:41:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioWIthPortfolioWithTransactionsHasSameTransactionsRegistered stamp: 'CJF 10/16/2023 19:41:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioWithAccountAndPortfolioHasRegisteredAllTransactions stamp: 'CJF 10/16/2023 19:41:50'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'CJF 10/16/2023 19:42:05' prior: 50661790!
+test11PortfolioWithdAccountAndPortfolioReturnTransactionsCombined
+	| aPortfolio secondPortfolio firstAccount secondAccount alltransactions |
+	
+	firstAccount := ReceptiveAccount new. 
+	Deposit register: 100 on: firstAccount .
+
+	secondAccount := ReceptiveAccount new. 
+	Withdraw register: 50 on: secondAccount .
+	
+	secondPortfolio := Portfolio new.
+	secondPortfolio add: secondAccount .
+		
+	aPortfolio := Portfolio new.
+	aPortfolio add: firstAccount .
+	aPortfolio add: secondPortfolio.
+	
+	alltransactions := firstAccount transactions .
+	alltransactions addAll: secondPortfolio transactions .
+	
+	self assert: (aPortfolio transactions) equals: alltransactions .! !
+
+!testRun: #PortfolioTest #test11PortfolioWithdAccountAndPortfolioReturnTransactionsCombined stamp: 'CJF 10/16/2023 19:42:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 19:42:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountReturnBalanceOfAccount stamp: 'CJF 10/16/2023 19:42:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 19:42:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithAnEmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 19:42:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithPortfolioWithAccountWithdrawReturnNoZeroBalance stamp: 'CJF 10/16/2023 19:42:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithManyPortfoliosReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 19:42:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountAndPortfolioReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 19:42:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test08TransactionsOfEmptyPortfolioIsEmptyList stamp: 'CJF 10/16/2023 19:42:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithSingleAccountHasSameTransactionsThanAccount stamp: 'CJF 10/16/2023 19:42:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioManyAccountsHasSameTransactionsCombined stamp: 'CJF 10/16/2023 19:42:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioWithdAccountAndPortfolioReturnTransactionsCombined stamp: 'CJF 10/16/2023 19:42:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test12EmptyPortfolioHasNoRegisteredTranstractions stamp: 'CJF 10/16/2023 19:42:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioWithSingleAccountHasRegisterAccountTransactions stamp: 'CJF 10/16/2023 19:42:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioWIthPortfolioWithTransactionsHasSameTransactionsRegistered stamp: 'CJF 10/16/2023 19:42:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioWithAccountAndPortfolioHasRegisteredAllTransactions stamp: 'CJF 10/16/2023 19:42:06'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'CJF 10/16/2023 19:42:20' prior: 50662137!
+test13PortfolioWithSingleAccountHasRegisterAccountTransactions
+	| aPortfolio anAccount deposit |
+	anAccount := ReceptiveAccount new. 
+	deposit := Deposit register: 100 on: anAccount .
+	
+	aPortfolio := Portfolio new. 
+	aPortfolio add: anAccount .
+		
+	self assert: (aPortfolio hasRegistered: deposit). ! !
+
+!testRun: #PortfolioTest #test13PortfolioWithSingleAccountHasRegisterAccountTransactions stamp: 'CJF 10/16/2023 19:42:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 19:42:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountReturnBalanceOfAccount stamp: 'CJF 10/16/2023 19:42:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 19:42:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithAnEmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 19:42:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithPortfolioWithAccountWithdrawReturnNoZeroBalance stamp: 'CJF 10/16/2023 19:42:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithManyPortfoliosReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 19:42:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountAndPortfolioReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 19:42:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test08TransactionsOfEmptyPortfolioIsEmptyList stamp: 'CJF 10/16/2023 19:42:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithSingleAccountHasSameTransactionsThanAccount stamp: 'CJF 10/16/2023 19:42:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioManyAccountsHasSameTransactionsCombined stamp: 'CJF 10/16/2023 19:42:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioWithdAccountAndPortfolioReturnTransactionsCombined stamp: 'CJF 10/16/2023 19:42:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test12EmptyPortfolioHasNoRegisteredTranstractions stamp: 'CJF 10/16/2023 19:42:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioWithSingleAccountHasRegisterAccountTransactions stamp: 'CJF 10/16/2023 19:42:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioWIthPortfolioWithTransactionsHasSameTransactionsRegistered stamp: 'CJF 10/16/2023 19:42:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioWithAccountAndPortfolioHasRegisteredAllTransactions stamp: 'CJF 10/16/2023 19:42:21'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'CJF 10/16/2023 19:42:33' prior: 50662217!
+test14PortfolioWIthPortfolioWithTransactionsHasSameTransactionsRegistered
+	| aPortfolio anAccount deposit aSecondPortfolio |
+	anAccount := ReceptiveAccount new. 
+	deposit := Deposit register: 100 on: anAccount .
+	
+	aSecondPortfolio := Portfolio new.
+	aSecondPortfolio add: anAccount .
+	
+	aPortfolio := Portfolio new. 
+	aPortfolio add: aSecondPortfolio.
+		
+	self assert: (aPortfolio hasRegistered: deposit). ! !
+
+!testRun: #PortfolioTest #test14PortfolioWIthPortfolioWithTransactionsHasSameTransactionsRegistered stamp: 'CJF 10/16/2023 19:42:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 19:42:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountReturnBalanceOfAccount stamp: 'CJF 10/16/2023 19:42:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 19:42:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithAnEmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 19:42:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithPortfolioWithAccountWithdrawReturnNoZeroBalance stamp: 'CJF 10/16/2023 19:42:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithManyPortfoliosReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 19:42:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountAndPortfolioReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 19:42:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test08TransactionsOfEmptyPortfolioIsEmptyList stamp: 'CJF 10/16/2023 19:42:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithSingleAccountHasSameTransactionsThanAccount stamp: 'CJF 10/16/2023 19:42:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioManyAccountsHasSameTransactionsCombined stamp: 'CJF 10/16/2023 19:42:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioWithdAccountAndPortfolioReturnTransactionsCombined stamp: 'CJF 10/16/2023 19:42:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test12EmptyPortfolioHasNoRegisteredTranstractions stamp: 'CJF 10/16/2023 19:42:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioWithSingleAccountHasRegisterAccountTransactions stamp: 'CJF 10/16/2023 19:42:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioWIthPortfolioWithTransactionsHasSameTransactionsRegistered stamp: 'CJF 10/16/2023 19:42:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioWithAccountAndPortfolioHasRegisteredAllTransactions stamp: 'CJF 10/16/2023 19:42:34'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'CJF 10/16/2023 19:42:54' prior: 50662309!
+test15PortfolioWithAccountAndPortfolioHasRegisteredAllTransactions
+	| aPortfolio anAccount deposit aSecondPortfolio aSecondAccount withdraw|
+	anAccount := ReceptiveAccount new. 
+	deposit := Deposit register: 100 on: anAccount .
+	
+	aSecondPortfolio := Portfolio new.
+	aSecondPortfolio add: anAccount .
+	
+	aSecondAccount := ReceptiveAccount new. 
+	withdraw  :=  Withdraw register: 50 on: aSecondAccount .
+	
+	aPortfolio := Portfolio new. 
+	aPortfolio add: aSecondPortfolio.
+	aPortfolio add: aSecondAccount .	
+	self assert: (aPortfolio hasRegistered: deposit). 
+	self assert: (aPortfolio hasRegistered: withdraw )! !
+
+!testRun: #PortfolioTest #test15PortfolioWithAccountAndPortfolioHasRegisteredAllTransactions stamp: 'CJF 10/16/2023 19:42:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 19:42:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountReturnBalanceOfAccount stamp: 'CJF 10/16/2023 19:42:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 19:42:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithAnEmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 19:42:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithPortfolioWithAccountWithdrawReturnNoZeroBalance stamp: 'CJF 10/16/2023 19:42:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithManyPortfoliosReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 19:42:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountAndPortfolioReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 19:42:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test08TransactionsOfEmptyPortfolioIsEmptyList stamp: 'CJF 10/16/2023 19:42:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithSingleAccountHasSameTransactionsThanAccount stamp: 'CJF 10/16/2023 19:42:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioManyAccountsHasSameTransactionsCombined stamp: 'CJF 10/16/2023 19:42:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioWithdAccountAndPortfolioReturnTransactionsCombined stamp: 'CJF 10/16/2023 19:42:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test12EmptyPortfolioHasNoRegisteredTranstractions stamp: 'CJF 10/16/2023 19:42:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioWithSingleAccountHasRegisterAccountTransactions stamp: 'CJF 10/16/2023 19:42:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioWIthPortfolioWithTransactionsHasSameTransactionsRegistered stamp: 'CJF 10/16/2023 19:42:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioWithAccountAndPortfolioHasRegisteredAllTransactions stamp: 'CJF 10/16/2023 19:42:55'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'CJF 10/16/2023 19:43:30' prior: 50662834!
+test05PortfolioWithPortfolioWithAccountWithdrawReturnNoZeroBalance
+	|aPortfolio aSecondPorftfolio accountWithdraw|
+	accountWithdraw := ReceptiveAccount new.
+	Withdraw register: 50 on: accountWithdraw .
+	aSecondPorftfolio := Portfolio new. 
+	aSecondPorftfolio add: accountWithdraw .
+	
+	aPortfolio := Portfolio new. 
+	aPortfolio add: aSecondPorftfolio.
+	
+	self assert: (aPortfolio balance) equals: (aSecondPorftfolio balance). ! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 19:43:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountReturnBalanceOfAccount stamp: 'CJF 10/16/2023 19:43:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 19:43:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithAnEmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 19:43:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithPortfolioWithAccountWithdrawReturnNoZeroBalance stamp: 'CJF 10/16/2023 19:43:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithManyPortfoliosReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 19:43:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountAndPortfolioReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 19:43:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test08TransactionsOfEmptyPortfolioIsEmptyList stamp: 'CJF 10/16/2023 19:43:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithSingleAccountHasSameTransactionsThanAccount stamp: 'CJF 10/16/2023 19:43:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioManyAccountsHasSameTransactionsCombined stamp: 'CJF 10/16/2023 19:43:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioWithdAccountAndPortfolioReturnTransactionsCombined stamp: 'CJF 10/16/2023 19:43:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test12EmptyPortfolioHasNoRegisteredTranstractions stamp: 'CJF 10/16/2023 19:43:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioWithSingleAccountHasRegisterAccountTransactions stamp: 'CJF 10/16/2023 19:43:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioWIthPortfolioWithTransactionsHasSameTransactionsRegistered stamp: 'CJF 10/16/2023 19:43:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioWithAccountAndPortfolioHasRegisteredAllTransactions stamp: 'CJF 10/16/2023 19:43:38'!
+PASSED!
+
+----SNAPSHOT----(16 October 2023 19:44:56) CuisUniversity-5981.image priorSource: 10586358!
+
+CollectionAccount subclass: #Portfolio
+	instanceVariableNames: 'accounts portfolios collectionAccounts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'CJF 10/16/2023 19:47:53'!
+CollectionAccount subclass: #Portfolio
+	instanceVariableNames: 'accounts portfolios collectionAccounts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'administration' stamp: 'CJF 10/16/2023 19:48:33' prior: 50662583!
+addPortfolio: aPortfolio
+	collectionAccounts add: aPortfolio.! !
+!Portfolio methodsFor: 'balance' stamp: 'CJF 10/16/2023 19:48:52' prior: 50661018!
+balance
+	| accountsBalance portfoliosBalance |
+	accounts isEmpty ifFalse: [
+	accountsBalance := accounts  sum: [ :anAccount | anAccount balance ] ] ifTrue: [ accountsBalance  := 0].
+	collectionAccounts isEmpty ifFalse:[ portfoliosBalance := collectionAccounts sum: [ :aPortfolio | aPortfolio balance] ] 
+					ifTrue: [ portfoliosBalance := 0].
+	^accountsBalance + portfoliosBalance .! !
+!Portfolio methodsFor: 'transactions' stamp: 'CJF 10/16/2023 19:48:59' prior: 50661819!
+transactions
+	|res|
+	res := OrderedCollection new.
+	accounts do:[ :anAccount | res addAll: anAccount transactions ].
+	collectionAccounts do:[ :aPortfolio | res addAll: aPortfolio transactions ].
+	^res! !
+!Portfolio methodsFor: 'balance' stamp: 'CJF 10/16/2023 19:49:12' prior: 50660995 overrides: 16920235!
+initialize
+	collectionAccounts := OrderedCollection new.
+	accounts := OrderedCollection new.
+	portfolios := OrderedCollection new.! !
+!Portfolio methodsFor: 'balance' stamp: 'CJF 10/16/2023 19:49:26' prior: 50663763 overrides: 16920235!
+initialize
+	collectionAccounts := OrderedCollection new.
+	accounts := OrderedCollection new.! !
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'CJF 10/16/2023 19:49:44'!
+CollectionAccount subclass: #Portfolio
+	instanceVariableNames: 'accounts collectionAccounts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'administration' stamp: 'CJF 10/16/2023 19:50:05' prior: 50662588!
+addAccount: anAccount 
+	
+	collectionAccounts add: anAccount.! !
+!Portfolio methodsFor: 'balance' stamp: 'CJF 10/16/2023 19:50:20' prior: 50663738!
+balance
+	| accountsBalance portfoliosBalance |
+	collectionAccounts isEmpty ifFalse: [
+	accountsBalance := collectionAccounts  sum: [ :anAccount | anAccount balance ] ] ifTrue: [ accountsBalance  := 0].
+	collectionAccounts isEmpty ifFalse:[ portfoliosBalance := collectionAccounts sum: [ :aPortfolio | aPortfolio balance] ] 
+					ifTrue: [ portfoliosBalance := 0].
+	^accountsBalance + portfoliosBalance .! !
+!Portfolio methodsFor: 'transactions' stamp: 'CJF 10/16/2023 19:50:29' prior: 50663753!
+transactions
+	|res|
+	res := OrderedCollection new.
+	collectionAccounts do:[ :anAccount | res addAll: anAccount transactions ].
+	collectionAccounts do:[ :aPortfolio | res addAll: aPortfolio transactions ].
+	^res! !
+!Portfolio methodsFor: 'balance' stamp: 'CJF 10/16/2023 19:50:37' prior: 50663771 overrides: 16920235!
+initialize
+	collectionAccounts := OrderedCollection new.! !
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'CJF 10/16/2023 19:50:52'!
+CollectionAccount subclass: #Portfolio
+	instanceVariableNames: 'collectionAccounts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+----SNAPSHOT----(16 October 2023 19:51:28) CuisUniversity-5981.image priorSource: 10626053!
+
+!methodRemoval: Portfolio #addPortfolio: stamp: 'CJF 10/16/2023 19:52:46'!
+addPortfolio: aPortfolio
+	collectionAccounts add: aPortfolio.!
+!Portfolio methodsFor: 'administration' stamp: 'CJF 10/16/2023 19:52:46' prior: 50662567!
+add: aCollectionAccount
+	(aCollectionAccount isKindOf: Portfolio ) ifTrue: [ collectionAccounts add: aCollectionAccount. ].
+	(aCollectionAccount isKindOf: ReceptiveAccount ) ifTrue: [ self addAccount: aCollectionAccount ].! !
+
+!methodRemoval: Portfolio #addAccount: stamp: 'CJF 10/16/2023 19:53:01'!
+addAccount: anAccount 
+	
+	collectionAccounts add: anAccount.!
+!Portfolio methodsFor: 'administration' stamp: 'CJF 10/16/2023 19:53:01' prior: 50663838!
+add: aCollectionAccount
+	(aCollectionAccount isKindOf: Portfolio ) ifTrue: [ collectionAccounts add: aCollectionAccount. ].
+	(aCollectionAccount isKindOf: ReceptiveAccount ) ifTrue: [ collectionAccounts add: aCollectionAccount. ].! !
+!Portfolio methodsFor: 'administration' stamp: 'CJF 10/16/2023 19:53:21' prior: 50663853!
+add: aCollectionAccount
+	collectionAccounts add: aCollectionAccount.! !
+!Portfolio methodsFor: 'transactions' stamp: 'CJF 10/16/2023 19:53:56' prior: 50663807!
+transactions
+	|res|
+	res := OrderedCollection new.
+	collectionAccounts do:[ :anAccount | res addAll: anAccount transactions ].
+	"collectionAccounts do:[ :aPortfolio | res addAll: aPortfolio transactions ]."
+	^res! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 19:54:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountReturnBalanceOfAccount stamp: 'CJF 10/16/2023 19:54:16'!
+FAILURE!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 19:54:16'!
+FAILURE!
+
+!testRun: #PortfolioTest #test04PortfolioWithAnEmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 19:54:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithPortfolioWithAccountWithdrawReturnNoZeroBalance stamp: 'CJF 10/16/2023 19:54:16'!
+FAILURE!
+
+!testRun: #PortfolioTest #test06PortfolioWithManyPortfoliosReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 19:54:16'!
+FAILURE!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountAndPortfolioReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 19:54:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test08TransactionsOfEmptyPortfolioIsEmptyList stamp: 'CJF 10/16/2023 19:54:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithSingleAccountHasSameTransactionsThanAccount stamp: 'CJF 10/16/2023 19:54:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioManyAccountsHasSameTransactionsCombined stamp: 'CJF 10/16/2023 19:54:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioWithdAccountAndPortfolioReturnTransactionsCombined stamp: 'CJF 10/16/2023 19:54:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test12EmptyPortfolioHasNoRegisteredTranstractions stamp: 'CJF 10/16/2023 19:54:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioWithSingleAccountHasRegisterAccountTransactions stamp: 'CJF 10/16/2023 19:54:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioWIthPortfolioWithTransactionsHasSameTransactionsRegistered stamp: 'CJF 10/16/2023 19:54:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioWithAccountAndPortfolioHasRegisteredAllTransactions stamp: 'CJF 10/16/2023 19:54:16'!
+PASSED!
+!Portfolio methodsFor: 'balance' stamp: 'CJF 10/16/2023 19:55:05' prior: 50663791!
+balance
+	| accountsBalance  |
+	collectionAccounts isEmpty ifFalse: [
+	accountsBalance := collectionAccounts  sum: [ :anAccount | anAccount balance ] ] ifTrue: [ accountsBalance  := 0].
+	
+	^accountsBalance.! !
+!Portfolio methodsFor: 'balance' stamp: 'CJF 10/16/2023 19:55:21' prior: 50663939!
+balance
+	| totalBalance  |
+	collectionAccounts isEmpty ifFalse: [
+	totalBalance := collectionAccounts  sum: [ :anAccount | anAccount balance ] ] ifTrue: [ totalBalance  := 0].
+	
+	^totalBalance.! !
+!Portfolio methodsFor: 'balance' stamp: 'CJF 10/16/2023 19:55:44' prior: 50663949!
+balance
+	| totalBalance  |
+	collectionAccounts isEmpty ifFalse: [
+	totalBalance := collectionAccounts  sum: [ :aCollectionAccount | aCollectionAccount balance ] ] ifTrue: [ totalBalance  := 0].
+	
+	^totalBalance.! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 19:55:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountReturnBalanceOfAccount stamp: 'CJF 10/16/2023 19:55:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 19:55:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithAnEmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 19:55:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithPortfolioWithAccountWithdrawReturnNoZeroBalance stamp: 'CJF 10/16/2023 19:55:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithManyPortfoliosReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 19:55:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountAndPortfolioReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 19:55:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test08TransactionsOfEmptyPortfolioIsEmptyList stamp: 'CJF 10/16/2023 19:55:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithSingleAccountHasSameTransactionsThanAccount stamp: 'CJF 10/16/2023 19:55:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioManyAccountsHasSameTransactionsCombined stamp: 'CJF 10/16/2023 19:55:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioWithdAccountAndPortfolioReturnTransactionsCombined stamp: 'CJF 10/16/2023 19:55:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test12EmptyPortfolioHasNoRegisteredTranstractions stamp: 'CJF 10/16/2023 19:55:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioWithSingleAccountHasRegisterAccountTransactions stamp: 'CJF 10/16/2023 19:55:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioWIthPortfolioWithTransactionsHasSameTransactionsRegistered stamp: 'CJF 10/16/2023 19:55:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioWithAccountAndPortfolioHasRegisteredAllTransactions stamp: 'CJF 10/16/2023 19:55:49'!
+PASSED!
+
+----SNAPSHOT----(16 October 2023 19:56:07) CuisUniversity-5981.image priorSource: 10629727!
+!PortfolioTest methodsFor: 'tests' stamp: 'CJF 10/16/2023 19:57:17'!
+test16! !
+!PortfolioTest methodsFor: 'tests' stamp: 'CJF 10/16/2023 20:08:52'!
+test16PortfolioCannotAddDuplicatedAccounts! !
+
+!methodRemoval: PortfolioTest #test16 stamp: 'CJF 10/16/2023 20:08:52'!
+test16!
+!PortfolioTest methodsFor: 'tests' stamp: 'CJF 10/16/2023 20:10:02' prior: 50664033!
+test16PortfolioCannotAddDuplicatedAccounts
+	| portfolio account |
+	account := ReceptiveAccount new.
+	portfolio := Portfolio new.
+	portfolio add: account.
+	
+	! !
+!PortfolioTest methodsFor: 'tests' stamp: 'CJF 10/16/2023 20:12:00' prior: 50664040!
+test16PortfolioCannotAddDuplicatedAccounts
+	| portfolio account |
+	account := ReceptiveAccount new.
+	portfolio := Portfolio new.
+	portfolio add: account.
+	
+	self should: [ portfolio add: account ] raise: Error withExceptionDo:[ :anError | 
+		self assert: anError messageText equals: CollectionAccount duplicatedAccountError ]! !
+
+!testRun: #PortfolioTest #test16PortfolioCannotAddDuplicatedAccounts stamp: 'CJF 10/16/2023 20:12:06'!
+FAILURE!
+!Portfolio methodsFor: 'administration' stamp: 'CJF 10/16/2023 20:13:49' prior: 50663864!
+add: aCollectionAccount
+	self ifCannotAddRaiseError: aCollectionAccount.
+	collectionAccounts add: aCollectionAccount.! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 20:13:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountReturnBalanceOfAccount stamp: 'CJF 10/16/2023 20:13:52'!
+ERROR!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 20:13:52'!
+ERROR!
+
+!testRun: #PortfolioTest #test04PortfolioWithAnEmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 20:13:52'!
+ERROR!
+
+!testRun: #PortfolioTest #test05PortfolioWithPortfolioWithAccountWithdrawReturnNoZeroBalance stamp: 'CJF 10/16/2023 20:13:52'!
+ERROR!
+
+!testRun: #PortfolioTest #test06PortfolioWithManyPortfoliosReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 20:13:52'!
+ERROR!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountAndPortfolioReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 20:13:52'!
+ERROR!
+
+!testRun: #PortfolioTest #test08TransactionsOfEmptyPortfolioIsEmptyList stamp: 'CJF 10/16/2023 20:13:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithSingleAccountHasSameTransactionsThanAccount stamp: 'CJF 10/16/2023 20:13:52'!
+ERROR!
+
+!testRun: #PortfolioTest #test10PortfolioManyAccountsHasSameTransactionsCombined stamp: 'CJF 10/16/2023 20:13:52'!
+ERROR!
+
+!testRun: #PortfolioTest #test11PortfolioWithdAccountAndPortfolioReturnTransactionsCombined stamp: 'CJF 10/16/2023 20:13:52'!
+ERROR!
+
+!testRun: #PortfolioTest #test12EmptyPortfolioHasNoRegisteredTranstractions stamp: 'CJF 10/16/2023 20:13:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioWithSingleAccountHasRegisterAccountTransactions stamp: 'CJF 10/16/2023 20:13:52'!
+ERROR!
+
+!testRun: #PortfolioTest #test14PortfolioWIthPortfolioWithTransactionsHasSameTransactionsRegistered stamp: 'CJF 10/16/2023 20:13:52'!
+ERROR!
+
+!testRun: #PortfolioTest #test15PortfolioWithAccountAndPortfolioHasRegisteredAllTransactions stamp: 'CJF 10/16/2023 20:13:52'!
+ERROR!
+
+!testRun: #PortfolioTest #test16PortfolioCannotAddDuplicatedAccounts stamp: 'CJF 10/16/2023 20:13:52'!
+ERROR!
+
+!testRun: #PortfolioTest #test16PortfolioCannotAddDuplicatedAccounts stamp: 'CJF 10/16/2023 20:14:06'!
+ERROR!
+
+!testRun: #PortfolioTest #test16PortfolioCannotAddDuplicatedAccounts stamp: 'CJF 10/16/2023 20:14:06'!
+ERROR!
+!Portfolio methodsFor: 'administration' stamp: 'CJF 10/16/2023 20:14:21'!
+ifCannotAddRaiseError: aCollectionAccount 
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'administration' stamp: 'CJF 10/16/2023 20:15:16' prior: 50664141!
+ifCannotAddRaiseError: aCollectionAccount 
+	(collectionAccounts includes: aCollectionAccount) ifTrue: [ ^CollectionAccount duplicatedAccountError ].! !
+
+!testRun: #PortfolioTest #test16PortfolioCannotAddDuplicatedAccounts stamp: 'CJF 10/16/2023 20:15:18'!
+ERROR!
+!CollectionAccount class methodsFor: 'errors' stamp: 'CJF 10/16/2023 20:15:33'!
+duplicatedAccountError
+	self shouldBeImplemented.! !
+!CollectionAccount class methodsFor: 'errors' stamp: 'CJF 10/16/2023 20:16:17' prior: 50664158!
+duplicatedAccountError
+	^'Cant add duplicated accounts'! !
+
+!testRun: #PortfolioTest #test16PortfolioCannotAddDuplicatedAccounts stamp: 'CJF 10/16/2023 20:16:20'!
+FAILURE!
+
+!testRun: #PortfolioTest #test16PortfolioCannotAddDuplicatedAccounts stamp: 'CJF 10/16/2023 20:16:42'!
+FAILURE!
+
+!testRun: #PortfolioTest #test16PortfolioCannotAddDuplicatedAccounts stamp: 'CJF 10/16/2023 20:16:53'!
+FAILURE!
+!Portfolio methodsFor: 'administration' stamp: 'CJF 10/16/2023 20:17:13' prior: 50664147!
+ifCannotAddRaiseError: aCollectionAccount 
+	(collectionAccounts includes: aCollectionAccount) ifTrue: [ ^self error: CollectionAccount duplicatedAccountError ].! !
+
+!testRun: #PortfolioTest #test16PortfolioCannotAddDuplicatedAccounts stamp: 'CJF 10/16/2023 20:17:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 20:17:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountReturnBalanceOfAccount stamp: 'CJF 10/16/2023 20:17:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 20:17:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithAnEmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 20:17:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithPortfolioWithAccountWithdrawReturnNoZeroBalance stamp: 'CJF 10/16/2023 20:17:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithManyPortfoliosReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 20:17:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountAndPortfolioReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 20:17:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test08TransactionsOfEmptyPortfolioIsEmptyList stamp: 'CJF 10/16/2023 20:17:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithSingleAccountHasSameTransactionsThanAccount stamp: 'CJF 10/16/2023 20:17:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioManyAccountsHasSameTransactionsCombined stamp: 'CJF 10/16/2023 20:17:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioWithdAccountAndPortfolioReturnTransactionsCombined stamp: 'CJF 10/16/2023 20:17:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test12EmptyPortfolioHasNoRegisteredTranstractions stamp: 'CJF 10/16/2023 20:17:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioWithSingleAccountHasRegisterAccountTransactions stamp: 'CJF 10/16/2023 20:17:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioWIthPortfolioWithTransactionsHasSameTransactionsRegistered stamp: 'CJF 10/16/2023 20:17:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioWithAccountAndPortfolioHasRegisteredAllTransactions stamp: 'CJF 10/16/2023 20:17:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test16PortfolioCannotAddDuplicatedAccounts stamp: 'CJF 10/16/2023 20:17:16'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'CJF 10/16/2023 20:19:45'!
+test17CannotAddAccountInAlreadyPortfolioAdded
+	| portfolio secondPortfolio account |
+	account := ReceptiveAccount new.
+	portfolio := Portfolio new.
+	secondPortfolio := Portfolio new.
+	secondPortfolio add: account.
+	portfolio add: secondPortfolio.
+	
+	self should: [ portfolio add: account ] raise: Error withExceptionDo:[ :anError | 
+		self assert: anError messageText equals: CollectionAccount duplicatedAccountError ]! !
+
+!testRun: #PortfolioTest #test17CannotAddAccountInAlreadyPortfolioAdded stamp: 'CJF 10/16/2023 20:19:47'!
+FAILURE!
+!Portfolio methodsFor: 'administration' stamp: 'CJF 10/16/2023 20:25:38' prior: 50664179!
+ifCannotAddRaiseError: aCollectionAccount 
+	collectionAccounts do:[ :temp | (temp xyx: aCollectionAccount ) ifTrue: [ ^self error: CollectionAccount duplicatedAccountError ]. ].
+	"(collectionAccounts includes: aCollectionAccount) ifTrue: [ ^self error: CollectionAccount duplicatedAccountError ]."! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 20:25:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountReturnBalanceOfAccount stamp: 'CJF 10/16/2023 20:25:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 20:25:41'!
+ERROR!
+
+!testRun: #PortfolioTest #test04PortfolioWithAnEmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 20:25:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithPortfolioWithAccountWithdrawReturnNoZeroBalance stamp: 'CJF 10/16/2023 20:25:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithManyPortfoliosReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 20:25:41'!
+ERROR!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountAndPortfolioReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 20:25:42'!
+ERROR!
+
+!testRun: #PortfolioTest #test08TransactionsOfEmptyPortfolioIsEmptyList stamp: 'CJF 10/16/2023 20:25:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithSingleAccountHasSameTransactionsThanAccount stamp: 'CJF 10/16/2023 20:25:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioManyAccountsHasSameTransactionsCombined stamp: 'CJF 10/16/2023 20:25:42'!
+ERROR!
+
+!testRun: #PortfolioTest #test11PortfolioWithdAccountAndPortfolioReturnTransactionsCombined stamp: 'CJF 10/16/2023 20:25:42'!
+ERROR!
+
+!testRun: #PortfolioTest #test12EmptyPortfolioHasNoRegisteredTranstractions stamp: 'CJF 10/16/2023 20:25:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioWithSingleAccountHasRegisterAccountTransactions stamp: 'CJF 10/16/2023 20:25:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioWIthPortfolioWithTransactionsHasSameTransactionsRegistered stamp: 'CJF 10/16/2023 20:25:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioWithAccountAndPortfolioHasRegisteredAllTransactions stamp: 'CJF 10/16/2023 20:25:42'!
+ERROR!
+
+!testRun: #PortfolioTest #test16PortfolioCannotAddDuplicatedAccounts stamp: 'CJF 10/16/2023 20:25:42'!
+FAILURE!
+
+!testRun: #PortfolioTest #test17CannotAddAccountInAlreadyPortfolioAdded stamp: 'CJF 10/16/2023 20:25:42'!
+FAILURE!
+
+!testRun: #PortfolioTest #test17CannotAddAccountInAlreadyPortfolioAdded stamp: 'CJF 10/16/2023 20:25:48'!
+FAILURE!
+
+!testRun: #PortfolioTest #test17CannotAddAccountInAlreadyPortfolioAdded stamp: 'CJF 10/16/2023 20:26:13'!
+FAILURE!
+
+!testRun: #PortfolioTest #test17CannotAddAccountInAlreadyPortfolioAdded stamp: 'CJF 10/16/2023 20:26:14'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'CJF 10/16/2023 20:27:17'!
+xyx: aCollectionAccount
+	^(self = aCollectionAccount )! !
+!Portfolio methodsFor: 'administration' stamp: 'CJF 10/16/2023 20:32:36' prior: 50664274!
+ifCannotAddRaiseError: aCollectionAccount 
+	collectionAccounts do:[ :temp | (temp ifCannotAddRaiseError: aCollectionAccount ) ifTrue: [ ^self error: CollectionAccount duplicatedAccountError ]. ].
+	"(collectionAccounts includes: aCollectionAccount) ifTrue: [ ^self error: CollectionAccount duplicatedAccountError ]."! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'CJF 10/16/2023 20:32:55'!
+ifCannotAddRaiseError: aCollectionAccount
+	^(self = aCollectionAccount )! !
+
+!methodRemoval: ReceptiveAccount #xyx: stamp: 'CJF 10/16/2023 20:32:55'!
+xyx: aCollectionAccount
+	^(self = aCollectionAccount )!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'CJF 10/16/2023 20:33:20'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'CJF 10/16/2023 20:33:20'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'CJF 10/16/2023 20:33:20'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'CJF 10/16/2023 20:33:20'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'CJF 10/16/2023 20:33:20'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'CJF 10/16/2023 20:33:20'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'CJF 10/16/2023 20:33:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 20:33:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountReturnBalanceOfAccount stamp: 'CJF 10/16/2023 20:33:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 20:33:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithAnEmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 20:33:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithPortfolioWithAccountWithdrawReturnNoZeroBalance stamp: 'CJF 10/16/2023 20:33:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithManyPortfoliosReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 20:33:30'!
+ERROR!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountAndPortfolioReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 20:33:30'!
+ERROR!
+
+!testRun: #PortfolioTest #test08TransactionsOfEmptyPortfolioIsEmptyList stamp: 'CJF 10/16/2023 20:33:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithSingleAccountHasSameTransactionsThanAccount stamp: 'CJF 10/16/2023 20:33:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioManyAccountsHasSameTransactionsCombined stamp: 'CJF 10/16/2023 20:33:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioWithdAccountAndPortfolioReturnTransactionsCombined stamp: 'CJF 10/16/2023 20:33:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test12EmptyPortfolioHasNoRegisteredTranstractions stamp: 'CJF 10/16/2023 20:33:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioWithSingleAccountHasRegisterAccountTransactions stamp: 'CJF 10/16/2023 20:33:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioWIthPortfolioWithTransactionsHasSameTransactionsRegistered stamp: 'CJF 10/16/2023 20:33:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioWithAccountAndPortfolioHasRegisteredAllTransactions stamp: 'CJF 10/16/2023 20:33:30'!
+ERROR!
+
+!testRun: #PortfolioTest #test16PortfolioCannotAddDuplicatedAccounts stamp: 'CJF 10/16/2023 20:33:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test17CannotAddAccountInAlreadyPortfolioAdded stamp: 'CJF 10/16/2023 20:33:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithManyPortfoliosReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 20:33:42'!
+ERROR!
+
+!testRun: #PortfolioTest #test06PortfolioWithManyPortfoliosReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 20:33:42'!
+ERROR!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 20:34:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountReturnBalanceOfAccount stamp: 'CJF 10/16/2023 20:34:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 20:34:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithAnEmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 20:34:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithPortfolioWithAccountWithdrawReturnNoZeroBalance stamp: 'CJF 10/16/2023 20:34:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithManyPortfoliosReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 20:34:22'!
+ERROR!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountAndPortfolioReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 20:34:22'!
+ERROR!
+
+!testRun: #PortfolioTest #test08TransactionsOfEmptyPortfolioIsEmptyList stamp: 'CJF 10/16/2023 20:34:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithSingleAccountHasSameTransactionsThanAccount stamp: 'CJF 10/16/2023 20:34:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioManyAccountsHasSameTransactionsCombined stamp: 'CJF 10/16/2023 20:34:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioWithdAccountAndPortfolioReturnTransactionsCombined stamp: 'CJF 10/16/2023 20:34:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test12EmptyPortfolioHasNoRegisteredTranstractions stamp: 'CJF 10/16/2023 20:34:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioWithSingleAccountHasRegisterAccountTransactions stamp: 'CJF 10/16/2023 20:34:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioWIthPortfolioWithTransactionsHasSameTransactionsRegistered stamp: 'CJF 10/16/2023 20:34:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioWithAccountAndPortfolioHasRegisteredAllTransactions stamp: 'CJF 10/16/2023 20:34:22'!
+ERROR!
+
+!testRun: #PortfolioTest #test16PortfolioCannotAddDuplicatedAccounts stamp: 'CJF 10/16/2023 20:34:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test17CannotAddAccountInAlreadyPortfolioAdded stamp: 'CJF 10/16/2023 20:34:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithManyPortfoliosReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 20:34:27'!
+ERROR!
+
+!testRun: #PortfolioTest #test06PortfolioWithManyPortfoliosReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 20:34:27'!
+ERROR!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'CJF 10/16/2023 20:38:50' prior: 50664382!
+ifCannotAddRaiseError: aCollectionAccount
+	(aCollectionAccount isKindOf: Portfolio ) ifTrue:[ ^true ].
+	^(self = aCollectionAccount ).! !
+
+!testRun: #PortfolioTest #test06PortfolioWithManyPortfoliosReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 20:38:51'!
+ERROR!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 20:38:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountReturnBalanceOfAccount stamp: 'CJF 10/16/2023 20:38:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 20:38:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithAnEmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 20:38:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithPortfolioWithAccountWithdrawReturnNoZeroBalance stamp: 'CJF 10/16/2023 20:38:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithManyPortfoliosReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 20:38:59'!
+ERROR!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountAndPortfolioReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 20:38:59'!
+ERROR!
+
+!testRun: #PortfolioTest #test08TransactionsOfEmptyPortfolioIsEmptyList stamp: 'CJF 10/16/2023 20:38:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithSingleAccountHasSameTransactionsThanAccount stamp: 'CJF 10/16/2023 20:38:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioManyAccountsHasSameTransactionsCombined stamp: 'CJF 10/16/2023 20:38:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioWithdAccountAndPortfolioReturnTransactionsCombined stamp: 'CJF 10/16/2023 20:38:59'!
+ERROR!
+
+!testRun: #PortfolioTest #test12EmptyPortfolioHasNoRegisteredTranstractions stamp: 'CJF 10/16/2023 20:38:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioWithSingleAccountHasRegisterAccountTransactions stamp: 'CJF 10/16/2023 20:38:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioWIthPortfolioWithTransactionsHasSameTransactionsRegistered stamp: 'CJF 10/16/2023 20:38:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioWithAccountAndPortfolioHasRegisteredAllTransactions stamp: 'CJF 10/16/2023 20:38:59'!
+ERROR!
+
+!testRun: #PortfolioTest #test16PortfolioCannotAddDuplicatedAccounts stamp: 'CJF 10/16/2023 20:38:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test17CannotAddAccountInAlreadyPortfolioAdded stamp: 'CJF 10/16/2023 20:38:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 20:39:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountReturnBalanceOfAccount stamp: 'CJF 10/16/2023 20:39:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 20:39:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithAnEmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 20:39:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithPortfolioWithAccountWithdrawReturnNoZeroBalance stamp: 'CJF 10/16/2023 20:39:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithManyPortfoliosReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 20:39:31'!
+ERROR!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountAndPortfolioReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 20:39:31'!
+ERROR!
+
+!testRun: #PortfolioTest #test08TransactionsOfEmptyPortfolioIsEmptyList stamp: 'CJF 10/16/2023 20:39:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithSingleAccountHasSameTransactionsThanAccount stamp: 'CJF 10/16/2023 20:39:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioManyAccountsHasSameTransactionsCombined stamp: 'CJF 10/16/2023 20:39:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioWithdAccountAndPortfolioReturnTransactionsCombined stamp: 'CJF 10/16/2023 20:39:31'!
+ERROR!
+
+!testRun: #PortfolioTest #test12EmptyPortfolioHasNoRegisteredTranstractions stamp: 'CJF 10/16/2023 20:39:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioWithSingleAccountHasRegisterAccountTransactions stamp: 'CJF 10/16/2023 20:39:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioWIthPortfolioWithTransactionsHasSameTransactionsRegistered stamp: 'CJF 10/16/2023 20:39:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioWithAccountAndPortfolioHasRegisteredAllTransactions stamp: 'CJF 10/16/2023 20:39:31'!
+ERROR!
+
+!testRun: #PortfolioTest #test16PortfolioCannotAddDuplicatedAccounts stamp: 'CJF 10/16/2023 20:39:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test17CannotAddAccountInAlreadyPortfolioAdded stamp: 'CJF 10/16/2023 20:39:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithManyPortfoliosReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 20:39:39'!
+ERROR!
+
+!testRun: #PortfolioTest #test06PortfolioWithManyPortfoliosReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 20:39:39'!
+ERROR!
+
+!testRun: #PortfolioTest #test06PortfolioWithManyPortfoliosReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 20:39:44'!
+ERROR!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'CJF 10/16/2023 20:40:49' prior: 50664568!
+ifCannotAddRaiseError: aCollectionAccount
+	(aCollectionAccount isKindOf: Portfolio ) ifTrue:[ ^false ].
+	^(self = aCollectionAccount ).! !
+
+!testRun: #PortfolioTest #test06PortfolioWithManyPortfoliosReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 20:40:55'!
+ERROR!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 20:41:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountReturnBalanceOfAccount stamp: 'CJF 10/16/2023 20:41:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 20:41:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithAnEmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 20:41:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithPortfolioWithAccountWithdrawReturnNoZeroBalance stamp: 'CJF 10/16/2023 20:41:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test08TransactionsOfEmptyPortfolioIsEmptyList stamp: 'CJF 10/16/2023 20:41:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithSingleAccountHasSameTransactionsThanAccount stamp: 'CJF 10/16/2023 20:41:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioManyAccountsHasSameTransactionsCombined stamp: 'CJF 10/16/2023 20:41:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test12EmptyPortfolioHasNoRegisteredTranstractions stamp: 'CJF 10/16/2023 20:41:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioWithSingleAccountHasRegisterAccountTransactions stamp: 'CJF 10/16/2023 20:41:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioWIthPortfolioWithTransactionsHasSameTransactionsRegistered stamp: 'CJF 10/16/2023 20:41:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test16PortfolioCannotAddDuplicatedAccounts stamp: 'CJF 10/16/2023 20:41:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test17CannotAddAccountInAlreadyPortfolioAdded stamp: 'CJF 10/16/2023 20:41:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithManyPortfoliosReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 20:41:00'!
+ERROR!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountAndPortfolioReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 20:41:00'!
+ERROR!
+
+!testRun: #PortfolioTest #test11PortfolioWithdAccountAndPortfolioReturnTransactionsCombined stamp: 'CJF 10/16/2023 20:41:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioWithAccountAndPortfolioHasRegisteredAllTransactions stamp: 'CJF 10/16/2023 20:41:00'!
+ERROR!
+
+!testRun: #PortfolioTest #test06PortfolioWithManyPortfoliosReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 20:41:18'!
+ERROR!
+
+!testRun: #PortfolioTest #test06PortfolioWithManyPortfoliosReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 20:41:18'!
+ERROR!
+
+!testRun: #PortfolioTest #test06PortfolioWithManyPortfoliosReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 20:46:59'!
+ERROR!
+
+!testRun: #PortfolioTest #test06PortfolioWithManyPortfoliosReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 20:49:08'!
+ERROR!
+
+!testRun: #PortfolioTest #test06PortfolioWithManyPortfoliosReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 20:49:57'!
+ERROR!
+
+!testRun: #PortfolioTest #test06PortfolioWithManyPortfoliosReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 20:53:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 20:54:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountReturnBalanceOfAccount stamp: 'CJF 10/16/2023 20:54:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 20:54:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithAnEmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 20:54:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithPortfolioWithAccountWithdrawReturnNoZeroBalance stamp: 'CJF 10/16/2023 20:54:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test08TransactionsOfEmptyPortfolioIsEmptyList stamp: 'CJF 10/16/2023 20:54:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithSingleAccountHasSameTransactionsThanAccount stamp: 'CJF 10/16/2023 20:54:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioManyAccountsHasSameTransactionsCombined stamp: 'CJF 10/16/2023 20:54:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test12EmptyPortfolioHasNoRegisteredTranstractions stamp: 'CJF 10/16/2023 20:54:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioWithSingleAccountHasRegisterAccountTransactions stamp: 'CJF 10/16/2023 20:54:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioWIthPortfolioWithTransactionsHasSameTransactionsRegistered stamp: 'CJF 10/16/2023 20:54:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test16PortfolioCannotAddDuplicatedAccounts stamp: 'CJF 10/16/2023 20:54:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test17CannotAddAccountInAlreadyPortfolioAdded stamp: 'CJF 10/16/2023 20:54:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioWithdAccountAndPortfolioReturnTransactionsCombined stamp: 'CJF 10/16/2023 20:54:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithManyPortfoliosReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 20:54:00'!
+ERROR!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountAndPortfolioReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 20:54:00'!
+ERROR!
+
+!testRun: #PortfolioTest #test15PortfolioWithAccountAndPortfolioHasRegisteredAllTransactions stamp: 'CJF 10/16/2023 20:54:00'!
+ERROR!
+
+!testRun: #PortfolioTest #test06PortfolioWithManyPortfoliosReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 20:54:07'!
+ERROR!
+
+!testRun: #PortfolioTest #test06PortfolioWithManyPortfoliosReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 20:54:07'!
+ERROR!
+!Portfolio methodsFor: 'administration' stamp: 'CJF 10/16/2023 20:55:45' prior: 50664369!
+ifCannotAddRaiseError: aCollectionAccount 
+	
+	collectionAccounts do:[ :temp | (temp ifCannotAddRaiseError: aCollectionAccount ) ifTrue: [ ^self error: CollectionAccount duplicatedAccountError ]. ].
+	"(collectionAccounts includes: aCollectionAccount) ifTrue: [ ^self error: CollectionAccount duplicatedAccountError ]."! !
+
+!testRun: #PortfolioTest #test06PortfolioWithManyPortfoliosReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 20:57:56'!
+ERROR!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountAndPortfolioReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 20:58:14'!
+ERROR!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountAndPortfolioReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 20:58:14'!
+ERROR!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountAndPortfolioReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 20:58:52'!
+ERROR!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountAndPortfolioReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 21:01:10'!
+ERROR!
+!Portfolio methodsFor: 'administration' stamp: 'CJF 10/16/2023 21:02:05' prior: 50664902!
+ifCannotAddRaiseError: aCollectionAccount 
+	
+	collectionAccounts do:[ :temp | (temp ifCannotAddRaiseError: aCollectionAccount ) ifTrue: [ ^self error: CollectionAccount duplicatedAccountError ]. ].
+	self.
+	"(collectionAccounts includes: aCollectionAccount) ifTrue: [ ^self error: CollectionAccount duplicatedAccountError ]."! !
+!Portfolio methodsFor: 'administration' stamp: 'CJF 10/16/2023 21:02:53' prior: 50664936!
+ifCannotAddRaiseError: aCollectionAccount 
+	
+	collectionAccounts do:[ :temp | (temp ifCannotAddRaiseError: aCollectionAccount ) ifTrue: [ ^self error: CollectionAccount duplicatedAccountError ]. ].
+	^false.
+	"(collectionAccounts includes: aCollectionAccount) ifTrue: [ ^self error: CollectionAccount duplicatedAccountError ]."! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 21:03:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountReturnBalanceOfAccount stamp: 'CJF 10/16/2023 21:03:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 21:03:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithAnEmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 21:03:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithPortfolioWithAccountWithdrawReturnNoZeroBalance stamp: 'CJF 10/16/2023 21:03:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithManyPortfoliosReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 21:03:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountAndPortfolioReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 21:03:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test08TransactionsOfEmptyPortfolioIsEmptyList stamp: 'CJF 10/16/2023 21:03:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithSingleAccountHasSameTransactionsThanAccount stamp: 'CJF 10/16/2023 21:03:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioManyAccountsHasSameTransactionsCombined stamp: 'CJF 10/16/2023 21:03:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioWithdAccountAndPortfolioReturnTransactionsCombined stamp: 'CJF 10/16/2023 21:03:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test12EmptyPortfolioHasNoRegisteredTranstractions stamp: 'CJF 10/16/2023 21:03:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioWithSingleAccountHasRegisterAccountTransactions stamp: 'CJF 10/16/2023 21:03:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioWIthPortfolioWithTransactionsHasSameTransactionsRegistered stamp: 'CJF 10/16/2023 21:03:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioWithAccountAndPortfolioHasRegisteredAllTransactions stamp: 'CJF 10/16/2023 21:03:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test16PortfolioCannotAddDuplicatedAccounts stamp: 'CJF 10/16/2023 21:03:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test17CannotAddAccountInAlreadyPortfolioAdded stamp: 'CJF 10/16/2023 21:03:29'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'CJF 10/16/2023 21:04:58'!
+test18! !
+!PortfolioTest methodsFor: 'tests' stamp: 'CJF 10/16/2023 21:05:30' prior: 50665030!
+test18
+	| portfolio |
+	portfolio := Portfolio new.! !
+!PortfolioTest methodsFor: 'tests' stamp: 'CJF 10/16/2023 21:07:09' prior: 50665033!
+test18
+	| portfolio |
+	portfolio := Portfolio new.
+	
+	self should: [ portfolio add: portfolio ] raise: Error withExceptionDo: [ :anError | self assert: anError messageText equals: CollectionAccount cannotAddPortfolioError]! !
+
+!testRun: #PortfolioTest #test18 stamp: 'CJF 10/16/2023 21:07:12'!
+FAILURE!
+!Portfolio methodsFor: 'administration' stamp: 'CJF 10/16/2023 21:08:43' prior: 50664950!
+ifCannotAddRaiseError: aCollectionAccount 
+	
+	collectionAccounts do:[ :temp | (temp ifCannotAddRaiseError: aCollectionAccount ) ifTrue: [ ^self error: CollectionAccount duplicatedAccountError ]. ].
+	^self = aCollectionAccount .
+	"(collectionAccounts includes: aCollectionAccount) ifTrue: [ ^self error: CollectionAccount duplicatedAccountError ]."! !
+
+!testRun: #PortfolioTest #test18 stamp: 'CJF 10/16/2023 21:09:30'!
+FAILURE!
+!CollectionAccount class methodsFor: 'errors' stamp: 'CJF 10/16/2023 21:09:53'!
+cannotAddPortfolioError
+	^'Cant add duplicated accounts'! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 21:09:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountReturnBalanceOfAccount stamp: 'CJF 10/16/2023 21:09:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 21:09:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithAnEmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 21:09:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithPortfolioWithAccountWithdrawReturnNoZeroBalance stamp: 'CJF 10/16/2023 21:09:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithManyPortfoliosReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 21:09:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountAndPortfolioReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 21:09:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test08TransactionsOfEmptyPortfolioIsEmptyList stamp: 'CJF 10/16/2023 21:09:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithSingleAccountHasSameTransactionsThanAccount stamp: 'CJF 10/16/2023 21:09:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioManyAccountsHasSameTransactionsCombined stamp: 'CJF 10/16/2023 21:09:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioWithdAccountAndPortfolioReturnTransactionsCombined stamp: 'CJF 10/16/2023 21:09:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test12EmptyPortfolioHasNoRegisteredTranstractions stamp: 'CJF 10/16/2023 21:09:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioWithSingleAccountHasRegisterAccountTransactions stamp: 'CJF 10/16/2023 21:09:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioWIthPortfolioWithTransactionsHasSameTransactionsRegistered stamp: 'CJF 10/16/2023 21:09:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioWithAccountAndPortfolioHasRegisteredAllTransactions stamp: 'CJF 10/16/2023 21:09:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test16PortfolioCannotAddDuplicatedAccounts stamp: 'CJF 10/16/2023 21:09:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test17CannotAddAccountInAlreadyPortfolioAdded stamp: 'CJF 10/16/2023 21:09:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test18 stamp: 'CJF 10/16/2023 21:09:59'!
+FAILURE!
+
+!testRun: #PortfolioTest #test18 stamp: 'CJF 10/16/2023 21:09:59'!
+FAILURE!
+!Portfolio methodsFor: 'administration' stamp: 'CJF 10/16/2023 21:12:23' prior: 50665051!
+ifCannotAddRaiseError: aCollectionAccount 
+	
+	collectionAccounts do:[ :temp | (temp ifCannotAddRaiseError: aCollectionAccount ) ifTrue: [ ^self error: CollectionAccount duplicatedAccountError ]. ].
+	^(self = aCollectionAccount) ifTrue: [ ^self error: CollectionAccount cannotAddPortfolioError ].
+	"(collectionAccounts includes: aCollectionAccount) ifTrue: [ ^self error: CollectionAccount duplicatedAccountError ]."! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 21:12:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountReturnBalanceOfAccount stamp: 'CJF 10/16/2023 21:12:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 21:12:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithAnEmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 21:12:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithPortfolioWithAccountWithdrawReturnNoZeroBalance stamp: 'CJF 10/16/2023 21:12:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithManyPortfoliosReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 21:12:29'!
+ERROR!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountAndPortfolioReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 21:12:29'!
+ERROR!
+
+!testRun: #PortfolioTest #test08TransactionsOfEmptyPortfolioIsEmptyList stamp: 'CJF 10/16/2023 21:12:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithSingleAccountHasSameTransactionsThanAccount stamp: 'CJF 10/16/2023 21:12:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioManyAccountsHasSameTransactionsCombined stamp: 'CJF 10/16/2023 21:12:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioWithdAccountAndPortfolioReturnTransactionsCombined stamp: 'CJF 10/16/2023 21:12:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test12EmptyPortfolioHasNoRegisteredTranstractions stamp: 'CJF 10/16/2023 21:12:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioWithSingleAccountHasRegisterAccountTransactions stamp: 'CJF 10/16/2023 21:12:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioWIthPortfolioWithTransactionsHasSameTransactionsRegistered stamp: 'CJF 10/16/2023 21:12:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioWithAccountAndPortfolioHasRegisteredAllTransactions stamp: 'CJF 10/16/2023 21:12:29'!
+ERROR!
+
+!testRun: #PortfolioTest #test16PortfolioCannotAddDuplicatedAccounts stamp: 'CJF 10/16/2023 21:12:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test17CannotAddAccountInAlreadyPortfolioAdded stamp: 'CJF 10/16/2023 21:12:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test18 stamp: 'CJF 10/16/2023 21:12:29'!
+PASSED!
+!Portfolio methodsFor: 'administration' stamp: 'CJF 10/16/2023 21:13:17' prior: 50665144!
+ifCannotAddRaiseError: aCollectionAccount 
+	
+	collectionAccounts do:[ :temp | (temp ifCannotAddRaiseError: aCollectionAccount ) ifTrue: [ ^self error: CollectionAccount duplicatedAccountError ]. ].
+	(self = aCollectionAccount) ifTrue: [ ^self error: CollectionAccount cannotAddPortfolioError ].
+	^false.
+	"(collectionAccounts includes: aCollectionAccount) ifTrue: [ ^self error: CollectionAccount duplicatedAccountError ]."! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 21:13:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountReturnBalanceOfAccount stamp: 'CJF 10/16/2023 21:13:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 21:13:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithAnEmptyPortfolioReturnBalanceZero stamp: 'CJF 10/16/2023 21:13:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithPortfolioWithAccountWithdrawReturnNoZeroBalance stamp: 'CJF 10/16/2023 21:13:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithManyPortfoliosReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 21:13:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountAndPortfolioReturnBalanceAsSumOfThem stamp: 'CJF 10/16/2023 21:13:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test08TransactionsOfEmptyPortfolioIsEmptyList stamp: 'CJF 10/16/2023 21:13:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithSingleAccountHasSameTransactionsThanAccount stamp: 'CJF 10/16/2023 21:13:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioManyAccountsHasSameTransactionsCombined stamp: 'CJF 10/16/2023 21:13:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioWithdAccountAndPortfolioReturnTransactionsCombined stamp: 'CJF 10/16/2023 21:13:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test12EmptyPortfolioHasNoRegisteredTranstractions stamp: 'CJF 10/16/2023 21:13:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioWithSingleAccountHasRegisterAccountTransactions stamp: 'CJF 10/16/2023 21:13:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioWIthPortfolioWithTransactionsHasSameTransactionsRegistered stamp: 'CJF 10/16/2023 21:13:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioWithAccountAndPortfolioHasRegisteredAllTransactions stamp: 'CJF 10/16/2023 21:13:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test16PortfolioCannotAddDuplicatedAccounts stamp: 'CJF 10/16/2023 21:13:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test17CannotAddAccountInAlreadyPortfolioAdded stamp: 'CJF 10/16/2023 21:13:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test18 stamp: 'CJF 10/16/2023 21:13:21'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'CJF 10/16/2023 21:16:22'!
+test19
+"	| portfolioA portfolioB account|
+	account := ReceptiveAccount new.
+	portfolioA := Portfolio new.
+	
+	self should: [ portfolio add: portfolio ] raise: Error withExceptionDo: [ :anError | self assert: anError messageText equals: CollectionAccount cannotAddPortfolioError]"! !
+
+----SNAPSHOT----(16 October 2023 21:16:30) CuisUniversity-5981.image priorSource: 10636047!
+
+----QUIT----(17 October 2023 00:02:06) CuisUniversity-5981.image priorSource: 10677625!
+
+----STARTUP---- (17 October 2023 12:05:29) as C:\Users\crist\Desktop\Inge1 2c 2023\cuis para tdd\CuisUniversity-5981.image!
+
+
+!testRun: #PortfolioTest #test01EmptyPortfolioReturnBalanceZero stamp: 'CJF 10/17/2023 12:05:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleAccountReturnBalanceOfAccount stamp: 'CJF 10/17/2023 12:05:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMultipleAccountsReturnBalanceAsSumOfThem stamp: 'CJF 10/17/2023 12:05:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithAnEmptyPortfolioReturnBalanceZero stamp: 'CJF 10/17/2023 12:05:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithPortfolioWithAccountWithdrawReturnNoZeroBalance stamp: 'CJF 10/17/2023 12:05:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithManyPortfoliosReturnBalanceAsSumOfThem stamp: 'CJF 10/17/2023 12:05:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountAndPortfolioReturnBalanceAsSumOfThem stamp: 'CJF 10/17/2023 12:05:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test08TransactionsOfEmptyPortfolioIsEmptyList stamp: 'CJF 10/17/2023 12:05:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithSingleAccountHasSameTransactionsThanAccount stamp: 'CJF 10/17/2023 12:05:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioManyAccountsHasSameTransactionsCombined stamp: 'CJF 10/17/2023 12:05:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioWithdAccountAndPortfolioReturnTransactionsCombined stamp: 'CJF 10/17/2023 12:05:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test12EmptyPortfolioHasNoRegisteredTranstractions stamp: 'CJF 10/17/2023 12:05:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioWithSingleAccountHasRegisterAccountTransactions stamp: 'CJF 10/17/2023 12:05:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioWIthPortfolioWithTransactionsHasSameTransactionsRegistered stamp: 'CJF 10/17/2023 12:05:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioWithAccountAndPortfolioHasRegisteredAllTransactions stamp: 'CJF 10/17/2023 12:05:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test16PortfolioCannotAddDuplicatedAccounts stamp: 'CJF 10/17/2023 12:05:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test17CannotAddAccountInAlreadyPortfolioAdded stamp: 'CJF 10/17/2023 12:05:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test18 stamp: 'CJF 10/17/2023 12:05:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test19 stamp: 'CJF 10/17/2023 12:05:40'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'CJF 10/17/2023 12:24:16'!
+test18PortfolioCannotAddedItself
+	| portfolio |
+	portfolio := Portfolio new.
+	
+	self should: [ portfolio add: portfolio ] raise: Error withExceptionDo: [ :anError | self assert: anError messageText equals: CollectionAccount cannotAddPortfolioError]! !
+
+!methodRemoval: PortfolioTest #test18 stamp: 'CJF 10/17/2023 12:24:16'!
+test18
+	| portfolio |
+	portfolio := Portfolio new.
+	
+	self should: [ portfolio add: portfolio ] raise: Error withExceptionDo: [ :anError | self assert: anError messageText equals: CollectionAccount cannotAddPortfolioError]!
+!PortfolioTest methodsFor: 'tests' stamp: 'CJF 10/17/2023 12:26:33' prior: 50665315!
+test19
+	| portfolioA account|
+	account := ReceptiveAccount new.
+	portfolioA := Portfolio new.
+	
+	self should: [ portfolioA add: portfolioA ] 
+		raise: Error withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: CollectionAccount cannotAddPortfolioError]! !
+!PortfolioTest methodsFor: 'tests' stamp: 'CJF 10/17/2023 12:27:03' prior: 50665408!
+test18PortfolioCannotAddedItself
+	| portfolio |
+	portfolio := Portfolio new.
+	
+	self should: [ portfolio add: portfolio ] 
+		raise: Error withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: CollectionAccount cannotAddPortfolioError]! !
+!PortfolioTest methodsFor: 'tests' stamp: 'CJF 10/17/2023 13:11:11' prior: 50665428!
+test19"primer de agregar en un portfolio interno"
+	| portfolioA account|
+	account := ReceptiveAccount new.
+	portfolioA := Portfolio new.
+	
+	self should: [ portfolioA add: portfolioA ] 
+		raise: Error withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: CollectionAccount cannotAddPortfolioError]! !
+
+----QUIT----(17 October 2023 13:11:32) CuisUniversity-5981.image priorSource: 10677718!
