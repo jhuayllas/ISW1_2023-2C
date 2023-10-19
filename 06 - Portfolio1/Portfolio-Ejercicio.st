@@ -234,13 +234,39 @@ test18PortfolioCannotAddedItself
 		raise: Error withExceptionDo: [ :anError | 
 			self assert: anError messageText equals: CollectionAccount cannotAddPortfolioError]! !
 
-!PortfolioTest methodsFor: 'tests' stamp: 'CJF 10/17/2023 13:11:11'!
-test19"primer de agregar en un portfolio interno"
-	| portfolioA account|
+!PortfolioTest methodsFor: 'tests' stamp: 'CJF 10/19/2023 15:28:36'!
+test19PortfoliosSharingAccountCannotAddBetweenThem
+	| portfolioA account portfolioB|
 	account := ReceptiveAccount new.
+	Deposit register: 100 on: account .
+	
+	portfolioA := Portfolio new.
+	portfolioA add: account.
+	
+	portfolioB := Portfolio new.
+	portfolioB add: account.
+	
+	self should: [ portfolioA add: portfolioB ] 
+		raise: Error withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: CollectionAccount cannotAddPortfolioError]! !
+
+!PortfolioTest methodsFor: 'tests' stamp: 'CJF 10/19/2023 15:24:57'!
+test20CannotAddPortfolioTwice
+	| portfolioA account portfolioB portfolioC|
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account .
+	
 	portfolioA := Portfolio new.
 	
-	self should: [ portfolioA add: portfolioA ] 
+	portfolioB := Portfolio new.
+	portfolioB add: account.
+	
+	portfolioC := Portfolio new.
+	portfolioC add: account.
+	
+	portfolioA add: portfolioB.
+	
+	self should: [ portfolioA add: portfolioB ] 
 		raise: Error withExceptionDo: [ :anError | 
 			self assert: anError messageText equals: CollectionAccount cannotAddPortfolioError]! !
 
@@ -442,6 +468,29 @@ Object subclass: #CollectionAccount
 	poolDictionaries: ''
 	category: 'Portfolio-Ejercicio'!
 
+!CollectionAccount methodsFor: 'balance' stamp: 'CJF 10/19/2023 15:30:32'!
+balance
+	self subclassResponsibility ! !
+
+
+!CollectionAccount methodsFor: 'add' stamp: 'CJF 10/19/2023 15:36:22'!
+canAdd
+	self subclassResponsibility ! !
+
+!CollectionAccount methodsFor: 'add' stamp: 'CJF 10/19/2023 15:32:17'!
+defineParent
+	self subclassResponsibility ! !
+
+
+!CollectionAccount methodsFor: 'testing' stamp: 'CJF 10/19/2023 16:13:32'!
+hasRegistered: aTransaction
+	self subclassResponsibility ! !
+
+
+!CollectionAccount methodsFor: 'transactions' stamp: 'CJF 10/19/2023 16:13:59'!
+transactions
+	self subclassResponsibility ! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'CollectionAccount class' category: 'Portfolio-Ejercicio'!
@@ -459,7 +508,7 @@ duplicatedAccountError
 
 !classDefinition: #Portfolio category: 'Portfolio-Ejercicio'!
 CollectionAccount subclass: #Portfolio
-	instanceVariableNames: 'collectionAccounts'
+	instanceVariableNames: 'collectionAccounts parent'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Ejercicio'!
@@ -472,32 +521,34 @@ balance
 	
 	^totalBalance.! !
 
-!Portfolio methodsFor: 'balance' stamp: 'CJF 10/16/2023 19:50:37'!
-initialize
-	collectionAccounts := OrderedCollection new.! !
 
-
-!Portfolio methodsFor: 'administration' stamp: 'CJF 10/16/2023 20:13:49'!
+!Portfolio methodsFor: 'add' stamp: 'CJF 10/19/2023 15:28:51'!
 add: aCollectionAccount
-	self ifCannotAddRaiseError: aCollectionAccount.
+	(self canAdd: aCollectionAccount ) ifFalse:[ ^self error: CollectionAccount cannotAddPortfolioError ].
+	aCollectionAccount defineParent: self.
 	collectionAccounts add: aCollectionAccount.! !
 
-!Portfolio methodsFor: 'administration' stamp: 'CJF 10/13/2023 22:00:14'!
-hasRegistered: anAccountTransaction
-	^self transactions includes: anAccountTransaction 
-	"| res |
-	res := false.
-	accounts do: [ :anAccount  | res := res or: (anAccount hasRegistered: anAccountTransaction )  ].
-	portfolios do: [ :aPortfolio | res := res or: ( aPortfolio hasRegistered: anAccountTransaction ) ].
-	^res. "! !
+!Portfolio methodsFor: 'add' stamp: 'CJF 10/19/2023 14:55:47'!
+canAdd: aCollectionAccount 
+	| roots ret|
+	ret := false.
+	roots := self collectParents.
+	roots do: [ :aParent |
+			ret := ret or: (aParent include: aCollectionAccount ) not.
+		].
+	^ret and: ((self = aCollectionAccount ) not).! !
 
-!Portfolio methodsFor: 'administration' stamp: 'CJF 10/16/2023 21:13:17'!
-ifCannotAddRaiseError: aCollectionAccount 
-	
-	collectionAccounts do:[ :temp | (temp ifCannotAddRaiseError: aCollectionAccount ) ifTrue: [ ^self error: CollectionAccount duplicatedAccountError ]. ].
-	(self = aCollectionAccount) ifTrue: [ ^self error: CollectionAccount cannotAddPortfolioError ].
-	^false.
-	"(collectionAccounts includes: aCollectionAccount) ifTrue: [ ^self error: CollectionAccount duplicatedAccountError ]."! !
+!Portfolio methodsFor: 'add' stamp: 'CJF 10/19/2023 16:05:15'!
+collectParents
+	| parents |
+	parents := OrderedCollection new.
+	parent ifEmpty: [ ^OrderedCollection with: self. ].
+	parent do: [ :aParent | parents addAll: (aParent collectParents) ].
+	^parents.! !
+
+!Portfolio methodsFor: 'add' stamp: 'CJF 10/19/2023 16:03:21'!
+defineParent: aPortfolio 
+	parent add: aPortfolio .! !
 
 
 !Portfolio methodsFor: 'transactions' stamp: 'CJF 10/16/2023 19:53:56'!
@@ -506,6 +557,26 @@ transactions
 	res := OrderedCollection new.
 	collectionAccounts do:[ :anAccount | res addAll: anAccount transactions ].
 	"collectionAccounts do:[ :aPortfolio | res addAll: aPortfolio transactions ]."
+	^res! !
+
+
+!Portfolio methodsFor: 'initialization' stamp: 'CJF 10/19/2023 16:03:01'!
+initialize
+	collectionAccounts := OrderedCollection new.
+	parent := OrderedCollection new.! !
+
+
+!Portfolio methodsFor: 'testing' stamp: 'CJF 10/19/2023 15:29:07'!
+hasRegistered: anAccountTransaction
+	^self transactions includes: anAccountTransaction ! !
+
+!Portfolio methodsFor: 'testing' stamp: 'CJF 10/19/2023 14:14:55'!
+include: aCollectionAccount 
+	| res |
+	res := false.
+	collectionAccounts do: [ :aCA |
+			res := res or: (aCA include: aCollectionAccount ).
+		].
 	^res! !
 
 
@@ -543,14 +614,20 @@ balance
 	"^transactions sum: [ :aTransaction | aTransaction impactBalance: self
 		] ifEmpty: [ 0 ]"! !
 
-!ReceptiveAccount methodsFor: 'balance' stamp: 'CJF 10/16/2023 20:40:49'!
-ifCannotAddRaiseError: aCollectionAccount
-	(aCollectionAccount isKindOf: Portfolio ) ifTrue:[ ^false ].
-	^(self = aCollectionAccount ).! !
-
 
 !ReceptiveAccount methodsFor: 'testing' stamp: 'NR 10/17/2019 03:28:43'!
 hasRegistered: aTransaction
 
 	^ transactions includes: aTransaction 
 ! !
+
+!ReceptiveAccount methodsFor: 'testing' stamp: 'CJF 10/19/2023 15:37:07'!
+include: aCollectionAccount
+	( aCollectionAccount isKindOf: Portfolio ) ifTrue: [ ^aCollectionAccount include: self ].
+	^self = aCollectionAccount 
+! !
+
+
+!ReceptiveAccount methodsFor: 'add' stamp: 'CJF 10/17/2023 14:10:06'!
+defineParent: aPortfolio 
+	! !
