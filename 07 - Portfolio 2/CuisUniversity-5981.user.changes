@@ -13323,3 +13323,139 @@ PASSED!
 PASSED!
 
 ----QUIT----(24 October 2023 23:05:52) CuisUniversity-5981.image priorSource: 11001331!
+
+----STARTUP---- (24 October 2023 23:17:48) as C:\Users\crist\Desktop\Inge1 2c 2023\cuis para tdd\CuisUniversity-5981.image!
+
+!ReceptiveAccount methodsFor: 'report' stamp: 'CJF 10/24/2023 23:18:49'!
+startSummaryReportWith: anAccountSummary 
+	transactions do: [ :aTransaction | aTransaction fillReportWith: anAccountSummary].
+	"^report"! !
+!ReceptiveAccount methodsFor: 'report' stamp: 'CJF 10/24/2023 23:19:20'!
+startTransferNetReportWith: aTransferNet 
+	transactions do: [ :aTransaction | aTransaction addToTransferNetWith: aTransferNet ] .
+! !
+!ReceptiveAccount methodsFor: 'report' stamp: 'CJF 10/24/2023 23:19:30' prior: 50675972!
+startSummaryReportWith: anAccountSummary 
+	transactions do: [ :aTransaction | aTransaction fillReportWith: anAccountSummary].
+! !
+!AccountSummary methodsFor: 'report' stamp: 'CJF 10/24/2023 23:19:44' prior: 50675435!
+report
+	report := OrderedCollection with: 'Balance = ' , (account balance asString ). 
+	account startSummaryReportWith: self.
+	^report.! !
+!TransferNet methodsFor: 'report' stamp: 'CJF 10/24/2023 23:19:56' prior: 50674187!
+report
+	report := 0.
+	account startTransferNetReportWith: self.
+	^report.! !
+
+!methodRemoval: ReceptiveAccount #startTransferNetReport:with: stamp: 'CJF 10/24/2023 23:20:06'!
+startTransferNetReport: aTotalTransfer with: aTransferNet 
+	transactions do: [ :aTransaction | aTransaction addToTransferNetWith: aTransferNet ] .
+	^aTotalTransfer !
+
+!methodRemoval: ReceptiveAccount #startSummaryReport:with: stamp: 'CJF 10/24/2023 23:20:10'!
+startSummaryReport: aReport with: anAccountSummary 
+	transactions do: [ :aTransaction | aTransaction fillReportWith: anAccountSummary].
+	"^report"!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'CJF 10/24/2023 23:20:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'CJF 10/24/2023 23:20:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'CJF 10/24/2023 23:20:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'CJF 10/24/2023 23:20:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'CJF 10/24/2023 23:20:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'CJF 10/24/2023 23:20:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'CJF 10/24/2023 23:20:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'CJF 10/24/2023 23:20:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'CJF 10/24/2023 23:20:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'CJF 10/24/2023 23:20:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'CJF 10/24/2023 23:20:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'CJF 10/24/2023 23:20:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'CJF 10/24/2023 23:20:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'CJF 10/24/2023 23:20:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'CJF 10/24/2023 23:20:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'CJF 10/24/2023 23:20:21'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'CJF 10/24/2023 23:20:21'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'CJF 10/24/2023 23:20:21'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'CJF 10/24/2023 23:20:21'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'CJF 10/24/2023 23:20:21'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'CJF 10/24/2023 23:20:21'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'CJF 10/24/2023 23:20:21'!
+PASSED!
+
+!testRun: #ReportTests #test01ReportForNewReceptiveAccountPrintBalanceZero stamp: 'CJF 10/24/2023 23:20:24'!
+PASSED!
+
+!testRun: #ReportTests #test02ReportForReceptiveAccountWithDepositPrintDespositValue stamp: 'CJF 10/24/2023 23:20:24'!
+PASSED!
+
+!testRun: #ReportTests #test03ReportForReceptiveAccountWithWithdrawPrintWithdrawValue stamp: 'CJF 10/24/2023 23:20:24'!
+PASSED!
+
+!testRun: #ReportTests #test04ReportForAccountWithMultipleAccounTransactionPrintAllAndBalance stamp: 'CJF 10/24/2023 23:20:24'!
+PASSED!
+
+!testRun: #ReportTests #test05ReportPrintTransferOutput stamp: 'CJF 10/24/2023 23:20:24'!
+PASSED!
+
+!testRun: #ReportTests #test06ReportPrintAllTransactions stamp: 'CJF 10/24/2023 23:20:24'!
+PASSED!
+
+!testRun: #TransferNetTests #test01TransferNetReportForNewAccountReturnZero stamp: 'CJF 10/24/2023 23:20:29'!
+PASSED!
+
+!testRun: #TransferNetTests #test02TransferNetReportForAccountWithInputTransfer stamp: 'CJF 10/24/2023 23:20:29'!
+PASSED!
+
+!testRun: #TransferNetTests #test03TransferNetReportForAccountWithOutputTransfer stamp: 'CJF 10/24/2023 23:20:29'!
+PASSED!
+
+!testRun: #TransferNetTests #test04TransferNetReportWithDepositAndWithdrawDoesNotAffectTransferNetTotal stamp: 'CJF 10/24/2023 23:20:29'!
+PASSED!
+
+!testRun: #TransferNetTests #test05TransferNetReportWithMultipleTransferReturnSumOfThem stamp: 'CJF 10/24/2023 23:20:29'!
+PASSED!
+
+----QUIT----(24 October 2023 23:20:57) CuisUniversity-5981.image priorSource: 11018068!

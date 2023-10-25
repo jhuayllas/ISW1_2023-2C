@@ -762,15 +762,15 @@ addedTo: aPortfolio
 	! !
 
 
-!ReceptiveAccount methodsFor: 'report' stamp: 'CJF 10/24/2023 22:18:51'!
-startSummaryReport: aReport with: anAccountSummary 
+!ReceptiveAccount methodsFor: 'report' stamp: 'CJF 10/24/2023 23:19:30'!
+startSummaryReportWith: anAccountSummary 
 	transactions do: [ :aTransaction | aTransaction fillReportWith: anAccountSummary].
-	"^report"! !
+! !
 
-!ReceptiveAccount methodsFor: 'report' stamp: 'CJF 10/24/2023 21:49:53'!
-startTransferNetReport: aTotalTransfer with: aTransferNet 
+!ReceptiveAccount methodsFor: 'report' stamp: 'CJF 10/24/2023 23:19:20'!
+startTransferNetReportWith: aTransferNet 
 	transactions do: [ :aTransaction | aTransaction addToTransferNetWith: aTransferNet ] .
-	^aTotalTransfer ! !
+! !
 
 
 !classDefinition: #AccountSummary category: 'Portfolio-Solucion'!
@@ -802,10 +802,10 @@ initializeFor: anAccount
 	account := anAccount.! !
 
 
-!AccountSummary methodsFor: 'report' stamp: 'CJF 10/24/2023 21:58:51'!
+!AccountSummary methodsFor: 'report' stamp: 'CJF 10/24/2023 23:19:44'!
 report
 	report := OrderedCollection with: 'Balance = ' , (account balance asString ). 
-	account startSummaryReport: report with: self.
+	account startSummaryReportWith: self.
 	^report.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
@@ -1167,10 +1167,10 @@ initializeFor: anAccount
 	account := anAccount.! !
 
 
-!TransferNet methodsFor: 'report' stamp: 'CJF 10/24/2023 21:19:41'!
+!TransferNet methodsFor: 'report' stamp: 'CJF 10/24/2023 23:19:56'!
 report
 	report := 0.
-	account startTransferNetReport: report with: self.
+	account startTransferNetReportWith: self.
 	^report.! !
 
 
