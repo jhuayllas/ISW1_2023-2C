@@ -313,32 +313,36 @@ test07AccountKnowsItsTransactions
 ! !
 
 
-!classDefinition: #Reports category: 'Portfolio-Solucion'!
-Tests subclass: #Reports
+!classDefinition: #ReportsTest category: 'Portfolio-Solucion'!
+Tests subclass: #ReportsTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
 
-!classDefinition: #ReportTests category: 'Portfolio-Solucion'!
-Reports subclass: #ReportTests
+!classDefinition: #AccountSummaryTest category: 'Portfolio-Solucion'!
+ReportsTest subclass: #AccountSummaryTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!ReportTests methodsFor: 'tests' stamp: 'camila 10/25/2023 20:55:18'!
+!AccountSummaryTest methodsFor: 'tests' stamp: 'camila 10/25/2023 21:20:08'!
 test01ReportForNewReceptiveAccountPrintBalanceZero
+
 	| anAccount summaryReport|
+	
 	anAccount := ReceptiveAccount new. 
 	summaryReport  := AccountSummary for: anAccount.
 	
 	self assert: (summaryReport buildResult) equals: (OrderedCollection with: 'Balance = 0').! !
 
-!ReportTests methodsFor: 'tests' stamp: 'camila 10/25/2023 20:55:18'!
+!AccountSummaryTest methodsFor: 'tests' stamp: 'camila 10/25/2023 21:20:58'!
 test02ReportForReceptiveAccountWithDepositPrintDespositValue
+
 	| anAccount reportPrinted summaryReport |
+	
 	anAccount := ReceptiveAccount new. 
 	Deposit register: 100 on: anAccount.
 	
@@ -347,29 +351,38 @@ test02ReportForReceptiveAccountWithDepositPrintDespositValue
 	
 	self assert: (summaryReport buildResult) equals: reportPrinted.! !
 
-!ReportTests methodsFor: 'tests' stamp: 'camila 10/25/2023 20:55:18'!
+!AccountSummaryTest methodsFor: 'tests' stamp: 'camila 10/25/2023 21:20:54'!
 test03ReportForReceptiveAccountWithWithdrawPrintWithdrawValue
+
 	| anAccount reportPrinted summaryReport |
+	
 	anAccount := ReceptiveAccount new. 
 	Withdraw register: 50 on: anAccount.
+	
 	summaryReport := AccountSummary for: anAccount.
 	reportPrinted := OrderedCollection with:'Balance = -50' with: 'Extracción por 50.'.
+	
 	self assert: (summaryReport buildResult) equals: reportPrinted.! !
 
-!ReportTests methodsFor: 'tests' stamp: 'camila 10/25/2023 20:55:18'!
+!AccountSummaryTest methodsFor: 'tests' stamp: 'camila 10/25/2023 21:20:50'!
 test04ReportForAccountWithMultipleAccounTransactionPrintAllAndBalance
+
 	| anAccount reportPrinted summaryReport|
+	
 	anAccount := ReceptiveAccount new. 
 	Deposit register: 100 on: anAccount.
 	Withdraw register: 50 on: anAccount.
-	summaryReport := AccountSummary for: anAccount .
 	
+	summaryReport := AccountSummary for: anAccount .
 	reportPrinted := OrderedCollection with:'Balance = 50' with: 'Depósito por 100.' with: 'Extracción por 50.'.
+	
 	self assert: (summaryReport buildResult) equals: reportPrinted.! !
 
-!ReportTests methodsFor: 'tests' stamp: 'camila 10/25/2023 20:55:18'!
+!AccountSummaryTest methodsFor: 'tests' stamp: 'camila 10/25/2023 21:21:15'!
 test05ReportPrintTransferOutput
+
 	| originAccount originReport  receiverAccount receiverReport summaryOriginReport summaryReceiverReport |
+	
 	originAccount := ReceptiveAccount new. 
 	receiverAccount := ReceptiveAccount new.
 	Transfer from: originAccount to: receiverAccount withValue: 20.
@@ -379,19 +392,22 @@ test05ReportPrintTransferOutput
 	
 	originReport := OrderedCollection with:'Balance = -20' with: 'Salida por transferencia de 20.'.
 	receiverReport := OrderedCollection with: 'Balance = 20' with: 'Entrada por transferencia de 20.'.
+	
 	self assert: (summaryOriginReport buildResult ) equals: originReport.
 	self assert: (summaryReceiverReport buildResult ) equals: receiverReport.! !
 
-!ReportTests methodsFor: 'tests' stamp: 'camila 10/25/2023 20:55:18'!
+!AccountSummaryTest methodsFor: 'tests' stamp: 'camila 10/25/2023 21:21:43'!
 test06ReportPrintAllTransactions
+
 	| anAccount originReport  summaryReport|
+	
 	anAccount := ReceptiveAccount new. 
 	Deposit register: 100 on: anAccount.
 	Withdraw register: 50 on: anAccount.
 	Transfer from: anAccount to: ReceptiveAccount new withValue: 20.
 	Transfer from: ReceptiveAccount new to: anAccount withValue: 30.
-	summaryReport := AccountSummary for: anAccount .
 	
+	summaryReport := AccountSummary for: anAccount .
 	originReport := OrderedCollection with:'Balance = 60' 
 								with: 'Depósito por 100.' 
 								with:'Extracción por 50.' 
@@ -401,75 +417,285 @@ test06ReportPrintAllTransactions
 	self assert: (summaryReport buildResult) equals: originReport.
 	! !
 
+!AccountSummaryTest methodsFor: 'tests' stamp: 'camila 10/25/2023 22:13:03'!
+test07ReportForNewPortfolio
+
+	| aPortfolio summaryReport|
+	 
+	aPortfolio := Portfolio new.
+	summaryReport  := AccountSummary for: aPortfolio.
+	
+	self assert: (summaryReport buildResult) equals: (OrderedCollection with: 'Balance = 0').! !
+
+!AccountSummaryTest methodsFor: 'tests' stamp: 'camila 10/25/2023 22:14:38'!
+test08ReportForPortfolioWithAccountWithDeposit
+
+	| aPortfolio summaryReport anAccount reportPrinted |
+	
+	
+	anAccount := ReceptiveAccount new. 
+	Deposit register: 100 on: anAccount.
+	 
+	aPortfolio := Portfolio with: anAccount.
+	summaryReport  := AccountSummary for: aPortfolio.
+	
+	reportPrinted := OrderedCollection with:'Balance = 100' with: 'Depósito por 100.'.
+	
+	self assert: (summaryReport buildResult) equals: reportPrinted.
+	! !
+
+!AccountSummaryTest methodsFor: 'tests' stamp: 'camila 10/25/2023 22:15:54'!
+test09ReportForPortfolioWithAccountWithWithdraw
+
+	| aPortfolio summaryReport anAccount reportPrinted |
+	
+	
+	anAccount := ReceptiveAccount new. 
+	Withdraw register: 50 on: anAccount.
+	 
+	aPortfolio := Portfolio with: anAccount.
+	summaryReport  := AccountSummary for: aPortfolio.
+	
+	reportPrinted := OrderedCollection with:'Balance = -50' with: 'Extracción por 50.'.
+	
+	self assert: (summaryReport buildResult) equals: reportPrinted.
+	! !
+
+!AccountSummaryTest methodsFor: 'tests' stamp: 'camila 10/25/2023 22:19:23'!
+test10ReportForPortfolioWithAccountWithOriginTransfer
+
+	| portfolioWithOrigin summaryReport originReport originAccount receiverAccount |
+	
+	
+	originAccount := ReceptiveAccount new. 
+	receiverAccount := ReceptiveAccount new.
+	Transfer from: originAccount to: receiverAccount withValue: 20.
+	
+	portfolioWithOrigin := Portfolio with: originAccount.
+	summaryReport  := AccountSummary for: portfolioWithOrigin.
+	
+	originReport := OrderedCollection with:'Balance = -20' with: 'Salida por transferencia de 20.'.
+	
+	self assert: (summaryReport buildResult) equals: originReport.
+	
+	
+	! !
+
+!AccountSummaryTest methodsFor: 'tests' stamp: 'camila 10/25/2023 22:20:59'!
+test11ReportForPortfolioWithAccountWithReceiverTransfer
+
+	| portfolioWithReceiver summaryReport receiverReport originAccount receiverAccount |
+	
+	
+	originAccount := ReceptiveAccount new. 
+	receiverAccount := ReceptiveAccount new.
+	Transfer from: originAccount to: receiverAccount withValue: 20.
+	
+	portfolioWithReceiver := Portfolio with: receiverAccount.
+	summaryReport  := AccountSummary for: portfolioWithReceiver.
+	
+	receiverReport := OrderedCollection with: 'Balance = 20' with: 'Entrada por transferencia de 20.'.
+	
+	self assert: (summaryReport buildResult) equals: receiverReport.
+	
+	
+	! !
+
+!AccountSummaryTest methodsFor: 'tests' stamp: 'camila 10/25/2023 22:24:43'!
+test12ReportForPortfolioWithPortfolio
+
+		
+	| anAccount originReport summaryReport portfolio |
+	anAccount := ReceptiveAccount new. 
+	Deposit register: 100 on: anAccount.
+	Withdraw register: 50 on: anAccount.
+	Transfer from: anAccount to: ReceptiveAccount new withValue: 20.
+	Transfer from: ReceptiveAccount new to: anAccount withValue: 30.
+	
+	portfolio := Portfolio with: anAccount .
+	
+	summaryReport := AccountSummary for: portfolio .
+	originReport := OrderedCollection with:'Balance = 60' 
+								with: 'Depósito por 100.' 
+								with:'Extracción por 50.' 
+								with: 'Salida por transferencia de 20.' 
+								with: 'Entrada por transferencia de 30.'.
+	
+	self assert: (summaryReport buildResult) equals: originReport.
+	
+	
+	! !
+
 
-!classDefinition: #TransferNetTests category: 'Portfolio-Solucion'!
-Reports subclass: #TransferNetTests
+!classDefinition: #PortfolioTreeReportTest category: 'Portfolio-Solucion'!
+ReportsTest subclass: #PortfolioTreeReportTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!TransferNetTests methodsFor: 'test' stamp: 'camila 10/25/2023 20:55:18'!
+!PortfolioTreeReportTest methodsFor: 'as yet unclassified' stamp: 'camila 10/25/2023 23:01:46'!
+test01NewPortfolioWithNameReturnsName
+	
+	| finalReport portfolio treeReport |
+	
+	portfolio := Portfolio named: 'Portfolio de la familia'.
+	treeReport  := PortfolioTreeReport for: portfolio. 
+	
+	finalReport := OrderedCollection with: 'Portfolio de la familia'.
+	
+	self assert: (treeReport buildResult) equals: finalReport.! !
+
+
+!classDefinition: #TransferNetTests category: 'Portfolio-Solucion'!
+ReportsTest subclass: #TransferNetTests
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!TransferNetTests methodsFor: 'test' stamp: 'camila 10/25/2023 21:21:53'!
 test01TransferNetReportForNewAccountReturnZero
+
 	|anAccount transferReport |
+	
 	anAccount := ReceptiveAccount new. 
 	transferReport := TransferNet for: anAccount .
+	
 	self assert: (transferReport buildResult) equals: 0.! !
 
-!TransferNetTests methodsFor: 'test' stamp: 'camila 10/25/2023 20:55:18'!
+!TransferNetTests methodsFor: 'test' stamp: 'camila 10/25/2023 21:22:08'!
 test02TransferNetReportForAccountWithReceiverTransfer
+	
 	|anAccount transferReport|
+	
 	anAccount := ReceptiveAccount new. 
 	Transfer from: ReceptiveAccount new to: anAccount  withValue: 20.
+	
 	transferReport := TransferNet for: anAccount .
+	
 	self assert: (transferReport buildResult) equals: 20.! !
 
-!TransferNetTests methodsFor: 'test' stamp: 'camila 10/25/2023 20:55:18'!
+!TransferNetTests methodsFor: 'test' stamp: 'camila 10/25/2023 21:22:16'!
 test03TransferNetReportForAccountWithOriginTransfer
+	
 	|anAccount transferReport|
+	
 	anAccount := ReceptiveAccount new. 
 	Transfer from: anAccount to: ReceptiveAccount new  withValue: 20.
+	
 	transferReport := TransferNet for: anAccount .
+	
 	self assert: (transferReport buildResult) equals: -20.! !
 
-!TransferNetTests methodsFor: 'test' stamp: 'camila 10/25/2023 20:55:18'!
+!TransferNetTests methodsFor: 'test' stamp: 'camila 10/25/2023 21:22:27'!
 test04TransferNetReportWithDepositAndWithdrawDoesNotAffectTransferNetTotal
+	
 	|anAccount transferReport |
+	
 	anAccount := ReceptiveAccount new. 
 	Transfer from: anAccount to: ReceptiveAccount new  withValue: 20.
 	Transfer from: ReceptiveAccount new to: anAccount withValue: 30.
 	Deposit register: 10 on: anAccount .
 	Withdraw register: 20 on: anAccount .
+	
 	transferReport  := TransferNet for: anAccount .
+	
 	self assert: (transferReport buildResult )equals: 10.! !
 
-!TransferNetTests methodsFor: 'test' stamp: 'camila 10/25/2023 20:55:18'!
+!TransferNetTests methodsFor: 'test' stamp: 'camila 10/25/2023 21:22:35'!
 test05TransferNetReportWithMultipleTransferReturnSumOfThem
+	
 	|anAccount transferReport|
+	
 	anAccount := ReceptiveAccount new. 
 	Transfer from: anAccount to: ReceptiveAccount new  withValue: 20.
 	Transfer from: ReceptiveAccount new to: anAccount withValue: 30.
+	
 	transferReport := TransferNet for: anAccount .
+	
 	self assert: (transferReport buildResult) equals: 10.! !
 
-!TransferNetTests methodsFor: 'test' stamp: 'camila 10/25/2023 20:55:18'!
+!TransferNetTests methodsFor: 'test' stamp: 'camila 10/25/2023 21:22:41'!
 test06TransferNetReportWithDeposit
+	
 	|anAccount transferReport |
+	
 	anAccount := ReceptiveAccount new. 
 	Deposit register: 10 on: anAccount .
+	
 	transferReport  := TransferNet for: anAccount .
+	
 	self assert: (transferReport buildResult )equals: 0.! !
 
-!TransferNetTests methodsFor: 'test' stamp: 'camila 10/25/2023 20:55:18'!
+!TransferNetTests methodsFor: 'test' stamp: 'camila 10/25/2023 21:22:59'!
 test07TransferNetReportWithWithdraw
+
 	|anAccount transferReport |
 	
 	anAccount := ReceptiveAccount new. 
-	
 	Withdraw register: 20 on: anAccount .
 	
 	transferReport  := TransferNet for: anAccount .
+	
 	self assert: (transferReport buildResult )equals: 0.! !
+
+!TransferNetTests methodsFor: 'test' stamp: 'camila 10/25/2023 21:55:11'!
+test08TransferNetReportForNewPortfolioReturnsZero
+
+	|aPortfolio transferReport |
+	
+	aPortfolio := Portfolio new.
+	
+	transferReport  := TransferNet for: aPortfolio .
+	
+	self assert: (transferReport buildResult )equals: 0.! !
+
+!TransferNetTests methodsFor: 'test' stamp: 'camila 10/25/2023 22:05:24'!
+test09TransferNetReportForPortfolioWithOriginAccount
+
+	| originAccount receiverAccount portfolio transfer transferReport |
+	
+	originAccount := ReceptiveAccount new.
+	receiverAccount := ReceptiveAccount new. 
+	
+	transfer := Transfer from: originAccount to: receiverAccount withValue: 50.
+	portfolio := Portfolio with: originAccount.
+	
+	transferReport  := TransferNet for: portfolio .
+	
+	self assert: (transferReport buildResult ) equals: -50.! !
+
+!TransferNetTests methodsFor: 'test' stamp: 'camila 10/25/2023 22:08:05'!
+test10TransferNetReportForPortfolioWithReceiverAccount
+
+	| originAccount receiverAccount portfolio transfer transferReport |
+	
+	originAccount := ReceptiveAccount new.
+	receiverAccount := ReceptiveAccount new. 
+	
+	transfer := Transfer from: originAccount to: receiverAccount withValue: 50.
+	portfolio := Portfolio with: receiverAccount.
+	
+	transferReport  := TransferNet for: portfolio .
+	
+	self assert: (transferReport buildResult ) equals: 50.! !
+
+!TransferNetTests methodsFor: 'test' stamp: 'camila 10/25/2023 22:11:00'!
+test11TransferNetReportForPortfolioWithPortfolioWithAccount
+
+	| originAccount receiverAccount portfolioToTest extraPortfolio transferReport |
+	
+	originAccount := ReceptiveAccount new.
+	receiverAccount := ReceptiveAccount new. 
+	
+	Transfer from: originAccount to: receiverAccount withValue: 50.
+	extraPortfolio := Portfolio with: receiverAccount.
+	portfolioToTest := Portfolio with: extraPortfolio .
+	
+	transferReport  := TransferNet for: portfolioToTest .
+	
+	self assert: (transferReport buildResult ) equals: 50.! !
 
 
 !classDefinition: #TransfersTests category: 'Portfolio-Solucion'!
@@ -490,17 +716,15 @@ test01TransferBetweenAccountsAffectBalances
 	self assert: originAccount balance equals: -50.
 	self assert: receiverAccount balance equals: 50.! !
 
-!TransfersTests methodsFor: 'tests' stamp: 'CJF 10/24/2023 16:16:35'!
+!TransfersTests methodsFor: 'tests' stamp: 'camila 10/25/2023 21:19:51'!
 test02AccountsRegisterTransfer
 	| originAccount receiverAccount  transfer |
 	originAccount := ReceptiveAccount new.
 	receiverAccount := ReceptiveAccount new. 
 	
 	transfer := Transfer from: originAccount to: receiverAccount withValue: 50.
-	self assert: ( transfer isOrigin: originAccount ).
-	self assert: ( transfer isReceiver: receiverAccount ).
-	"self assert: (originAccount hasRegistered: transfer).
-	self assert: (receiverAccount hasRegistered: transfer)."! !
+	self assert: ( transfer isOriginLeg: originAccount ).
+	self assert: ( transfer isReceiverLeg: receiverAccount ).! !
 
 !TransfersTests methodsFor: 'tests' stamp: 'CJF 10/24/2023 16:26:09'!
 test03TransferMustNotBeNegative
@@ -525,7 +749,7 @@ test04TransferBetweenDifferentAccount
 				self assert: anAccount balance equals: 0.
 			 ]! !
 
-!TransfersTests methodsFor: 'tests' stamp: 'CJF 10/24/2023 16:40:21'!
+!TransfersTests methodsFor: 'tests' stamp: 'camila 10/25/2023 21:18:49'!
 test05NavigationBetweenTransferLegs
 	| originAccount receiverAccount transfer origin receiver|
 	originAccount := ReceptiveAccount new. 
@@ -533,8 +757,8 @@ test05NavigationBetweenTransferLegs
 	
 	transfer := Transfer from: originAccount to: receiverAccount withValue: 50.
 	
-	origin := transfer originTransfer.
-	receiver := transfer receiverTrasnfer. 
+	origin := transfer originTransferLeg .
+	receiver := transfer receiverTransferLeg . 
 	
 	self assert: (origin isContraryTransfer: receiver).
 	self assert: (receiver isContraryTransfer: origin). ! !
@@ -583,7 +807,7 @@ addedTo: aPortfolio
 
 !classDefinition: #Portfolio category: 'Portfolio-Solucion'!
 Account subclass: #Portfolio
-	instanceVariableNames: 'accounts parents'
+	instanceVariableNames: 'accounts parents portfolioName'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
@@ -612,6 +836,10 @@ add: accountToAdd
 	accountToAdd addedTo: self 
 	! !
 
+!Portfolio methodsFor: 'accounts management' stamp: 'camila 10/25/2023 22:53:20'!
+name
+	^portfolioName copy.! !
+
 !Portfolio methodsFor: 'accounts management' stamp: 'HAW 5/25/2019 12:17:31'!
 rootParents
 	
@@ -628,6 +856,13 @@ initialize
 
 	accounts := OrderedCollection new.
 	parents := OrderedCollection new.! !
+
+!Portfolio methodsFor: 'initialization' stamp: 'camila 10/25/2023 22:41:14'!
+initializeNamed: name
+
+	accounts := OrderedCollection new.
+	parents := OrderedCollection new.
+	portfolioName := name.! !
 
 
 !Portfolio methodsFor: 'balance' stamp: 'HAW 5/25/2019 11:19:36'!
@@ -692,6 +927,11 @@ signalCanNotAddAccount
 	
 	self error: self class canNotAddAccountErrorMessage! !
 
+
+!Portfolio methodsFor: 'functionality' stamp: 'camila 10/25/2023 22:11:39'!
+buildFunctionalityResult: aFunctionality 
+	accounts do: [:anAccount | anAccount buildFunctionalityResult: aFunctionality ].! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'Portfolio class' category: 'Portfolio-Solucion'!
@@ -717,6 +957,11 @@ with: anAccount with: anotherAccount
 		add: anAccount;
 		add: anotherAccount;
 		yourself! !
+
+
+!Portfolio class methodsFor: 'instance creation' stamp: 'camila 10/25/2023 22:40:41'!
+named: aName 
+	^self new initializeNamed: aName ! !
 
 
 !classDefinition: #ReceptiveAccount category: 'Portfolio-Solucion'!
@@ -781,145 +1026,10 @@ addedTo: aPortfolio
 	! !
 
 
-!ReceptiveAccount methodsFor: 'functionality' stamp: 'camila 10/25/2023 21:05:24'!
-startFunctionalityResult: anAccountFunctionality 
+!ReceptiveAccount methodsFor: 'functionality' stamp: 'camila 10/25/2023 21:15:10'!
+buildFunctionalityResult: anAccountFunctionality 
 	transactions do: [ :aTransaction | aTransaction executeFunctionality: anAccountFunctionality].
 ! !
-
-
-!classDefinition: #AccountFunctionality category: 'Portfolio-Solucion'!
-Object subclass: #AccountFunctionality
-	instanceVariableNames: 'account'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!AccountFunctionality methodsFor: 'initialization' stamp: 'camila 10/25/2023 21:01:21'!
-initializeFor: anAccount
-
-	self subclassResponsibility! !
-
-
-!AccountFunctionality methodsFor: 'execute' stamp: 'camila 10/25/2023 20:27:37'!
-executeForDeposit: aDeposit
-
-	self subclassResponsibility! !
-
-!AccountFunctionality methodsFor: 'execute' stamp: 'camila 10/25/2023 20:27:46'!
-executeForOriginTransfer: anOriginTransfer
-
-	self subclassResponsibility! !
-
-!AccountFunctionality methodsFor: 'execute' stamp: 'camila 10/25/2023 20:27:54'!
-executeForReceiverTransfer: aReceiverTransfer
-
-	self subclassResponsibility! !
-
-!AccountFunctionality methodsFor: 'execute' stamp: 'camila 10/25/2023 20:28:01'!
-executeForWithdraw: aWithdraw
-
-	self subclassResponsibility! !
-
-
-!AccountFunctionality methodsFor: 'result' stamp: 'camila 10/25/2023 20:55:18'!
-buildResult
-
-	self subclassResponsibility! !
-
-
-!classDefinition: #AccountSummary category: 'Portfolio-Solucion'!
-AccountFunctionality subclass: #AccountSummary
-	instanceVariableNames: 'result'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!AccountSummary methodsFor: 'initialization' stamp: 'camila 10/25/2023 21:01:39'!
-initializeFor: anAccount
-
-	account := anAccount .
-	result := OrderedCollection new.! !
-
-
-!AccountSummary methodsFor: 'execute' stamp: 'camila 10/25/2023 21:03:34'!
-executeForDeposit: aDeposit 
-	result addLast: 'Depósito por ' , aDeposit value asString, '.'. ! !
-
-!AccountSummary methodsFor: 'execute' stamp: 'camila 10/25/2023 21:03:38'!
-executeForOriginTransfer: anOriginTransfer 
-	result addLast: 'Salida por transferencia de ' , anOriginTransfer value asString , '.'! !
-
-!AccountSummary methodsFor: 'execute' stamp: 'camila 10/25/2023 21:03:27'!
-executeForReceiverTransfer: aReceiverTransfer 
-	result addLast: 'Entrada por transferencia de ' , aReceiverTransfer value asString , '.'.! !
-
-!AccountSummary methodsFor: 'execute' stamp: 'camila 10/25/2023 21:03:30'!
-executeForWithdraw: aWithdraw 
-	result addLast: 'Extracción por ' , aWithdraw value asString , '.'! !
-
-
-!AccountSummary methodsFor: 'result' stamp: 'camila 10/25/2023 21:08:01'!
-buildResult
-	result addLast: 'Balance = ' , (account balance asString ). 
-	account startFunctionalityResult: self.
-	^result.! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'AccountSummary class' category: 'Portfolio-Solucion'!
-AccountSummary class
-	instanceVariableNames: ''!
-
-!AccountSummary class methodsFor: 'instance creation' stamp: 'CJF 10/24/2023 17:42:37'!
-for: anAccount 
-	^self new initializeFor: anAccount ! !
-
-
-!classDefinition: #TransferNet category: 'Portfolio-Solucion'!
-AccountFunctionality subclass: #TransferNet
-	instanceVariableNames: 'result'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!TransferNet methodsFor: 'initialization' stamp: 'camila 10/25/2023 21:01:54'!
-initializeFor: anAccount
-
-	account := anAccount .
-	result := 0.! !
-
-
-!TransferNet methodsFor: 'execute' stamp: 'camila 10/25/2023 21:02:59'!
-executeForDeposit: aDeposit 
-	result := result + 0.! !
-
-!TransferNet methodsFor: 'execute' stamp: 'camila 10/25/2023 21:03:04'!
-executeForOriginTransfer: anOriginTransfer 
-	result := result - (anOriginTransfer value).! !
-
-!TransferNet methodsFor: 'execute' stamp: 'camila 10/25/2023 21:03:12'!
-executeForReceiverTransfer: aReceiverTransfer 
-	result := result + (aReceiverTransfer value).! !
-
-!TransferNet methodsFor: 'execute' stamp: 'camila 10/25/2023 21:03:18'!
-executeForWithdraw: aWithdraw 
-	result := result + 0.! !
-
-
-!TransferNet methodsFor: 'result' stamp: 'camila 10/25/2023 21:08:07'!
-buildResult
-	account startFunctionalityResult: self.
-	^result.! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'TransferNet class' category: 'Portfolio-Solucion'!
-TransferNet class
-	instanceVariableNames: ''!
-
-!TransferNet class methodsFor: 'instance creation' stamp: 'CJF 10/24/2023 20:41:04'!
-for: anAccount 
-	^self new initializeFor: anAccount ! !
 
 
 !classDefinition: #AccountTransaction category: 'Portfolio-Solucion'!
@@ -1037,9 +1147,9 @@ value
 	^ transfer value! !
 
 
-!OriginTransfer methodsFor: 'transferVerification' stamp: 'CJF 10/24/2023 16:39:02'!
-isContraryTransfer: pata 
-	^transfer receiverTrasnfer = pata.! !
+!OriginTransfer methodsFor: 'transferVerification' stamp: 'camila 10/25/2023 21:19:38'!
+isContraryTransfer: aTransferLeg 
+	^transfer receiverTransferLeg = aTransferLeg.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -1079,9 +1189,9 @@ value
 	^ transfer value! !
 
 
-!ReceiverTransfer methodsFor: 'transferVerification' stamp: 'CJF 10/24/2023 16:39:30'!
-isContraryTransfer: pata 
-	^transfer originTransfer = pata.! !
+!ReceiverTransfer methodsFor: 'transferVerification' stamp: 'camila 10/25/2023 21:19:30'!
+isContraryTransfer: aTransferLeg 
+	^transfer originTransferLeg = aTransferLeg.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -1135,6 +1245,172 @@ for: aValue
 	^ self new initializeFor: aValue ! !
 
 
+!classDefinition: #PortfolioTreeReport category: 'Portfolio-Solucion'!
+Object subclass: #PortfolioTreeReport
+	instanceVariableNames: 'account result'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!PortfolioTreeReport methodsFor: 'result' stamp: 'camila 10/25/2023 22:52:16'!
+buildResult
+	result addLast: account name.
+	^ result.! !
+
+
+
+!PortfolioTreeReport methodsFor: 'initialization' stamp: 'camila 10/25/2023 22:48:45'!
+initializeFor: anAccount
+
+	account := anAccount .
+	result := OrderedCollection new.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'PortfolioTreeReport class' category: 'Portfolio-Solucion'!
+PortfolioTreeReport class
+	instanceVariableNames: ''!
+
+!PortfolioTreeReport class methodsFor: 'as yet unclassified' stamp: 'camila 10/25/2023 22:50:16'!
+for: anAccount 
+	^self new initializeFor: anAccount ! !
+
+
+!classDefinition: #Report category: 'Portfolio-Solucion'!
+Object subclass: #Report
+	instanceVariableNames: 'account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!Report methodsFor: 'initialization' stamp: 'camila 10/25/2023 22:47:18'!
+initializeFor: anAccount
+
+	self subclassResponsibility! !
+
+
+!Report methodsFor: 'execute' stamp: 'camila 10/25/2023 22:46:51'!
+executeForDeposit: aDeposit
+
+	self subclassResponsibility! !
+
+!Report methodsFor: 'execute' stamp: 'camila 10/25/2023 22:47:00'!
+executeForOriginTransfer: anOriginTransfer
+
+	self subclassResponsibility! !
+
+!Report methodsFor: 'execute' stamp: 'camila 10/25/2023 22:47:06'!
+executeForReceiverTransfer: aReceiverTransfer
+
+	self subclassResponsibility! !
+
+!Report methodsFor: 'execute' stamp: 'camila 10/25/2023 22:47:12'!
+executeForWithdraw: aWithdraw
+
+	self subclassResponsibility! !
+
+
+!Report methodsFor: 'result' stamp: 'camila 10/25/2023 22:46:43'!
+buildResult
+
+	self subclassResponsibility! !
+
+
+!classDefinition: #AccountSummary category: 'Portfolio-Solucion'!
+Report subclass: #AccountSummary
+	instanceVariableNames: 'result'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!AccountSummary methodsFor: 'initialization' stamp: 'camila 10/25/2023 21:01:39'!
+initializeFor: anAccount
+
+	account := anAccount .
+	result := OrderedCollection new.! !
+
+
+!AccountSummary methodsFor: 'execute' stamp: 'camila 10/25/2023 21:03:34'!
+executeForDeposit: aDeposit 
+	result addLast: 'Depósito por ' , aDeposit value asString, '.'. ! !
+
+!AccountSummary methodsFor: 'execute' stamp: 'camila 10/25/2023 21:03:38'!
+executeForOriginTransfer: anOriginTransfer 
+	result addLast: 'Salida por transferencia de ' , anOriginTransfer value asString , '.'! !
+
+!AccountSummary methodsFor: 'execute' stamp: 'camila 10/25/2023 21:03:27'!
+executeForReceiverTransfer: aReceiverTransfer 
+	result addLast: 'Entrada por transferencia de ' , aReceiverTransfer value asString , '.'.! !
+
+!AccountSummary methodsFor: 'execute' stamp: 'camila 10/25/2023 21:03:30'!
+executeForWithdraw: aWithdraw 
+	result addLast: 'Extracción por ' , aWithdraw value asString , '.'! !
+
+
+!AccountSummary methodsFor: 'result' stamp: 'camila 10/25/2023 21:15:10'!
+buildResult
+	result addLast: 'Balance = ' , (account balance asString ). 
+	account buildFunctionalityResult: self.
+	^result.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'AccountSummary class' category: 'Portfolio-Solucion'!
+AccountSummary class
+	instanceVariableNames: ''!
+
+!AccountSummary class methodsFor: 'instance creation' stamp: 'CJF 10/24/2023 17:42:37'!
+for: anAccount 
+	^self new initializeFor: anAccount ! !
+
+
+!classDefinition: #TransferNet category: 'Portfolio-Solucion'!
+Report subclass: #TransferNet
+	instanceVariableNames: 'result'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!TransferNet methodsFor: 'initialization' stamp: 'camila 10/25/2023 21:01:54'!
+initializeFor: anAccount
+
+	account := anAccount .
+	result := 0.! !
+
+
+!TransferNet methodsFor: 'execute' stamp: 'camila 10/25/2023 21:02:59'!
+executeForDeposit: aDeposit 
+	result := result + 0.! !
+
+!TransferNet methodsFor: 'execute' stamp: 'camila 10/25/2023 21:03:04'!
+executeForOriginTransfer: anOriginTransfer 
+	result := result - (anOriginTransfer value).! !
+
+!TransferNet methodsFor: 'execute' stamp: 'camila 10/25/2023 21:03:12'!
+executeForReceiverTransfer: aReceiverTransfer 
+	result := result + (aReceiverTransfer value).! !
+
+!TransferNet methodsFor: 'execute' stamp: 'camila 10/25/2023 21:03:18'!
+executeForWithdraw: aWithdraw 
+	result := result + 0.! !
+
+
+!TransferNet methodsFor: 'result' stamp: 'camila 10/25/2023 21:15:10'!
+buildResult
+	account buildFunctionalityResult: self.
+	^result.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'TransferNet class' category: 'Portfolio-Solucion'!
+TransferNet class
+	instanceVariableNames: ''!
+
+!TransferNet class methodsFor: 'instance creation' stamp: 'CJF 10/24/2023 20:41:04'!
+for: anAccount 
+	^self new initializeFor: anAccount ! !
+
+
 !classDefinition: #Transfer category: 'Portfolio-Solucion'!
 Object subclass: #Transfer
 	instanceVariableNames: 'originTransfer receiverTransfer transferValue'
@@ -1160,38 +1436,25 @@ affectBalance: currentBalance from: aReceptiveAccount
 	^currentBalance + transferValue .! !
 
 
-!Transfer methodsFor: 'pata' stamp: 'CJF 10/24/2023 16:05:12'!
-isPataDestino: anAccount 
-	^receiverTransfer = anAccount ! !
-
-!Transfer methodsFor: 'pata' stamp: 'CJF 10/24/2023 16:05:00'!
-isPataOrigen: anAccount 
-	^originTransfer = anAccount ! !
-
-!Transfer methodsFor: 'pata' stamp: 'CJF 10/22/2023 19:43:43'!
-pataOrigen
-	self shouldBeImplemented.! !
-
-
 !Transfer methodsFor: 'value' stamp: 'CJF 10/22/2023 21:05:26'!
 value
 	^transferValue ! !
 
 
-!Transfer methodsFor: 'category-name' stamp: 'CJF 10/24/2023 16:23:34'!
-isOrigin: originAccount 
+!Transfer methodsFor: 'legs' stamp: 'camila 10/25/2023 21:17:16'!
+isOriginLeg: originAccount 
 	^originAccount hasRegistered: originTransfer.! !
 
-!Transfer methodsFor: 'category-name' stamp: 'CJF 10/24/2023 16:24:11'!
-isReceiver: receiverAccount 
+!Transfer methodsFor: 'legs' stamp: 'camila 10/25/2023 21:17:26'!
+isReceiverLeg: receiverAccount 
 	^receiverAccount hasRegistered: receiverTransfer .! !
 
-!Transfer methodsFor: 'category-name' stamp: 'CJF 10/24/2023 16:37:25'!
-originTransfer
+!Transfer methodsFor: 'legs' stamp: 'camila 10/25/2023 21:18:15'!
+originTransferLeg
 	^originTransfer! !
 
-!Transfer methodsFor: 'category-name' stamp: 'CJF 10/24/2023 16:37:44'!
-receiverTrasnfer
+!Transfer methodsFor: 'legs' stamp: 'camila 10/25/2023 21:18:05'!
+receiverTransferLeg
 	^receiverTransfer ! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
