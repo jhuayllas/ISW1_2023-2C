@@ -13459,3 +13459,2443 @@ PASSED!
 PASSED!
 
 ----QUIT----(24 October 2023 23:20:57) CuisUniversity-5981.image priorSource: 11018068!
+
+----STARTUP---- (25 October 2023 20:13:57) as /home/camila/Desktop/CUIS PORTFOLIO 2/CuisUniversity-5981.image!
+
+
+!testRun: #ReportTests #test01ReportForNewReceptiveAccountPrintBalanceZero stamp: 'camila 10/25/2023 20:15:40'!
+PASSED!
+
+!testRun: #ReportTests #test02ReportForReceptiveAccountWithDepositPrintDespositValue stamp: 'camila 10/25/2023 20:15:43'!
+PASSED!
+
+!testRun: #ReportTests #test03ReportForReceptiveAccountWithWithdrawPrintWithdrawValue stamp: 'camila 10/25/2023 20:15:45'!
+PASSED!
+
+!testRun: #ReportTests #test04ReportForAccountWithMultipleAccounTransactionPrintAllAndBalance stamp: 'camila 10/25/2023 20:15:47'!
+PASSED!
+
+!testRun: #ReportTests #test05ReportPrintTransferOutput stamp: 'camila 10/25/2023 20:15:49'!
+PASSED!
+
+!testRun: #ReportTests #test06ReportPrintAllTransactions stamp: 'camila 10/25/2023 20:15:51'!
+PASSED!
+!AccountSummary methodsFor: 'fillReport' stamp: 'camila 10/25/2023 20:18:41'!
+executeForDeposit: aDeposit 
+	^report addLast: 'Depósito por ' , aDeposit value asString, '.'. ! !
+!Deposit methodsFor: 'as yet unclassified' stamp: 'camila 10/25/2023 20:18:41' prior: 50675506!
+fillReportWith: anAccountSummary 
+	^anAccountSummary executeForDeposit: self.! !
+
+!methodRemoval: AccountSummary #fillReportForDeposit: stamp: 'camila 10/25/2023 20:18:41'!
+fillReportForDeposit: aDeposit 
+	^report addLast: 'Depósito por ' , aDeposit value asString, '.'. !
+!AccountSummary methodsFor: 'fillReport' stamp: 'camila 10/25/2023 20:18:59'!
+executeForOriginTransfer: anOriginTransfer 
+	^report addLast: 'Salida por transferencia de ' , anOriginTransfer value asString , '.'! !
+!OriginTransfer methodsFor: 'as yet unclassified' stamp: 'camila 10/25/2023 20:18:59' prior: 50675512!
+fillReportWith: anAccountSummary 
+	anAccountSummary executeForOriginTransfer: self ! !
+
+!methodRemoval: AccountSummary #fillReportForOriginTransfer: stamp: 'camila 10/25/2023 20:18:59'!
+fillReportForOriginTransfer: anOriginTransfer 
+	^report addLast: 'Salida por transferencia de ' , anOriginTransfer value asString , '.'!
+!AccountSummary methodsFor: 'fillReport' stamp: 'camila 10/25/2023 20:19:17'!
+executeForReceiverTransfer: aReceiverTransfer 
+	^report addLast: 'Entrada por transferencia de ' , aReceiverTransfer value asString , '.'.! !
+!ReceiverTransfer methodsFor: 'as yet unclassified' stamp: 'camila 10/25/2023 20:19:17' prior: 50675518!
+fillReportWith: anAccountSummary 
+	anAccountSummary executeForReceiverTransfer: self.! !
+
+!methodRemoval: AccountSummary #fillReportForReceiverTransfer: stamp: 'camila 10/25/2023 20:19:17'!
+fillReportForReceiverTransfer: aReceiverTransfer 
+	^report addLast: 'Entrada por transferencia de ' , aReceiverTransfer value asString , '.'.!
+!AccountSummary methodsFor: 'fillReport' stamp: 'camila 10/25/2023 20:19:39'!
+executeForWithdraw: aWithdraw 
+	^report addLast: 'Extracción por ' , aWithdraw value asString , '.'! !
+!Withdraw methodsFor: 'as yet unclassified' stamp: 'camila 10/25/2023 20:19:39' prior: 50675524!
+fillReportWith: anAccountSummary 
+	^ anAccountSummary executeForWithdraw: self. ! !
+
+!methodRemoval: AccountSummary #fillReportForWithdraw: stamp: 'camila 10/25/2023 20:19:39'!
+fillReportForWithdraw: aWithdraw 
+	^report addLast: 'Extracción por ' , aWithdraw value asString , '.'!
+
+!testRun: #ReportTests #test01ReportForNewReceptiveAccountPrintBalanceZero stamp: 'camila 10/25/2023 20:19:57'!
+PASSED!
+
+!testRun: #ReportTests #test02ReportForReceptiveAccountWithDepositPrintDespositValue stamp: 'camila 10/25/2023 20:19:57'!
+PASSED!
+
+!testRun: #ReportTests #test03ReportForReceptiveAccountWithWithdrawPrintWithdrawValue stamp: 'camila 10/25/2023 20:19:57'!
+PASSED!
+
+!testRun: #ReportTests #test04ReportForAccountWithMultipleAccounTransactionPrintAllAndBalance stamp: 'camila 10/25/2023 20:19:57'!
+PASSED!
+
+!testRun: #ReportTests #test05ReportPrintTransferOutput stamp: 'camila 10/25/2023 20:19:57'!
+PASSED!
+
+!testRun: #ReportTests #test06ReportPrintAllTransactions stamp: 'camila 10/25/2023 20:19:57'!
+PASSED!
+!TransferNet methodsFor: 'affect Transfer Report' stamp: 'camila 10/25/2023 20:20:14'!
+executeForDeposit: aDeposit 
+	report := report + 0.! !
+!Deposit methodsFor: 'as yet unclassified' stamp: 'camila 10/25/2023 20:20:14' prior: 50675319!
+addToTransferNetWith: aTransferNet 
+	aTransferNet executeForDeposit: self. ! !
+
+!methodRemoval: TransferNet #affectTotalTransferAsDeposit: stamp: 'camila 10/25/2023 20:20:14'!
+affectTotalTransferAsDeposit: aDeposit 
+	report := report + 0.!
+!TransferNet methodsFor: 'affect Transfer Report' stamp: 'camila 10/25/2023 20:20:29'!
+executeForWithdraw: aWithdraw 
+	report := report + 0.! !
+!Withdraw methodsFor: 'as yet unclassified' stamp: 'camila 10/25/2023 20:20:29' prior: 50675334!
+addToTransferNetWith: aTransferNet 
+	aTransferNet executeForWithdraw: self ! !
+
+!methodRemoval: TransferNet #affectTotalTransferAsWithdraw: stamp: 'camila 10/25/2023 20:20:29'!
+affectTotalTransferAsWithdraw: aWithdraw 
+	report := report + 0.!
+!TransferNet methodsFor: 'affect Transfer Report' stamp: 'camila 10/25/2023 20:20:44'!
+executeForReceiverTransfer: aReceiverTransfer 
+	report := aReceiverTransfer affectTransferNet: report.! !
+!ReceiverTransfer methodsFor: 'as yet unclassified' stamp: 'camila 10/25/2023 20:20:44' prior: 50675208!
+addToTransferNetWith: aTransferNet 
+	aTransferNet executeForReceiverTransfer: self.! !
+
+!methodRemoval: TransferNet #affectTotalTransferAsReceiverTransfer: stamp: 'camila 10/25/2023 20:20:44'!
+affectTotalTransferAsReceiverTransfer: aReceiverTransfer 
+	report := aReceiverTransfer affectTransferNet: report.!
+!TransferNet methodsFor: 'affect Transfer Report' stamp: 'camila 10/25/2023 20:21:06'!
+executeForOriginTransfer: anOriginTransfer 
+	report := report - (anOriginTransfer value).! !
+!OriginTransfer methodsFor: 'as yet unclassified' stamp: 'camila 10/25/2023 20:21:06' prior: 50675276!
+addToTransferNetWith: aTransferNet 
+	aTransferNet executeForOriginTransfer: self.! !
+
+!methodRemoval: TransferNet #affectTotalTransferAsOriginTransfer: stamp: 'camila 10/25/2023 20:21:06'!
+affectTotalTransferAsOriginTransfer: anOriginTransfer 
+	report := report - (anOriginTransfer value).!
+
+Object subclass: #AccountFunctionality
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountFunctionality category: 'Portfolio-Solucion' stamp: 'camila 10/25/2023 20:25:07'!
+Object subclass: #AccountFunctionality
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+AccountFunctionality subclass: #AccountSummary
+	instanceVariableNames: 'account report'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountSummary category: 'Portfolio-Solucion' stamp: 'camila 10/25/2023 20:25:18'!
+AccountFunctionality subclass: #AccountSummary
+	instanceVariableNames: 'account report'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+AccountFunctionality subclass: #TransferNet
+	instanceVariableNames: 'account report'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TransferNet category: 'Portfolio-Solucion' stamp: 'camila 10/25/2023 20:25:23'!
+AccountFunctionality subclass: #TransferNet
+	instanceVariableNames: 'account report'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!testRun: #TransferNetTests #test01TransferNetReportForNewAccountReturnZero stamp: 'camila 10/25/2023 20:25:37'!
+PASSED!
+
+!testRun: #TransferNetTests #test02TransferNetReportForAccountWithInputTransfer stamp: 'camila 10/25/2023 20:25:37'!
+PASSED!
+
+!testRun: #TransferNetTests #test03TransferNetReportForAccountWithOutputTransfer stamp: 'camila 10/25/2023 20:25:37'!
+PASSED!
+
+!testRun: #TransferNetTests #test04TransferNetReportWithDepositAndWithdrawDoesNotAffectTransferNetTotal stamp: 'camila 10/25/2023 20:25:37'!
+PASSED!
+
+!testRun: #TransferNetTests #test05TransferNetReportWithMultipleTransferReturnSumOfThem stamp: 'camila 10/25/2023 20:25:37'!
+PASSED!
+
+!testRun: #ReportTests #test01ReportForNewReceptiveAccountPrintBalanceZero stamp: 'camila 10/25/2023 20:25:39'!
+PASSED!
+
+!testRun: #ReportTests #test02ReportForReceptiveAccountWithDepositPrintDespositValue stamp: 'camila 10/25/2023 20:25:39'!
+PASSED!
+
+!testRun: #ReportTests #test03ReportForReceptiveAccountWithWithdrawPrintWithdrawValue stamp: 'camila 10/25/2023 20:25:39'!
+PASSED!
+
+!testRun: #ReportTests #test04ReportForAccountWithMultipleAccounTransactionPrintAllAndBalance stamp: 'camila 10/25/2023 20:25:39'!
+PASSED!
+
+!testRun: #ReportTests #test05ReportPrintTransferOutput stamp: 'camila 10/25/2023 20:25:39'!
+PASSED!
+
+!testRun: #ReportTests #test06ReportPrintAllTransactions stamp: 'camila 10/25/2023 20:25:39'!
+PASSED!
+!AccountFunctionality methodsFor: 'execute' stamp: 'camila 10/25/2023 20:27:37'!
+executeForDeposit: aDeposit
+
+	self subclassResponsibility! !
+!AccountFunctionality methodsFor: 'execute' stamp: 'camila 10/25/2023 20:27:46'!
+executeForOriginTransfer: anOriginTransfer
+
+	self subclassResponsibility! !
+!AccountFunctionality methodsFor: 'execute' stamp: 'camila 10/25/2023 20:27:54'!
+executeForReceiverTransfer: aReceiverTransfer
+
+	self subclassResponsibility! !
+!AccountFunctionality methodsFor: 'execute' stamp: 'camila 10/25/2023 20:28:01'!
+executeForWithdraw: aWithdraw
+
+	self subclassResponsibility! !
+!AccountFunctionality methodsFor: 'initialization' stamp: 'camila 10/25/2023 20:28:11'!
+initializeFor: anAccount
+
+	self subclassResponsibility! !
+!AccountFunctionality methodsFor: 'report' stamp: 'camila 10/25/2023 20:28:24'!
+report
+
+	self subclassResponsibility! !
+
+!testRun: #ReportTests #test01ReportForNewReceptiveAccountPrintBalanceZero stamp: 'camila 10/25/2023 20:28:42'!
+PASSED!
+
+!testRun: #ReportTests #test02ReportForReceptiveAccountWithDepositPrintDespositValue stamp: 'camila 10/25/2023 20:28:42'!
+PASSED!
+
+!testRun: #ReportTests #test03ReportForReceptiveAccountWithWithdrawPrintWithdrawValue stamp: 'camila 10/25/2023 20:28:42'!
+PASSED!
+
+!testRun: #ReportTests #test04ReportForAccountWithMultipleAccounTransactionPrintAllAndBalance stamp: 'camila 10/25/2023 20:28:42'!
+PASSED!
+
+!testRun: #ReportTests #test05ReportPrintTransferOutput stamp: 'camila 10/25/2023 20:28:42'!
+PASSED!
+
+!testRun: #ReportTests #test06ReportPrintAllTransactions stamp: 'camila 10/25/2023 20:28:42'!
+PASSED!
+
+!testRun: #TransferNetTests #test01TransferNetReportForNewAccountReturnZero stamp: 'camila 10/25/2023 20:28:44'!
+PASSED!
+
+!testRun: #TransferNetTests #test02TransferNetReportForAccountWithInputTransfer stamp: 'camila 10/25/2023 20:28:44'!
+PASSED!
+
+!testRun: #TransferNetTests #test03TransferNetReportForAccountWithOutputTransfer stamp: 'camila 10/25/2023 20:28:44'!
+PASSED!
+
+!testRun: #TransferNetTests #test04TransferNetReportWithDepositAndWithdrawDoesNotAffectTransferNetTotal stamp: 'camila 10/25/2023 20:28:44'!
+PASSED!
+
+!testRun: #TransferNetTests #test05TransferNetReportWithMultipleTransferReturnSumOfThem stamp: 'camila 10/25/2023 20:28:44'!
+PASSED!
+
+!methodRemoval: AccountSummary #initializeFor: stamp: 'camila 10/25/2023 20:28:52'!
+initializeFor: anAccount 
+	account := anAccount.!
+
+!methodRemoval: TransferNet #initializeFor: stamp: 'camila 10/25/2023 20:28:56'!
+initializeFor: anAccount 
+	account := anAccount.!
+
+!testRun: #ReportTests #test01ReportForNewReceptiveAccountPrintBalanceZero stamp: 'camila 10/25/2023 20:29:00'!
+ERROR!
+
+!testRun: #ReportTests #test02ReportForReceptiveAccountWithDepositPrintDespositValue stamp: 'camila 10/25/2023 20:29:00'!
+ERROR!
+
+!testRun: #ReportTests #test03ReportForReceptiveAccountWithWithdrawPrintWithdrawValue stamp: 'camila 10/25/2023 20:29:00'!
+ERROR!
+
+!testRun: #ReportTests #test04ReportForAccountWithMultipleAccounTransactionPrintAllAndBalance stamp: 'camila 10/25/2023 20:29:00'!
+ERROR!
+
+!testRun: #ReportTests #test05ReportPrintTransferOutput stamp: 'camila 10/25/2023 20:29:00'!
+ERROR!
+
+!testRun: #ReportTests #test06ReportPrintAllTransactions stamp: 'camila 10/25/2023 20:29:00'!
+ERROR!
+
+AccountFunctionality subclass: #AccountSummary
+	instanceVariableNames: ' report'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountSummary category: 'Portfolio-Solucion' stamp: 'camila 10/25/2023 20:29:31'!
+AccountFunctionality subclass: #AccountSummary
+	instanceVariableNames: 'report'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+AccountFunctionality subclass: #TransferNet
+	instanceVariableNames: ' report'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TransferNet category: 'Portfolio-Solucion' stamp: 'camila 10/25/2023 20:29:35'!
+AccountFunctionality subclass: #TransferNet
+	instanceVariableNames: 'report'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+Object subclass: #AccountFunctionality
+	instanceVariableNames: 'account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountFunctionality category: 'Portfolio-Solucion' stamp: 'camila 10/25/2023 20:29:41'!
+Object subclass: #AccountFunctionality
+	instanceVariableNames: 'account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!AccountFunctionality methodsFor: 'initialization' stamp: 'camila 10/25/2023 20:29:50' prior: 50676453!
+initializeFor: anAccount
+
+	account := anAccount .! !
+
+!testRun: #ReportTests #test01ReportForNewReceptiveAccountPrintBalanceZero stamp: 'camila 10/25/2023 20:29:53'!
+PASSED!
+
+!testRun: #ReportTests #test02ReportForReceptiveAccountWithDepositPrintDespositValue stamp: 'camila 10/25/2023 20:29:53'!
+PASSED!
+
+!testRun: #ReportTests #test03ReportForReceptiveAccountWithWithdrawPrintWithdrawValue stamp: 'camila 10/25/2023 20:29:53'!
+PASSED!
+
+!testRun: #ReportTests #test04ReportForAccountWithMultipleAccounTransactionPrintAllAndBalance stamp: 'camila 10/25/2023 20:29:53'!
+PASSED!
+
+!testRun: #ReportTests #test05ReportPrintTransferOutput stamp: 'camila 10/25/2023 20:29:53'!
+PASSED!
+
+!testRun: #ReportTests #test06ReportPrintAllTransactions stamp: 'camila 10/25/2023 20:29:53'!
+PASSED!
+
+!testRun: #TransferNetTests #test01TransferNetReportForNewAccountReturnZero stamp: 'camila 10/25/2023 20:29:54'!
+PASSED!
+
+!testRun: #TransferNetTests #test02TransferNetReportForAccountWithInputTransfer stamp: 'camila 10/25/2023 20:29:54'!
+PASSED!
+
+!testRun: #TransferNetTests #test03TransferNetReportForAccountWithOutputTransfer stamp: 'camila 10/25/2023 20:29:54'!
+PASSED!
+
+!testRun: #TransferNetTests #test04TransferNetReportWithDepositAndWithdrawDoesNotAffectTransferNetTotal stamp: 'camila 10/25/2023 20:29:54'!
+PASSED!
+
+!testRun: #TransferNetTests #test05TransferNetReportWithMultipleTransferReturnSumOfThem stamp: 'camila 10/25/2023 20:29:54'!
+PASSED!
+!AccountFunctionality methodsFor: 'report' stamp: 'camila 10/25/2023 20:31:54'!
+buildReport
+
+	self subclassResponsibility! !
+!AccountSummary methodsFor: 'report' stamp: 'camila 10/25/2023 20:31:54' overrides: 50676624!
+buildReport
+	report := OrderedCollection with: 'Balance = ' , (account balance asString ). 
+	account startSummaryReportWith: self.
+	^report.! !
+!TransferNet methodsFor: 'report' stamp: 'camila 10/25/2023 20:31:54' overrides: 50676624!
+buildReport
+	report := 0.
+	account startTransferNetReportWith: self.
+	^report.! !
+!ReportTests methodsFor: 'as yet unclassified' stamp: 'camila 10/25/2023 20:31:54' prior: 50673637!
+test05ReportPrintTransferOutput
+	| originAccount originReport  receiverAccount receiverReport summaryOriginReport summaryReceiverReport |
+	originAccount := ReceptiveAccount new. 
+	receiverAccount := ReceptiveAccount new.
+	Transfer from: originAccount to: receiverAccount withValue: 20.
+	
+	summaryOriginReport := AccountSummary for: originAccount .
+	summaryReceiverReport := AccountSummary for: receiverAccount .
+	
+	originReport := OrderedCollection with:'Balance = -20' with: 'Salida por transferencia de 20.'.
+	receiverReport := OrderedCollection with: 'Balance = 20' with: 'Entrada por transferencia de 20.'.
+	self assert: (summaryOriginReport buildReport ) equals: originReport.
+	self assert: (summaryReceiverReport buildReport ) equals: receiverReport.! !
+!ReportTests methodsFor: 'as yet unclassified' stamp: 'camila 10/25/2023 20:31:54' prior: 50673854!
+test06ReportPrintAllTransactions
+	| anAccount originReport  summaryReport|
+	anAccount := ReceptiveAccount new. 
+	Deposit register: 100 on: anAccount.
+	Withdraw register: 50 on: anAccount.
+	Transfer from: anAccount to: ReceptiveAccount new withValue: 20.
+	Transfer from: ReceptiveAccount new to: anAccount withValue: 30.
+	summaryReport := AccountSummary for: anAccount .
+	
+	originReport := OrderedCollection with:'Balance = 60' 
+								with: 'Depósito por 100.' 
+								with:'Extracción por 50.' 
+								with: 'Salida por transferencia de 20.' 
+								with: 'Entrada por transferencia de 30.'.
+								
+	self assert: (summaryReport buildReport) equals: originReport.
+	! !
+!ReportTests methodsFor: 'as yet unclassified' stamp: 'camila 10/25/2023 20:31:54' prior: 50673508!
+test04ReportForAccountWithMultipleAccounTransactionPrintAllAndBalance
+	| anAccount reportPrinted summaryReport|
+	anAccount := ReceptiveAccount new. 
+	Deposit register: 100 on: anAccount.
+	Withdraw register: 50 on: anAccount.
+	summaryReport := AccountSummary for: anAccount .
+	
+	reportPrinted := OrderedCollection with:'Balance = 50' with: 'Depósito por 100.' with: 'Extracción por 50.'.
+	self assert: (summaryReport buildReport) equals: reportPrinted.! !
+!TransferNetTests methodsFor: 'as yet unclassified' stamp: 'camila 10/25/2023 20:31:54' prior: 50674856!
+test02TransferNetReportForAccountWithInputTransfer
+	|anAccount transferReport|
+	anAccount := ReceptiveAccount new. 
+	Transfer from: ReceptiveAccount new to: anAccount  withValue: 20.
+	transferReport := TransferNet for: anAccount .
+	self assert: (transferReport buildReport) equals: 20.! !
+!ReportTests methodsFor: 'as yet unclassified' stamp: 'camila 10/25/2023 20:31:54' prior: 50673232!
+test02ReportForReceptiveAccountWithDepositPrintDespositValue
+	| anAccount reportPrinted summaryReport |
+	anAccount := ReceptiveAccount new. 
+	Deposit register: 100 on: anAccount.
+	
+	summaryReport := AccountSummary for: anAccount .
+	reportPrinted := OrderedCollection with:'Balance = 100' with: 'Depósito por 100.'.
+	
+	self assert: (summaryReport buildReport) equals: reportPrinted.! !
+!TransferNetTests methodsFor: 'as yet unclassified' stamp: 'camila 10/25/2023 20:31:54' prior: 50674942!
+test05TransferNetReportWithMultipleTransferReturnSumOfThem
+	|anAccount transferReport|
+	anAccount := ReceptiveAccount new. 
+	Transfer from: anAccount to: ReceptiveAccount new  withValue: 20.
+	Transfer from: ReceptiveAccount new to: anAccount withValue: 30.
+	transferReport := TransferNet for: anAccount .
+	self assert: (transferReport buildReport) equals: 10.! !
+!TransferNetTests methodsFor: 'as yet unclassified' stamp: 'camila 10/25/2023 20:31:54' prior: 50674836!
+test01TransferNetReportForNewAccountReturnZero
+	|anAccount transferReport |
+	anAccount := ReceptiveAccount new. 
+	transferReport := TransferNet for: anAccount .
+	self assert: (transferReport buildReport) equals: 0.! !
+!TransferNetTests methodsFor: 'as yet unclassified' stamp: 'camila 10/25/2023 20:31:54' prior: 50674881!
+test03TransferNetReportForAccountWithOutputTransfer
+	|anAccount transferReport|
+	anAccount := ReceptiveAccount new. 
+	Transfer from: anAccount to: ReceptiveAccount new  withValue: 20.
+	transferReport := TransferNet for: anAccount .
+	self assert: (transferReport buildReport) equals: -20.! !
+!TransferNetTests methodsFor: 'as yet unclassified' stamp: 'camila 10/25/2023 20:31:54' prior: 50674906!
+test04TransferNetReportWithDepositAndWithdrawDoesNotAffectTransferNetTotal
+	|anAccount transferReport |
+	anAccount := ReceptiveAccount new. 
+	Transfer from: anAccount to: ReceptiveAccount new  withValue: 20.
+	Transfer from: ReceptiveAccount new to: anAccount withValue: 30.
+	Deposit register: 10 on: anAccount .
+	Withdraw register: 20 on: anAccount .
+	transferReport  := TransferNet for: anAccount .
+	self assert: (transferReport buildReport )equals: 10.! !
+!ReportTests methodsFor: 'as yet unclassified' stamp: 'camila 10/25/2023 20:31:54' prior: 50673142!
+test01ReportForNewReceptiveAccountPrintBalanceZero
+	| anAccount summaryReport|
+	anAccount := ReceptiveAccount new. 
+	summaryReport  := AccountSummary for: anAccount.
+	
+	self assert: (summaryReport buildReport) equals: (OrderedCollection with: 'Balance = 0').! !
+!ReportTests methodsFor: 'as yet unclassified' stamp: 'camila 10/25/2023 20:31:54' prior: 50673410!
+test03ReportForReceptiveAccountWithWithdrawPrintWithdrawValue
+	| anAccount reportPrinted summaryReport |
+	anAccount := ReceptiveAccount new. 
+	Withdraw register: 50 on: anAccount.
+	summaryReport := AccountSummary for: anAccount.
+	reportPrinted := OrderedCollection with:'Balance = -50' with: 'Extracción por 50.'.
+	self assert: (summaryReport buildReport) equals: reportPrinted.! !
+
+!methodRemoval: AccountFunctionality #report stamp: 'camila 10/25/2023 20:31:54'!
+report
+
+	self subclassResponsibility!
+
+!methodRemoval: AccountSummary #report stamp: 'camila 10/25/2023 20:31:54'!
+report
+	report := OrderedCollection with: 'Balance = ' , (account balance asString ). 
+	account startSummaryReportWith: self.
+	^report.!
+
+!methodRemoval: TransferNet #report stamp: 'camila 10/25/2023 20:31:54'!
+report
+	report := 0.
+	account startTransferNetReportWith: self.
+	^report.!
+
+!testRun: #TransferNetTests #test01TransferNetReportForNewAccountReturnZero stamp: 'camila 10/25/2023 20:32:04'!
+PASSED!
+
+!testRun: #TransferNetTests #test02TransferNetReportForAccountWithInputTransfer stamp: 'camila 10/25/2023 20:32:04'!
+PASSED!
+
+!testRun: #TransferNetTests #test03TransferNetReportForAccountWithOutputTransfer stamp: 'camila 10/25/2023 20:32:04'!
+PASSED!
+
+!testRun: #TransferNetTests #test04TransferNetReportWithDepositAndWithdrawDoesNotAffectTransferNetTotal stamp: 'camila 10/25/2023 20:32:04'!
+PASSED!
+
+!testRun: #TransferNetTests #test05TransferNetReportWithMultipleTransferReturnSumOfThem stamp: 'camila 10/25/2023 20:32:04'!
+PASSED!
+
+!testRun: #ReportTests #test01ReportForNewReceptiveAccountPrintBalanceZero stamp: 'camila 10/25/2023 20:32:06'!
+PASSED!
+
+!testRun: #ReportTests #test02ReportForReceptiveAccountWithDepositPrintDespositValue stamp: 'camila 10/25/2023 20:32:06'!
+PASSED!
+
+!testRun: #ReportTests #test03ReportForReceptiveAccountWithWithdrawPrintWithdrawValue stamp: 'camila 10/25/2023 20:32:06'!
+PASSED!
+
+!testRun: #ReportTests #test04ReportForAccountWithMultipleAccounTransactionPrintAllAndBalance stamp: 'camila 10/25/2023 20:32:06'!
+PASSED!
+
+!testRun: #ReportTests #test05ReportPrintTransferOutput stamp: 'camila 10/25/2023 20:32:06'!
+PASSED!
+
+!testRun: #ReportTests #test06ReportPrintAllTransactions stamp: 'camila 10/25/2023 20:32:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'camila 10/25/2023 20:32:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'camila 10/25/2023 20:32:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'camila 10/25/2023 20:32:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'camila 10/25/2023 20:32:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'camila 10/25/2023 20:32:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'camila 10/25/2023 20:32:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'camila 10/25/2023 20:32:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'camila 10/25/2023 20:32:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'camila 10/25/2023 20:32:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'camila 10/25/2023 20:32:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'camila 10/25/2023 20:32:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'camila 10/25/2023 20:32:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'camila 10/25/2023 20:32:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'camila 10/25/2023 20:32:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'camila 10/25/2023 20:32:12'!
+PASSED!
+
+----SNAPSHOT----(25 October 2023 20:33:09) CuisUniversity-5981.image priorSource: 11023917!
+!TransferTransaction methodsFor: 'report' stamp: 'camila 10/25/2023 20:37:10'!
+addToTransferNetWith: aTransferNet
+
+	self subclassResponsibility! !
+!RegularTransaction methodsFor: 'report' stamp: 'camila 10/25/2023 20:37:45'!
+addToTransferNetWith: aTransferNet
+
+	self subclassResponsibility! !
+!RegularTransaction methodsFor: 'balance' stamp: 'camila 10/25/2023 20:37:50' overrides: 50668711!
+affectBalance: aBalance
+
+	self subclassResponsibility! !
+!RegularTransaction methodsFor: 'report' stamp: 'camila 10/25/2023 20:37:57'!
+affectTransferNet: total
+
+	self subclassResponsibility! !
+!RegularTransaction methodsFor: 'report' stamp: 'camila 10/25/2023 20:38:16'!
+fillReportWith: anAccountSummary
+
+	self subclassResponsibility! !
+!RegularTransaction methodsFor: 'initialization' stamp: 'camila 10/25/2023 20:38:21'!
+initializeFor: aValue
+
+	self subclassResponsibility! !
+!RegularTransaction methodsFor: 'value' stamp: 'camila 10/25/2023 20:38:27' overrides: 50668707!
+value
+
+	self subclassResponsibility! !
+
+AccountTransaction subclass: #Withdraw
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Withdraw category: 'Portfolio-Solucion' stamp: 'camila 10/25/2023 20:38:52'!
+AccountTransaction subclass: #Withdraw
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+AccountTransaction subclass: #Deposit
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Deposit category: 'Portfolio-Solucion' stamp: 'camila 10/25/2023 20:38:59'!
+AccountTransaction subclass: #Deposit
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+AccountTransaction subclass: #OriginTransfer
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #OriginTransfer category: 'Portfolio-Solucion' stamp: 'camila 10/25/2023 20:39:06'!
+AccountTransaction subclass: #OriginTransfer
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+AccountTransaction subclass: #ReceiverTransfer
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #ReceiverTransfer category: 'Portfolio-Solucion' stamp: 'camila 10/25/2023 20:39:10'!
+AccountTransaction subclass: #ReceiverTransfer
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #RegularTransaction stamp: 'camila 10/25/2023 20:39:21'!
+AccountTransaction subclass: #RegularTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #TransferTransaction stamp: 'camila 10/25/2023 20:39:27'!
+AccountTransaction subclass: #TransferTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!testRun: #TransferNetTests #test01TransferNetReportForNewAccountReturnZero stamp: 'camila 10/25/2023 20:39:31'!
+PASSED!
+
+!testRun: #TransferNetTests #test02TransferNetReportForAccountWithInputTransfer stamp: 'camila 10/25/2023 20:39:31'!
+PASSED!
+
+!testRun: #TransferNetTests #test03TransferNetReportForAccountWithOutputTransfer stamp: 'camila 10/25/2023 20:39:31'!
+PASSED!
+
+!testRun: #TransferNetTests #test04TransferNetReportWithDepositAndWithdrawDoesNotAffectTransferNetTotal stamp: 'camila 10/25/2023 20:39:31'!
+PASSED!
+
+!testRun: #TransferNetTests #test05TransferNetReportWithMultipleTransferReturnSumOfThem stamp: 'camila 10/25/2023 20:39:31'!
+PASSED!
+
+!testRun: #ReportTests #test01ReportForNewReceptiveAccountPrintBalanceZero stamp: 'camila 10/25/2023 20:39:33'!
+PASSED!
+
+!testRun: #ReportTests #test02ReportForReceptiveAccountWithDepositPrintDespositValue stamp: 'camila 10/25/2023 20:39:33'!
+PASSED!
+
+!testRun: #ReportTests #test03ReportForReceptiveAccountWithWithdrawPrintWithdrawValue stamp: 'camila 10/25/2023 20:39:33'!
+PASSED!
+
+!testRun: #ReportTests #test04ReportForAccountWithMultipleAccounTransactionPrintAllAndBalance stamp: 'camila 10/25/2023 20:39:33'!
+PASSED!
+
+!testRun: #ReportTests #test05ReportPrintTransferOutput stamp: 'camila 10/25/2023 20:39:33'!
+PASSED!
+
+!testRun: #ReportTests #test06ReportPrintAllTransactions stamp: 'camila 10/25/2023 20:39:33'!
+PASSED!
+!AccountTransaction methodsFor: 'report' stamp: 'camila 10/25/2023 20:39:49'!
+addToTransferNetWith: aTransferNet
+
+	self subclassResponsibility! !
+!AccountTransaction methodsFor: 'balance' stamp: 'camila 10/25/2023 20:39:53' prior: 50668711!
+affectBalance: aBalance
+
+	self subclassResponsibility! !
+!AccountTransaction methodsFor: 'report' stamp: 'camila 10/25/2023 20:39:56'!
+affectTransferNet: total
+
+	self subclassResponsibility! !
+!AccountTransaction methodsFor: 'report' stamp: 'camila 10/25/2023 20:40:01'!
+fillReportWith: anAccountSummary
+
+	self subclassResponsibility! !
+!AccountTransaction methodsFor: 'initialization' stamp: 'camila 10/25/2023 20:40:05'!
+initializeFor: aValue
+
+	self subclassResponsibility! !
+!AccountTransaction methodsFor: 'value' stamp: 'camila 10/25/2023 20:40:11' prior: 50668707 overrides: 16902254!
+value
+
+	self subclassResponsibility! !
+
+!testRun: #TransferNetTests #test01TransferNetReportForNewAccountReturnZero stamp: 'camila 10/25/2023 20:40:51'!
+PASSED!
+
+!testRun: #TransferNetTests #test02TransferNetReportForAccountWithInputTransfer stamp: 'camila 10/25/2023 20:40:51'!
+PASSED!
+
+!testRun: #TransferNetTests #test03TransferNetReportForAccountWithOutputTransfer stamp: 'camila 10/25/2023 20:40:51'!
+PASSED!
+
+!testRun: #TransferNetTests #test04TransferNetReportWithDepositAndWithdrawDoesNotAffectTransferNetTotal stamp: 'camila 10/25/2023 20:40:51'!
+PASSED!
+
+!testRun: #TransferNetTests #test05TransferNetReportWithMultipleTransferReturnSumOfThem stamp: 'camila 10/25/2023 20:40:51'!
+PASSED!
+
+!testRun: #ReportTests #test01ReportForNewReceptiveAccountPrintBalanceZero stamp: 'camila 10/25/2023 20:40:53'!
+PASSED!
+
+!testRun: #ReportTests #test02ReportForReceptiveAccountWithDepositPrintDespositValue stamp: 'camila 10/25/2023 20:40:53'!
+PASSED!
+
+!testRun: #ReportTests #test03ReportForReceptiveAccountWithWithdrawPrintWithdrawValue stamp: 'camila 10/25/2023 20:40:53'!
+PASSED!
+
+!testRun: #ReportTests #test04ReportForAccountWithMultipleAccounTransactionPrintAllAndBalance stamp: 'camila 10/25/2023 20:40:53'!
+PASSED!
+
+!testRun: #ReportTests #test05ReportPrintTransferOutput stamp: 'camila 10/25/2023 20:40:53'!
+PASSED!
+
+!testRun: #ReportTests #test06ReportPrintAllTransactions stamp: 'camila 10/25/2023 20:40:53'!
+PASSED!
+
+!testRun: #TransferNetTests #test02TransferNetReportForAccountWithInputTransfer stamp: 'camila 10/25/2023 20:45:32'!
+PASSED!
+!TransferNetTests methodsFor: 'test' stamp: 'camila 10/25/2023 20:46:32'!
+test02TransferNetReportForAccountWithReceiverTransfer
+	|anAccount transferReport|
+	anAccount := ReceptiveAccount new. 
+	Transfer from: ReceptiveAccount new to: anAccount  withValue: 20.
+	transferReport := TransferNet for: anAccount .
+	self assert: (transferReport buildReport) equals: 20.! !
+
+!methodRemoval: TransferNetTests #test02TransferNetReportForAccountWithInputTransfer stamp: 'camila 10/25/2023 20:46:32'!
+test02TransferNetReportForAccountWithInputTransfer
+	|anAccount transferReport|
+	anAccount := ReceptiveAccount new. 
+	Transfer from: ReceptiveAccount new to: anAccount  withValue: 20.
+	transferReport := TransferNet for: anAccount .
+	self assert: (transferReport buildReport) equals: 20.!
+!TransferNetTests methodsFor: 'test' stamp: 'camila 10/25/2023 20:46:43'!
+test03TransferNetReportForAccountWithOriginTransfer
+	|anAccount transferReport|
+	anAccount := ReceptiveAccount new. 
+	Transfer from: anAccount to: ReceptiveAccount new  withValue: 20.
+	transferReport := TransferNet for: anAccount .
+	self assert: (transferReport buildReport) equals: -20.! !
+
+!methodRemoval: TransferNetTests #test03TransferNetReportForAccountWithOutputTransfer stamp: 'camila 10/25/2023 20:46:43'!
+test03TransferNetReportForAccountWithOutputTransfer
+	|anAccount transferReport|
+	anAccount := ReceptiveAccount new. 
+	Transfer from: anAccount to: ReceptiveAccount new  withValue: 20.
+	transferReport := TransferNet for: anAccount .
+	self assert: (transferReport buildReport) equals: -20.!
+!TransferNetTests methodsFor: 'test' stamp: 'camila 10/25/2023 20:47:30'!
+test06TransferNetReportWithDeposit
+	|anAccount transferReport |
+	anAccount := ReceptiveAccount new. 
+	Deposit register: 10 on: anAccount .
+	transferReport  := TransferNet for: anAccount .
+	self assert: (transferReport buildReport )equals: 0.! !
+
+!testRun: #TransferNetTests #test06TransferNetReportWithDeposit stamp: 'camila 10/25/2023 20:47:31'!
+PASSED!
+
+!testRun: #TransferNetTests #test01TransferNetReportForNewAccountReturnZero stamp: 'camila 10/25/2023 20:47:31'!
+PASSED!
+
+!testRun: #TransferNetTests #test02TransferNetReportForAccountWithReceiverTransfer stamp: 'camila 10/25/2023 20:47:31'!
+PASSED!
+
+!testRun: #TransferNetTests #test03TransferNetReportForAccountWithOriginTransfer stamp: 'camila 10/25/2023 20:47:31'!
+PASSED!
+
+!testRun: #TransferNetTests #test04TransferNetReportWithDepositAndWithdrawDoesNotAffectTransferNetTotal stamp: 'camila 10/25/2023 20:47:31'!
+PASSED!
+
+!testRun: #TransferNetTests #test05TransferNetReportWithMultipleTransferReturnSumOfThem stamp: 'camila 10/25/2023 20:47:31'!
+PASSED!
+
+!testRun: #TransferNetTests #test06TransferNetReportWithDeposit stamp: 'camila 10/25/2023 20:47:31'!
+PASSED!
+!TransferNetTests methodsFor: 'test' stamp: 'camila 10/25/2023 20:48:21'!
+test07TransferNetReportWithWithdraw
+	|anAccount transferReport |
+	
+	anAccount := ReceptiveAccount new. 
+	
+	Withdraw register: 20 on: anAccount .
+	
+	transferReport  := TransferNet for: anAccount .
+	self assert: (transferReport buildReport )equals: 0.! !
+
+!testRun: #TransferNetTests #test07TransferNetReportWithWithdraw stamp: 'camila 10/25/2023 20:48:23'!
+PASSED!
+
+!testRun: #TransferNetTests #test01TransferNetReportForNewAccountReturnZero stamp: 'camila 10/25/2023 20:48:23'!
+PASSED!
+
+!testRun: #TransferNetTests #test02TransferNetReportForAccountWithReceiverTransfer stamp: 'camila 10/25/2023 20:48:23'!
+PASSED!
+
+!testRun: #TransferNetTests #test03TransferNetReportForAccountWithOriginTransfer stamp: 'camila 10/25/2023 20:48:23'!
+PASSED!
+
+!testRun: #TransferNetTests #test04TransferNetReportWithDepositAndWithdrawDoesNotAffectTransferNetTotal stamp: 'camila 10/25/2023 20:48:23'!
+PASSED!
+
+!testRun: #TransferNetTests #test05TransferNetReportWithMultipleTransferReturnSumOfThem stamp: 'camila 10/25/2023 20:48:23'!
+PASSED!
+
+!testRun: #TransferNetTests #test06TransferNetReportWithDeposit stamp: 'camila 10/25/2023 20:48:23'!
+PASSED!
+
+!testRun: #TransferNetTests #test07TransferNetReportWithWithdraw stamp: 'camila 10/25/2023 20:48:23'!
+PASSED!
+
+!methodRemoval: OriginTransfer #affectTransferNet: stamp: 'camila 10/25/2023 20:50:39'!
+affectTransferNet: total 
+	^total - transfer value.!
+
+!testRun: #TransferNetTests #test01TransferNetReportForNewAccountReturnZero stamp: 'camila 10/25/2023 20:50:43'!
+PASSED!
+
+!testRun: #TransferNetTests #test02TransferNetReportForAccountWithReceiverTransfer stamp: 'camila 10/25/2023 20:50:43'!
+PASSED!
+
+!testRun: #TransferNetTests #test03TransferNetReportForAccountWithOriginTransfer stamp: 'camila 10/25/2023 20:50:43'!
+PASSED!
+
+!testRun: #TransferNetTests #test04TransferNetReportWithDepositAndWithdrawDoesNotAffectTransferNetTotal stamp: 'camila 10/25/2023 20:50:43'!
+PASSED!
+
+!testRun: #TransferNetTests #test05TransferNetReportWithMultipleTransferReturnSumOfThem stamp: 'camila 10/25/2023 20:50:43'!
+PASSED!
+
+!testRun: #TransferNetTests #test06TransferNetReportWithDeposit stamp: 'camila 10/25/2023 20:50:43'!
+PASSED!
+
+!testRun: #TransferNetTests #test07TransferNetReportWithWithdraw stamp: 'camila 10/25/2023 20:50:43'!
+PASSED!
+
+!methodRemoval: ReceiverTransfer #affectTransferNet: stamp: 'camila 10/25/2023 20:50:59'!
+affectTransferNet: total 
+	^total + transfer value!
+
+!testRun: #TransferNetTests #test01TransferNetReportForNewAccountReturnZero stamp: 'camila 10/25/2023 20:51:02'!
+PASSED!
+
+!testRun: #TransferNetTests #test02TransferNetReportForAccountWithReceiverTransfer stamp: 'camila 10/25/2023 20:51:02'!
+ERROR!
+
+!testRun: #TransferNetTests #test03TransferNetReportForAccountWithOriginTransfer stamp: 'camila 10/25/2023 20:51:02'!
+PASSED!
+
+!testRun: #TransferNetTests #test04TransferNetReportWithDepositAndWithdrawDoesNotAffectTransferNetTotal stamp: 'camila 10/25/2023 20:51:02'!
+ERROR!
+
+!testRun: #TransferNetTests #test05TransferNetReportWithMultipleTransferReturnSumOfThem stamp: 'camila 10/25/2023 20:51:02'!
+ERROR!
+
+!testRun: #TransferNetTests #test06TransferNetReportWithDeposit stamp: 'camila 10/25/2023 20:51:02'!
+PASSED!
+
+!testRun: #TransferNetTests #test07TransferNetReportWithWithdraw stamp: 'camila 10/25/2023 20:51:02'!
+PASSED!
+
+!testRun: #TransferNetTests #test02TransferNetReportForAccountWithReceiverTransfer stamp: 'camila 10/25/2023 20:51:06'!
+ERROR!
+!TransferNet methodsFor: 'execute' stamp: 'camila 10/25/2023 20:52:09' prior: 50676311 overrides: 50676443!
+executeForReceiverTransfer: aReceiverTransfer 
+	report := report + (aReceiverTransfer value).! !
+
+!testRun: #TransferNetTests #test01TransferNetReportForNewAccountReturnZero stamp: 'camila 10/25/2023 20:52:13'!
+PASSED!
+
+!testRun: #TransferNetTests #test02TransferNetReportForAccountWithReceiverTransfer stamp: 'camila 10/25/2023 20:52:13'!
+PASSED!
+
+!testRun: #TransferNetTests #test03TransferNetReportForAccountWithOriginTransfer stamp: 'camila 10/25/2023 20:52:13'!
+PASSED!
+
+!testRun: #TransferNetTests #test04TransferNetReportWithDepositAndWithdrawDoesNotAffectTransferNetTotal stamp: 'camila 10/25/2023 20:52:13'!
+PASSED!
+
+!testRun: #TransferNetTests #test05TransferNetReportWithMultipleTransferReturnSumOfThem stamp: 'camila 10/25/2023 20:52:13'!
+PASSED!
+
+!testRun: #TransferNetTests #test06TransferNetReportWithDeposit stamp: 'camila 10/25/2023 20:52:13'!
+PASSED!
+
+!testRun: #TransferNetTests #test07TransferNetReportWithWithdraw stamp: 'camila 10/25/2023 20:52:13'!
+PASSED!
+
+!methodRemoval: Deposit #affectTransferNet: stamp: 'camila 10/25/2023 20:52:22'!
+affectTransferNet: total 
+	^total!
+
+!methodRemoval: Withdraw #affectTransferNet: stamp: 'camila 10/25/2023 20:52:29'!
+affectTransferNet: total 
+	^total!
+
+!testRun: #TransferNetTests #test01TransferNetReportForNewAccountReturnZero stamp: 'camila 10/25/2023 20:52:32'!
+PASSED!
+
+!testRun: #TransferNetTests #test02TransferNetReportForAccountWithReceiverTransfer stamp: 'camila 10/25/2023 20:52:32'!
+PASSED!
+
+!testRun: #TransferNetTests #test03TransferNetReportForAccountWithOriginTransfer stamp: 'camila 10/25/2023 20:52:32'!
+PASSED!
+
+!testRun: #TransferNetTests #test04TransferNetReportWithDepositAndWithdrawDoesNotAffectTransferNetTotal stamp: 'camila 10/25/2023 20:52:32'!
+PASSED!
+
+!testRun: #TransferNetTests #test05TransferNetReportWithMultipleTransferReturnSumOfThem stamp: 'camila 10/25/2023 20:52:32'!
+PASSED!
+
+!testRun: #TransferNetTests #test06TransferNetReportWithDeposit stamp: 'camila 10/25/2023 20:52:32'!
+PASSED!
+
+!testRun: #TransferNetTests #test07TransferNetReportWithWithdraw stamp: 'camila 10/25/2023 20:52:32'!
+PASSED!
+
+!methodRemoval: AccountTransaction #affectTransferNet: stamp: 'camila 10/25/2023 20:52:38'!
+affectTransferNet: total
+
+	self subclassResponsibility!
+!ReceiverTransfer methodsFor: 'initialize' stamp: 'camila 10/25/2023 20:53:34' overrides: 50677112!
+initializeFor: aTransfer 
+	transfer := aTransfer.! !
+!ReceiverTransfer class methodsFor: 'as yet unclassified' stamp: 'camila 10/25/2023 20:53:34' prior: 50671350!
+withTransfer: aTransfer 
+	^self new initializeFor: aTransfer ! !
+
+!methodRemoval: ReceiverTransfer #initializeWithTransfer: stamp: 'camila 10/25/2023 20:53:34'!
+initializeWithTransfer: aTransfer 
+	transfer := aTransfer.!
+
+!testRun: #TransfersTests #test01TransferBetweenAccountsAffectBalances stamp: 'camila 10/25/2023 20:53:44'!
+PASSED!
+
+!testRun: #TransfersTests #test02AccountsRegisterTransfer stamp: 'camila 10/25/2023 20:53:44'!
+PASSED!
+
+!testRun: #TransfersTests #test03TransferMustNotBeNegative stamp: 'camila 10/25/2023 20:53:44'!
+PASSED!
+
+!testRun: #TransfersTests #test04TransferBetweenDifferentAccount stamp: 'camila 10/25/2023 20:53:44'!
+PASSED!
+
+!testRun: #TransfersTests #test05NavigationBetweenTransferLegs stamp: 'camila 10/25/2023 20:53:44'!
+PASSED!
+!OriginTransfer methodsFor: 'initialize' stamp: 'camila 10/25/2023 20:54:03' overrides: 50677112!
+initializeFor: aTransfer 
+	transfer := aTransfer.! !
+!OriginTransfer class methodsFor: 'as yet unclassified' stamp: 'camila 10/25/2023 20:54:03' prior: 50671311!
+withTransfer: aTransfer
+	^self new initializeFor: aTransfer ! !
+
+!methodRemoval: OriginTransfer #initializeWithTransfer: stamp: 'camila 10/25/2023 20:54:03'!
+initializeWithTransfer: aTransfer 
+	transfer := aTransfer.!
+
+!testRun: #TransfersTests #test01TransferBetweenAccountsAffectBalances stamp: 'camila 10/25/2023 20:54:06'!
+PASSED!
+
+!testRun: #TransfersTests #test02AccountsRegisterTransfer stamp: 'camila 10/25/2023 20:54:06'!
+PASSED!
+
+!testRun: #TransfersTests #test03TransferMustNotBeNegative stamp: 'camila 10/25/2023 20:54:06'!
+PASSED!
+
+!testRun: #TransfersTests #test04TransferBetweenDifferentAccount stamp: 'camila 10/25/2023 20:54:06'!
+PASSED!
+
+!testRun: #TransfersTests #test05NavigationBetweenTransferLegs stamp: 'camila 10/25/2023 20:54:06'!
+PASSED!
+
+!testRun: #TransferNetTests #test01TransferNetReportForNewAccountReturnZero stamp: 'camila 10/25/2023 20:54:09'!
+PASSED!
+
+!testRun: #TransferNetTests #test02TransferNetReportForAccountWithReceiverTransfer stamp: 'camila 10/25/2023 20:54:09'!
+PASSED!
+
+!testRun: #TransferNetTests #test03TransferNetReportForAccountWithOriginTransfer stamp: 'camila 10/25/2023 20:54:09'!
+PASSED!
+
+!testRun: #TransferNetTests #test04TransferNetReportWithDepositAndWithdrawDoesNotAffectTransferNetTotal stamp: 'camila 10/25/2023 20:54:09'!
+PASSED!
+
+!testRun: #TransferNetTests #test05TransferNetReportWithMultipleTransferReturnSumOfThem stamp: 'camila 10/25/2023 20:54:09'!
+PASSED!
+
+!testRun: #TransferNetTests #test06TransferNetReportWithDeposit stamp: 'camila 10/25/2023 20:54:09'!
+PASSED!
+
+!testRun: #TransferNetTests #test07TransferNetReportWithWithdraw stamp: 'camila 10/25/2023 20:54:09'!
+PASSED!
+!AccountFunctionality methodsFor: 'report' stamp: 'camila 10/25/2023 20:55:18'!
+buildResult
+
+	self subclassResponsibility! !
+!AccountSummary methodsFor: 'report' stamp: 'camila 10/25/2023 20:55:18' overrides: 50677536!
+buildResult
+	report := OrderedCollection with: 'Balance = ' , (account balance asString ). 
+	account startSummaryReportWith: self.
+	^report.! !
+!TransferNet methodsFor: 'report' stamp: 'camila 10/25/2023 20:55:18' overrides: 50677536!
+buildResult
+	report := 0.
+	account startTransferNetReportWith: self.
+	^report.! !
+!TransferNetTests methodsFor: 'as yet unclassified' stamp: 'camila 10/25/2023 20:55:18' prior: 50676757!
+test01TransferNetReportForNewAccountReturnZero
+	|anAccount transferReport |
+	anAccount := ReceptiveAccount new. 
+	transferReport := TransferNet for: anAccount .
+	self assert: (transferReport buildResult) equals: 0.! !
+!TransferNetTests methodsFor: 'as yet unclassified' stamp: 'camila 10/25/2023 20:55:18' prior: 50677257!
+test07TransferNetReportWithWithdraw
+	|anAccount transferReport |
+	
+	anAccount := ReceptiveAccount new. 
+	
+	Withdraw register: 20 on: anAccount .
+	
+	transferReport  := TransferNet for: anAccount .
+	self assert: (transferReport buildResult )equals: 0.! !
+!ReportTests methodsFor: 'as yet unclassified' stamp: 'camila 10/25/2023 20:55:18' prior: 50676811!
+test03ReportForReceptiveAccountWithWithdrawPrintWithdrawValue
+	| anAccount reportPrinted summaryReport |
+	anAccount := ReceptiveAccount new. 
+	Withdraw register: 50 on: anAccount.
+	summaryReport := AccountSummary for: anAccount.
+	reportPrinted := OrderedCollection with:'Balance = -50' with: 'Extracción por 50.'.
+	self assert: (summaryReport buildResult) equals: reportPrinted.! !
+!TransferNetTests methodsFor: 'as yet unclassified' stamp: 'camila 10/25/2023 20:55:18' prior: 50677194!
+test03TransferNetReportForAccountWithOriginTransfer
+	|anAccount transferReport|
+	anAccount := ReceptiveAccount new. 
+	Transfer from: anAccount to: ReceptiveAccount new  withValue: 20.
+	transferReport := TransferNet for: anAccount .
+	self assert: (transferReport buildResult) equals: -20.! !
+!TransferNetTests methodsFor: 'as yet unclassified' stamp: 'camila 10/25/2023 20:55:18' prior: 50676742!
+test05TransferNetReportWithMultipleTransferReturnSumOfThem
+	|anAccount transferReport|
+	anAccount := ReceptiveAccount new. 
+	Transfer from: anAccount to: ReceptiveAccount new  withValue: 20.
+	Transfer from: ReceptiveAccount new to: anAccount withValue: 30.
+	transferReport := TransferNet for: anAccount .
+	self assert: (transferReport buildResult) equals: 10.! !
+!TransferNetTests methodsFor: 'as yet unclassified' stamp: 'camila 10/25/2023 20:55:18' prior: 50676781!
+test04TransferNetReportWithDepositAndWithdrawDoesNotAffectTransferNetTotal
+	|anAccount transferReport |
+	anAccount := ReceptiveAccount new. 
+	Transfer from: anAccount to: ReceptiveAccount new  withValue: 20.
+	Transfer from: ReceptiveAccount new to: anAccount withValue: 30.
+	Deposit register: 10 on: anAccount .
+	Withdraw register: 20 on: anAccount .
+	transferReport  := TransferNet for: anAccount .
+	self assert: (transferReport buildResult )equals: 10.! !
+!ReportTests methodsFor: 'as yet unclassified' stamp: 'camila 10/25/2023 20:55:18' prior: 50676726!
+test02ReportForReceptiveAccountWithDepositPrintDespositValue
+	| anAccount reportPrinted summaryReport |
+	anAccount := ReceptiveAccount new. 
+	Deposit register: 100 on: anAccount.
+	
+	summaryReport := AccountSummary for: anAccount .
+	reportPrinted := OrderedCollection with:'Balance = 100' with: 'Depósito por 100.'.
+	
+	self assert: (summaryReport buildResult) equals: reportPrinted.! !
+!TransferNetTests methodsFor: 'as yet unclassified' stamp: 'camila 10/25/2023 20:55:18' prior: 50677169!
+test02TransferNetReportForAccountWithReceiverTransfer
+	|anAccount transferReport|
+	anAccount := ReceptiveAccount new. 
+	Transfer from: ReceptiveAccount new to: anAccount  withValue: 20.
+	transferReport := TransferNet for: anAccount .
+	self assert: (transferReport buildResult) equals: 20.! !
+!TransferNetTests methodsFor: 'as yet unclassified' stamp: 'camila 10/25/2023 20:55:18' prior: 50677219!
+test06TransferNetReportWithDeposit
+	|anAccount transferReport |
+	anAccount := ReceptiveAccount new. 
+	Deposit register: 10 on: anAccount .
+	transferReport  := TransferNet for: anAccount .
+	self assert: (transferReport buildResult )equals: 0.! !
+!ReportTests methodsFor: 'as yet unclassified' stamp: 'camila 10/25/2023 20:55:18' prior: 50676799!
+test01ReportForNewReceptiveAccountPrintBalanceZero
+	| anAccount summaryReport|
+	anAccount := ReceptiveAccount new. 
+	summaryReport  := AccountSummary for: anAccount.
+	
+	self assert: (summaryReport buildResult) equals: (OrderedCollection with: 'Balance = 0').! !
+!ReportTests methodsFor: 'as yet unclassified' stamp: 'camila 10/25/2023 20:55:18' prior: 50676695!
+test04ReportForAccountWithMultipleAccounTransactionPrintAllAndBalance
+	| anAccount reportPrinted summaryReport|
+	anAccount := ReceptiveAccount new. 
+	Deposit register: 100 on: anAccount.
+	Withdraw register: 50 on: anAccount.
+	summaryReport := AccountSummary for: anAccount .
+	
+	reportPrinted := OrderedCollection with:'Balance = 50' with: 'Depósito por 100.' with: 'Extracción por 50.'.
+	self assert: (summaryReport buildResult) equals: reportPrinted.! !
+!ReportTests methodsFor: 'as yet unclassified' stamp: 'camila 10/25/2023 20:55:18' prior: 50676643!
+test05ReportPrintTransferOutput
+	| originAccount originReport  receiverAccount receiverReport summaryOriginReport summaryReceiverReport |
+	originAccount := ReceptiveAccount new. 
+	receiverAccount := ReceptiveAccount new.
+	Transfer from: originAccount to: receiverAccount withValue: 20.
+	
+	summaryOriginReport := AccountSummary for: originAccount .
+	summaryReceiverReport := AccountSummary for: receiverAccount .
+	
+	originReport := OrderedCollection with:'Balance = -20' with: 'Salida por transferencia de 20.'.
+	receiverReport := OrderedCollection with: 'Balance = 20' with: 'Entrada por transferencia de 20.'.
+	self assert: (summaryOriginReport buildResult ) equals: originReport.
+	self assert: (summaryReceiverReport buildResult ) equals: receiverReport.! !
+!ReportTests methodsFor: 'as yet unclassified' stamp: 'camila 10/25/2023 20:55:18' prior: 50676670!
+test06ReportPrintAllTransactions
+	| anAccount originReport  summaryReport|
+	anAccount := ReceptiveAccount new. 
+	Deposit register: 100 on: anAccount.
+	Withdraw register: 50 on: anAccount.
+	Transfer from: anAccount to: ReceptiveAccount new withValue: 20.
+	Transfer from: ReceptiveAccount new to: anAccount withValue: 30.
+	summaryReport := AccountSummary for: anAccount .
+	
+	originReport := OrderedCollection with:'Balance = 60' 
+								with: 'Depósito por 100.' 
+								with:'Extracción por 50.' 
+								with: 'Salida por transferencia de 20.' 
+								with: 'Entrada por transferencia de 30.'.
+								
+	self assert: (summaryReport buildResult) equals: originReport.
+	! !
+
+!methodRemoval: AccountFunctionality #buildReport stamp: 'camila 10/25/2023 20:55:19'!
+buildReport
+
+	self subclassResponsibility!
+
+!methodRemoval: AccountSummary #buildReport stamp: 'camila 10/25/2023 20:55:19'!
+buildReport
+	report := OrderedCollection with: 'Balance = ' , (account balance asString ). 
+	account startSummaryReportWith: self.
+	^report.!
+
+!methodRemoval: TransferNet #buildReport stamp: 'camila 10/25/2023 20:55:19'!
+buildReport
+	report := 0.
+	account startTransferNetReportWith: self.
+	^report.!
+
+!testRun: #TransferNetTests #test01TransferNetReportForNewAccountReturnZero stamp: 'camila 10/25/2023 20:55:30'!
+PASSED!
+
+!testRun: #TransferNetTests #test02TransferNetReportForAccountWithReceiverTransfer stamp: 'camila 10/25/2023 20:55:30'!
+PASSED!
+
+!testRun: #TransferNetTests #test03TransferNetReportForAccountWithOriginTransfer stamp: 'camila 10/25/2023 20:55:30'!
+PASSED!
+
+!testRun: #TransferNetTests #test04TransferNetReportWithDepositAndWithdrawDoesNotAffectTransferNetTotal stamp: 'camila 10/25/2023 20:55:30'!
+PASSED!
+
+!testRun: #TransferNetTests #test05TransferNetReportWithMultipleTransferReturnSumOfThem stamp: 'camila 10/25/2023 20:55:30'!
+PASSED!
+
+!testRun: #TransferNetTests #test06TransferNetReportWithDeposit stamp: 'camila 10/25/2023 20:55:30'!
+PASSED!
+
+!testRun: #TransferNetTests #test07TransferNetReportWithWithdraw stamp: 'camila 10/25/2023 20:55:30'!
+PASSED!
+
+!testRun: #ReportTests #test01ReportForNewReceptiveAccountPrintBalanceZero stamp: 'camila 10/25/2023 20:55:32'!
+PASSED!
+
+!testRun: #ReportTests #test02ReportForReceptiveAccountWithDepositPrintDespositValue stamp: 'camila 10/25/2023 20:55:32'!
+PASSED!
+
+!testRun: #ReportTests #test03ReportForReceptiveAccountWithWithdrawPrintWithdrawValue stamp: 'camila 10/25/2023 20:55:32'!
+PASSED!
+
+!testRun: #ReportTests #test04ReportForAccountWithMultipleAccounTransactionPrintAllAndBalance stamp: 'camila 10/25/2023 20:55:32'!
+PASSED!
+
+!testRun: #ReportTests #test05ReportPrintTransferOutput stamp: 'camila 10/25/2023 20:55:32'!
+PASSED!
+
+!testRun: #ReportTests #test06ReportPrintAllTransactions stamp: 'camila 10/25/2023 20:55:32'!
+PASSED!
+!ReceptiveAccount methodsFor: 'report' stamp: 'camila 10/25/2023 20:56:44'!
+startFunctionalityResult: anAccountFunctionality 
+	transactions do: [ :aTransaction | aTransaction fillReportWith: anAccountFunctionality].
+! !
+
+AccountFunctionality subclass: #AccountSummary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountSummary category: 'Portfolio-Solucion' stamp: 'camila 10/25/2023 20:59:47'!
+AccountFunctionality subclass: #AccountSummary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+AccountFunctionality subclass: #AccountSummary
+	instanceVariableNames: 'report'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountSummary category: 'Portfolio-Solucion' stamp: 'camila 10/25/2023 21:00:03'!
+AccountFunctionality subclass: #AccountSummary
+	instanceVariableNames: 'report'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+AccountFunctionality subclass: #TransferNet
+	instanceVariableNames: 'result'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TransferNet category: 'Portfolio-Solucion' stamp: 'camila 10/25/2023 21:00:13'!
+AccountFunctionality subclass: #TransferNet
+	instanceVariableNames: 'result'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+AccountFunctionality subclass: #AccountSummary
+	instanceVariableNames: 'result'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountSummary category: 'Portfolio-Solucion' stamp: 'camila 10/25/2023 21:00:18'!
+AccountFunctionality subclass: #AccountSummary
+	instanceVariableNames: 'result'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!AccountSummary methodsFor: 'report' stamp: 'camila 10/25/2023 21:00:27' prior: 50677541 overrides: 50677536!
+buildResult
+	result := OrderedCollection with: 'Balance = ' , (account balance asString ). 
+	account startSummaryReportWith: self.
+	^result.! !
+!TransferNet methodsFor: 'report' stamp: 'camila 10/25/2023 21:00:34' prior: 50677549 overrides: 50677536!
+buildResult
+	result := 0.
+	account startTransferNetReportWith: self.
+	^result.! !
+
+!testRun: #ReportTests #test01ReportForNewReceptiveAccountPrintBalanceZero stamp: 'camila 10/25/2023 21:00:43'!
+PASSED!
+
+!testRun: #ReportTests #test02ReportForReceptiveAccountWithDepositPrintDespositValue stamp: 'camila 10/25/2023 21:00:43'!
+ERROR!
+
+!testRun: #ReportTests #test03ReportForReceptiveAccountWithWithdrawPrintWithdrawValue stamp: 'camila 10/25/2023 21:00:43'!
+ERROR!
+
+!testRun: #ReportTests #test04ReportForAccountWithMultipleAccounTransactionPrintAllAndBalance stamp: 'camila 10/25/2023 21:00:43'!
+ERROR!
+
+!testRun: #ReportTests #test05ReportPrintTransferOutput stamp: 'camila 10/25/2023 21:00:43'!
+ERROR!
+
+!testRun: #ReportTests #test06ReportPrintAllTransactions stamp: 'camila 10/25/2023 21:00:43'!
+ERROR!
+
+!testRun: #TransferNetTests #test01TransferNetReportForNewAccountReturnZero stamp: 'camila 10/25/2023 21:00:52'!
+PASSED!
+
+!testRun: #TransferNetTests #test02TransferNetReportForAccountWithReceiverTransfer stamp: 'camila 10/25/2023 21:00:52'!
+ERROR!
+
+!testRun: #TransferNetTests #test03TransferNetReportForAccountWithOriginTransfer stamp: 'camila 10/25/2023 21:00:52'!
+ERROR!
+
+!testRun: #TransferNetTests #test04TransferNetReportWithDepositAndWithdrawDoesNotAffectTransferNetTotal stamp: 'camila 10/25/2023 21:00:52'!
+ERROR!
+
+!testRun: #TransferNetTests #test05TransferNetReportWithMultipleTransferReturnSumOfThem stamp: 'camila 10/25/2023 21:00:52'!
+ERROR!
+
+!testRun: #TransferNetTests #test06TransferNetReportWithDeposit stamp: 'camila 10/25/2023 21:00:52'!
+ERROR!
+
+!testRun: #TransferNetTests #test07TransferNetReportWithWithdraw stamp: 'camila 10/25/2023 21:00:52'!
+ERROR!
+!TransferNet methodsFor: 'initialization' stamp: 'camila 10/25/2023 21:01:21' overrides: 50676576!
+initializeFor: anAccount
+
+	account := anAccount .! !
+!AccountSummary methodsFor: 'initialization' stamp: 'camila 10/25/2023 21:01:21' overrides: 50676576!
+initializeFor: anAccount
+
+	account := anAccount .! !
+!AccountFunctionality methodsFor: 'initialization' stamp: 'camila 10/25/2023 21:01:21' prior: 50676576!
+initializeFor: anAccount
+
+	self subclassResponsibility! !
+!AccountSummary methodsFor: 'initialization' stamp: 'camila 10/25/2023 21:01:39' prior: 50677957 overrides: 50677962!
+initializeFor: anAccount
+
+	account := anAccount .
+	result := OrderedCollection new.! !
+!TransferNet methodsFor: 'initialization' stamp: 'camila 10/25/2023 21:01:54' prior: 50677952 overrides: 50677962!
+initializeFor: anAccount
+
+	account := anAccount .
+	result := 0.! !
+
+Object subclass: #AccountFunctionality
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountFunctionality category: 'Portfolio-Solucion' stamp: 'camila 10/25/2023 21:02:01'!
+Object subclass: #AccountFunctionality
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+Object subclass: #AccountFunctionality
+	instanceVariableNames: 'account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountFunctionality category: 'Portfolio-Solucion' stamp: 'camila 10/25/2023 21:02:16'!
+Object subclass: #AccountFunctionality
+	instanceVariableNames: 'account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!testRun: #ReportTests #test01ReportForNewReceptiveAccountPrintBalanceZero stamp: 'camila 10/25/2023 21:02:19'!
+PASSED!
+
+!testRun: #ReportTests #test02ReportForReceptiveAccountWithDepositPrintDespositValue stamp: 'camila 10/25/2023 21:02:19'!
+ERROR!
+
+!testRun: #ReportTests #test03ReportForReceptiveAccountWithWithdrawPrintWithdrawValue stamp: 'camila 10/25/2023 21:02:19'!
+ERROR!
+
+!testRun: #ReportTests #test04ReportForAccountWithMultipleAccounTransactionPrintAllAndBalance stamp: 'camila 10/25/2023 21:02:19'!
+ERROR!
+
+!testRun: #ReportTests #test05ReportPrintTransferOutput stamp: 'camila 10/25/2023 21:02:19'!
+ERROR!
+
+!testRun: #ReportTests #test06ReportPrintAllTransactions stamp: 'camila 10/25/2023 21:02:19'!
+ERROR!
+
+!testRun: #ReportTests #test02ReportForReceptiveAccountWithDepositPrintDespositValue stamp: 'camila 10/25/2023 21:02:21'!
+ERROR!
+!AccountSummary methodsFor: 'execute' stamp: 'camila 10/25/2023 21:02:41' prior: 50676177 overrides: 50676433!
+executeForDeposit: aDeposit 
+	^result addLast: 'Depósito por ' , aDeposit value asString, '.'. ! !
+!AccountSummary methodsFor: 'execute' stamp: 'camila 10/25/2023 21:02:46' prior: 50676195 overrides: 50676438!
+executeForOriginTransfer: anOriginTransfer 
+	^result addLast: 'Salida por transferencia de ' , anOriginTransfer value asString , '.'! !
+!AccountSummary methodsFor: 'execute' stamp: 'camila 10/25/2023 21:02:49' prior: 50676216 overrides: 50676443!
+executeForReceiverTransfer: aReceiverTransfer 
+	^result addLast: 'Entrada por transferencia de ' , aReceiverTransfer value asString , '.'.! !
+!AccountSummary methodsFor: 'execute' stamp: 'camila 10/25/2023 21:02:53' prior: 50676237 overrides: 50676448!
+executeForWithdraw: aWithdraw 
+	^result addLast: 'Extracción por ' , aWithdraw value asString , '.'! !
+!TransferNet methodsFor: 'execute' stamp: 'camila 10/25/2023 21:02:59' prior: 50676279 overrides: 50676433!
+executeForDeposit: aDeposit 
+	result := result + 0.! !
+!TransferNet methodsFor: 'execute' stamp: 'camila 10/25/2023 21:03:04' prior: 50676331 overrides: 50676438!
+executeForOriginTransfer: anOriginTransfer 
+	result := result - (anOriginTransfer value).! !
+!TransferNet methodsFor: 'execute' stamp: 'camila 10/25/2023 21:03:12' prior: 50677368 overrides: 50676443!
+executeForReceiverTransfer: aReceiverTransfer 
+	result := result + (aReceiverTransfer value).! !
+!TransferNet methodsFor: 'execute' stamp: 'camila 10/25/2023 21:03:18' prior: 50676295 overrides: 50676448!
+executeForWithdraw: aWithdraw 
+	result := result + 0.! !
+!AccountSummary methodsFor: 'execute' stamp: 'camila 10/25/2023 21:03:27' prior: 50678048 overrides: 50676443!
+executeForReceiverTransfer: aReceiverTransfer 
+	result addLast: 'Entrada por transferencia de ' , aReceiverTransfer value asString , '.'.! !
+!AccountSummary methodsFor: 'execute' stamp: 'camila 10/25/2023 21:03:30' prior: 50678056 overrides: 50676448!
+executeForWithdraw: aWithdraw 
+	result addLast: 'Extracción por ' , aWithdraw value asString , '.'! !
+!AccountSummary methodsFor: 'execute' stamp: 'camila 10/25/2023 21:03:34' prior: 50678033 overrides: 50676433!
+executeForDeposit: aDeposit 
+	result addLast: 'Depósito por ' , aDeposit value asString, '.'. ! !
+!AccountSummary methodsFor: 'execute' stamp: 'camila 10/25/2023 21:03:38' prior: 50678040 overrides: 50676438!
+executeForOriginTransfer: anOriginTransfer 
+	result addLast: 'Salida por transferencia de ' , anOriginTransfer value asString , '.'! !
+
+!testRun: #TransferNetTests #test01TransferNetReportForNewAccountReturnZero stamp: 'camila 10/25/2023 21:03:44'!
+PASSED!
+
+!testRun: #TransferNetTests #test02TransferNetReportForAccountWithReceiverTransfer stamp: 'camila 10/25/2023 21:03:44'!
+PASSED!
+
+!testRun: #TransferNetTests #test03TransferNetReportForAccountWithOriginTransfer stamp: 'camila 10/25/2023 21:03:44'!
+PASSED!
+
+!testRun: #TransferNetTests #test04TransferNetReportWithDepositAndWithdrawDoesNotAffectTransferNetTotal stamp: 'camila 10/25/2023 21:03:44'!
+PASSED!
+
+!testRun: #TransferNetTests #test05TransferNetReportWithMultipleTransferReturnSumOfThem stamp: 'camila 10/25/2023 21:03:44'!
+PASSED!
+
+!testRun: #TransferNetTests #test06TransferNetReportWithDeposit stamp: 'camila 10/25/2023 21:03:44'!
+PASSED!
+
+!testRun: #TransferNetTests #test07TransferNetReportWithWithdraw stamp: 'camila 10/25/2023 21:03:44'!
+PASSED!
+
+!testRun: #ReportTests #test01ReportForNewReceptiveAccountPrintBalanceZero stamp: 'camila 10/25/2023 21:03:46'!
+PASSED!
+
+!testRun: #ReportTests #test02ReportForReceptiveAccountWithDepositPrintDespositValue stamp: 'camila 10/25/2023 21:03:46'!
+PASSED!
+
+!testRun: #ReportTests #test03ReportForReceptiveAccountWithWithdrawPrintWithdrawValue stamp: 'camila 10/25/2023 21:03:46'!
+PASSED!
+
+!testRun: #ReportTests #test04ReportForAccountWithMultipleAccounTransactionPrintAllAndBalance stamp: 'camila 10/25/2023 21:03:46'!
+PASSED!
+
+!testRun: #ReportTests #test05ReportPrintTransferOutput stamp: 'camila 10/25/2023 21:03:46'!
+PASSED!
+
+!testRun: #ReportTests #test06ReportPrintAllTransactions stamp: 'camila 10/25/2023 21:03:46'!
+PASSED!
+
+----SNAPSHOT----(25 October 2023 21:03:55) CuisUniversity-5981.image priorSource: 11049376!
+!TransferNet methodsFor: 'report' stamp: 'camila 10/25/2023 21:04:16' prior: 50677896 overrides: 50677536!
+buildResult
+	account startTransferNetReportWith: self.
+	^result.! !
+
+!testRun: #TransferNetTests #test01TransferNetReportForNewAccountReturnZero stamp: 'camila 10/25/2023 21:04:24'!
+PASSED!
+
+!testRun: #TransferNetTests #test02TransferNetReportForAccountWithReceiverTransfer stamp: 'camila 10/25/2023 21:04:24'!
+PASSED!
+
+!testRun: #TransferNetTests #test03TransferNetReportForAccountWithOriginTransfer stamp: 'camila 10/25/2023 21:04:24'!
+PASSED!
+
+!testRun: #TransferNetTests #test04TransferNetReportWithDepositAndWithdrawDoesNotAffectTransferNetTotal stamp: 'camila 10/25/2023 21:04:24'!
+PASSED!
+
+!testRun: #TransferNetTests #test05TransferNetReportWithMultipleTransferReturnSumOfThem stamp: 'camila 10/25/2023 21:04:24'!
+PASSED!
+
+!testRun: #TransferNetTests #test06TransferNetReportWithDeposit stamp: 'camila 10/25/2023 21:04:24'!
+PASSED!
+
+!testRun: #TransferNetTests #test07TransferNetReportWithWithdraw stamp: 'camila 10/25/2023 21:04:24'!
+PASSED!
+!AccountSummary methodsFor: 'report' stamp: 'camila 10/25/2023 21:04:53' prior: 50677888 overrides: 50677536!
+buildResult
+	result addLast: 'Balance = ' , (account balance asString ). 
+	account startSummaryReportWith: self.
+	^result.! !
+
+!testRun: #ReportTests #test01ReportForNewReceptiveAccountPrintBalanceZero stamp: 'camila 10/25/2023 21:04:56'!
+PASSED!
+
+!testRun: #ReportTests #test02ReportForReceptiveAccountWithDepositPrintDespositValue stamp: 'camila 10/25/2023 21:04:56'!
+PASSED!
+
+!testRun: #ReportTests #test03ReportForReceptiveAccountWithWithdrawPrintWithdrawValue stamp: 'camila 10/25/2023 21:04:56'!
+PASSED!
+
+!testRun: #ReportTests #test04ReportForAccountWithMultipleAccounTransactionPrintAllAndBalance stamp: 'camila 10/25/2023 21:04:56'!
+PASSED!
+
+!testRun: #ReportTests #test05ReportPrintTransferOutput stamp: 'camila 10/25/2023 21:04:56'!
+PASSED!
+
+!testRun: #ReportTests #test06ReportPrintAllTransactions stamp: 'camila 10/25/2023 21:04:56'!
+PASSED!
+!ReceptiveAccount methodsFor: 'report' stamp: 'camila 10/25/2023 21:05:24' prior: 50677827!
+startFunctionalityResult: anAccountFunctionality 
+	transactions do: [ :aTransaction | aTransaction executeFunctionality: anAccountFunctionality].
+! !
+!Deposit methodsFor: 'report' stamp: 'camila 10/25/2023 21:05:36' prior: 50676184 overrides: 50677107!
+fillReportWith: anAccountSummary 
+	anAccountSummary executeForDeposit: self.! !
+!Withdraw methodsFor: 'report' stamp: 'camila 10/25/2023 21:05:50' prior: 50676244 overrides: 50677107!
+fillReportWith: anAccountSummary 
+	anAccountSummary executeForWithdraw: self. ! !
+
+!testRun: #ReportTests #test01ReportForNewReceptiveAccountPrintBalanceZero stamp: 'camila 10/25/2023 21:06:00'!
+PASSED!
+
+!testRun: #ReportTests #test02ReportForReceptiveAccountWithDepositPrintDespositValue stamp: 'camila 10/25/2023 21:06:00'!
+PASSED!
+
+!testRun: #ReportTests #test03ReportForReceptiveAccountWithWithdrawPrintWithdrawValue stamp: 'camila 10/25/2023 21:06:00'!
+PASSED!
+
+!testRun: #ReportTests #test04ReportForAccountWithMultipleAccounTransactionPrintAllAndBalance stamp: 'camila 10/25/2023 21:06:00'!
+PASSED!
+
+!testRun: #ReportTests #test05ReportPrintTransferOutput stamp: 'camila 10/25/2023 21:06:00'!
+PASSED!
+
+!testRun: #ReportTests #test06ReportPrintAllTransactions stamp: 'camila 10/25/2023 21:06:00'!
+PASSED!
+
+!testRun: #TransferNetTests #test01TransferNetReportForNewAccountReturnZero stamp: 'camila 10/25/2023 21:06:02'!
+PASSED!
+
+!testRun: #TransferNetTests #test02TransferNetReportForAccountWithReceiverTransfer stamp: 'camila 10/25/2023 21:06:02'!
+PASSED!
+
+!testRun: #TransferNetTests #test03TransferNetReportForAccountWithOriginTransfer stamp: 'camila 10/25/2023 21:06:02'!
+PASSED!
+
+!testRun: #TransferNetTests #test04TransferNetReportWithDepositAndWithdrawDoesNotAffectTransferNetTotal stamp: 'camila 10/25/2023 21:06:02'!
+PASSED!
+
+!testRun: #TransferNetTests #test05TransferNetReportWithMultipleTransferReturnSumOfThem stamp: 'camila 10/25/2023 21:06:02'!
+PASSED!
+
+!testRun: #TransferNetTests #test06TransferNetReportWithDeposit stamp: 'camila 10/25/2023 21:06:02'!
+PASSED!
+
+!testRun: #TransferNetTests #test07TransferNetReportWithWithdraw stamp: 'camila 10/25/2023 21:06:02'!
+PASSED!
+!Deposit methodsFor: 'report' stamp: 'camila 10/25/2023 21:06:20'!
+executeFunctionality: anAccountFuncionality 
+	anAccountFuncionality executeForDeposit: self. ! !
+!OriginTransfer methodsFor: 'report' stamp: 'camila 10/25/2023 21:06:36'!
+executeFunctionality: anAccountFuncionality 
+	anAccountFuncionality executeForDeposit: self. ! !
+!ReceiverTransfer methodsFor: 'report' stamp: 'camila 10/25/2023 21:06:41'!
+executeFunctionality: anAccountFuncionality 
+	anAccountFuncionality executeForDeposit: self. ! !
+!Withdraw methodsFor: 'report' stamp: 'camila 10/25/2023 21:06:47'!
+executeFunctionality: anAccountFuncionality 
+	anAccountFuncionality executeForDeposit: self. ! !
+
+!methodRemoval: ReceptiveAccount #startSummaryReportWith: stamp: 'camila 10/25/2023 21:07:07'!
+startSummaryReportWith: anAccountSummary 
+	transactions do: [ :aTransaction | aTransaction fillReportWith: anAccountSummary].
+!
+
+!methodRemoval: ReceptiveAccount #startTransferNetReportWith: stamp: 'camila 10/25/2023 21:07:09'!
+startTransferNetReportWith: aTransferNet 
+	transactions do: [ :aTransaction | aTransaction addToTransferNetWith: aTransferNet ] .
+!
+
+!testRun: #ReportTests #test01ReportForNewReceptiveAccountPrintBalanceZero stamp: 'camila 10/25/2023 21:07:23'!
+ERROR!
+
+!testRun: #ReportTests #test02ReportForReceptiveAccountWithDepositPrintDespositValue stamp: 'camila 10/25/2023 21:07:23'!
+ERROR!
+
+!testRun: #ReportTests #test03ReportForReceptiveAccountWithWithdrawPrintWithdrawValue stamp: 'camila 10/25/2023 21:07:23'!
+ERROR!
+
+!testRun: #ReportTests #test04ReportForAccountWithMultipleAccounTransactionPrintAllAndBalance stamp: 'camila 10/25/2023 21:07:23'!
+ERROR!
+
+!testRun: #ReportTests #test05ReportPrintTransferOutput stamp: 'camila 10/25/2023 21:07:23'!
+ERROR!
+
+!testRun: #ReportTests #test06ReportPrintAllTransactions stamp: 'camila 10/25/2023 21:07:23'!
+ERROR!
+
+!testRun: #ReportTests #test01ReportForNewReceptiveAccountPrintBalanceZero stamp: 'camila 10/25/2023 21:07:25'!
+ERROR!
+
+!testRun: #ReportTests #test01ReportForNewReceptiveAccountPrintBalanceZero stamp: 'camila 10/25/2023 21:07:33'!
+ERROR!
+
+!testRun: #ReportTests #test01ReportForNewReceptiveAccountPrintBalanceZero stamp: 'camila 10/25/2023 21:07:40'!
+ERROR!
+
+!testRun: #ReportTests #test02ReportForReceptiveAccountWithDepositPrintDespositValue stamp: 'camila 10/25/2023 21:07:40'!
+ERROR!
+
+!testRun: #ReportTests #test03ReportForReceptiveAccountWithWithdrawPrintWithdrawValue stamp: 'camila 10/25/2023 21:07:40'!
+ERROR!
+
+!testRun: #ReportTests #test04ReportForAccountWithMultipleAccounTransactionPrintAllAndBalance stamp: 'camila 10/25/2023 21:07:40'!
+ERROR!
+
+!testRun: #ReportTests #test05ReportPrintTransferOutput stamp: 'camila 10/25/2023 21:07:40'!
+ERROR!
+
+!testRun: #ReportTests #test06ReportPrintAllTransactions stamp: 'camila 10/25/2023 21:07:40'!
+ERROR!
+
+!testRun: #ReportTests #test01ReportForNewReceptiveAccountPrintBalanceZero stamp: 'camila 10/25/2023 21:07:41'!
+ERROR!
+
+!testRun: #ReportTests #test01ReportForNewReceptiveAccountPrintBalanceZero stamp: 'camila 10/25/2023 21:07:50'!
+ERROR!
+!AccountSummary methodsFor: 'report' stamp: 'camila 10/25/2023 21:08:01' prior: 50678206 overrides: 50677536!
+buildResult
+	result addLast: 'Balance = ' , (account balance asString ). 
+	account startFunctionalityResult: self.
+	^result.! !
+!TransferNet methodsFor: 'report' stamp: 'camila 10/25/2023 21:08:07' prior: 50678172 overrides: 50677536!
+buildResult
+	account startFunctionalityResult: self.
+	^result.! !
+
+!testRun: #ReportTests #test01ReportForNewReceptiveAccountPrintBalanceZero stamp: 'camila 10/25/2023 21:08:12'!
+PASSED!
+
+!testRun: #ReportTests #test02ReportForReceptiveAccountWithDepositPrintDespositValue stamp: 'camila 10/25/2023 21:08:12'!
+PASSED!
+
+!testRun: #ReportTests #test03ReportForReceptiveAccountWithWithdrawPrintWithdrawValue stamp: 'camila 10/25/2023 21:08:12'!
+FAILURE!
+
+!testRun: #ReportTests #test04ReportForAccountWithMultipleAccounTransactionPrintAllAndBalance stamp: 'camila 10/25/2023 21:08:12'!
+FAILURE!
+
+!testRun: #ReportTests #test05ReportPrintTransferOutput stamp: 'camila 10/25/2023 21:08:12'!
+FAILURE!
+
+!testRun: #ReportTests #test06ReportPrintAllTransactions stamp: 'camila 10/25/2023 21:08:12'!
+FAILURE!
+
+!testRun: #ReportTests #test03ReportForReceptiveAccountWithWithdrawPrintWithdrawValue stamp: 'camila 10/25/2023 21:08:14'!
+FAILURE!
+!Withdraw methodsFor: 'report' stamp: 'camila 10/25/2023 21:09:01' prior: 50678324!
+executeFunctionality: anAccountFuncionality 
+	anAccountFuncionality executeForWithdraw: self. ! !
+
+!testRun: #ReportTests #test03ReportForReceptiveAccountWithWithdrawPrintWithdrawValue stamp: 'camila 10/25/2023 21:09:03'!
+PASSED!
+
+!testRun: #ReportTests #test01ReportForNewReceptiveAccountPrintBalanceZero stamp: 'camila 10/25/2023 21:09:07'!
+PASSED!
+
+!testRun: #ReportTests #test02ReportForReceptiveAccountWithDepositPrintDespositValue stamp: 'camila 10/25/2023 21:09:07'!
+PASSED!
+
+!testRun: #ReportTests #test03ReportForReceptiveAccountWithWithdrawPrintWithdrawValue stamp: 'camila 10/25/2023 21:09:07'!
+PASSED!
+
+!testRun: #ReportTests #test04ReportForAccountWithMultipleAccounTransactionPrintAllAndBalance stamp: 'camila 10/25/2023 21:09:07'!
+PASSED!
+
+!testRun: #ReportTests #test05ReportPrintTransferOutput stamp: 'camila 10/25/2023 21:09:07'!
+FAILURE!
+
+!testRun: #ReportTests #test06ReportPrintAllTransactions stamp: 'camila 10/25/2023 21:09:07'!
+FAILURE!
+
+!testRun: #ReportTests #test05ReportPrintTransferOutput stamp: 'camila 10/25/2023 21:09:12'!
+FAILURE!
+!OriginTransfer methodsFor: 'report' stamp: 'camila 10/25/2023 21:09:49' prior: 50678312!
+executeFunctionality: anAccountFuncionality 
+	anAccountFuncionality executeForOriginTransfer: self. ! !
+
+!testRun: #ReportTests #test05ReportPrintTransferOutput stamp: 'camila 10/25/2023 21:09:51'!
+FAILURE!
+!ReceiverTransfer methodsFor: 'report' stamp: 'camila 10/25/2023 21:10:18' prior: 50678318!
+executeFunctionality: anAccountFuncionality 
+	anAccountFuncionality executeForReceiverTransfer: self. ! !
+
+!testRun: #ReportTests #test01ReportForNewReceptiveAccountPrintBalanceZero stamp: 'camila 10/25/2023 21:10:40'!
+PASSED!
+
+!testRun: #ReportTests #test02ReportForReceptiveAccountWithDepositPrintDespositValue stamp: 'camila 10/25/2023 21:10:40'!
+PASSED!
+
+!testRun: #ReportTests #test03ReportForReceptiveAccountWithWithdrawPrintWithdrawValue stamp: 'camila 10/25/2023 21:10:40'!
+PASSED!
+
+!testRun: #ReportTests #test04ReportForAccountWithMultipleAccounTransactionPrintAllAndBalance stamp: 'camila 10/25/2023 21:10:40'!
+PASSED!
+
+!testRun: #ReportTests #test05ReportPrintTransferOutput stamp: 'camila 10/25/2023 21:10:40'!
+PASSED!
+
+!testRun: #ReportTests #test06ReportPrintAllTransactions stamp: 'camila 10/25/2023 21:10:40'!
+PASSED!
+
+!testRun: #TransferNetTests #test01TransferNetReportForNewAccountReturnZero stamp: 'camila 10/25/2023 21:10:42'!
+PASSED!
+
+!testRun: #TransferNetTests #test02TransferNetReportForAccountWithReceiverTransfer stamp: 'camila 10/25/2023 21:10:42'!
+PASSED!
+
+!testRun: #TransferNetTests #test03TransferNetReportForAccountWithOriginTransfer stamp: 'camila 10/25/2023 21:10:42'!
+PASSED!
+
+!testRun: #TransferNetTests #test04TransferNetReportWithDepositAndWithdrawDoesNotAffectTransferNetTotal stamp: 'camila 10/25/2023 21:10:42'!
+PASSED!
+
+!testRun: #TransferNetTests #test05TransferNetReportWithMultipleTransferReturnSumOfThem stamp: 'camila 10/25/2023 21:10:42'!
+PASSED!
+
+!testRun: #TransferNetTests #test06TransferNetReportWithDeposit stamp: 'camila 10/25/2023 21:10:42'!
+PASSED!
+
+!testRun: #TransferNetTests #test07TransferNetReportWithWithdraw stamp: 'camila 10/25/2023 21:10:42'!
+PASSED!
+
+!methodRemoval: Deposit #addToTransferNetWith: stamp: 'camila 10/25/2023 21:10:47'!
+addToTransferNetWith: aTransferNet 
+	aTransferNet executeForDeposit: self. !
+
+!methodRemoval: Deposit #fillReportWith: stamp: 'camila 10/25/2023 21:10:50'!
+fillReportWith: anAccountSummary 
+	anAccountSummary executeForDeposit: self.!
+
+!methodRemoval: OriginTransfer #addToTransferNetWith: stamp: 'camila 10/25/2023 21:10:54'!
+addToTransferNetWith: aTransferNet 
+	aTransferNet executeForOriginTransfer: self.!
+
+!methodRemoval: OriginTransfer #fillReportWith: stamp: 'camila 10/25/2023 21:10:56'!
+fillReportWith: anAccountSummary 
+	anAccountSummary executeForOriginTransfer: self !
+
+!methodRemoval: ReceiverTransfer #addToTransferNetWith: stamp: 'camila 10/25/2023 21:11:02'!
+addToTransferNetWith: aTransferNet 
+	aTransferNet executeForReceiverTransfer: self.!
+
+!methodRemoval: ReceiverTransfer #fillReportWith: stamp: 'camila 10/25/2023 21:11:05'!
+fillReportWith: anAccountSummary 
+	anAccountSummary executeForReceiverTransfer: self.!
+
+!methodRemoval: Withdraw #addToTransferNetWith: stamp: 'camila 10/25/2023 21:11:10'!
+addToTransferNetWith: aTransferNet 
+	aTransferNet executeForWithdraw: self !
+
+!methodRemoval: Withdraw #fillReportWith: stamp: 'camila 10/25/2023 21:11:12'!
+fillReportWith: anAccountSummary 
+	anAccountSummary executeForWithdraw: self. !
+
+!testRun: #ReportTests #test01ReportForNewReceptiveAccountPrintBalanceZero stamp: 'camila 10/25/2023 21:11:17'!
+PASSED!
+
+!testRun: #ReportTests #test02ReportForReceptiveAccountWithDepositPrintDespositValue stamp: 'camila 10/25/2023 21:11:17'!
+PASSED!
+
+!testRun: #ReportTests #test03ReportForReceptiveAccountWithWithdrawPrintWithdrawValue stamp: 'camila 10/25/2023 21:11:17'!
+PASSED!
+
+!testRun: #ReportTests #test04ReportForAccountWithMultipleAccounTransactionPrintAllAndBalance stamp: 'camila 10/25/2023 21:11:17'!
+PASSED!
+
+!testRun: #ReportTests #test05ReportPrintTransferOutput stamp: 'camila 10/25/2023 21:11:17'!
+PASSED!
+
+!testRun: #ReportTests #test06ReportPrintAllTransactions stamp: 'camila 10/25/2023 21:11:17'!
+PASSED!
+
+!testRun: #TransferNetTests #test01TransferNetReportForNewAccountReturnZero stamp: 'camila 10/25/2023 21:11:18'!
+PASSED!
+
+!testRun: #TransferNetTests #test02TransferNetReportForAccountWithReceiverTransfer stamp: 'camila 10/25/2023 21:11:18'!
+PASSED!
+
+!testRun: #TransferNetTests #test03TransferNetReportForAccountWithOriginTransfer stamp: 'camila 10/25/2023 21:11:18'!
+PASSED!
+
+!testRun: #TransferNetTests #test04TransferNetReportWithDepositAndWithdrawDoesNotAffectTransferNetTotal stamp: 'camila 10/25/2023 21:11:18'!
+PASSED!
+
+!testRun: #TransferNetTests #test05TransferNetReportWithMultipleTransferReturnSumOfThem stamp: 'camila 10/25/2023 21:11:18'!
+PASSED!
+
+!testRun: #TransferNetTests #test06TransferNetReportWithDeposit stamp: 'camila 10/25/2023 21:11:18'!
+PASSED!
+
+!testRun: #TransferNetTests #test07TransferNetReportWithWithdraw stamp: 'camila 10/25/2023 21:11:18'!
+PASSED!
+
+!methodRemoval: AccountTransaction #addToTransferNetWith: stamp: 'camila 10/25/2023 21:12:16'!
+addToTransferNetWith: aTransferNet
+
+	self subclassResponsibility!
+
+!methodRemoval: AccountTransaction #fillReportWith: stamp: 'camila 10/25/2023 21:12:19'!
+fillReportWith: anAccountSummary
+
+	self subclassResponsibility!
+!AccountTransaction methodsFor: 'report' stamp: 'camila 10/25/2023 21:12:27'!
+executeFunctionality: anAccountFuncionality
+
+	self subclassResponsibility! !
+
+!testRun: #ReportTests #test01ReportForNewReceptiveAccountPrintBalanceZero stamp: 'camila 10/25/2023 21:12:47'!
+PASSED!
+
+!testRun: #ReportTests #test02ReportForReceptiveAccountWithDepositPrintDespositValue stamp: 'camila 10/25/2023 21:12:47'!
+PASSED!
+
+!testRun: #ReportTests #test03ReportForReceptiveAccountWithWithdrawPrintWithdrawValue stamp: 'camila 10/25/2023 21:12:47'!
+PASSED!
+
+!testRun: #ReportTests #test04ReportForAccountWithMultipleAccounTransactionPrintAllAndBalance stamp: 'camila 10/25/2023 21:12:47'!
+PASSED!
+
+!testRun: #ReportTests #test05ReportPrintTransferOutput stamp: 'camila 10/25/2023 21:12:47'!
+PASSED!
+
+!testRun: #ReportTests #test06ReportPrintAllTransactions stamp: 'camila 10/25/2023 21:12:47'!
+PASSED!
+
+!testRun: #TransferNetTests #test01TransferNetReportForNewAccountReturnZero stamp: 'camila 10/25/2023 21:12:48'!
+PASSED!
+
+!testRun: #TransferNetTests #test02TransferNetReportForAccountWithReceiverTransfer stamp: 'camila 10/25/2023 21:12:48'!
+PASSED!
+
+!testRun: #TransferNetTests #test03TransferNetReportForAccountWithOriginTransfer stamp: 'camila 10/25/2023 21:12:48'!
+PASSED!
+
+!testRun: #TransferNetTests #test04TransferNetReportWithDepositAndWithdrawDoesNotAffectTransferNetTotal stamp: 'camila 10/25/2023 21:12:48'!
+PASSED!
+
+!testRun: #TransferNetTests #test05TransferNetReportWithMultipleTransferReturnSumOfThem stamp: 'camila 10/25/2023 21:12:48'!
+PASSED!
+
+!testRun: #TransferNetTests #test06TransferNetReportWithDeposit stamp: 'camila 10/25/2023 21:12:48'!
+PASSED!
+
+!testRun: #TransferNetTests #test07TransferNetReportWithWithdraw stamp: 'camila 10/25/2023 21:12:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'camila 10/25/2023 21:12:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'camila 10/25/2023 21:12:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'camila 10/25/2023 21:12:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'camila 10/25/2023 21:12:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'camila 10/25/2023 21:12:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'camila 10/25/2023 21:12:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'camila 10/25/2023 21:12:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'camila 10/25/2023 21:12:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'camila 10/25/2023 21:12:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'camila 10/25/2023 21:12:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'camila 10/25/2023 21:12:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'camila 10/25/2023 21:12:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'camila 10/25/2023 21:12:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'camila 10/25/2023 21:12:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'camila 10/25/2023 21:12:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'camila 10/25/2023 21:12:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'camila 10/25/2023 21:12:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'camila 10/25/2023 21:12:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'camila 10/25/2023 21:12:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'camila 10/25/2023 21:12:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'camila 10/25/2023 21:12:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'camila 10/25/2023 21:12:51'!
+PASSED!
+
+!testRun: #TransfersTests #test01TransferBetweenAccountsAffectBalances stamp: 'camila 10/25/2023 21:12:52'!
+PASSED!
+
+!testRun: #TransfersTests #test02AccountsRegisterTransfer stamp: 'camila 10/25/2023 21:12:52'!
+PASSED!
+
+!testRun: #TransfersTests #test03TransferMustNotBeNegative stamp: 'camila 10/25/2023 21:12:52'!
+PASSED!
+
+!testRun: #TransfersTests #test04TransferBetweenDifferentAccount stamp: 'camila 10/25/2023 21:12:52'!
+PASSED!
+
+!testRun: #TransfersTests #test05NavigationBetweenTransferLegs stamp: 'camila 10/25/2023 21:12:52'!
+PASSED!
+!ReceptiveAccount methodsFor: 'functionality' stamp: 'camila 10/25/2023 21:15:10'!
+buildFunctionalityResult: anAccountFunctionality 
+	transactions do: [ :aTransaction | aTransaction executeFunctionality: anAccountFunctionality].
+! !
+!AccountSummary methodsFor: 'as yet unclassified' stamp: 'camila 10/25/2023 21:15:10' prior: 50678405 overrides: 50677536!
+buildResult
+	result addLast: 'Balance = ' , (account balance asString ). 
+	account buildFunctionalityResult: self.
+	^result.! !
+!TransferNet methodsFor: 'as yet unclassified' stamp: 'camila 10/25/2023 21:15:10' prior: 50678413 overrides: 50677536!
+buildResult
+	account buildFunctionalityResult: self.
+	^result.! !
+
+!methodRemoval: ReceptiveAccount #startFunctionalityResult: stamp: 'camila 10/25/2023 21:15:10'!
+startFunctionalityResult: anAccountFunctionality 
+	transactions do: [ :aTransaction | aTransaction executeFunctionality: anAccountFunctionality].
+!
+
+!testRun: #ReportTests #test01ReportForNewReceptiveAccountPrintBalanceZero stamp: 'camila 10/25/2023 21:15:17'!
+PASSED!
+
+!testRun: #ReportTests #test02ReportForReceptiveAccountWithDepositPrintDespositValue stamp: 'camila 10/25/2023 21:15:17'!
+PASSED!
+
+!testRun: #ReportTests #test03ReportForReceptiveAccountWithWithdrawPrintWithdrawValue stamp: 'camila 10/25/2023 21:15:17'!
+PASSED!
+
+!testRun: #ReportTests #test04ReportForAccountWithMultipleAccounTransactionPrintAllAndBalance stamp: 'camila 10/25/2023 21:15:17'!
+PASSED!
+
+!testRun: #ReportTests #test05ReportPrintTransferOutput stamp: 'camila 10/25/2023 21:15:17'!
+PASSED!
+
+!testRun: #ReportTests #test06ReportPrintAllTransactions stamp: 'camila 10/25/2023 21:15:17'!
+PASSED!
+
+!testRun: #TransferNetTests #test01TransferNetReportForNewAccountReturnZero stamp: 'camila 10/25/2023 21:15:18'!
+PASSED!
+
+!testRun: #TransferNetTests #test02TransferNetReportForAccountWithReceiverTransfer stamp: 'camila 10/25/2023 21:15:18'!
+PASSED!
+
+!testRun: #TransferNetTests #test03TransferNetReportForAccountWithOriginTransfer stamp: 'camila 10/25/2023 21:15:18'!
+PASSED!
+
+!testRun: #TransferNetTests #test04TransferNetReportWithDepositAndWithdrawDoesNotAffectTransferNetTotal stamp: 'camila 10/25/2023 21:15:18'!
+PASSED!
+
+!testRun: #TransferNetTests #test05TransferNetReportWithMultipleTransferReturnSumOfThem stamp: 'camila 10/25/2023 21:15:18'!
+PASSED!
+
+!testRun: #TransferNetTests #test06TransferNetReportWithDeposit stamp: 'camila 10/25/2023 21:15:18'!
+PASSED!
+
+!testRun: #TransferNetTests #test07TransferNetReportWithWithdraw stamp: 'camila 10/25/2023 21:15:18'!
+PASSED!
+!Transfer methodsFor: 'legs' stamp: 'camila 10/25/2023 21:16:26'!
+isReceiverLeg: anAccount 
+	^receiverTransfer = anAccount ! !
+
+!methodRemoval: Transfer #isPataDestino: stamp: 'camila 10/25/2023 21:16:26'!
+isPataDestino: anAccount 
+	^receiverTransfer = anAccount !
+!Transfer methodsFor: 'legs' stamp: 'camila 10/25/2023 21:16:34'!
+isOriginLeg: anAccount 
+	^originTransfer = anAccount ! !
+
+!methodRemoval: Transfer #isPataOrigen: stamp: 'camila 10/25/2023 21:16:34'!
+isPataOrigen: anAccount 
+	^originTransfer = anAccount !
+
+!methodRemoval: Transfer #pataOrigen stamp: 'camila 10/25/2023 21:16:47'!
+pataOrigen
+	self shouldBeImplemented.!
+
+!methodRemoval: Transfer #isReceiverLeg: stamp: 'camila 10/25/2023 21:16:50'!
+isReceiverLeg: anAccount 
+	^receiverTransfer = anAccount !
+
+!methodRemoval: Transfer #isOriginLeg: stamp: 'camila 10/25/2023 21:16:51'!
+isOriginLeg: anAccount 
+	^originTransfer = anAccount !
+
+!testRun: #ReportTests #test01ReportForNewReceptiveAccountPrintBalanceZero stamp: 'camila 10/25/2023 21:16:58'!
+PASSED!
+
+!testRun: #ReportTests #test02ReportForReceptiveAccountWithDepositPrintDespositValue stamp: 'camila 10/25/2023 21:16:58'!
+PASSED!
+
+!testRun: #ReportTests #test03ReportForReceptiveAccountWithWithdrawPrintWithdrawValue stamp: 'camila 10/25/2023 21:16:58'!
+PASSED!
+
+!testRun: #ReportTests #test04ReportForAccountWithMultipleAccounTransactionPrintAllAndBalance stamp: 'camila 10/25/2023 21:16:58'!
+PASSED!
+
+!testRun: #ReportTests #test05ReportPrintTransferOutput stamp: 'camila 10/25/2023 21:16:58'!
+PASSED!
+
+!testRun: #ReportTests #test06ReportPrintAllTransactions stamp: 'camila 10/25/2023 21:16:58'!
+PASSED!
+
+!testRun: #TransfersTests #test01TransferBetweenAccountsAffectBalances stamp: 'camila 10/25/2023 21:16:59'!
+PASSED!
+
+!testRun: #TransfersTests #test02AccountsRegisterTransfer stamp: 'camila 10/25/2023 21:16:59'!
+PASSED!
+
+!testRun: #TransfersTests #test03TransferMustNotBeNegative stamp: 'camila 10/25/2023 21:16:59'!
+PASSED!
+
+!testRun: #TransfersTests #test04TransferBetweenDifferentAccount stamp: 'camila 10/25/2023 21:16:59'!
+PASSED!
+
+!testRun: #TransfersTests #test05NavigationBetweenTransferLegs stamp: 'camila 10/25/2023 21:16:59'!
+PASSED!
+!Transfer methodsFor: 'category-name' stamp: 'camila 10/25/2023 21:17:16'!
+isOriginLeg: originAccount 
+	^originAccount hasRegistered: originTransfer.! !
+!TransfersTests methodsFor: 'as yet unclassified' stamp: 'camila 10/25/2023 21:17:16' prior: 50671767!
+test02AccountsRegisterTransfer
+	| originAccount receiverAccount  transfer |
+	originAccount := ReceptiveAccount new.
+	receiverAccount := ReceptiveAccount new. 
+	
+	transfer := Transfer from: originAccount to: receiverAccount withValue: 50.
+	self assert: ( transfer isOriginLeg: originAccount ).
+	self assert: ( transfer isReceiver: receiverAccount ).
+	"self assert: (originAccount hasRegistered: transfer).
+	self assert: (receiverAccount hasRegistered: transfer)."! !
+
+!methodRemoval: Transfer #isOrigin: stamp: 'camila 10/25/2023 21:17:16'!
+isOrigin: originAccount 
+	^originAccount hasRegistered: originTransfer.!
+!Transfer methodsFor: 'category-name' stamp: 'camila 10/25/2023 21:17:26'!
+isReceiverLeg: receiverAccount 
+	^receiverAccount hasRegistered: receiverTransfer .! !
+
+!methodRemoval: Transfer #isReceiver: stamp: 'camila 10/25/2023 21:17:26'!
+isReceiver: receiverAccount 
+	^receiverAccount hasRegistered: receiverTransfer .!
+!Transfer methodsFor: 'legs' stamp: 'camila 10/25/2023 21:17:52'!
+receiverTransfer
+	^receiverTransfer ! !
+!OriginTransfer methodsFor: 'as yet unclassified' stamp: 'camila 10/25/2023 21:17:52' prior: 50672043!
+isContraryTransfer: pata 
+	^transfer receiverTransfer = pata.! !
+!TransfersTests methodsFor: 'as yet unclassified' stamp: 'camila 10/25/2023 21:17:52' prior: 50672078!
+test05NavigationBetweenTransferLegs
+	| originAccount receiverAccount transfer origin receiver|
+	originAccount := ReceptiveAccount new. 
+	receiverAccount := ReceptiveAccount new. 
+	
+	transfer := Transfer from: originAccount to: receiverAccount withValue: 50.
+	
+	origin := transfer originTransfer.
+	receiver := transfer receiverTransfer. 
+	
+	self assert: (origin isContraryTransfer: receiver).
+	self assert: (receiver isContraryTransfer: origin). ! !
+
+!methodRemoval: Transfer #receiverTrasnfer stamp: 'camila 10/25/2023 21:17:52'!
+receiverTrasnfer
+	^receiverTransfer !
+!Transfer methodsFor: 'legs' stamp: 'camila 10/25/2023 21:18:05'!
+receiverTransferLeg
+	^receiverTransfer ! !
+!OriginTransfer methodsFor: 'as yet unclassified' stamp: 'camila 10/25/2023 21:18:05' prior: 50679004!
+isContraryTransfer: pata 
+	^transfer receiverTransferLeg = pata.! !
+
+!methodRemoval: Transfer #receiverTransfer stamp: 'camila 10/25/2023 21:18:05'!
+receiverTransfer
+	^receiverTransfer !
+!Transfer methodsFor: 'legs' stamp: 'camila 10/25/2023 21:18:15'!
+originTransferLeg
+	^originTransfer! !
+!ReceiverTransfer methodsFor: 'as yet unclassified' stamp: 'camila 10/25/2023 21:18:15' prior: 50672055!
+isContraryTransfer: pata 
+	^transfer originTransferLeg = pata.! !
+
+!methodRemoval: Transfer #originTransfer stamp: 'camila 10/25/2023 21:18:15'!
+originTransfer
+	^originTransfer!
+
+!testRun: #TransfersTests #test01TransferBetweenAccountsAffectBalances stamp: 'camila 10/25/2023 21:18:25'!
+PASSED!
+
+!testRun: #TransfersTests #test02AccountsRegisterTransfer stamp: 'camila 10/25/2023 21:18:25'!
+ERROR!
+
+!testRun: #TransfersTests #test03TransferMustNotBeNegative stamp: 'camila 10/25/2023 21:18:25'!
+PASSED!
+
+!testRun: #TransfersTests #test04TransferBetweenDifferentAccount stamp: 'camila 10/25/2023 21:18:25'!
+PASSED!
+
+!testRun: #TransfersTests #test05NavigationBetweenTransferLegs stamp: 'camila 10/25/2023 21:18:25'!
+ERROR!
+!TransfersTests methodsFor: 'tests' stamp: 'camila 10/25/2023 21:18:49' prior: 50679010!
+test05NavigationBetweenTransferLegs
+	| originAccount receiverAccount transfer origin receiver|
+	originAccount := ReceptiveAccount new. 
+	receiverAccount := ReceptiveAccount new. 
+	
+	transfer := Transfer from: originAccount to: receiverAccount withValue: 50.
+	
+	origin := transfer originTransferLeg .
+	receiver := transfer receiverTransferLeg . 
+	
+	self assert: (origin isContraryTransfer: receiver).
+	self assert: (receiver isContraryTransfer: origin). ! !
+
+!testRun: #TransfersTests #test05NavigationBetweenTransferLegs stamp: 'camila 10/25/2023 21:18:50'!
+PASSED!
+!TransfersTests methodsFor: 'tests' stamp: 'camila 10/25/2023 21:18:56' prior: 50678967!
+test02AccountsRegisterTransfer
+	| originAccount receiverAccount  transfer |
+	originAccount := ReceptiveAccount new.
+	receiverAccount := ReceptiveAccount new. 
+	
+	transfer := Transfer from: originAccount to: receiverAccount withValue: 50.
+	self assert: ( transfer isOriginLeg: originAccount ).
+	self assert: ( transfer isReceiverLeg: receiverAccount ).
+	"self assert: (originAccount hasRegistered: transfer).
+	self assert: (receiverAccount hasRegistered: transfer)."! !
+
+!testRun: #TransfersTests #test02AccountsRegisterTransfer stamp: 'camila 10/25/2023 21:18:57'!
+PASSED!
+
+!testRun: #TransfersTests #test01TransferBetweenAccountsAffectBalances stamp: 'camila 10/25/2023 21:19:02'!
+PASSED!
+
+!testRun: #TransfersTests #test02AccountsRegisterTransfer stamp: 'camila 10/25/2023 21:19:02'!
+PASSED!
+
+!testRun: #TransfersTests #test03TransferMustNotBeNegative stamp: 'camila 10/25/2023 21:19:02'!
+PASSED!
+
+!testRun: #TransfersTests #test04TransferBetweenDifferentAccount stamp: 'camila 10/25/2023 21:19:02'!
+PASSED!
+
+!testRun: #TransfersTests #test05NavigationBetweenTransferLegs stamp: 'camila 10/25/2023 21:19:02'!
+PASSED!
+!ReceiverTransfer methodsFor: 'transferVerification' stamp: 'camila 10/25/2023 21:19:30' prior: 50679048!
+isContraryTransfer: aTransferLeg 
+	^transfer originTransferLeg = aTransferLeg.! !
+!OriginTransfer methodsFor: 'transferVerification' stamp: 'camila 10/25/2023 21:19:38' prior: 50679035!
+isContraryTransfer: aTransferLeg 
+	^transfer receiverTransferLeg = aTransferLeg.! !
+
+!testRun: #TransfersTests #test01TransferBetweenAccountsAffectBalances stamp: 'camila 10/25/2023 21:19:42'!
+PASSED!
+
+!testRun: #TransfersTests #test02AccountsRegisterTransfer stamp: 'camila 10/25/2023 21:19:42'!
+PASSED!
+
+!testRun: #TransfersTests #test03TransferMustNotBeNegative stamp: 'camila 10/25/2023 21:19:42'!
+PASSED!
+
+!testRun: #TransfersTests #test04TransferBetweenDifferentAccount stamp: 'camila 10/25/2023 21:19:42'!
+PASSED!
+
+!testRun: #TransfersTests #test05NavigationBetweenTransferLegs stamp: 'camila 10/25/2023 21:19:42'!
+PASSED!
+!TransfersTests methodsFor: 'tests' stamp: 'camila 10/25/2023 21:19:51' prior: 50679095!
+test02AccountsRegisterTransfer
+	| originAccount receiverAccount  transfer |
+	originAccount := ReceptiveAccount new.
+	receiverAccount := ReceptiveAccount new. 
+	
+	transfer := Transfer from: originAccount to: receiverAccount withValue: 50.
+	self assert: ( transfer isOriginLeg: originAccount ).
+	self assert: ( transfer isReceiverLeg: receiverAccount ).! !
+!ReportTests methodsFor: 'tests' stamp: 'camila 10/25/2023 21:20:08' prior: 50677680!
+test01ReportForNewReceptiveAccountPrintBalanceZero
+
+	| anAccount summaryReport|
+	
+	anAccount := ReceptiveAccount new. 
+	summaryReport  := AccountSummary for: anAccount.
+	
+	self assert: (summaryReport buildResult) equals: (OrderedCollection with: 'Balance = 0').! !
+!ReportTests methodsFor: 'tests' stamp: 'camila 10/25/2023 21:20:24' prior: 50677640!
+test02ReportForReceptiveAccountWithDepositPrintDespositValue
+
+	| anAccount reportPrinted summaryReport |
+	
+	anAccount := ReceptiveAccount new. 
+	Deposit register: 100 on: anAccount.
+	
+	summaryReport := AccountSummary for: anAccount .
+	reportPrinted := OrderedCollection with:'Balance = 100' with: 'Depósito por 100.'.
+	
+	self assert: (summaryReport buildResult) equals: reportPrinted.! !
+!ReportTests methodsFor: 'tests' stamp: 'camila 10/25/2023 21:20:33' prior: 50677578!
+test03ReportForReceptiveAccountWithWithdrawPrintWithdrawValue
+
+	| anAccount reportPrinted summaryReport |
+	
+	anAccount := ReceptiveAccount new. 
+	Withdraw register: 50 on: anAccount.
+	
+	summaryReport := AccountSummary for: anAccount.
+	reportPrinted := OrderedCollection with:'Balance = -50' with: 'Extracción por 50.'.
+	self assert: (summaryReport buildResult) equals: reportPrinted.! !
+!ReportTests methodsFor: 'tests' stamp: 'camila 10/25/2023 21:20:38' prior: 50679188!
+test02ReportForReceptiveAccountWithDepositPrintDespositValue
+
+	| anAccount reportPrinted summaryReport |
+	
+	anAccount := ReceptiveAccount new. 
+	Deposit register: 100 on: anAccount.
+	
+	summaryReport := AccountSummary for: anAccount .
+	reportPrinted := OrderedCollection with:'Balance = 100' with: 'Depósito por 100.'.
+	self assert: (summaryReport buildResult) equals: reportPrinted.! !
+!ReportTests methodsFor: 'tests' stamp: 'camila 10/25/2023 21:20:50' prior: 50677692!
+test04ReportForAccountWithMultipleAccounTransactionPrintAllAndBalance
+
+	| anAccount reportPrinted summaryReport|
+	
+	anAccount := ReceptiveAccount new. 
+	Deposit register: 100 on: anAccount.
+	Withdraw register: 50 on: anAccount.
+	
+	summaryReport := AccountSummary for: anAccount .
+	reportPrinted := OrderedCollection with:'Balance = 50' with: 'Depósito por 100.' with: 'Extracción por 50.'.
+	
+	self assert: (summaryReport buildResult) equals: reportPrinted.! !
+!ReportTests methodsFor: 'tests' stamp: 'camila 10/25/2023 21:20:54' prior: 50679203!
+test03ReportForReceptiveAccountWithWithdrawPrintWithdrawValue
+
+	| anAccount reportPrinted summaryReport |
+	
+	anAccount := ReceptiveAccount new. 
+	Withdraw register: 50 on: anAccount.
+	
+	summaryReport := AccountSummary for: anAccount.
+	reportPrinted := OrderedCollection with:'Balance = -50' with: 'Extracción por 50.'.
+	
+	self assert: (summaryReport buildResult) equals: reportPrinted.! !
+!ReportTests methodsFor: 'tests' stamp: 'camila 10/25/2023 21:20:58' prior: 50679218!
+test02ReportForReceptiveAccountWithDepositPrintDespositValue
+
+	| anAccount reportPrinted summaryReport |
+	
+	anAccount := ReceptiveAccount new. 
+	Deposit register: 100 on: anAccount.
+	
+	summaryReport := AccountSummary for: anAccount .
+	reportPrinted := OrderedCollection with:'Balance = 100' with: 'Depósito por 100.'.
+	
+	self assert: (summaryReport buildResult) equals: reportPrinted.! !
+!ReportTests methodsFor: 'tests' stamp: 'camila 10/25/2023 21:21:15' prior: 50677710!
+test05ReportPrintTransferOutput
+
+	| originAccount originReport  receiverAccount receiverReport summaryOriginReport summaryReceiverReport |
+	
+	originAccount := ReceptiveAccount new. 
+	receiverAccount := ReceptiveAccount new.
+	Transfer from: originAccount to: receiverAccount withValue: 20.
+	
+	summaryOriginReport := AccountSummary for: originAccount .
+	summaryReceiverReport := AccountSummary for: receiverAccount .
+	
+	originReport := OrderedCollection with:'Balance = -20' with: 'Salida por transferencia de 20.'.
+	receiverReport := OrderedCollection with: 'Balance = 20' with: 'Entrada por transferencia de 20.'.
+	
+	self assert: (summaryOriginReport buildResult ) equals: originReport.
+	self assert: (summaryReceiverReport buildResult ) equals: receiverReport.! !
+!ReportTests methodsFor: 'tests' stamp: 'camila 10/25/2023 21:21:43' prior: 50677737!
+test06ReportPrintAllTransactions
+
+	| anAccount originReport  summaryReport|
+	
+	anAccount := ReceptiveAccount new. 
+	Deposit register: 100 on: anAccount.
+	Withdraw register: 50 on: anAccount.
+	Transfer from: anAccount to: ReceptiveAccount new withValue: 20.
+	Transfer from: ReceptiveAccount new to: anAccount withValue: 30.
+	
+	summaryReport := AccountSummary for: anAccount .
+	originReport := OrderedCollection with:'Balance = 60' 
+								with: 'Depósito por 100.' 
+								with:'Extracción por 50.' 
+								with: 'Salida por transferencia de 20.' 
+								with: 'Entrada por transferencia de 30.'.
+								
+	self assert: (summaryReport buildResult) equals: originReport.
+	! !
+!TransferNetTests methodsFor: 'test' stamp: 'camila 10/25/2023 21:21:53' prior: 50677555!
+test01TransferNetReportForNewAccountReturnZero
+
+	|anAccount transferReport |
+	
+	anAccount := ReceptiveAccount new. 
+	transferReport := TransferNet for: anAccount .
+	
+	self assert: (transferReport buildResult) equals: 0.! !
+!TransferNetTests methodsFor: 'test' stamp: 'camila 10/25/2023 21:22:05' prior: 50677656!
+test02TransferNetReportForAccountWithReceiverTransfer
+	
+	|anAccount transferReport|
+	
+	anAccount := ReceptiveAccount new. 
+	Transfer from: ReceptiveAccount new to: anAccount  withValue: 20.
+	transferReport := TransferNet for: anAccount .
+	
+	self assert: (transferReport buildResult) equals: 20.! !
+!TransferNetTests methodsFor: 'test' stamp: 'camila 10/25/2023 21:22:08' prior: 50679343!
+test02TransferNetReportForAccountWithReceiverTransfer
+	
+	|anAccount transferReport|
+	
+	anAccount := ReceptiveAccount new. 
+	Transfer from: ReceptiveAccount new to: anAccount  withValue: 20.
+	
+	transferReport := TransferNet for: anAccount .
+	
+	self assert: (transferReport buildResult) equals: 20.! !
+!TransferNetTests methodsFor: 'test' stamp: 'camila 10/25/2023 21:22:16' prior: 50677594!
+test03TransferNetReportForAccountWithOriginTransfer
+	
+	|anAccount transferReport|
+	
+	anAccount := ReceptiveAccount new. 
+	Transfer from: anAccount to: ReceptiveAccount new  withValue: 20.
+	
+	transferReport := TransferNet for: anAccount .
+	
+	self assert: (transferReport buildResult) equals: -20.! !
+!TransferNetTests methodsFor: 'test' stamp: 'camila 10/25/2023 21:22:27' prior: 50677622!
+test04TransferNetReportWithDepositAndWithdrawDoesNotAffectTransferNetTotal
+	
+	|anAccount transferReport |
+	
+	anAccount := ReceptiveAccount new. 
+	Transfer from: anAccount to: ReceptiveAccount new  withValue: 20.
+	Transfer from: ReceptiveAccount new to: anAccount withValue: 30.
+	Deposit register: 10 on: anAccount .
+	Withdraw register: 20 on: anAccount .
+	
+	transferReport  := TransferNet for: anAccount .
+	
+	self assert: (transferReport buildResult )equals: 10.! !
+!TransferNetTests methodsFor: 'test' stamp: 'camila 10/25/2023 21:22:35' prior: 50677607!
+test05TransferNetReportWithMultipleTransferReturnSumOfThem
+	
+	|anAccount transferReport|
+	
+	anAccount := ReceptiveAccount new. 
+	Transfer from: anAccount to: ReceptiveAccount new  withValue: 20.
+	Transfer from: ReceptiveAccount new to: anAccount withValue: 30.
+	
+	transferReport := TransferNet for: anAccount .
+	
+	self assert: (transferReport buildResult) equals: 10.! !
+!TransferNetTests methodsFor: 'test' stamp: 'camila 10/25/2023 21:22:41' prior: 50677669!
+test06TransferNetReportWithDeposit
+	
+	|anAccount transferReport |
+	
+	anAccount := ReceptiveAccount new. 
+	Deposit register: 10 on: anAccount .
+	
+	transferReport  := TransferNet for: anAccount .
+	
+	self assert: (transferReport buildResult )equals: 0.! !
+!TransferNetTests methodsFor: 'test' stamp: 'camila 10/25/2023 21:22:49' prior: 50677566!
+test07TransferNetReportWithWithdraw
+
+	|anAccount transferReport |
+	
+	anAccount := ReceptiveAccount new. 
+	
+	Withdraw register: 20 on: anAccount .
+	
+	transferReport  := TransferNet for: anAccount .
+	self assert: (transferReport buildResult )equals: 0.! !
+!TransferNetTests methodsFor: 'test' stamp: 'camila 10/25/2023 21:22:59' prior: 50679426!
+test07TransferNetReportWithWithdraw
+
+	|anAccount transferReport |
+	
+	anAccount := ReceptiveAccount new. 
+	Withdraw register: 20 on: anAccount .
+	
+	transferReport  := TransferNet for: anAccount .
+	
+	self assert: (transferReport buildResult )equals: 0.! !
+
+----SNAPSHOT----(25 October 2023 21:23:46) CuisUniversity-5981.image priorSource: 11088562!
