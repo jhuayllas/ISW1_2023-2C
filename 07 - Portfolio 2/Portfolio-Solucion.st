@@ -534,7 +534,7 @@ ReportsTest subclass: #PortfolioTreeReportTest
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!PortfolioTreeReportTest methodsFor: 'as yet unclassified' stamp: 'camila 10/25/2023 23:01:46'!
+!PortfolioTreeReportTest methodsFor: 'as yet unclassified' stamp: 'camila 10/26/2023 14:36:47'!
 test01NewPortfolioWithNameReturnsName
 	
 	| finalReport portfolio treeReport |
@@ -542,7 +542,61 @@ test01NewPortfolioWithNameReturnsName
 	portfolio := Portfolio named: 'Portfolio de la familia'.
 	treeReport  := PortfolioTreeReport for: portfolio. 
 	
-	finalReport := OrderedCollection with: 'Portfolio de la familia'.
+	finalReport :=  OrderedCollection with: 'Portfolio de la familia'.
+	
+	self assert: (treeReport buildResult) equals: finalReport.! !
+
+!PortfolioTreeReportTest methodsFor: 'as yet unclassified' stamp: 'camila 10/26/2023 14:50:12'!
+test02PortfolioWithAccountReturnsBothNames
+	
+	| finalReport portfolio treeReport myAccount |
+	
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	
+	portfolio := Portfolio named: 'Portfolio de la familia'.
+	portfolio add: myAccount .
+	
+	treeReport  := PortfolioTreeReport for: portfolio. 
+	
+	finalReport := OrderedCollection with: 'Portfolio de la familia' with: 'Cuenta mia'.
+	
+	self assert: (treeReport buildResult) equals: finalReport.! !
+
+!PortfolioTreeReportTest methodsFor: 'as yet unclassified' stamp: 'camila 10/26/2023 14:51:52'!
+test03PortfolioWithChildrenPortfolio
+	
+	| finalReport portfolioFamily treeReport myAccount portfolioChildren |
+	
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	
+	portfolioFamily := Portfolio named: 'Portfolio de la familia'.
+	portfolioFamily add: myAccount .
+	
+	portfolioChildren := Portfolio named: 'Portfolio de hijos'.
+	portfolioFamily add: portfolioChildren.
+	
+	treeReport  := PortfolioTreeReport for: portfolioFamily. 
+	
+	finalReport := OrderedCollection with: 'Portfolio de la familia' with: 'Cuenta mia' with: 'Portfolio de hijos'.
+	
+	self assert: (treeReport buildResult) equals: finalReport.! !
+
+!PortfolioTreeReportTest methodsFor: 'as yet unclassified' stamp: 'camila 10/26/2023 15:04:11'!
+test04PortfolioWithChildrenPortfolioWithChildrenAccounts
+	
+	| finalReport portfolioFamily treeReport myAccount portfolioChildren |
+	
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	
+	portfolioFamily := Portfolio named: 'Portfolio de la familia'.
+	portfolioFamily add: myAccount .
+	
+	portfolioChildren := Portfolio named: 'Portfolio de hijos'.
+	portfolioFamily add: portfolioChildren.
+	
+	treeReport  := PortfolioTreeReport for: portfolioFamily. 
+	
+	finalReport := OrderedCollection with: 'Portfolio de la familia' with: 'Cuenta mia' with: 'Portfolio de hijos'.
 	
 	self assert: (treeReport buildResult) equals: finalReport.! !
 
@@ -804,6 +858,11 @@ addedTo: aPortfolio
 
 	self subclassResponsibility ! !
 
+
+!Account methodsFor: 'as yet unclassified' stamp: 'camila 10/26/2023 14:24:18'!
+buildNameReport: aPortfolioTreeReport 
+	aPortfolioTreeReport buildNameReportForPortfolio: self.! !
+
 
 !classDefinition: #Portfolio category: 'Portfolio-Solucion'!
 Account subclass: #Portfolio
@@ -932,6 +991,23 @@ signalCanNotAddAccount
 buildFunctionalityResult: aFunctionality 
 	accounts do: [:anAccount | anAccount buildFunctionalityResult: aFunctionality ].! !
 
+
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'camila 10/26/2023 13:58:34'!
+addNameTo: aPortfolioTreeReport 
+	aPortfolioTreeReport addPortfolioToResult: self.! !
+
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'camila 10/26/2023 14:41:45'!
+buildName: aPortfolioTreeReport 
+	aPortfolioTreeReport  printPortfolioName: self.! !
+
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'camila 10/26/2023 13:54:24'!
+buildNames: aPortfolioTreeReport 
+	accounts do: [:anAccount | anAccount addNameTo: aPortfolioTreeReport ].! !
+
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'camila 10/26/2023 14:44:54'!
+printAccountNames: aPortfolioTreeReport 
+	accounts do: [:anAccount | anAccount buildName: aPortfolioTreeReport ].! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'Portfolio class' category: 'Portfolio-Solucion'!
@@ -966,7 +1042,7 @@ named: aName
 
 !classDefinition: #ReceptiveAccount category: 'Portfolio-Solucion'!
 Account subclass: #ReceptiveAccount
-	instanceVariableNames: 'transactions'
+	instanceVariableNames: 'transactions name'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
@@ -976,6 +1052,10 @@ initialize
 
 	super initialize.
 	transactions := OrderedCollection new.! !
+
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'camila 10/26/2023 13:50:51'!
+initializeNamed: aName 
+	name := aName.! !
 
 
 !ReceptiveAccount methodsFor: 'transactions' stamp: 'HAW 5/25/2019 11:38:52'!
@@ -1030,6 +1110,29 @@ addedTo: aPortfolio
 buildFunctionalityResult: anAccountFunctionality 
 	transactions do: [ :aTransaction | aTransaction executeFunctionality: anAccountFunctionality].
 ! !
+
+
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'camila 10/26/2023 14:49:46'!
+accountName
+	^name! !
+
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'camila 10/26/2023 13:54:51'!
+addNameTo: aPortfolioTreeReport 
+	aPortfolioTreeReport addToResult: name.! !
+
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'camila 10/26/2023 14:45:16'!
+buildName: aPortfolioTreeReport 
+	aPortfolioTreeReport buildNameAccount: self.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'ReceptiveAccount class' category: 'Portfolio-Solucion'!
+ReceptiveAccount class
+	instanceVariableNames: ''!
+
+!ReceptiveAccount class methodsFor: 'instance creation' stamp: 'camila 10/26/2023 13:50:35'!
+named: aName 
+	^self new initializeNamed: aName ! !
 
 
 !classDefinition: #AccountTransaction category: 'Portfolio-Solucion'!
@@ -1247,14 +1350,16 @@ for: aValue
 
 !classDefinition: #PortfolioTreeReport category: 'Portfolio-Solucion'!
 Object subclass: #PortfolioTreeReport
-	instanceVariableNames: 'account result'
+	instanceVariableNames: 'account result level'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!PortfolioTreeReport methodsFor: 'result' stamp: 'camila 10/25/2023 22:52:16'!
+!PortfolioTreeReport methodsFor: 'result' stamp: 'camila 10/26/2023 14:46:25'!
 buildResult
-	result addLast: account name.
+	level := 0.
+	account buildName: self.
+	
 	^ result.! !
 
 
@@ -1264,6 +1369,28 @@ initializeFor: anAccount
 
 	account := anAccount .
 	result := OrderedCollection new.! !
+
+
+!PortfolioTreeReport methodsFor: 'as yet unclassified' stamp: 'camila 10/26/2023 13:58:43'!
+addPortfolioToResult: aPortfolio 
+	self shouldBeImplemented.! !
+
+!PortfolioTreeReport methodsFor: 'as yet unclassified' stamp: 'camila 10/26/2023 13:55:07'!
+addToResult: aName 
+	result addLast: aName .! !
+
+!PortfolioTreeReport methodsFor: 'as yet unclassified' stamp: 'camila 10/26/2023 14:49:34'!
+buildNameAccount: aReceptiveAccount 
+	result addLast: aReceptiveAccount accountName.! !
+
+!PortfolioTreeReport methodsFor: 'as yet unclassified' stamp: 'camila 10/26/2023 14:24:47'!
+buildNameReportForPortfolio: aPortfolio 
+	! !
+
+!PortfolioTreeReport methodsFor: 'as yet unclassified' stamp: 'camila 10/26/2023 15:03:28'!
+printPortfolioName: aPortfolio 
+	result addLast: aPortfolio name.
+	aPortfolio printAccountNames: self.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
