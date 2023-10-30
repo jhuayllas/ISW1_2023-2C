@@ -304,7 +304,7 @@ test03MarsRoverMovesForwardTwiceUpdatesCorrectly
 	self assert: (logger printPositionWindow ) equals: (1@3).
 	self assert: (marsRover isAt: 1@3 heading: self north) ! !
 
-!LoggerWindowTest methodsFor: 'testing' stamp: 'camila 10/29/2023 23:28:21'!
+!LoggerWindowTest methodsFor: 'testing' stamp: 'camila 10/30/2023 15:33:18'!
 test04MarsRoverRotatesLeftOnce
 	| marsRover logger|
 	
@@ -313,10 +313,10 @@ test04MarsRoverRotatesLeftOnce
 	
 	marsRover process: 'l'.
 	
-	self assert: (logger printHeadingWindow ) equals: 'West'.
+	self assert: (logger printHeadingWindow ) equals: 'Apuntando al West'.
 	self assert: (marsRover isAt: 1@1 heading: self west) ! !
 
-!LoggerWindowTest methodsFor: 'testing' stamp: 'camila 10/29/2023 23:27:57'!
+!LoggerWindowTest methodsFor: 'testing' stamp: 'camila 10/30/2023 15:33:32'!
 test05MarsRoverRotatesRightOnce
 	| marsRover logger|
 	
@@ -325,10 +325,10 @@ test05MarsRoverRotatesRightOnce
 	
 	marsRover process: 'r'.
 	
-	self assert: (logger printHeadingWindow ) equals: 'East'.
+	self assert: (logger printHeadingWindow ) equals: 'Apuntando al East'.
 	self assert: (marsRover isAt: 1@1 heading: self east) ! !
 
-!LoggerWindowTest methodsFor: 'testing' stamp: 'camila 10/29/2023 23:29:57'!
+!LoggerWindowTest methodsFor: 'testing' stamp: 'camila 10/30/2023 15:33:58'!
 test06MarsRoverForwardRotateRightForwardWithBothWindows
 	| marsRover logger|
 	
@@ -337,7 +337,7 @@ test06MarsRoverForwardRotateRightForwardWithBothWindows
 	
 	marsRover process: 'frf'.
 	
-	self assert: (logger printHeadingWindow ) equals: 'East'.
+	self assert: (logger printHeadingWindow ) equals: 'Apuntando al East'.
 	self assert: (logger printPositionWindow ) equals: 2@2.
 	self assert: (marsRover isAt: 2@2 heading: self east) ! !
 
@@ -993,13 +993,13 @@ initializeWith: aMarsRover follow: attributesToFollow
 	aMarsRover addLogger: self follow: attributesToFollow .! !
 
 
-!MarsRoverWindowLogger methodsFor: 'logging' stamp: 'camila 10/29/2023 23:54:37'!
+!MarsRoverWindowLogger methodsFor: 'logging' stamp: 'camila 10/30/2023 15:33:42'!
 log: anObjectValue 
 	
 	"feo estos ifs"
 	(anObjectValue isKindOf: Point)
 		 ifTrue: [positionWindow := anObjectValue value]
-		 ifFalse: [headingWindow := anObjectValue value.]! !
+		 ifFalse: [headingWindow := 'Apuntando al ', anObjectValue value.]! !
 
 
 !MarsRoverWindowLogger methodsFor: 'printing' stamp: 'camila 10/29/2023 23:19:58'!

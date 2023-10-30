@@ -6288,3 +6288,101 @@ addLogger: aLogger follow: collectionOfAttributes
 ! !
 
 ----QUIT----(29 October 2023 23:56:01) CuisUniversity-5981.image priorSource: 10544100!
+
+----STARTUP---- (30 October 2023 15:32:31) as /home/camila/Desktop/CUIS MARS ROVER 2/linux64/CuisUniversity-5981.image!
+
+!MarsRoverWindowLogger methodsFor: 'logging' stamp: 'camila 10/30/2023 15:32:59' prior: 50661158 overrides: 50660935!
+log: anObjectValue 
+	
+	"feo estos ifs"
+	(anObjectValue isKindOf: Point)
+		 ifTrue: [positionWindow := anObjectValue value]
+		 ifFalse: [headingWindow := 'Apuntando al', anObjectValue value.]! !
+!LoggerWindowTest methodsFor: 'testing' stamp: 'camila 10/30/2023 15:33:18' prior: 50660177!
+test04MarsRoverRotatesLeftOnce
+	| marsRover logger|
+	
+	marsRover := MarsRover at: 1@1 heading: self north . 
+	logger := MarsRoverWindowLogger with: marsRover  follow: {$h}.
+	
+	marsRover process: 'l'.
+	
+	self assert: (logger printHeadingWindow ) equals: 'Apuntando al West'.
+	self assert: (marsRover isAt: 1@1 heading: self west) ! !
+
+!testRun: #LoggerWindowTest #test04MarsRoverRotatesLeftOnce stamp: 'camila 10/30/2023 15:33:18'!
+FAILURE!
+!LoggerWindowTest methodsFor: 'testing' stamp: 'camila 10/30/2023 15:33:32' prior: 50660142!
+test05MarsRoverRotatesRightOnce
+	| marsRover logger|
+	
+	marsRover := MarsRover at: 1@1 heading: self north . 
+	logger := MarsRoverWindowLogger with: marsRover  follow: {$h}.
+	
+	marsRover process: 'r'.
+	
+	self assert: (logger printHeadingWindow ) equals: 'Apuntando al East'.
+	self assert: (marsRover isAt: 1@1 heading: self east) ! !
+!MarsRoverWindowLogger methodsFor: 'logging' stamp: 'camila 10/30/2023 15:33:42' prior: 50661185 overrides: 50660935!
+log: anObjectValue 
+	
+	"feo estos ifs"
+	(anObjectValue isKindOf: Point)
+		 ifTrue: [positionWindow := anObjectValue value]
+		 ifFalse: [headingWindow := 'Apuntando al ', anObjectValue value.]! !
+
+!testRun: #LoggerWindowTest #test01NewMarsRoverWithEmptyWindowLog stamp: 'camila 10/30/2023 15:33:46'!
+PASSED!
+
+!testRun: #LoggerWindowTest #test02MarsRoverMovesForwardOnce stamp: 'camila 10/30/2023 15:33:47'!
+PASSED!
+
+!testRun: #LoggerWindowTest #test03MarsRoverMovesForwardTwiceUpdatesCorrectly stamp: 'camila 10/30/2023 15:33:47'!
+PASSED!
+
+!testRun: #LoggerWindowTest #test04MarsRoverRotatesLeftOnce stamp: 'camila 10/30/2023 15:33:47'!
+PASSED!
+
+!testRun: #LoggerWindowTest #test05MarsRoverRotatesRightOnce stamp: 'camila 10/30/2023 15:33:47'!
+PASSED!
+
+!testRun: #LoggerWindowTest #test06MarsRoverForwardRotateRightForwardWithBothWindows stamp: 'camila 10/30/2023 15:33:47'!
+FAILURE!
+
+!testRun: #LoggerWindowTest #test06MarsRoverForwardRotateRightForwardWithBothWindows stamp: 'camila 10/30/2023 15:33:47'!
+FAILURE!
+!LoggerWindowTest methodsFor: 'testing' stamp: 'camila 10/30/2023 15:33:58' prior: 50660211!
+test06MarsRoverForwardRotateRightForwardWithBothWindows
+	| marsRover logger|
+	
+	marsRover := MarsRover at: 1@1 heading: self north . 
+	logger := MarsRoverWindowLogger with: marsRover  follow: (OrderedCollection with: $h with: $p).
+	
+	marsRover process: 'frf'.
+	
+	self assert: (logger printHeadingWindow ) equals: 'Apuntando al East'.
+	self assert: (logger printPositionWindow ) equals: 2@2.
+	self assert: (marsRover isAt: 2@2 heading: self east) ! !
+
+!testRun: #LoggerWindowTest #test06MarsRoverForwardRotateRightForwardWithBothWindows stamp: 'camila 10/30/2023 15:33:59'!
+PASSED!
+
+!testRun: #LoggerWindowTest #test01NewMarsRoverWithEmptyWindowLog stamp: 'camila 10/30/2023 15:34:01'!
+PASSED!
+
+!testRun: #LoggerWindowTest #test02MarsRoverMovesForwardOnce stamp: 'camila 10/30/2023 15:34:01'!
+PASSED!
+
+!testRun: #LoggerWindowTest #test03MarsRoverMovesForwardTwiceUpdatesCorrectly stamp: 'camila 10/30/2023 15:34:01'!
+PASSED!
+
+!testRun: #LoggerWindowTest #test04MarsRoverRotatesLeftOnce stamp: 'camila 10/30/2023 15:34:01'!
+PASSED!
+
+!testRun: #LoggerWindowTest #test05MarsRoverRotatesRightOnce stamp: 'camila 10/30/2023 15:34:01'!
+PASSED!
+
+!testRun: #LoggerWindowTest #test06MarsRoverForwardRotateRightForwardWithBothWindows stamp: 'camila 10/30/2023 15:34:01'!
+PASSED!
+
+----QUIT----(30 October 2023 15:35:03) CuisUniversity-5981.image priorSource: 10544850!
