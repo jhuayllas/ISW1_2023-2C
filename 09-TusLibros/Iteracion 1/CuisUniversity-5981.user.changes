@@ -1,0 +1,930 @@
+
+
+----QUIT----(13 August 2023 19:14:09) CuisUniversity-5981.image priorSource: 5713367!
+
+----STARTUP---- (13 August 2023 19:14:10) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5981.image!
+
+
+----QUIT----(13 August 2023 19:14:10) CuisUniversity-5981.image priorSource: 10197065!
+
+----STARTUP---- (30 October 2023 19:03:03) as C:\Users\crist\Desktop\ASF7\CuisUniversity-5981.image!
+
+
+TestCase subclass: #CartTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CartTest category: 'TusLibros' stamp: 'CJF 10/30/2023 19:05:19'!
+TestCase subclass: #CartTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #Cart category: 'TusLibros' stamp: 'CJF 10/30/2023 19:11:40'!
+Object subclass: #Cart
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CartTest methodsFor: 'no messages' stamp: 'CJF 10/30/2023 19:11:33'!
+test01CartStartsEmpty
+	|cart|
+	cart := Cart new.
+	self assert: cart isEmpty.! !
+
+!testRun: #CartTest #test01CartStartsEmpty stamp: 'CJF 10/30/2023 19:11:46'!
+ERROR!
+!Cart methodsFor: 'category-name' stamp: 'CJF 10/30/2023 19:11:54'!
+isEmpty
+	self shouldBeImplemented.! !
+!Cart methodsFor: 'category-name' stamp: 'CJF 10/30/2023 19:12:00' prior: 50650347!
+isEmpty
+	^true! !
+
+!testRun: #CartTest #test01CartStartsEmpty stamp: 'CJF 10/30/2023 19:12:02'!
+PASSED!
+
+!testRun: #CartTest #test01CartStartsEmpty stamp: 'CJF 10/30/2023 19:12:02'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CJF 10/30/2023 19:16:48'!
+test02
+	|cart|
+	cart := Cart new. 
+	cart add: #aValidISBN.
+	self deny: cart isEmpty. ! !
+
+!testRun: #CartTest #test02 stamp: 'CJF 10/30/2023 19:16:59'!
+ERROR!
+!Cart methodsFor: 'category-name' stamp: 'CJF 10/30/2023 19:17:06'!
+add: aRenameMe1 
+	self shouldBeImplemented.! !
+
+!classDefinition: #Cart category: 'TusLibros' stamp: 'CJF 10/30/2023 19:18:55'!
+Object subclass: #Cart
+	instanceVariableNames: 'shopList'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cart methodsFor: 'category-name' stamp: 'CJF 10/30/2023 19:18:50' prior: 50650368!
+add: anISBNBook
+	shopList := {anISBNBook }.! !
+
+!testRun: #CartTest #test02 stamp: 'CJF 10/30/2023 19:18:58'!
+FAILURE!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CJF 10/30/2023 19:19:21' prior: 50650360!
+test02
+	|cart|
+	cart := Cart new. 
+	cart add: #aValidISBN.
+	self deny: (cart isEmpty). ! !
+!Cart methodsFor: 'category-name' stamp: 'CJF 10/30/2023 19:19:44' prior: 50650351!
+isEmpty
+	^shopList isEmpty ! !
+
+!testRun: #CartTest #test02 stamp: 'CJF 10/30/2023 19:19:47'!
+FAILURE!
+
+!testRun: #CartTest #test02 stamp: 'CJF 10/30/2023 19:19:52'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CJF 10/30/2023 19:22:40'!
+test03
+	| cart |
+	cart := Cart new. 
+	cart add: #aValidISBN.
+	cart add: #aValidISBN2.
+	
+	self deny: cart isEmpty.
+	self assert: cart listShopList equals: {#aValidISBN, #aValidISBN2}.! !
+
+!testRun: #CartTest #test03 stamp: 'CJF 10/30/2023 19:22:43'!
+ERROR!
+!Cart methodsFor: 'category-name' stamp: 'CJF 10/30/2023 19:22:54'!
+listShopList
+	self shouldBeImplemented.! !
+!Cart methodsFor: 'category-name' stamp: 'CJF 10/30/2023 19:23:09' prior: 50650411!
+listShopList
+	^shopList copy.! !
+
+!testRun: #CartTest #test03 stamp: 'CJF 10/30/2023 19:23:10'!
+FAILURE!
+!Cart methodsFor: 'category-name' stamp: 'CJF 10/30/2023 19:23:41' prior: 50650379!
+add: anISBNBook
+	shopList add: anISBNBook .! !
+
+!testRun: #CartTest #test03 stamp: 'CJF 10/30/2023 19:23:42'!
+ERROR!
+!Cart methodsFor: 'category-name' stamp: 'CJF 10/30/2023 19:24:28' overrides: 16920235!
+initialize
+	shopList := {}.! !
+
+!testRun: #CartTest #test03 stamp: 'CJF 10/30/2023 19:24:36'!
+ERROR!
+!Cart methodsFor: 'category-name' stamp: 'CJF 10/30/2023 19:24:58' prior: 50650428 overrides: 16920235!
+initialize
+	shopList := OrderedCollection new.! !
+
+!testRun: #CartTest #test03 stamp: 'CJF 10/30/2023 19:25:01'!
+FAILURE!
+
+!testRun: #CartTest #test03 stamp: 'CJF 10/30/2023 19:25:01'!
+FAILURE!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CJF 10/30/2023 19:25:23' prior: 50650400!
+test03
+	| cart |
+	cart := Cart new. 
+	cart add: #aValidISBN.
+	cart add: #aValidISBN2.
+	
+	self deny: cart isEmpty.
+	self assert: cart listShopList equals: (OrderedCollection  with:{#aValidISBN, #aValidISBN2}).! !
+
+!testRun: #CartTest #test03 stamp: 'CJF 10/30/2023 19:25:27'!
+FAILURE!
+
+!testRun: #CartTest #test03 stamp: 'CJF 10/30/2023 19:25:27'!
+FAILURE!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CJF 10/30/2023 19:25:41' prior: 50650444!
+test03
+	| cart |
+	cart := Cart new. 
+	cart add: #aValidISBN.
+	cart add: #aValidISBN2.
+	
+	self deny: cart isEmpty.
+	self assert: cart listShopList equals: (OrderedCollection  with:#aValidISBN with: #aValidISBN2).! !
+
+!testRun: #CartTest #test03 stamp: 'CJF 10/30/2023 19:25:43'!
+PASSED!
+
+!testRun: #CartTest #test01CartStartsEmpty stamp: 'CJF 10/30/2023 19:25:43'!
+PASSED!
+
+!testRun: #CartTest #test02 stamp: 'CJF 10/30/2023 19:25:43'!
+PASSED!
+
+!testRun: #CartTest #test03 stamp: 'CJF 10/30/2023 19:25:43'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CJF 10/30/2023 19:27:35' prior: 50650459!
+test03
+	| cart |
+	cart := Cart new. 
+	cart add: #aValidISBN quantity: 1.
+	cart add: #aValidISBN2 quantity: 1.
+	
+	self deny: cart isEmpty.
+	self assert: cart listShopList equals: (OrderedCollection  with:#aValidISBN with: #aValidISBN2).! !
+
+!testRun: #CartTest #test03 stamp: 'CJF 10/30/2023 19:27:39'!
+ERROR!
+!Cart methodsFor: 'category-name' stamp: 'CJF 10/30/2023 19:27:46'!
+add: aRenameMe1 quantity: aRenameMe2 
+	self shouldBeImplemented.! !
+!Cart methodsFor: 'category-name' stamp: 'CJF 10/30/2023 19:28:41' prior: 50650490!
+add: anISBNBook quantity: aQuantity 
+	shopList add: anISBNBook  withOccurrences: aQuantity .! !
+
+!testRun: #CartTest #test03 stamp: 'CJF 10/30/2023 19:28:42'!
+PASSED!
+
+!testRun: #CartTest #test01CartStartsEmpty stamp: 'CJF 10/30/2023 19:28:42'!
+PASSED!
+
+!testRun: #CartTest #test02 stamp: 'CJF 10/30/2023 19:28:42'!
+PASSED!
+
+!testRun: #CartTest #test03 stamp: 'CJF 10/30/2023 19:28:42'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CJF 10/30/2023 19:29:10' prior: 50650386!
+test02
+	|cart|
+	cart := Cart new. 
+	cart add: #aValidISBN quantity: 1.
+	self deny: (cart isEmpty). ! !
+
+!testRun: #CartTest #test02 stamp: 'CJF 10/30/2023 19:29:11'!
+PASSED!
+
+!testRun: #CartTest #test01CartStartsEmpty stamp: 'CJF 10/30/2023 19:29:11'!
+PASSED!
+
+!testRun: #CartTest #test02 stamp: 'CJF 10/30/2023 19:29:11'!
+PASSED!
+
+!testRun: #CartTest #test03 stamp: 'CJF 10/30/2023 19:29:11'!
+PASSED!
+
+!methodRemoval: Cart #add: stamp: 'CJF 10/30/2023 19:29:18'!
+add: anISBNBook
+	shopList add: anISBNBook .!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CJF 10/30/2023 19:29:50'!
+test02AddOneBookToCart
+	|cart|
+	cart := Cart new. 
+	cart add: #aValidISBN quantity: 1.
+	self deny: (cart isEmpty). ! !
+
+!methodRemoval: CartTest #test02 stamp: 'CJF 10/30/2023 19:29:55'!
+test02
+	|cart|
+	cart := Cart new. 
+	cart add: #aValidISBN quantity: 1.
+	self deny: (cart isEmpty). !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CJF 10/30/2023 19:30:47'!
+test03ListBooksInShopList
+	| cart |
+	cart := Cart new. 
+	cart add: #aValidISBN quantity: 1.
+	cart add: #aValidISBN2 quantity: 1.
+	
+	self deny: cart isEmpty.
+	self assert: cart listShopList equals: (OrderedCollection  with:#aValidISBN with: #aValidISBN2).! !
+
+!methodRemoval: CartTest #test03 stamp: 'CJF 10/30/2023 19:30:58'!
+test03
+	| cart |
+	cart := Cart new. 
+	cart add: #aValidISBN quantity: 1.
+	cart add: #aValidISBN2 quantity: 1.
+	
+	self deny: cart isEmpty.
+	self assert: cart listShopList equals: (OrderedCollection  with:#aValidISBN with: #aValidISBN2).!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CJF 10/30/2023 19:33:00'!
+test04AddBooksWithQuantity
+	| cart |
+	cart := Cart new. 
+	cart add: #aValidISBN2 quantity: 2.
+	
+	self deny: cart isEmpty.
+	self assert: cart listShopList equals: (OrderedCollection  with:#aValidISBN2 with: #aValidISBN2).! !
+
+!testRun: #CartTest #test04AddBooksWithQuantity stamp: 'CJF 10/30/2023 19:33:04'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CJF 10/30/2023 19:40:50'!
+test05OnlyAddISBNFromThisEditorial
+	| cart |
+	cart := Cart withEditorialList: {#aValidISBN}. 
+	
+	
+	self should: [cart add: #anInvalidISBN quantity: 1 .] 
+		raise: Error withExceptionDo: [  :anError| 
+			self assert: anError messageText equals: Cart invalidISBNIdentifier.
+			self assert: cart isEmpty.].! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CJF 10/30/2023 19:41:25' prior: 50650576!
+test05OnlyAddISBNFromThisEditorial
+	| cart |
+	cart := Cart withEditorialList: {#aValidISBN}. 
+	
+	
+	self should: [cart add: #anInvalidISBN quantity: 1 .] 
+		raise: Error - MessageNotUnderstood  withExceptionDo: [  :anError| 
+			self assert: anError messageText equals: Cart invalidISBNIdentifier.
+			self assert: cart isEmpty.].! !
+
+!testRun: #CartTest #test05OnlyAddISBNFromThisEditorial stamp: 'CJF 10/30/2023 19:41:30'!
+ERROR!
+
+!testRun: #CartTest #test05OnlyAddISBNFromThisEditorial stamp: 'CJF 10/30/2023 19:41:30'!
+ERROR!
+!Cart class methodsFor: 'instance creation' stamp: 'CJF 10/30/2023 19:41:41'!
+withEditorialList: aRenameMe1 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeWithEditorialList: aRenameMe1 ! !
+!Cart class methodsFor: 'instance creation' stamp: 'CJF 10/30/2023 19:42:14' prior: 50650608!
+withEditorialList: anEditorialList 
+
+	^self new initializeWithEditorialList: anEditorialList ! !
+
+!testRun: #CartTest #test05OnlyAddISBNFromThisEditorial stamp: 'CJF 10/30/2023 19:42:16'!
+ERROR!
+
+!classDefinition: #Cart category: 'TusLibros' stamp: 'CJF 10/30/2023 19:42:24'!
+Object subclass: #Cart
+	instanceVariableNames: 'shopList editorialList'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cart methodsFor: 'category-name' stamp: 'CJF 10/30/2023 19:42:24'!
+initializeWithEditorialList: anEditorialList 
+	self shouldBeImplemented.
+	editorialList := anEditorialList.! !
+!Cart methodsFor: 'category-name' stamp: 'CJF 10/30/2023 19:42:39' prior: 50650633!
+initializeWithEditorialList: anEditorialList 
+	shopList := OrderedCollection new.
+	editorialList := anEditorialList.! !
+
+!testRun: #CartTest #test05OnlyAddISBNFromThisEditorial stamp: 'CJF 10/30/2023 19:42:40'!
+FAILURE!
+!Cart methodsFor: 'category-name' stamp: 'CJF 10/30/2023 19:44:35' prior: 50650495!
+add: anISBNBook quantity: aQuantity 
+	(editorialList includes: anISBNBook ) ifFalse: [ self error: Cart invalidISBNIdentifier ].
+	shopList add: anISBNBook  withOccurrences: aQuantity .! !
+
+!testRun: #CartTest #test05OnlyAddISBNFromThisEditorial stamp: 'CJF 10/30/2023 19:44:37'!
+ERROR!
+!Cart class methodsFor: 'instance creation' stamp: 'CJF 10/30/2023 19:44:45'!
+invalidISBNIdentifier
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeInvalidISBNIdentifier! !
+!Cart class methodsFor: 'instance creation' stamp: 'CJF 10/30/2023 19:45:36' prior: 50650662!
+invalidISBNIdentifier
+	^'Cannot add book with invalid ISBN identifier'! !
+
+!testRun: #CartTest #test05OnlyAddISBNFromThisEditorial stamp: 'CJF 10/30/2023 19:45:38'!
+PASSED!
+
+!testRun: #CartTest #test05OnlyAddISBNFromThisEditorial stamp: 'CJF 10/30/2023 19:45:42'!
+PASSED!
+
+!testRun: #CartTest #test01CartStartsEmpty stamp: 'CJF 10/30/2023 19:45:47'!
+PASSED!
+
+!testRun: #CartTest #test02AddOneBookToCart stamp: 'CJF 10/30/2023 19:45:47'!
+ERROR!
+
+!testRun: #CartTest #test03ListBooksInShopList stamp: 'CJF 10/30/2023 19:45:47'!
+ERROR!
+
+!testRun: #CartTest #test04AddBooksWithQuantity stamp: 'CJF 10/30/2023 19:45:47'!
+ERROR!
+
+!testRun: #CartTest #test05OnlyAddISBNFromThisEditorial stamp: 'CJF 10/30/2023 19:45:47'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CJF 10/30/2023 19:46:17' prior: 50650530!
+test02AddOneBookToCart
+	|cart|
+	cart := Cart withEditorialList: {#aValidISBN}. 
+	cart add: #aValidISBN quantity: 1.
+	self deny: (cart isEmpty). ! !
+
+!testRun: #CartTest #test01CartStartsEmpty stamp: 'CJF 10/30/2023 19:46:18'!
+PASSED!
+
+!testRun: #CartTest #test05OnlyAddISBNFromThisEditorial stamp: 'CJF 10/30/2023 19:46:18'!
+PASSED!
+
+!testRun: #CartTest #test02AddOneBookToCart stamp: 'CJF 10/30/2023 19:46:18'!
+PASSED!
+
+!testRun: #CartTest #test03ListBooksInShopList stamp: 'CJF 10/30/2023 19:46:18'!
+ERROR!
+
+!testRun: #CartTest #test04AddBooksWithQuantity stamp: 'CJF 10/30/2023 19:46:18'!
+ERROR!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CJF 10/30/2023 19:46:35' prior: 50650542!
+test03ListBooksInShopList
+	| cart |
+	cart := Cart withEditorialList: {#aValidISBN, #aValidISBN2}.
+	cart add: #aValidISBN quantity: 1.
+	cart add: #aValidISBN2 quantity: 1.
+	
+	self deny: cart isEmpty.
+	self assert: cart listShopList equals: (OrderedCollection  with:#aValidISBN with: #aValidISBN2).! !
+
+!testRun: #CartTest #test01CartStartsEmpty stamp: 'CJF 10/30/2023 19:46:36'!
+PASSED!
+
+!testRun: #CartTest #test05OnlyAddISBNFromThisEditorial stamp: 'CJF 10/30/2023 19:46:36'!
+PASSED!
+
+!testRun: #CartTest #test02AddOneBookToCart stamp: 'CJF 10/30/2023 19:46:36'!
+PASSED!
+
+!testRun: #CartTest #test03ListBooksInShopList stamp: 'CJF 10/30/2023 19:46:36'!
+ERROR!
+
+!testRun: #CartTest #test04AddBooksWithQuantity stamp: 'CJF 10/30/2023 19:46:36'!
+ERROR!
+
+!testRun: #CartTest #test01CartStartsEmpty stamp: 'CJF 10/30/2023 19:46:52'!
+PASSED!
+
+!testRun: #CartTest #test05OnlyAddISBNFromThisEditorial stamp: 'CJF 10/30/2023 19:46:52'!
+PASSED!
+
+!testRun: #CartTest #test02AddOneBookToCart stamp: 'CJF 10/30/2023 19:46:52'!
+PASSED!
+
+!testRun: #CartTest #test03ListBooksInShopList stamp: 'CJF 10/30/2023 19:46:52'!
+ERROR!
+
+!testRun: #CartTest #test04AddBooksWithQuantity stamp: 'CJF 10/30/2023 19:46:52'!
+ERROR!
+
+!testRun: #CartTest #test03ListBooksInShopList stamp: 'CJF 10/30/2023 19:47:01'!
+ERROR!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CJF 10/30/2023 19:48:17' prior: 50650719!
+test03ListBooksInShopList
+	| cart |
+	cart := Cart withEditorialList: (OrderedCollection with:#aValidISBN with: #aValidISBN2).
+	cart add: #aValidISBN quantity: 1.
+	cart add: #aValidISBN2 quantity: 1.
+	
+	self deny: cart isEmpty.
+	self assert: cart listShopList equals: (OrderedCollection  with:#aValidISBN with: #aValidISBN2).! !
+
+!testRun: #CartTest #test03ListBooksInShopList stamp: 'CJF 10/30/2023 19:48:18'!
+PASSED!
+
+!testRun: #CartTest #test01CartStartsEmpty stamp: 'CJF 10/30/2023 19:48:19'!
+PASSED!
+
+!testRun: #CartTest #test05OnlyAddISBNFromThisEditorial stamp: 'CJF 10/30/2023 19:48:19'!
+PASSED!
+
+!testRun: #CartTest #test02AddOneBookToCart stamp: 'CJF 10/30/2023 19:48:19'!
+PASSED!
+
+!testRun: #CartTest #test03ListBooksInShopList stamp: 'CJF 10/30/2023 19:48:19'!
+PASSED!
+
+!testRun: #CartTest #test04AddBooksWithQuantity stamp: 'CJF 10/30/2023 19:48:19'!
+ERROR!
+
+!testRun: #CartTest #test04AddBooksWithQuantity stamp: 'CJF 10/30/2023 19:48:19'!
+ERROR!
+
+!testRun: #CartTest #test01CartStartsEmpty stamp: 'CJF 10/30/2023 19:48:35'!
+PASSED!
+
+!testRun: #CartTest #test02AddOneBookToCart stamp: 'CJF 10/30/2023 19:48:35'!
+PASSED!
+
+!testRun: #CartTest #test03ListBooksInShopList stamp: 'CJF 10/30/2023 19:48:35'!
+PASSED!
+
+!testRun: #CartTest #test04AddBooksWithQuantity stamp: 'CJF 10/30/2023 19:48:35'!
+ERROR!
+
+!testRun: #CartTest #test05OnlyAddISBNFromThisEditorial stamp: 'CJF 10/30/2023 19:48:35'!
+PASSED!
+
+!testRun: #CartTest #test04AddBooksWithQuantity stamp: 'CJF 10/30/2023 19:48:35'!
+ERROR!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CJF 10/30/2023 19:49:22' prior: 50650563!
+test04AddBooksWithQuantity
+	| cart |
+	cart := Cart withEditorialList: (OrderedCollection with: #aValidISBN2).
+	cart add: #aValidISBN2 quantity: 2.
+	
+	self deny: cart isEmpty.
+	self assert: cart listShopList equals: (OrderedCollection  with:#aValidISBN2 with: #aValidISBN2).! !
+
+!testRun: #CartTest #test04AddBooksWithQuantity stamp: 'CJF 10/30/2023 19:49:23'!
+PASSED!
+
+!testRun: #CartTest #test01CartStartsEmpty stamp: 'CJF 10/30/2023 19:49:26'!
+PASSED!
+
+!testRun: #CartTest #test02AddOneBookToCart stamp: 'CJF 10/30/2023 19:49:26'!
+PASSED!
+
+!testRun: #CartTest #test03ListBooksInShopList stamp: 'CJF 10/30/2023 19:49:26'!
+PASSED!
+
+!testRun: #CartTest #test04AddBooksWithQuantity stamp: 'CJF 10/30/2023 19:49:26'!
+PASSED!
+
+!testRun: #CartTest #test05OnlyAddISBNFromThisEditorial stamp: 'CJF 10/30/2023 19:49:26'!
+PASSED!
+
+!methodRemoval: Cart #initialize stamp: 'CJF 10/30/2023 19:49:47'!
+initialize
+	shopList := OrderedCollection new.!
+!CartTest methodsFor: 'tests' stamp: 'CJF 10/30/2023 20:05:57'!
+test06QuantityMustBeGreaterThanZero
+	| cart |
+	cart := Cart withEditorialList: {#aValidISBN}. 
+	
+	
+	self should: [cart add: #aValidISBN quantity: -1 .] 
+		raise: Error - MessageNotUnderstood  withExceptionDo: [  :anError| 
+			self assert: anError messageText equals: Cart invalidQuantityValue.
+			self assert: cart isEmpty.].! !
+!Cart methodsFor: 'category-name' stamp: 'CJF 10/30/2023 20:06:54' prior: 50650650!
+add: anISBNBook quantity: aQuantity 
+	(editorialList includes: anISBNBook ) ifFalse: [ self error: Cart invalidISBNIdentifier ].
+	( aQuantity <1) ifFalse: [ self error: Cart invalidQuantityValue ].
+	shopList add: anISBNBook  withOccurrences: aQuantity .! !
+
+!testRun: #CartTest #test06QuantityMustBeGreaterThanZero stamp: 'CJF 10/30/2023 20:06:56'!
+FAILURE!
+
+!testRun: #CartTest #test06QuantityMustBeGreaterThanZero stamp: 'CJF 10/30/2023 20:07:03'!
+FAILURE!
+!Cart class methodsFor: 'instance creation' stamp: 'CJF 10/30/2023 20:07:45'!
+invalidQuantityValue
+	^'Invalid quantity value'! !
+
+!testRun: #CartTest #test06QuantityMustBeGreaterThanZero stamp: 'CJF 10/30/2023 20:07:50'!
+FAILURE!
+
+!testRun: #CartTest #test06QuantityMustBeGreaterThanZero stamp: 'CJF 10/30/2023 20:07:50'!
+FAILURE!
+!Cart methodsFor: 'category-name' stamp: 'CJF 10/30/2023 20:08:19' prior: 50650858!
+add: anISBNBook quantity: aQuantity 
+	(editorialList includes: anISBNBook ) ifFalse: [ ^self error: Cart invalidISBNIdentifier ].
+	( aQuantity <1) ifFalse: [ ^self error: Cart invalidQuantityValue ].
+	shopList add: anISBNBook  withOccurrences: aQuantity .! !
+
+!testRun: #CartTest #test01CartStartsEmpty stamp: 'CJF 10/30/2023 20:08:22'!
+ERROR!
+
+!testRun: #CartTest #test02AddOneBookToCart stamp: 'CJF 10/30/2023 20:08:22'!
+ERROR!
+
+!testRun: #CartTest #test03ListBooksInShopList stamp: 'CJF 10/30/2023 20:08:22'!
+ERROR!
+
+!testRun: #CartTest #test04AddBooksWithQuantity stamp: 'CJF 10/30/2023 20:08:22'!
+ERROR!
+
+!testRun: #CartTest #test05OnlyAddISBNFromThisEditorial stamp: 'CJF 10/30/2023 20:08:22'!
+PASSED!
+
+!testRun: #CartTest #test06QuantityMustBeGreaterThanZero stamp: 'CJF 10/30/2023 20:08:22'!
+FAILURE!
+!CartTest methodsFor: 'tests' stamp: 'CJF 10/30/2023 20:08:54' prior: 50650339!
+test01CartStartsEmpty
+	|cart|
+	cart := Cart withEditorialList: {}.
+	self assert: cart isEmpty.! !
+
+!testRun: #CartTest #test05OnlyAddISBNFromThisEditorial stamp: 'CJF 10/30/2023 20:08:57'!
+PASSED!
+
+!testRun: #CartTest #test01CartStartsEmpty stamp: 'CJF 10/30/2023 20:08:57'!
+PASSED!
+
+!testRun: #CartTest #test02AddOneBookToCart stamp: 'CJF 10/30/2023 20:08:57'!
+ERROR!
+
+!testRun: #CartTest #test03ListBooksInShopList stamp: 'CJF 10/30/2023 20:08:57'!
+ERROR!
+
+!testRun: #CartTest #test04AddBooksWithQuantity stamp: 'CJF 10/30/2023 20:08:57'!
+ERROR!
+
+!testRun: #CartTest #test06QuantityMustBeGreaterThanZero stamp: 'CJF 10/30/2023 20:08:57'!
+FAILURE!
+!CartTest methodsFor: 'tests' stamp: 'CJF 10/30/2023 20:09:19' prior: 50650697!
+test02AddOneBookToCart
+	|cart|
+	cart := Cart withEditorialList: (OrderedCollection with:#aValidISBN). 
+	cart add: #aValidISBN quantity: 1.
+	self deny: (cart isEmpty). ! !
+
+!testRun: #CartTest #test05OnlyAddISBNFromThisEditorial stamp: 'CJF 10/30/2023 20:09:24'!
+PASSED!
+
+!testRun: #CartTest #test01CartStartsEmpty stamp: 'CJF 10/30/2023 20:09:24'!
+PASSED!
+
+!testRun: #CartTest #test02AddOneBookToCart stamp: 'CJF 10/30/2023 20:09:24'!
+ERROR!
+
+!testRun: #CartTest #test03ListBooksInShopList stamp: 'CJF 10/30/2023 20:09:24'!
+ERROR!
+
+!testRun: #CartTest #test04AddBooksWithQuantity stamp: 'CJF 10/30/2023 20:09:24'!
+ERROR!
+
+!testRun: #CartTest #test06QuantityMustBeGreaterThanZero stamp: 'CJF 10/30/2023 20:09:24'!
+FAILURE!
+!Cart methodsFor: 'category-name' stamp: 'CJF 10/30/2023 20:09:46' prior: 50650886!
+add: anISBNBook quantity: aQuantity 
+	(editorialList includes: anISBNBook ) ifFalse: [ ^self error: Cart invalidISBNIdentifier ].
+	( aQuantity <1) ifTrue: [ ^self error: Cart invalidQuantityValue ].
+	shopList add: anISBNBook  withOccurrences: aQuantity .! !
+
+!testRun: #CartTest #test01CartStartsEmpty stamp: 'CJF 10/30/2023 20:09:47'!
+PASSED!
+
+!testRun: #CartTest #test02AddOneBookToCart stamp: 'CJF 10/30/2023 20:09:47'!
+PASSED!
+
+!testRun: #CartTest #test03ListBooksInShopList stamp: 'CJF 10/30/2023 20:09:47'!
+PASSED!
+
+!testRun: #CartTest #test04AddBooksWithQuantity stamp: 'CJF 10/30/2023 20:09:47'!
+PASSED!
+
+!testRun: #CartTest #test05OnlyAddISBNFromThisEditorial stamp: 'CJF 10/30/2023 20:09:47'!
+PASSED!
+
+!testRun: #CartTest #test06QuantityMustBeGreaterThanZero stamp: 'CJF 10/30/2023 20:09:47'!
+PASSED!
+
+!testRun: #CartTest #test02AddOneBookToCart stamp: 'CJF 10/30/2023 20:09:48'!
+PASSED!
+
+!testRun: #CartTest #test05OnlyAddISBNFromThisEditorial stamp: 'CJF 10/30/2023 20:09:50'!
+PASSED!
+
+!testRun: #CartTest #test01CartStartsEmpty stamp: 'CJF 10/30/2023 20:09:50'!
+PASSED!
+
+!testRun: #CartTest #test02AddOneBookToCart stamp: 'CJF 10/30/2023 20:09:50'!
+PASSED!
+
+!testRun: #CartTest #test03ListBooksInShopList stamp: 'CJF 10/30/2023 20:09:50'!
+PASSED!
+
+!testRun: #CartTest #test04AddBooksWithQuantity stamp: 'CJF 10/30/2023 20:09:50'!
+PASSED!
+
+!testRun: #CartTest #test06QuantityMustBeGreaterThanZero stamp: 'CJF 10/30/2023 20:09:50'!
+PASSED!
+!Cart methodsFor: 'category-name' stamp: 'CJF 10/30/2023 20:11:47' prior: 50650963!
+add: anISBNBook quantity: aQuantity 
+	self assertValidateISBN: anISBNBook andQuantity: aQuantity .
+	shopList add: anISBNBook  withOccurrences: aQuantity .! !
+
+!testRun: #CartTest #test01CartStartsEmpty stamp: 'CJF 10/30/2023 20:11:54'!
+PASSED!
+
+!testRun: #CartTest #test02AddOneBookToCart stamp: 'CJF 10/30/2023 20:11:54'!
+ERROR!
+
+!testRun: #CartTest #test03ListBooksInShopList stamp: 'CJF 10/30/2023 20:11:54'!
+ERROR!
+
+!testRun: #CartTest #test04AddBooksWithQuantity stamp: 'CJF 10/30/2023 20:11:54'!
+ERROR!
+
+!testRun: #CartTest #test05OnlyAddISBNFromThisEditorial stamp: 'CJF 10/30/2023 20:11:54'!
+ERROR!
+
+!testRun: #CartTest #test06QuantityMustBeGreaterThanZero stamp: 'CJF 10/30/2023 20:11:54'!
+ERROR!
+
+!testRun: #CartTest #test02AddOneBookToCart stamp: 'CJF 10/30/2023 20:11:57'!
+ERROR!
+!Cart methodsFor: 'category-name' stamp: 'CJF 10/30/2023 20:12:03'!
+assertValidateISBN: anISBNBook andQuantity: aQuantity 
+	self shouldBeImplemented.! !
+!Cart methodsFor: 'category-name' stamp: 'CJF 10/30/2023 20:12:16' prior: 50651038!
+assertValidateISBN: anISBNBook andQuantity: aQuantity 
+	(editorialList includes: anISBNBook ) ifFalse: [ ^self error: Cart invalidISBNIdentifier ].
+	( aQuantity <1) ifTrue: [ ^self error: Cart invalidQuantityValue ].! !
+
+!testRun: #CartTest #test02AddOneBookToCart stamp: 'CJF 10/30/2023 20:12:17'!
+PASSED!
+
+!testRun: #CartTest #test01CartStartsEmpty stamp: 'CJF 10/30/2023 20:12:18'!
+PASSED!
+
+!testRun: #CartTest #test02AddOneBookToCart stamp: 'CJF 10/30/2023 20:12:18'!
+PASSED!
+
+!testRun: #CartTest #test03ListBooksInShopList stamp: 'CJF 10/30/2023 20:12:18'!
+PASSED!
+
+!testRun: #CartTest #test04AddBooksWithQuantity stamp: 'CJF 10/30/2023 20:12:18'!
+PASSED!
+
+!testRun: #CartTest #test05OnlyAddISBNFromThisEditorial stamp: 'CJF 10/30/2023 20:12:18'!
+PASSED!
+
+!testRun: #CartTest #test06QuantityMustBeGreaterThanZero stamp: 'CJF 10/30/2023 20:12:18'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'CJF 10/30/2023 20:12:58'!
+editorialListWithTwoValidISBN
+
+	^ OrderedCollection with:#aValidISBN with: #aValidISBN2! !
+!CartTest methodsFor: 'tests' stamp: 'CJF 10/30/2023 20:12:58' prior: 50650763!
+test03ListBooksInShopList
+	| cart |
+	cart := Cart withEditorialList: (self editorialListWithTwoValidISBN).
+	cart add: #aValidISBN quantity: 1.
+	cart add: #aValidISBN2 quantity: 1.
+	
+	self deny: cart isEmpty.
+	self assert: cart listShopList equals: (OrderedCollection  with:#aValidISBN with: #aValidISBN2).! !
+!CartTest methodsFor: 'tests' stamp: 'CJF 10/30/2023 20:13:17' prior: 50651079!
+test03ListBooksInShopList
+	| cart |
+	cart := Cart withEditorialList: self editorialListWithTwoValidISBN.
+	cart add: #aValidISBN quantity: 1.
+	cart add: #aValidISBN2 quantity: 1.
+	
+	self deny: cart isEmpty.
+	self assert: cart listShopList equals: self editorialListWithTwoValidISBN .! !
+!CartTest methodsFor: 'tests' stamp: 'CJF 10/30/2023 20:13:58' prior: 50650813!
+test04AddBooksWithQuantity
+	| cart |
+	cart := Cart withEditorialList: (OrderedCollection with: #aValidISBN).
+	cart add: #aValidISBN quantity: 2.
+	
+	self deny: cart isEmpty.
+	self assert: cart listShopList equals: (OrderedCollection  with:#aValidISBN with: #aValidISBN).! !
+!CartTest methodsFor: 'tests' stamp: 'CJF 10/30/2023 20:14:06'!
+editorialListWithOneValidISBN
+
+	^ OrderedCollection with: #aValidISBN! !
+!CartTest methodsFor: 'tests' stamp: 'CJF 10/30/2023 20:14:06' prior: 50651104!
+test04AddBooksWithQuantity
+	| cart |
+	cart := Cart withEditorialList: (self editorialListWithOneValidISBN).
+	cart add: #aValidISBN quantity: 2.
+	
+	self deny: cart isEmpty.
+	self assert: cart listShopList equals: (OrderedCollection  with:#aValidISBN with: #aValidISBN).! !
+!CartTest methodsFor: 'tests' stamp: 'CJF 10/30/2023 20:14:21' prior: 50650937!
+test02AddOneBookToCart
+	|cart|
+	cart := Cart withEditorialList: self editorialListWithOneValidISBN . 
+	cart add: #aValidISBN quantity: 1.
+	self deny: (cart isEmpty). ! !
+
+!testRun: #CartTest #test01CartStartsEmpty stamp: 'CJF 10/30/2023 20:14:24'!
+PASSED!
+
+!testRun: #CartTest #test02AddOneBookToCart stamp: 'CJF 10/30/2023 20:14:24'!
+PASSED!
+
+!testRun: #CartTest #test03ListBooksInShopList stamp: 'CJF 10/30/2023 20:14:24'!
+PASSED!
+
+!testRun: #CartTest #test04AddBooksWithQuantity stamp: 'CJF 10/30/2023 20:14:24'!
+PASSED!
+
+!testRun: #CartTest #test05OnlyAddISBNFromThisEditorial stamp: 'CJF 10/30/2023 20:14:24'!
+PASSED!
+
+!testRun: #CartTest #test06QuantityMustBeGreaterThanZero stamp: 'CJF 10/30/2023 20:14:24'!
+PASSED!
+
+!testRun: #CartTest #test01CartStartsEmpty stamp: 'CJF 10/30/2023 20:15:02'!
+PASSED!
+
+!testRun: #CartTest #test02AddOneBookToCart stamp: 'CJF 10/30/2023 20:15:02'!
+PASSED!
+
+!testRun: #CartTest #test03ListBooksInShopList stamp: 'CJF 10/30/2023 20:15:02'!
+PASSED!
+
+!testRun: #CartTest #test04AddBooksWithQuantity stamp: 'CJF 10/30/2023 20:15:02'!
+PASSED!
+
+!testRun: #CartTest #test05OnlyAddISBNFromThisEditorial stamp: 'CJF 10/30/2023 20:15:02'!
+PASSED!
+
+!testRun: #CartTest #test06QuantityMustBeGreaterThanZero stamp: 'CJF 10/30/2023 20:15:02'!
+PASSED!
+
+----SNAPSHOT----(30 October 2023 20:15:11) CuisUniversity-5981.image priorSource: 10197292!
+!CartTest methodsFor: 'tests' stamp: 'CJF 10/30/2023 20:15:36'!
+aValidISBNOne
+
+	^ #aValidISBN! !
+!CartTest methodsFor: 'tests' stamp: 'CJF 10/30/2023 20:15:36' prior: 50650845!
+test06QuantityMustBeGreaterThanZero
+	| cart |
+	cart := Cart withEditorialList: {self aValidISBNOne}. 
+	
+	
+	self should: [cart add: #aValidISBN quantity: -1 .] 
+		raise: Error - MessageNotUnderstood  withExceptionDo: [  :anError| 
+			self assert: anError messageText equals: Cart invalidQuantityValue.
+			self assert: cart isEmpty.].! !
+!CartTest methodsFor: 'tests' stamp: 'CJF 10/30/2023 20:15:36' prior: 50651180!
+test06QuantityMustBeGreaterThanZero
+	| cart |
+	cart := Cart withEditorialList: {self aValidISBNOne}. 
+	
+	
+	self should: [cart add: self aValidISBNOne quantity: -1 .] 
+		raise: Error - MessageNotUnderstood  withExceptionDo: [  :anError| 
+			self assert: anError messageText equals: Cart invalidQuantityValue.
+			self assert: cart isEmpty.].! !
+!CartTest methodsFor: 'tests' stamp: 'CJF 10/30/2023 20:15:36' prior: 50650589!
+test05OnlyAddISBNFromThisEditorial
+	| cart |
+	cart := Cart withEditorialList: {self aValidISBNOne}. 
+	
+	
+	self should: [cart add: #anInvalidISBN quantity: 1 .] 
+		raise: Error - MessageNotUnderstood  withExceptionDo: [  :anError| 
+			self assert: anError messageText equals: Cart invalidISBNIdentifier.
+			self assert: cart isEmpty.].! !
+!CartTest methodsFor: 'tests' stamp: 'CJF 10/30/2023 20:15:36' prior: 50651120!
+test04AddBooksWithQuantity
+	| cart |
+	cart := Cart withEditorialList: (self editorialListWithOneValidISBN).
+	cart add: self aValidISBNOne quantity: 2.
+	
+	self deny: cart isEmpty.
+	self assert: cart listShopList equals: (OrderedCollection  with:#aValidISBN with: #aValidISBN).! !
+!CartTest methodsFor: 'tests' stamp: 'CJF 10/30/2023 20:15:36' prior: 50651221!
+test04AddBooksWithQuantity
+	| cart |
+	cart := Cart withEditorialList: (self editorialListWithOneValidISBN).
+	cart add: self aValidISBNOne quantity: 2.
+	
+	self deny: cart isEmpty.
+	self assert: cart listShopList equals: (OrderedCollection  with:self aValidISBNOne with: #aValidISBN).! !
+!CartTest methodsFor: 'tests' stamp: 'CJF 10/30/2023 20:15:36' prior: 50651233!
+test04AddBooksWithQuantity
+	| cart |
+	cart := Cart withEditorialList: (self editorialListWithOneValidISBN).
+	cart add: self aValidISBNOne quantity: 2.
+	
+	self deny: cart isEmpty.
+	self assert: cart listShopList equals: (OrderedCollection  with:self aValidISBNOne with: self aValidISBNOne).! !
+!CartTest methodsFor: 'tests' stamp: 'CJF 10/30/2023 20:15:36' prior: 50651073!
+editorialListWithTwoValidISBN
+
+	^ OrderedCollection with:self aValidISBNOne with: #aValidISBN2! !
+!CartTest methodsFor: 'tests' stamp: 'CJF 10/30/2023 20:15:36' prior: 50651131!
+test02AddOneBookToCart
+	|cart|
+	cart := Cart withEditorialList: self editorialListWithOneValidISBN . 
+	cart add: self aValidISBNOne quantity: 1.
+	self deny: (cart isEmpty). ! !
+!CartTest methodsFor: 'tests' stamp: 'CJF 10/30/2023 20:15:36' prior: 50651092!
+test03ListBooksInShopList
+	| cart |
+	cart := Cart withEditorialList: self editorialListWithTwoValidISBN.
+	cart add: self aValidISBNOne quantity: 1.
+	cart add: #aValidISBN2 quantity: 1.
+	
+	self deny: cart isEmpty.
+	self assert: cart listShopList equals: self editorialListWithTwoValidISBN .! !
+!CartTest methodsFor: 'tests' stamp: 'CJF 10/30/2023 20:15:36' prior: 50651115!
+editorialListWithOneValidISBN
+
+	^ OrderedCollection with: self aValidISBNOne! !
+!CartTest methodsFor: 'tests' stamp: 'CJF 10/30/2023 20:15:55'!
+aValidISBNTwo
+
+	^ #aValidISBN2! !
+!CartTest methodsFor: 'tests' stamp: 'CJF 10/30/2023 20:15:55' prior: 50651257!
+editorialListWithTwoValidISBN
+
+	^ OrderedCollection with:self aValidISBNOne with: self aValidISBNTwo! !
+!CartTest methodsFor: 'tests' stamp: 'CJF 10/30/2023 20:15:55' prior: 50651272!
+test03ListBooksInShopList
+	| cart |
+	cart := Cart withEditorialList: self editorialListWithTwoValidISBN.
+	cart add: self aValidISBNOne quantity: 1.
+	cart add: self aValidISBNTwo quantity: 1.
+	
+	self deny: cart isEmpty.
+	self assert: cart listShopList equals: self editorialListWithTwoValidISBN .! !
+
+!testRun: #CartTest #test01CartStartsEmpty stamp: 'CJF 10/30/2023 20:15:58'!
+PASSED!
+
+!testRun: #CartTest #test02AddOneBookToCart stamp: 'CJF 10/30/2023 20:15:58'!
+PASSED!
+
+!testRun: #CartTest #test03ListBooksInShopList stamp: 'CJF 10/30/2023 20:15:58'!
+PASSED!
+
+!testRun: #CartTest #test04AddBooksWithQuantity stamp: 'CJF 10/30/2023 20:15:58'!
+PASSED!
+
+!testRun: #CartTest #test05OnlyAddISBNFromThisEditorial stamp: 'CJF 10/30/2023 20:15:58'!
+PASSED!
+
+!testRun: #CartTest #test06QuantityMustBeGreaterThanZero stamp: 'CJF 10/30/2023 20:15:58'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'CJF 10/30/2023 20:16:31'!
+anInvalidISBN
+
+	^ #anInvalidISBN! !
+!CartTest methodsFor: 'tests' stamp: 'CJF 10/30/2023 20:16:31' prior: 50651207!
+test05OnlyAddISBNFromThisEditorial
+	| cart |
+	cart := Cart withEditorialList: {self aValidISBNOne}. 
+	
+	
+	self should: [cart add: self anInvalidISBN quantity: 1 .] 
+		raise: Error - MessageNotUnderstood  withExceptionDo: [  :anError| 
+			self assert: anError messageText equals: Cart invalidISBNIdentifier.
+			self assert: cart isEmpty.].! !
+
+!testRun: #CartTest #test01CartStartsEmpty stamp: 'CJF 10/30/2023 20:16:40'!
+PASSED!
+
+!testRun: #CartTest #test02AddOneBookToCart stamp: 'CJF 10/30/2023 20:16:40'!
+PASSED!
+
+!testRun: #CartTest #test03ListBooksInShopList stamp: 'CJF 10/30/2023 20:16:40'!
+PASSED!
+
+!testRun: #CartTest #test04AddBooksWithQuantity stamp: 'CJF 10/30/2023 20:16:40'!
+PASSED!
+
+!testRun: #CartTest #test05OnlyAddISBNFromThisEditorial stamp: 'CJF 10/30/2023 20:16:40'!
+PASSED!
+
+!testRun: #CartTest #test06QuantityMustBeGreaterThanZero stamp: 'CJF 10/30/2023 20:16:40'!
+PASSED!
+
+----SNAPSHOT----(30 October 2023 20:18:55) CuisUniversity-5981.image priorSource: 10224731!
