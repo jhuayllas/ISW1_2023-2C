@@ -153,14 +153,63 @@ test14CashierRejectsCreditCardExpired
 		raise: Error - MessageNotUnderstood withExceptionDo: [:anError | 
 			self assert: anError messageText equals: Cashier creditCardExpired].! !
 
-!EditorialStoreTest methodsFor: 'tests' stamp: 'CJF 11/3/2023 15:31:17'!
-test15paymentCannotAppliedWithStolenCreditCard
-! !
+!EditorialStoreTest methodsFor: 'tests' stamp: 'camila 11/6/2023 01:42:11'!
+test15paymentCannotAppliedWithCreditCardWIthNoCredit
+
+	| merchantProcessor cart cashier creditCard |
+	cart := 	self createCart.
+	cart add: self itemSellByTheStore withOcurrences: 2.
+	
+	creditCard := CreditCard for: self validCustomerName withNumberCC: self aValidNumberOfCreditCard  withExpirationDate: self aValidExpirationDate.
+	cashier := Cashier for: cart with: creditCard.
+	
+	merchantProcessor := MerchantProcessor new.
+	
+	self should: [ cashier checkout: merchantProcessor ] 
+		raise: Error - MessageNotUnderstood withExceptionDo: [:anError | 
+			self assert: anError messageText equals: MerchantProcessor creditCardHasNoCredit].
+		! !
+
+!EditorialStoreTest methodsFor: 'tests' stamp: 'camila 11/6/2023 01:43:19'!
+test16paymentCannotAppliedWithStolenCreditCard
+
+	| merchantProcessor cart cashier creditCard |
+	cart := 	self createCart.
+	cart add: self itemSellByTheStore withOcurrences: 2.
+	
+	creditCard := CreditCard for: self validCustomerName withNumberCC: self aValidNumberOfCreditCard  withExpirationDate: self aValidExpirationDate.
+	creditCard transferAmount: 100.
+	creditCard steal.
+	
+	cashier := Cashier for: cart with: creditCard.
+	
+	merchantProcessor := MerchantProcessor new.
+	
+	self should: [ cashier checkout: merchantProcessor ] 
+		raise: Error - MessageNotUnderstood withExceptionDo: [:anError | 
+			self assert: anError messageText equals: MerchantProcessor creditCardIsStolen].
+	! !
+
+!EditorialStoreTest methodsFor: 'tests' stamp: 'camila 11/6/2023 01:42:48'!
+test17ValidCreditCardValidCartDoesCheckout
+| merchantProcessor cart cashier creditCard checkoutResult |
+	cart := 	self createCart.
+	cart add: self itemSellByTheStore withOcurrences: 2.
+	
+	creditCard := CreditCard for: self validCustomerName withNumberCC: self aValidNumberOfCreditCard  withExpirationDate: self aValidExpirationDate.
+	creditCard transferAmount: 100.
+	
+	cashier := Cashier for: cart with: creditCard.
+	
+	merchantProcessor := MerchantProcessor new.
+	
+	checkoutResult := cashier checkout: merchantProcessor.
+	self assert: (checkoutResult = '0|OK').! !
 
 
-!EditorialStoreTest methodsFor: 'support' stamp: 'CJF 11/2/2023 21:51:31'!
+!EditorialStoreTest methodsFor: 'support' stamp: 'camila 11/6/2023 01:18:10'!
 aValidExpirationDate
-	^Date today month next.! !
+	^December of: 2024.! !
 
 !EditorialStoreTest methodsFor: 'support' stamp: 'CJF 11/2/2023 21:51:07'!
 aValidNumberOfCreditCard
@@ -334,6 +383,11 @@ checkOutFor: aCustomerName with: aCreditCardNumber withExpirtacionDate: anExpira
 	
 	aCreditCardNumber do: [ :aChar |  (aChar isLetter or: aChar isSeparator ) ifTrue: [ ^self error: Cashier invalidNumberCreditCard ] ].! !
 
+
+!Cashier methodsFor: 'as yet unclassified' stamp: 'camila 11/6/2023 01:38:21'!
+checkout: merchantProcessor 
+	^merchantProcessor debit: cart calculateOrderAmount from: creditCard! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'Cashier class' category: 'TusLibros'!
@@ -374,29 +428,49 @@ invalidNumberCreditCard
 	^'Invalid number of credit card'! !
 
 
-!Cashier class methodsFor: 'as yet unclassified' stamp: 'CJF 11/3/2023 14:58:13'!
+!Cashier class methodsFor: 'as yet unclassified' stamp: 'camila 11/6/2023 01:18:32'!
 actualMonthAndYear
-	^November of: 2023! !
+	^November of: 2023
+! !
 
 
 !classDefinition: #CreditCard category: 'TusLibros'!
 Object subclass: #CreditCard
-	instanceVariableNames: 'customerName creditCardNumber expirationDate'
+	instanceVariableNames: 'customerName creditCardNumber expirationDate creditCardAmount customer amount isStolen'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!CreditCard methodsFor: 'initialization' stamp: 'CJF 11/2/2023 21:52:25'!
+!CreditCard methodsFor: 'initialization' stamp: 'camila 11/6/2023 01:41:30'!
 initializeFor: aCustomerName withNumberCC: aCreditCardNumber withExpirationDate: anExpirationDate 
 	
 	customerName := aCustomerName.
 	creditCardNumber := aCreditCardNumber.
-	expirationDate := anExpirationDate.! !
+	expirationDate := anExpirationDate.
+	amount := 0.
+	isStolen := false.! !
 
 
 !CreditCard methodsFor: 'queries' stamp: 'CJF 11/3/2023 14:58:39'!
 isExpired: monthAndYear 
 	^expirationDate < monthAndYear! !
+
+
+!CreditCard methodsFor: 'as yet unclassified' stamp: 'camila 11/6/2023 01:30:41'!
+hasCredit
+	^ amount > 0.! !
+
+!CreditCard methodsFor: 'as yet unclassified' stamp: 'camila 11/6/2023 01:41:15'!
+isStolen
+	^isStolen ! !
+
+!CreditCard methodsFor: 'as yet unclassified' stamp: 'camila 11/6/2023 01:40:40'!
+steal
+	isStolen := true.! !
+
+!CreditCard methodsFor: 'as yet unclassified' stamp: 'camila 11/6/2023 01:39:46'!
+transferAmount: anAmount 
+	amount := anAmount! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -426,3 +500,31 @@ for: aCustomerName withNumberCC: aCreditCardNumber withExpirationDate: anExpirat
 										[ ^self error: CreditCard invalidDigitCreditCardID]
 						].
 	^self new initializeFor: aCustomerName withNumberCC: aCreditCardNumber withExpirationDate: anExpirationDate ! !
+
+
+!classDefinition: #MerchantProcessor category: 'TusLibros'!
+Object subclass: #MerchantProcessor
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!MerchantProcessor methodsFor: 'as yet unclassified' stamp: 'camila 11/6/2023 01:37:03'!
+debit: anAmount from: aCreditCard 
+ 	(aCreditCard hasCredit) ifFalse: [^self error:  MerchantProcessor creditCardHasNoCredit.].
+	(aCreditCard isStolen) ifTrue: [^self error:  MerchantProcessor creditCardIsStolen.].
+	^'0|OK'.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'MerchantProcessor class' category: 'TusLibros'!
+MerchantProcessor class
+	instanceVariableNames: ''!
+
+!MerchantProcessor class methodsFor: 'as yet unclassified' stamp: 'camila 11/6/2023 01:37:22'!
+creditCardHasNoCredit
+	^'1|Credit card has no credit error'! !
+
+!MerchantProcessor class methodsFor: 'as yet unclassified' stamp: 'camila 11/6/2023 01:37:30'!
+creditCardIsStolen
+	^'1|Credit card is stolen'! !

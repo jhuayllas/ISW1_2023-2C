@@ -3910,3 +3910,1121 @@ test15paymentCannotAppliedWithStolenCreditCard
 ! !
 
 ----QUIT----(3 November 2023 15:31:29) CuisUniversity-5981.image priorSource: 10371874!
+
+----STARTUP---- (5 November 2023 22:17:23) as /home/camila/Desktop/CUIS TUS LIBROS/linux64/CuisUniversity-5981.image!
+
+
+!testRun: #EditorialStoreTest #test01NewCartsAreCreatedEmpty stamp: 'camila 11/6/2023 01:04:23'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'camila 11/6/2023 01:04:23'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'camila 11/6/2023 01:04:23'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'camila 11/6/2023 01:04:23'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'camila 11/6/2023 01:04:23'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test06CartRemembersAddedItems stamp: 'camila 11/6/2023 01:04:23'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test07CartDoesNotHoldNotAddedItems stamp: 'camila 11/6/2023 01:04:23'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test08CartRemembersTheNumberOfAddedItems stamp: 'camila 11/6/2023 01:04:23'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test09CartCalculatesTotalCartAmount stamp: 'camila 11/6/2023 01:04:23'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test10EmptyCartCannotCheckOut stamp: 'camila 11/6/2023 01:04:23'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test11CustomerNameShouldNotBeEmpty stamp: 'camila 11/6/2023 01:04:23'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test12IdCardContainsSixteenDigits stamp: 'camila 11/6/2023 01:04:23'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test13IdCardCannotContainLettersAndSpaces stamp: 'camila 11/6/2023 01:04:23'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test14CashierRejectsCreditCardExpired stamp: 'camila 11/6/2023 01:04:23'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test15paymentCannotAppliedWithStolenCreditCard stamp: 'camila 11/6/2023 01:04:23'!
+PASSED!
+
+!classRemoval: #CreditCard stamp: 'camila 11/6/2023 01:05:36'!
+Object subclass: #CreditCard
+	instanceVariableNames: 'customerName creditCardNumber expirationDate'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #Cashier stamp: 'camila 11/6/2023 01:05:36'!
+Object subclass: #Cashier
+	instanceVariableNames: 'cart catalogPrice cart_CHANGE_ME creditCard_CHANGE_ME creditCard'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #Cart stamp: 'camila 11/6/2023 01:05:37'!
+Object subclass: #Cart
+	instanceVariableNames: 'catalog items'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #EditorialStoreTest stamp: 'camila 11/6/2023 01:05:37'!
+TestCase subclass: #EditorialStoreTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+----End fileIn of /home/camila/Desktop/CUIS TUS LIBROS/linux64/TusLibros.st----!
+!EditorialStoreTest methodsFor: 'tests' stamp: 'camila 11/6/2023 01:06:33'!
+test16paymentCannotAppliedWithCreditCardWIthNoCredit
+! !
+
+!classDefinition: #MerchantProcessor category: 'TusLibros' stamp: 'camila 11/6/2023 01:09:31'!
+Object subclass: #MerchantProcessor
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!EditorialStoreTest methodsFor: 'tests' stamp: 'camila 11/6/2023 01:09:24' prior: 50660388!
+test16paymentCannotAppliedWithCreditCardWIthNoCredit
+
+	| merchantProcessor |
+	merchantProcessor := MerchantProcessor new.
+	! !
+!EditorialStoreTest methodsFor: 'tests' stamp: 'camila 11/6/2023 01:12:20' prior: 50660400!
+test16paymentCannotAppliedWithCreditCardWIthNoCredit
+
+	| merchantProcessor cart cashier creditCard |
+	cart := 	self createCart.
+	cart add: self itemSellByTheStore withOcurrences: 2.
+	
+	creditCard := CreditCard for: self validCustomerName withNumberCC: self aValidNumberOfCreditCard  withExpirationDate: self aValidExpirationDate .
+	cashier := Cashier for: cart with: creditCard.
+	
+	merchantProcessor := MerchantProcessor new.
+	
+	self should: [ cashier checkout: merchantProcessor ] 
+		raise: Error - MessageNotUnderstood withExceptionDo: [:anError | 
+			self assert: anError messageText equals: MerchantProcessor creditCardHasNoCredit].
+		! !
+
+!testRun: #EditorialStoreTest #test16paymentCannotAppliedWithCreditCardWIthNoCredit stamp: 'camila 11/6/2023 01:12:30'!
+ERROR!
+
+!testRun: #EditorialStoreTest #test14CashierRejectsCreditCardExpired stamp: 'camila 11/6/2023 01:12:54'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test16paymentCannotAppliedWithCreditCardWIthNoCredit stamp: 'camila 11/6/2023 01:13:07'!
+ERROR!
+
+!testRun: #EditorialStoreTest #test16paymentCannotAppliedWithCreditCardWIthNoCredit stamp: 'camila 11/6/2023 01:13:07'!
+ERROR!
+
+!testRun: #EditorialStoreTest #test16paymentCannotAppliedWithCreditCardWIthNoCredit stamp: 'camila 11/6/2023 01:15:19'!
+ERROR!
+!Cashier class methodsFor: 'as yet unclassified' stamp: 'camila 11/6/2023 01:16:42' prior: 50660311!
+actualMonthAndYear
+	"^November of: 2023"
+	^Date today month.! !
+
+!testRun: #EditorialStoreTest #test01NewCartsAreCreatedEmpty stamp: 'camila 11/6/2023 01:16:51'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'camila 11/6/2023 01:16:51'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'camila 11/6/2023 01:16:51'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'camila 11/6/2023 01:16:51'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'camila 11/6/2023 01:16:51'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test06CartRemembersAddedItems stamp: 'camila 11/6/2023 01:16:51'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test07CartDoesNotHoldNotAddedItems stamp: 'camila 11/6/2023 01:16:51'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test08CartRemembersTheNumberOfAddedItems stamp: 'camila 11/6/2023 01:16:51'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test09CartCalculatesTotalCartAmount stamp: 'camila 11/6/2023 01:16:51'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test10EmptyCartCannotCheckOut stamp: 'camila 11/6/2023 01:16:51'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test11CustomerNameShouldNotBeEmpty stamp: 'camila 11/6/2023 01:16:51'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test12IdCardContainsSixteenDigits stamp: 'camila 11/6/2023 01:16:51'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test13IdCardCannotContainLettersAndSpaces stamp: 'camila 11/6/2023 01:16:51'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test14CashierRejectsCreditCardExpired stamp: 'camila 11/6/2023 01:16:51'!
+ERROR!
+
+!testRun: #EditorialStoreTest #test15paymentCannotAppliedWithStolenCreditCard stamp: 'camila 11/6/2023 01:16:51'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test16paymentCannotAppliedWithCreditCardWIthNoCredit stamp: 'camila 11/6/2023 01:16:51'!
+ERROR!
+
+!testRun: #EditorialStoreTest #test14CashierRejectsCreditCardExpired stamp: 'camila 11/6/2023 01:17:02'!
+ERROR!
+!EditorialStoreTest methodsFor: 'support' stamp: 'camila 11/6/2023 01:18:10' prior: 50660074!
+aValidExpirationDate
+	^December of: 2024.! !
+
+!testRun: #EditorialStoreTest #test01NewCartsAreCreatedEmpty stamp: 'camila 11/6/2023 01:18:13'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'camila 11/6/2023 01:18:13'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'camila 11/6/2023 01:18:13'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'camila 11/6/2023 01:18:13'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'camila 11/6/2023 01:18:13'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test06CartRemembersAddedItems stamp: 'camila 11/6/2023 01:18:13'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test07CartDoesNotHoldNotAddedItems stamp: 'camila 11/6/2023 01:18:13'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test08CartRemembersTheNumberOfAddedItems stamp: 'camila 11/6/2023 01:18:13'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test09CartCalculatesTotalCartAmount stamp: 'camila 11/6/2023 01:18:13'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test10EmptyCartCannotCheckOut stamp: 'camila 11/6/2023 01:18:13'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test11CustomerNameShouldNotBeEmpty stamp: 'camila 11/6/2023 01:18:13'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test12IdCardContainsSixteenDigits stamp: 'camila 11/6/2023 01:18:13'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test13IdCardCannotContainLettersAndSpaces stamp: 'camila 11/6/2023 01:18:13'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test14CashierRejectsCreditCardExpired stamp: 'camila 11/6/2023 01:18:13'!
+ERROR!
+
+!testRun: #EditorialStoreTest #test15paymentCannotAppliedWithStolenCreditCard stamp: 'camila 11/6/2023 01:18:13'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test16paymentCannotAppliedWithCreditCardWIthNoCredit stamp: 'camila 11/6/2023 01:18:13'!
+ERROR!
+!Cashier class methodsFor: 'as yet unclassified' stamp: 'camila 11/6/2023 01:18:32' prior: 50660450!
+actualMonthAndYear
+	^November of: 2023
+! !
+
+	^November of: 2023!
+
+!testRun: #EditorialStoreTest #test01NewCartsAreCreatedEmpty stamp: 'camila 11/6/2023 01:18:36'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'camila 11/6/2023 01:18:36'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'camila 11/6/2023 01:18:36'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'camila 11/6/2023 01:18:36'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'camila 11/6/2023 01:18:36'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test06CartRemembersAddedItems stamp: 'camila 11/6/2023 01:18:36'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test07CartDoesNotHoldNotAddedItems stamp: 'camila 11/6/2023 01:18:36'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test08CartRemembersTheNumberOfAddedItems stamp: 'camila 11/6/2023 01:18:36'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test09CartCalculatesTotalCartAmount stamp: 'camila 11/6/2023 01:18:36'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test10EmptyCartCannotCheckOut stamp: 'camila 11/6/2023 01:18:36'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test11CustomerNameShouldNotBeEmpty stamp: 'camila 11/6/2023 01:18:36'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test12IdCardContainsSixteenDigits stamp: 'camila 11/6/2023 01:18:36'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test13IdCardCannotContainLettersAndSpaces stamp: 'camila 11/6/2023 01:18:36'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test14CashierRejectsCreditCardExpired stamp: 'camila 11/6/2023 01:18:36'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test15paymentCannotAppliedWithStolenCreditCard stamp: 'camila 11/6/2023 01:18:36'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test16paymentCannotAppliedWithCreditCardWIthNoCredit stamp: 'camila 11/6/2023 01:18:36'!
+ERROR!
+
+!testRun: #EditorialStoreTest #test16paymentCannotAppliedWithCreditCardWIthNoCredit stamp: 'camila 11/6/2023 01:18:36'!
+ERROR!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'camila 11/6/2023 01:18:43'!
+checkout: merchantProcessor 
+	self shouldBeImplemented.! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'camila 11/6/2023 01:20:46' prior: 50660647!
+checkout: merchantProcessor 
+	merchantProcessor debit: self calculateOrderAmount from: creditCard! !
+
+!testRun: #EditorialStoreTest #test16paymentCannotAppliedWithCreditCardWIthNoCredit stamp: 'camila 11/6/2023 01:20:49'!
+ERROR!
+
+!testRun: #EditorialStoreTest #test16paymentCannotAppliedWithCreditCardWIthNoCredit stamp: 'camila 11/6/2023 01:21:04'!
+ERROR!
+
+!testRun: #EditorialStoreTest #test16paymentCannotAppliedWithCreditCardWIthNoCredit stamp: 'camila 11/6/2023 01:21:39'!
+ERROR!
+
+!testRun: #EditorialStoreTest #test16paymentCannotAppliedWithCreditCardWIthNoCredit stamp: 'camila 11/6/2023 01:21:39'!
+ERROR!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'camila 11/6/2023 01:21:47' prior: 50660652!
+checkout: merchantProcessor 
+	merchantProcessor debit: cart calculateOrderAmount from: creditCard! !
+
+!testRun: #EditorialStoreTest #test16paymentCannotAppliedWithCreditCardWIthNoCredit stamp: 'camila 11/6/2023 01:21:48'!
+ERROR!
+!MerchantProcessor methodsFor: 'as yet unclassified' stamp: 'camila 11/6/2023 01:21:54'!
+debit: aRenameMe1 from: aCreditCard 
+	self shouldBeImplemented.! !
+!MerchantProcessor methodsFor: 'as yet unclassified' stamp: 'camila 11/6/2023 01:23:13' prior: 50660685!
+debit: anAmount from: aCreditCard 
+ 	^self error:  MerchantProcessor creditCardHasNoCredit.! !
+
+!testRun: #EditorialStoreTest #test16paymentCannotAppliedWithCreditCardWIthNoCredit stamp: 'camila 11/6/2023 01:23:15'!
+ERROR!
+!MerchantProcessor class methodsFor: 'as yet unclassified' stamp: 'camila 11/6/2023 01:23:23'!
+creditCardHasNoCredit
+	self shouldBeImplemented.! !
+!MerchantProcessor class methodsFor: 'as yet unclassified' stamp: 'camila 11/6/2023 01:23:35' prior: 50660701!
+creditCardHasNoCredit
+	^'Credit card has no credit error'! !
+
+!testRun: #EditorialStoreTest #test16paymentCannotAppliedWithCreditCardWIthNoCredit stamp: 'camila 11/6/2023 01:23:36'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test16paymentCannotAppliedWithCreditCardWIthNoCredit stamp: 'camila 11/6/2023 01:23:38'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test01NewCartsAreCreatedEmpty stamp: 'camila 11/6/2023 01:23:38'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'camila 11/6/2023 01:23:38'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'camila 11/6/2023 01:23:38'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'camila 11/6/2023 01:23:38'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'camila 11/6/2023 01:23:38'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test06CartRemembersAddedItems stamp: 'camila 11/6/2023 01:23:38'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test07CartDoesNotHoldNotAddedItems stamp: 'camila 11/6/2023 01:23:38'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test08CartRemembersTheNumberOfAddedItems stamp: 'camila 11/6/2023 01:23:38'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test09CartCalculatesTotalCartAmount stamp: 'camila 11/6/2023 01:23:38'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test10EmptyCartCannotCheckOut stamp: 'camila 11/6/2023 01:23:38'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test11CustomerNameShouldNotBeEmpty stamp: 'camila 11/6/2023 01:23:38'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test12IdCardContainsSixteenDigits stamp: 'camila 11/6/2023 01:23:38'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test13IdCardCannotContainLettersAndSpaces stamp: 'camila 11/6/2023 01:23:38'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test14CashierRejectsCreditCardExpired stamp: 'camila 11/6/2023 01:23:38'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test15paymentCannotAppliedWithStolenCreditCard stamp: 'camila 11/6/2023 01:23:38'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test16paymentCannotAppliedWithCreditCardWIthNoCredit stamp: 'camila 11/6/2023 01:23:38'!
+PASSED!
+!EditorialStoreTest methodsFor: 'tests' stamp: 'camila 11/6/2023 01:23:59'!
+test15paymentCannotAppliedWithCreditCardWIthNoCredit
+
+	| merchantProcessor cart cashier creditCard |
+	cart := 	self createCart.
+	cart add: self itemSellByTheStore withOcurrences: 2.
+	
+	creditCard := CreditCard for: self validCustomerName withNumberCC: self aValidNumberOfCreditCard  withExpirationDate: self aValidExpirationDate .
+	cashier := Cashier for: cart with: creditCard.
+	
+	merchantProcessor := MerchantProcessor new.
+	
+	self should: [ cashier checkout: merchantProcessor ] 
+		raise: Error - MessageNotUnderstood withExceptionDo: [:anError | 
+			self assert: anError messageText equals: MerchantProcessor creditCardHasNoCredit].
+		! !
+
+!methodRemoval: EditorialStoreTest #test16paymentCannotAppliedWithCreditCardWIthNoCredit stamp: 'camila 11/6/2023 01:23:59'!
+test16paymentCannotAppliedWithCreditCardWIthNoCredit
+
+	| merchantProcessor cart cashier creditCard |
+	cart := 	self createCart.
+	cart add: self itemSellByTheStore withOcurrences: 2.
+	
+	creditCard := CreditCard for: self validCustomerName withNumberCC: self aValidNumberOfCreditCard  withExpirationDate: self aValidExpirationDate .
+	cashier := Cashier for: cart with: creditCard.
+	
+	merchantProcessor := MerchantProcessor new.
+	
+	self should: [ cashier checkout: merchantProcessor ] 
+		raise: Error - MessageNotUnderstood withExceptionDo: [:anError | 
+			self assert: anError messageText equals: MerchantProcessor creditCardHasNoCredit].
+		!
+!EditorialStoreTest methodsFor: 'tests' stamp: 'camila 11/6/2023 01:24:07'!
+test16paymentCannotAppliedWithStolenCreditCard
+! !
+
+!methodRemoval: EditorialStoreTest #test15paymentCannotAppliedWithStolenCreditCard stamp: 'camila 11/6/2023 01:24:07'!
+test15paymentCannotAppliedWithStolenCreditCard
+!
+!EditorialStoreTest methodsFor: 'tests' stamp: 'camila 11/6/2023 01:24:36' prior: 50660825!
+test16paymentCannotAppliedWithStolenCreditCard
+| merchantProcessor cart cashier creditCard |
+	cart := 	self createCart.
+	cart add: self itemSellByTheStore withOcurrences: 2.
+	
+	creditCard := CreditCard for: self validCustomerName withNumberCC: self aValidNumberOfCreditCard  withExpirationDate: self aValidExpirationDate .
+	cashier := Cashier for: cart with: creditCard.
+	
+	merchantProcessor := MerchantProcessor new.
+	
+	self should: [ cashier checkout: merchantProcessor ] 
+		raise: Error - MessageNotUnderstood withExceptionDo: [:anError | 
+			self assert: anError messageText equals: MerchantProcessor creditCardIsStolen].
+	! !
+
+!testRun: #EditorialStoreTest #test16paymentCannotAppliedWithStolenCreditCard stamp: 'camila 11/6/2023 01:24:38'!
+ERROR!
+
+!testRun: #EditorialStoreTest #test16paymentCannotAppliedWithStolenCreditCard stamp: 'camila 11/6/2023 01:24:55'!
+ERROR!
+
+!testRun: #EditorialStoreTest #test16paymentCannotAppliedWithStolenCreditCard stamp: 'camila 11/6/2023 01:24:55'!
+ERROR!
+
+!testRun: #EditorialStoreTest #test16paymentCannotAppliedWithStolenCreditCard stamp: 'camila 11/6/2023 01:25:36'!
+ERROR!
+!MerchantProcessor methodsFor: 'as yet unclassified' stamp: 'camila 11/6/2023 01:26:40' prior: 50660691!
+debit: anAmount from: aCreditCard 
+ 	(aCreditCard hasCredit) ifFalse: [^self error:  MerchantProcessor creditCardHasNoCredit.]! !
+!MerchantProcessor methodsFor: 'as yet unclassified' stamp: 'camila 11/6/2023 01:27:10' prior: 50660874!
+debit: anAmount from: aCreditCard 
+ 	(aCreditCard hasCredit) ifFalse: [^self error:  MerchantProcessor creditCardHasNoCredit.]
+	^self error:  MerchantProcessor creditCardIsStolen.! !
+
+!testRun: #EditorialStoreTest #test15paymentCannotAppliedWithCreditCardWIthNoCredit stamp: 'camila 11/6/2023 01:27:36'!
+ERROR!
+
+!testRun: #EditorialStoreTest #test15paymentCannotAppliedWithCreditCardWIthNoCredit stamp: 'camila 11/6/2023 01:27:36'!
+ERROR!
+!CreditCard methodsFor: 'as yet unclassified' stamp: 'camila 11/6/2023 01:27:40'!
+hasCredit
+	self shouldBeImplemented.! !
+
+!classDefinition: #CreditCard category: 'TusLibros' stamp: 'camila 11/6/2023 01:28:01'!
+Object subclass: #CreditCard
+	instanceVariableNames: 'customerName creditCardNumber expirationDate creditCardAmount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CreditCard methodsFor: 'as yet unclassified' stamp: 'camila 11/6/2023 01:27:59' prior: 50660899!
+hasCredit
+	^ creditCardAmount > 0.! !
+
+!testRun: #EditorialStoreTest #test15paymentCannotAppliedWithCreditCardWIthNoCredit stamp: 'camila 11/6/2023 01:28:09'!
+ERROR!
+
+!testRun: #EditorialStoreTest #test15paymentCannotAppliedWithCreditCardWIthNoCredit stamp: 'camila 11/6/2023 01:28:15'!
+ERROR!
+!EditorialStoreTest methodsFor: 'tests' stamp: 'camila 11/6/2023 01:29:05' prior: 50660778!
+test15paymentCannotAppliedWithCreditCardWIthNoCredit
+
+	| merchantProcessor cart cashier creditCard |
+	cart := 	self createCart.
+	cart add: self itemSellByTheStore withOcurrences: 2.
+	
+	creditCard := CreditCard for: self validCustomerName withNumberCC: self aValidNumberOfCreditCard  withExpirationDate: self aValidExpirationDate withAmount: 100.
+	cashier := Cashier for: cart with: creditCard.
+	
+	merchantProcessor := MerchantProcessor new.
+	
+	self should: [ cashier checkout: merchantProcessor ] 
+		raise: Error - MessageNotUnderstood withExceptionDo: [:anError | 
+			self assert: anError messageText equals: MerchantProcessor creditCardHasNoCredit].
+		! !
+
+!testRun: #EditorialStoreTest #test15paymentCannotAppliedWithCreditCardWIthNoCredit stamp: 'camila 11/6/2023 01:29:14'!
+ERROR!
+!CreditCard class methodsFor: 'instance creation' stamp: 'camila 11/6/2023 01:29:20'!
+for: aRenameMe1 withNumberCC: aRenameMe2 withExpirationDate: aRenameMe3 withAmount: aRenameMe4 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeFor: aRenameMe1 withNumberCC: aRenameMe2 withExpirationDate: aRenameMe3 withAmount: aRenameMe4 ! !
+!CreditCard class methodsFor: 'instance creation' stamp: 'camila 11/6/2023 01:29:58' prior: 50660953!
+for: aCustomer withNumberCC: aCreditCardNumber withExpirationDate: aRenameMe3 withAmount: aRenameMe4 
+	^self new initializeFor: aCustomer withNumberCC: aCreditCardNumber withExpirationDate: aRenameMe3 withAmount: aRenameMe4 ! !
+!CreditCard class methodsFor: 'instance creation' stamp: 'camila 11/6/2023 01:30:07' prior: 50660966!
+for: aCustomer withNumberCC: aCreditCardNumber withExpirationDate: anExpirationDate withAmount: aRenameMe4 
+	^self new initializeFor: aCustomer withNumberCC: aCreditCardNumber withExpirationDate: anExpirationDate withAmount: aRenameMe4 ! !
+!CreditCard class methodsFor: 'instance creation' stamp: 'camila 11/6/2023 01:30:14' prior: 50660977!
+for: aCustomer withNumberCC: aCreditCardNumber withExpirationDate: anExpirationDate withAmount: anAmount 
+	^self new initializeFor: aCustomer withNumberCC: aCreditCardNumber withExpirationDate: anExpirationDate withAmount: anAmount ! !
+
+!testRun: #EditorialStoreTest #test15paymentCannotAppliedWithCreditCardWIthNoCredit stamp: 'camila 11/6/2023 01:30:18'!
+ERROR!
+
+!classDefinition: #CreditCard category: 'TusLibros' stamp: 'camila 11/6/2023 01:30:23'!
+Object subclass: #CreditCard
+	instanceVariableNames: 'customerName creditCardNumber expirationDate creditCardAmount customer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CreditCard category: 'TusLibros' stamp: 'camila 11/6/2023 01:30:23'!
+Object subclass: #CreditCard
+	instanceVariableNames: 'customerName creditCardNumber expirationDate creditCardAmount customer amount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CreditCard methodsFor: 'initialization' stamp: 'camila 11/6/2023 01:30:23'!
+initializeFor: aCustomer withNumberCC: aCreditCardNumber withExpirationDate: anExpirationDate withAmount: anAmount 
+	self shouldBeImplemented.
+	customer := aCustomer.
+	creditCardNumber := aCreditCardNumber.
+	expirationDate := anExpirationDate.
+	amount := anAmount.! !
+!CreditCard methodsFor: 'initialization' stamp: 'camila 11/6/2023 01:30:29' prior: 50661020!
+initializeFor: aCustomer withNumberCC: aCreditCardNumber withExpirationDate: anExpirationDate withAmount: anAmount 
+	customer := aCustomer.
+	creditCardNumber := aCreditCardNumber.
+	expirationDate := anExpirationDate.
+	amount := anAmount.! !
+
+!testRun: #EditorialStoreTest #test15paymentCannotAppliedWithCreditCardWIthNoCredit stamp: 'camila 11/6/2023 01:30:31'!
+ERROR!
+!CreditCard methodsFor: 'as yet unclassified' stamp: 'camila 11/6/2023 01:30:41' prior: 50660912!
+hasCredit
+	^ amount > 0.! !
+
+!testRun: #EditorialStoreTest #test15paymentCannotAppliedWithCreditCardWIthNoCredit stamp: 'camila 11/6/2023 01:30:42'!
+ERROR!
+!EditorialStoreTest methodsFor: 'tests' stamp: 'camila 11/6/2023 01:31:04' prior: 50660925!
+test15paymentCannotAppliedWithCreditCardWIthNoCredit
+
+	| merchantProcessor cart cashier creditCard |
+	cart := 	self createCart.
+	cart add: self itemSellByTheStore withOcurrences: 2.
+	
+	creditCard := CreditCard for: self validCustomerName withNumberCC: self aValidNumberOfCreditCard  withExpirationDate: self aValidExpirationDate withAmount: 0.
+	cashier := Cashier for: cart with: creditCard.
+	
+	merchantProcessor := MerchantProcessor new.
+	
+	self should: [ cashier checkout: merchantProcessor ] 
+		raise: Error - MessageNotUnderstood withExceptionDo: [:anError | 
+			self assert: anError messageText equals: MerchantProcessor creditCardHasNoCredit].
+		! !
+
+!testRun: #EditorialStoreTest #test15paymentCannotAppliedWithCreditCardWIthNoCredit stamp: 'camila 11/6/2023 01:31:05'!
+ERROR!
+!MerchantProcessor methodsFor: 'as yet unclassified' stamp: 'camila 11/6/2023 01:32:06' prior: 50660882!
+debit: anAmount from: aCreditCard 
+ 	(aCreditCard hasCredit) ifFalse: [^self error:  MerchantProcessor creditCardHasNoCredit.].
+	^self error:  MerchantProcessor creditCardIsStolen.! !
+
+!testRun: #EditorialStoreTest #test15paymentCannotAppliedWithCreditCardWIthNoCredit stamp: 'camila 11/6/2023 01:32:14'!
+PASSED!
+!EditorialStoreTest methodsFor: 'tests' stamp: 'camila 11/6/2023 01:32:35' prior: 50660835!
+test16paymentCannotAppliedWithStolenCreditCard
+| merchantProcessor cart cashier creditCard |
+	cart := 	self createCart.
+	cart add: self itemSellByTheStore withOcurrences: 2.
+	
+	creditCard := CreditCard for: self validCustomerName withNumberCC: self aValidNumberOfCreditCard  withExpirationDate: self aValidExpirationDate  withAmount: 100.
+	cashier := Cashier for: cart with: creditCard.
+	
+	merchantProcessor := MerchantProcessor new.
+	
+	self should: [ cashier checkout: merchantProcessor ] 
+		raise: Error - MessageNotUnderstood withExceptionDo: [:anError | 
+			self assert: anError messageText equals: MerchantProcessor creditCardIsStolen].
+	! !
+
+!testRun: #EditorialStoreTest #test16paymentCannotAppliedWithStolenCreditCard stamp: 'camila 11/6/2023 01:32:40'!
+ERROR!
+!MerchantProcessor class methodsFor: 'as yet unclassified' stamp: 'camila 11/6/2023 01:32:51'!
+creditCardIsStolen
+	self shouldBeImplemented.! !
+!MerchantProcessor class methodsFor: 'as yet unclassified' stamp: 'camila 11/6/2023 01:33:03' prior: 50661123!
+creditCardIsStolen
+	^'Credit card is stolen'! !
+
+!testRun: #EditorialStoreTest #test16paymentCannotAppliedWithStolenCreditCard stamp: 'camila 11/6/2023 01:33:04'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test01NewCartsAreCreatedEmpty stamp: 'camila 11/6/2023 01:33:04'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'camila 11/6/2023 01:33:04'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'camila 11/6/2023 01:33:04'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'camila 11/6/2023 01:33:04'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'camila 11/6/2023 01:33:04'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test06CartRemembersAddedItems stamp: 'camila 11/6/2023 01:33:04'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test07CartDoesNotHoldNotAddedItems stamp: 'camila 11/6/2023 01:33:04'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test08CartRemembersTheNumberOfAddedItems stamp: 'camila 11/6/2023 01:33:04'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test09CartCalculatesTotalCartAmount stamp: 'camila 11/6/2023 01:33:04'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test10EmptyCartCannotCheckOut stamp: 'camila 11/6/2023 01:33:04'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test11CustomerNameShouldNotBeEmpty stamp: 'camila 11/6/2023 01:33:04'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test12IdCardContainsSixteenDigits stamp: 'camila 11/6/2023 01:33:04'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test13IdCardCannotContainLettersAndSpaces stamp: 'camila 11/6/2023 01:33:04'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test14CashierRejectsCreditCardExpired stamp: 'camila 11/6/2023 01:33:04'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test15paymentCannotAppliedWithCreditCardWIthNoCredit stamp: 'camila 11/6/2023 01:33:04'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test16paymentCannotAppliedWithStolenCreditCard stamp: 'camila 11/6/2023 01:33:04'!
+PASSED!
+!EditorialStoreTest methodsFor: 'tests' stamp: 'camila 11/6/2023 01:35:44'!
+test17ValidCreditCardValidCartDoesCheckout
+| merchantProcessor cart cashier creditCard checkoutResult |
+	cart := 	self createCart.
+	cart add: self itemSellByTheStore withOcurrences: 2.
+	
+	creditCard := CreditCard for: self validCustomerName withNumberCC: self aValidNumberOfCreditCard  withExpirationDate: self aValidExpirationDate  withAmount: 100.
+	cashier := Cashier for: cart with: creditCard.
+	
+	merchantProcessor := MerchantProcessor new.
+	
+	checkoutResult := cashier checkout: merchantProcessor.
+	self assert: (checkoutResult equals: '0|OK').! !
+!EditorialStoreTest methodsFor: 'tests' stamp: 'camila 11/6/2023 01:35:50' prior: 50661194!
+test17ValidCreditCardValidCartDoesCheckout
+| merchantProcessor cart cashier creditCard checkoutResult |
+	cart := 	self createCart.
+	cart add: self itemSellByTheStore withOcurrences: 2.
+	
+	creditCard := CreditCard for: self validCustomerName withNumberCC: self aValidNumberOfCreditCard  withExpirationDate: self aValidExpirationDate  withAmount: 100.
+	cashier := Cashier for: cart with: creditCard.
+	
+	merchantProcessor := MerchantProcessor new.
+	
+	checkoutResult := cashier checkout: merchantProcessor.
+	self assert: (checkoutResult = '0|OK').! !
+
+!testRun: #EditorialStoreTest #test17ValidCreditCardValidCartDoesCheckout stamp: 'camila 11/6/2023 01:36:01'!
+ERROR!
+!MerchantProcessor methodsFor: 'as yet unclassified' stamp: 'camila 11/6/2023 01:36:41' prior: 50661083!
+debit: anAmount from: aCreditCard 
+ 	(aCreditCard hasCredit) ifFalse: [^self error:  MerchantProcessor creditCardHasNoCredit.].
+	(aCreditCard isStolen) ifTrue: [^self error:  MerchantProcessor creditCardIsStolen.]
+	^'0|OK'.! !
+
+!testRun: #EditorialStoreTest #test17ValidCreditCardValidCartDoesCheckout stamp: 'camila 11/6/2023 01:36:43'!
+ERROR!
+!CreditCard methodsFor: 'as yet unclassified' stamp: 'camila 11/6/2023 01:36:48'!
+isStolen
+	self shouldBeImplemented.! !
+!CreditCard methodsFor: 'as yet unclassified' stamp: 'camila 11/6/2023 01:36:53' prior: 50661254!
+isStolen
+	^false.! !
+
+!testRun: #EditorialStoreTest #test17ValidCreditCardValidCartDoesCheckout stamp: 'camila 11/6/2023 01:36:57'!
+ERROR!
+!MerchantProcessor methodsFor: 'as yet unclassified' stamp: 'camila 11/6/2023 01:37:03' prior: 50661240!
+debit: anAmount from: aCreditCard 
+ 	(aCreditCard hasCredit) ifFalse: [^self error:  MerchantProcessor creditCardHasNoCredit.].
+	(aCreditCard isStolen) ifTrue: [^self error:  MerchantProcessor creditCardIsStolen.].
+	^'0|OK'.! !
+
+!testRun: #EditorialStoreTest #test17ValidCreditCardValidCartDoesCheckout stamp: 'camila 11/6/2023 01:37:04'!
+FAILURE!
+!MerchantProcessor class methodsFor: 'as yet unclassified' stamp: 'camila 11/6/2023 01:37:22' prior: 50660707!
+creditCardHasNoCredit
+	^'1|Credit card has no credit error'! !
+!MerchantProcessor class methodsFor: 'as yet unclassified' stamp: 'camila 11/6/2023 01:37:30' prior: 50661128!
+creditCardIsStolen
+	^'1|Credit card is stolen'! !
+
+!testRun: #EditorialStoreTest #test17ValidCreditCardValidCartDoesCheckout stamp: 'camila 11/6/2023 01:37:46'!
+FAILURE!
+
+!testRun: #EditorialStoreTest #test17ValidCreditCardValidCartDoesCheckout stamp: 'camila 11/6/2023 01:37:46'!
+FAILURE!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'camila 11/6/2023 01:38:21' prior: 50660675!
+checkout: merchantProcessor 
+	^merchantProcessor debit: cart calculateOrderAmount from: creditCard! !
+
+!testRun: #EditorialStoreTest #test17ValidCreditCardValidCartDoesCheckout stamp: 'camila 11/6/2023 01:38:22'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test17ValidCreditCardValidCartDoesCheckout stamp: 'camila 11/6/2023 01:38:24'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test01NewCartsAreCreatedEmpty stamp: 'camila 11/6/2023 01:38:24'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'camila 11/6/2023 01:38:24'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'camila 11/6/2023 01:38:24'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'camila 11/6/2023 01:38:24'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'camila 11/6/2023 01:38:24'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test06CartRemembersAddedItems stamp: 'camila 11/6/2023 01:38:24'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test07CartDoesNotHoldNotAddedItems stamp: 'camila 11/6/2023 01:38:24'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test08CartRemembersTheNumberOfAddedItems stamp: 'camila 11/6/2023 01:38:24'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test09CartCalculatesTotalCartAmount stamp: 'camila 11/6/2023 01:38:24'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test10EmptyCartCannotCheckOut stamp: 'camila 11/6/2023 01:38:24'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test11CustomerNameShouldNotBeEmpty stamp: 'camila 11/6/2023 01:38:24'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test12IdCardContainsSixteenDigits stamp: 'camila 11/6/2023 01:38:24'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test13IdCardCannotContainLettersAndSpaces stamp: 'camila 11/6/2023 01:38:24'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test14CashierRejectsCreditCardExpired stamp: 'camila 11/6/2023 01:38:24'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test15paymentCannotAppliedWithCreditCardWIthNoCredit stamp: 'camila 11/6/2023 01:38:24'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test16paymentCannotAppliedWithStolenCreditCard stamp: 'camila 11/6/2023 01:38:24'!
+FAILURE!
+
+!testRun: #EditorialStoreTest #test17ValidCreditCardValidCartDoesCheckout stamp: 'camila 11/6/2023 01:38:24'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test16paymentCannotAppliedWithStolenCreditCard stamp: 'camila 11/6/2023 01:38:24'!
+FAILURE!
+
+!testRun: #EditorialStoreTest #test17ValidCreditCardValidCartDoesCheckout stamp: 'camila 11/6/2023 01:38:33'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test15paymentCannotAppliedWithCreditCardWIthNoCredit stamp: 'camila 11/6/2023 01:38:37'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test16paymentCannotAppliedWithStolenCreditCard stamp: 'camila 11/6/2023 01:38:38'!
+FAILURE!
+
+!testRun: #EditorialStoreTest #test16paymentCannotAppliedWithStolenCreditCard stamp: 'camila 11/6/2023 01:38:38'!
+FAILURE!
+!EditorialStoreTest methodsFor: 'tests' stamp: 'camila 11/6/2023 01:39:22' prior: 50661096!
+test16paymentCannotAppliedWithStolenCreditCard
+| merchantProcessor cart cashier creditCard |
+	cart := 	self createCart.
+	cart add: self itemSellByTheStore withOcurrences: 2.
+	
+	creditCard := CreditCard for: self validCustomerName withNumberCC: self aValidNumberOfCreditCard  withExpirationDate: self aValidExpirationDate.
+	creditCard transferAmount: 100.
+	cashier := Cashier for: cart with: creditCard.
+	
+	merchantProcessor := MerchantProcessor new.
+	
+	self should: [ cashier checkout: merchantProcessor ] 
+		raise: Error - MessageNotUnderstood withExceptionDo: [:anError | 
+			self assert: anError messageText equals: MerchantProcessor creditCardIsStolen].
+	! !
+
+!testRun: #EditorialStoreTest #test16paymentCannotAppliedWithStolenCreditCard stamp: 'camila 11/6/2023 01:39:25'!
+ERROR!
+!CreditCard methodsFor: 'as yet unclassified' stamp: 'camila 11/6/2023 01:39:29'!
+transferAmount: aRenameMe1 
+	self shouldBeImplemented.! !
+!CreditCard methodsFor: 'as yet unclassified' stamp: 'camila 11/6/2023 01:39:46' prior: 50661424!
+transferAmount: anAmount 
+	amount := anAmount! !
+
+!testRun: #EditorialStoreTest #test16paymentCannotAppliedWithStolenCreditCard stamp: 'camila 11/6/2023 01:39:48'!
+FAILURE!
+!EditorialStoreTest methodsFor: 'tests' stamp: 'camila 11/6/2023 01:40:15' prior: 50661396!
+test16paymentCannotAppliedWithStolenCreditCard
+| merchantProcessor cart cashier creditCard |
+	cart := 	self createCart.
+	cart add: self itemSellByTheStore withOcurrences: 2.
+	
+	creditCard := CreditCard for: self validCustomerName withNumberCC: self aValidNumberOfCreditCard  withExpirationDate: self aValidExpirationDate.
+	creditCard transferAmount: 100.
+	creditCard steal.
+	
+	cashier := Cashier for: cart with: creditCard.
+	
+	merchantProcessor := MerchantProcessor new.
+	
+	self should: [ cashier checkout: merchantProcessor ] 
+		raise: Error - MessageNotUnderstood withExceptionDo: [:anError | 
+			self assert: anError messageText equals: MerchantProcessor creditCardIsStolen].
+	! !
+
+!testRun: #EditorialStoreTest #test16paymentCannotAppliedWithStolenCreditCard stamp: 'camila 11/6/2023 01:40:19'!
+ERROR!
+!CreditCard methodsFor: 'as yet unclassified' stamp: 'camila 11/6/2023 01:40:24'!
+steal
+	self shouldBeImplemented.! !
+
+!classDefinition: #CreditCard category: 'TusLibros' stamp: 'camila 11/6/2023 01:40:42'!
+Object subclass: #CreditCard
+	instanceVariableNames: 'customerName creditCardNumber expirationDate creditCardAmount customer amount isStolen'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CreditCard methodsFor: 'as yet unclassified' stamp: 'camila 11/6/2023 01:40:40' prior: 50661466!
+steal
+	isStolen := true.! !
+
+!testRun: #EditorialStoreTest #test16paymentCannotAppliedWithStolenCreditCard stamp: 'camila 11/6/2023 01:40:44'!
+FAILURE!
+!CreditCard methodsFor: 'as yet unclassified' stamp: 'camila 11/6/2023 01:41:15' prior: 50661259!
+isStolen
+	^isStolen ! !
+!CreditCard methodsFor: 'initialization' stamp: 'camila 11/6/2023 01:41:30' prior: 50660329!
+initializeFor: aCustomerName withNumberCC: aCreditCardNumber withExpirationDate: anExpirationDate 
+	
+	customerName := aCustomerName.
+	creditCardNumber := aCreditCardNumber.
+	expirationDate := anExpirationDate.
+	amount := 0.
+	isStolen := false.! !
+
+!methodRemoval: CreditCard class #for:withNumberCC:withExpirationDate:withAmount: stamp: 'camila 11/6/2023 01:41:53'!
+for: aCustomer withNumberCC: aCreditCardNumber withExpirationDate: anExpirationDate withAmount: anAmount 
+	^self new initializeFor: aCustomer withNumberCC: aCreditCardNumber withExpirationDate: anExpirationDate withAmount: anAmount !
+
+!methodRemoval: CreditCard #initializeFor:withNumberCC:withExpirationDate:withAmount: stamp: 'camila 11/6/2023 01:41:57'!
+initializeFor: aCustomer withNumberCC: aCreditCardNumber withExpirationDate: anExpirationDate withAmount: anAmount 
+	customer := aCustomer.
+	creditCardNumber := aCreditCardNumber.
+	expirationDate := anExpirationDate.
+	amount := anAmount.!
+
+!testRun: #EditorialStoreTest #test16paymentCannotAppliedWithStolenCreditCard stamp: 'camila 11/6/2023 01:42:04'!
+PASSED!
+!EditorialStoreTest methodsFor: 'tests' stamp: 'camila 11/6/2023 01:42:11' prior: 50661055!
+test15paymentCannotAppliedWithCreditCardWIthNoCredit
+
+	| merchantProcessor cart cashier creditCard |
+	cart := 	self createCart.
+	cart add: self itemSellByTheStore withOcurrences: 2.
+	
+	creditCard := CreditCard for: self validCustomerName withNumberCC: self aValidNumberOfCreditCard  withExpirationDate: self aValidExpirationDate.
+	cashier := Cashier for: cart with: creditCard.
+	
+	merchantProcessor := MerchantProcessor new.
+	
+	self should: [ cashier checkout: merchantProcessor ] 
+		raise: Error - MessageNotUnderstood withExceptionDo: [:anError | 
+			self assert: anError messageText equals: MerchantProcessor creditCardHasNoCredit].
+		! !
+
+!testRun: #EditorialStoreTest #test15paymentCannotAppliedWithCreditCardWIthNoCredit stamp: 'camila 11/6/2023 01:42:13'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test01NewCartsAreCreatedEmpty stamp: 'camila 11/6/2023 01:42:13'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'camila 11/6/2023 01:42:13'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'camila 11/6/2023 01:42:13'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'camila 11/6/2023 01:42:13'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'camila 11/6/2023 01:42:13'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test06CartRemembersAddedItems stamp: 'camila 11/6/2023 01:42:13'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test07CartDoesNotHoldNotAddedItems stamp: 'camila 11/6/2023 01:42:13'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test08CartRemembersTheNumberOfAddedItems stamp: 'camila 11/6/2023 01:42:13'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test09CartCalculatesTotalCartAmount stamp: 'camila 11/6/2023 01:42:13'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test10EmptyCartCannotCheckOut stamp: 'camila 11/6/2023 01:42:13'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test11CustomerNameShouldNotBeEmpty stamp: 'camila 11/6/2023 01:42:13'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test12IdCardContainsSixteenDigits stamp: 'camila 11/6/2023 01:42:13'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test13IdCardCannotContainLettersAndSpaces stamp: 'camila 11/6/2023 01:42:13'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test14CashierRejectsCreditCardExpired stamp: 'camila 11/6/2023 01:42:13'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test15paymentCannotAppliedWithCreditCardWIthNoCredit stamp: 'camila 11/6/2023 01:42:13'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test16paymentCannotAppliedWithStolenCreditCard stamp: 'camila 11/6/2023 01:42:13'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test17ValidCreditCardValidCartDoesCheckout stamp: 'camila 11/6/2023 01:42:13'!
+ERROR!
+
+!testRun: #EditorialStoreTest #test17ValidCreditCardValidCartDoesCheckout stamp: 'camila 11/6/2023 01:42:13'!
+ERROR!
+
+!testRun: #EditorialStoreTest #test15paymentCannotAppliedWithCreditCardWIthNoCredit stamp: 'camila 11/6/2023 01:42:21'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test01NewCartsAreCreatedEmpty stamp: 'camila 11/6/2023 01:42:21'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'camila 11/6/2023 01:42:21'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'camila 11/6/2023 01:42:21'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'camila 11/6/2023 01:42:21'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'camila 11/6/2023 01:42:21'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test06CartRemembersAddedItems stamp: 'camila 11/6/2023 01:42:21'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test07CartDoesNotHoldNotAddedItems stamp: 'camila 11/6/2023 01:42:21'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test08CartRemembersTheNumberOfAddedItems stamp: 'camila 11/6/2023 01:42:21'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test09CartCalculatesTotalCartAmount stamp: 'camila 11/6/2023 01:42:21'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test10EmptyCartCannotCheckOut stamp: 'camila 11/6/2023 01:42:21'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test11CustomerNameShouldNotBeEmpty stamp: 'camila 11/6/2023 01:42:21'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test12IdCardContainsSixteenDigits stamp: 'camila 11/6/2023 01:42:21'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test13IdCardCannotContainLettersAndSpaces stamp: 'camila 11/6/2023 01:42:21'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test14CashierRejectsCreditCardExpired stamp: 'camila 11/6/2023 01:42:21'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test15paymentCannotAppliedWithCreditCardWIthNoCredit stamp: 'camila 11/6/2023 01:42:21'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test16paymentCannotAppliedWithStolenCreditCard stamp: 'camila 11/6/2023 01:42:21'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test17ValidCreditCardValidCartDoesCheckout stamp: 'camila 11/6/2023 01:42:21'!
+ERROR!
+
+!testRun: #EditorialStoreTest #test17ValidCreditCardValidCartDoesCheckout stamp: 'camila 11/6/2023 01:42:21'!
+ERROR!
+!EditorialStoreTest methodsFor: 'tests' stamp: 'camila 11/6/2023 01:42:46' prior: 50661215!
+test17ValidCreditCardValidCartDoesCheckout
+| merchantProcessor cart cashier creditCard checkoutResult |
+	cart := 	self createCart.
+	cart add: self itemSellByTheStore withOcurrences: 2.
+	
+	creditCard := CreditCard for: self validCustomerName withNumberCC: self aValidNumberOfCreditCard  withExpirationDate: self aValidExpirationDate.
+	creditCard transferAmount: 100.
+	cashier := Cashier for: cart with: creditCard.
+	
+	merchantProcessor := MerchantProcessor new.
+	
+	checkoutResult := cashier checkout: merchantProcessor.
+	self assert: (checkoutResult = '0|OK').! !
+!EditorialStoreTest methodsFor: 'tests' stamp: 'camila 11/6/2023 01:42:48' prior: 50661691!
+test17ValidCreditCardValidCartDoesCheckout
+| merchantProcessor cart cashier creditCard checkoutResult |
+	cart := 	self createCart.
+	cart add: self itemSellByTheStore withOcurrences: 2.
+	
+	creditCard := CreditCard for: self validCustomerName withNumberCC: self aValidNumberOfCreditCard  withExpirationDate: self aValidExpirationDate.
+	creditCard transferAmount: 100.
+	
+	cashier := Cashier for: cart with: creditCard.
+	
+	merchantProcessor := MerchantProcessor new.
+	
+	checkoutResult := cashier checkout: merchantProcessor.
+	self assert: (checkoutResult = '0|OK').! !
+
+!testRun: #EditorialStoreTest #test17ValidCreditCardValidCartDoesCheckout stamp: 'camila 11/6/2023 01:42:50'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test01NewCartsAreCreatedEmpty stamp: 'camila 11/6/2023 01:42:50'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'camila 11/6/2023 01:42:50'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'camila 11/6/2023 01:42:50'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'camila 11/6/2023 01:42:50'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'camila 11/6/2023 01:42:50'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test06CartRemembersAddedItems stamp: 'camila 11/6/2023 01:42:50'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test07CartDoesNotHoldNotAddedItems stamp: 'camila 11/6/2023 01:42:50'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test08CartRemembersTheNumberOfAddedItems stamp: 'camila 11/6/2023 01:42:50'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test09CartCalculatesTotalCartAmount stamp: 'camila 11/6/2023 01:42:50'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test10EmptyCartCannotCheckOut stamp: 'camila 11/6/2023 01:42:50'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test11CustomerNameShouldNotBeEmpty stamp: 'camila 11/6/2023 01:42:50'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test12IdCardContainsSixteenDigits stamp: 'camila 11/6/2023 01:42:50'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test13IdCardCannotContainLettersAndSpaces stamp: 'camila 11/6/2023 01:42:50'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test14CashierRejectsCreditCardExpired stamp: 'camila 11/6/2023 01:42:50'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test15paymentCannotAppliedWithCreditCardWIthNoCredit stamp: 'camila 11/6/2023 01:42:50'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test16paymentCannotAppliedWithStolenCreditCard stamp: 'camila 11/6/2023 01:42:50'!
+PASSED!
+
+!testRun: #EditorialStoreTest #test17ValidCreditCardValidCartDoesCheckout stamp: 'camila 11/6/2023 01:42:50'!
+PASSED!
+!EditorialStoreTest methodsFor: 'tests' stamp: 'camila 11/6/2023 01:43:19' prior: 50661438!
+test16paymentCannotAppliedWithStolenCreditCard
+
+	| merchantProcessor cart cashier creditCard |
+	cart := 	self createCart.
+	cart add: self itemSellByTheStore withOcurrences: 2.
+	
+	creditCard := CreditCard for: self validCustomerName withNumberCC: self aValidNumberOfCreditCard  withExpirationDate: self aValidExpirationDate.
+	creditCard transferAmount: 100.
+	creditCard steal.
+	
+	cashier := Cashier for: cart with: creditCard.
+	
+	merchantProcessor := MerchantProcessor new.
+	
+	self should: [ cashier checkout: merchantProcessor ] 
+		raise: Error - MessageNotUnderstood withExceptionDo: [:anError | 
+			self assert: anError messageText equals: MerchantProcessor creditCardIsStolen].
+	! !
+
+----SNAPSHOT----(6 November 2023 01:44:07) CuisUniversity-5981.image priorSource: 10502002!
