@@ -1,0 +1,3079 @@
+
+
+----QUIT----(13 August 2023 19:14:09) CuisUniversity-5981.image priorSource: 5713367!
+
+----STARTUP---- (13 August 2023 19:14:10) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5981.image!
+
+
+----QUIT----(13 August 2023 19:14:10) CuisUniversity-5981.image priorSource: 10197065!
+
+----STARTUP---- (6 November 2023 19:50:24) as /home/camila/Desktop/CUIS-MIS LIBROS 3/linux64/CuisUniversity-5981.image!
+
+
+----End fileIn of /home/camila/Desktop/CUIS-MIS LIBROS 3/linux64/TusLibros.st----!
+
+TestCase subclass: #InterfazTest
+	instanceVariableNames: 'testObjectsFactory'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #InterfazTest category: 'TusLibros' stamp: 'cc 11/6/2023 19:53:02'!
+TestCase subclass: #InterfazTest
+	instanceVariableNames: 'testObjectsFactory'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!InterfazTest methodsFor: 'no messages' stamp: 'cc 11/6/2023 19:53:06' overrides: 16961394!
+setUp 
+
+	testObjectsFactory := StoreTestObjectsFactory new.! !
+
+!classRenamed: #InterfazTest as: #InterfaceTest stamp: 'cc 11/6/2023 19:53:15'!
+Smalltalk renameClassNamed: #InterfazTest as: #InterfaceTest!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 19:54:07'!
+test01
+	
+	! !
+
+!classDefinition: #Interface category: 'TusLibros' stamp: 'cc 11/6/2023 20:01:24'!
+Object subclass: #Interface
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 20:01:50' prior: 50650899!
+test01
+
+	
+	self should: [ | interface password user |interface := Interface withUser: user withPassword: password withValidator: [:anUser :aPassword  | ^self error: self InvalidUserOrPasswordError]. ]
+		raise: Error
+		withExceptionDo: [ :anError ]
+	
+	
+	! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 20:02:27' prior: 50650909!
+test01
+
+	| interface password user |
+	self should: [ 
+		interface := Interface withUser: user withPassword: password withValidator: [:anUser :aPassword  | ^self error: self InvalidUserOrPasswordError]. ]
+		raise: Error
+		withExceptionDo: [ :anError ]
+	
+	
+	! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 20:03:47' prior: 50650921!
+test01
+
+	| interface password user |
+	self should: [ 
+		interface := Interface withUser: user withPassword: password withValidator: [:anUser :aPassword  | ^self error: self invalidUserOrPasswordError]. ]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: self invalidUserOrPasswordError.]
+	
+	
+	! !
+
+!testRun: #InterfaceTest #test01 stamp: 'cc 11/6/2023 20:03:54'!
+ERROR!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 20:04:00'!
+invalidUserOrPasswordError
+	self shouldBeImplemented.! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 20:04:14' prior: 50650949!
+invalidUserOrPasswordError
+	^'Invalid user or password error'! !
+
+!testRun: #InterfaceTest #test01 stamp: 'cc 11/6/2023 20:04:16'!
+FAILURE!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 20:04:36' prior: 50650933!
+test01
+
+	| interface password user |
+	self should: [ 
+		interface := Interface withUser: user withPassword: password withValidator: [:anUser :aPassword  | ^self error: self invalidUserOrPasswordError]. ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError | self assert: anError messageText equals: self invalidUserOrPasswordError.]
+	
+	
+	! !
+
+!testRun: #InterfaceTest #test01 stamp: 'cc 11/6/2023 20:04:40'!
+ERROR!
+!Interface class methodsFor: 'instance creation' stamp: 'cc 11/6/2023 20:04:46'!
+withUser: user withPassword: password withValidator: aRenameMe1 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeWithUser: user withPassword: password withValidator: aRenameMe1 ! !
+!Interface class methodsFor: 'instance creation' stamp: 'cc 11/6/2023 20:05:25' prior: 50650979!
+withUser: aUser withPassword: aPassword withValidator: anAuthenticatorValidator 
+	
+	^self new initializeWithUser: aUser withPassword: aPassword withValidator: anAuthenticatorValidator ! !
+
+!testRun: #InterfaceTest #test01 stamp: 'cc 11/6/2023 20:05:27'!
+ERROR!
+
+!classDefinition: #Interface category: 'TusLibros' stamp: 'cc 11/6/2023 20:05:33'!
+Object subclass: #Interface
+	instanceVariableNames: 'user'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #Interface category: 'TusLibros' stamp: 'cc 11/6/2023 20:05:33'!
+Object subclass: #Interface
+	instanceVariableNames: 'user password'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #Interface category: 'TusLibros' stamp: 'cc 11/6/2023 20:05:33'!
+Object subclass: #Interface
+	instanceVariableNames: 'user password authenticatorValidator'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Interface methodsFor: 'initialization' stamp: 'cc 11/6/2023 20:05:33'!
+initializeWithUser: aUser withPassword: aPassword withValidator: anAuthenticatorValidator 
+	self shouldBeImplemented.
+	user := aUser.
+	password := aPassword.
+	authenticatorValidator := anAuthenticatorValidator.! !
+!Interface methodsFor: 'initialization' stamp: 'cc 11/6/2023 20:06:03' prior: 50651022!
+initializeWithUser: aUser withPassword: aPassword withValidator: anAuthenticatorValidator 
+	user := aUser.
+	password := aPassword.
+	authenticatorValidator := anAuthenticatorValidator.! !
+
+!testRun: #InterfaceTest #test01 stamp: 'cc 11/6/2023 20:06:05'!
+FAILURE!
+
+!methodRemoval: Interface #initializeWithUser:withPassword:withValidator: stamp: 'cc 11/6/2023 20:06:31'!
+initializeWithUser: aUser withPassword: aPassword withValidator: anAuthenticatorValidator 
+	user := aUser.
+	password := aPassword.
+	authenticatorValidator := anAuthenticatorValidator.!
+
+!testRun: #InterfaceTest #test01 stamp: 'cc 11/6/2023 20:06:38'!
+ERROR!
+!Interface class methodsFor: 'instance creation' stamp: 'cc 11/6/2023 20:07:29' prior: 50650990!
+withUser: aUser withPassword: aPassword withValidator: anAuthenticatorValidator 
+	anAuthenticatorValidator value: aUser value:aPassword .
+ ! !
+
+!testRun: #InterfaceTest #test01 stamp: 'cc 11/6/2023 20:07:31'!
+PASSED!
+
+!testRun: #InterfaceTest #test01 stamp: 'cc 11/6/2023 20:07:31'!
+PASSED!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 20:08:04'!
+test01InvalidUserOrPasswordCannotCreateInterface
+
+	| interface password user |
+	self should: [ 
+		interface := Interface withUser: user withPassword: password withValidator: [:anUser :aPassword  | ^self error: self invalidUserOrPasswordError]. ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError | self assert: anError messageText equals: self invalidUserOrPasswordError.]
+	
+	
+	! !
+
+!methodRemoval: InterfaceTest #test01 stamp: 'cc 11/6/2023 20:08:04'!
+test01
+
+	| interface password user |
+	self should: [ 
+		interface := Interface withUser: user withPassword: password withValidator: [:anUser :aPassword  | ^self error: self invalidUserOrPasswordError]. ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError | self assert: anError messageText equals: self invalidUserOrPasswordError.]
+	
+	
+	!
+
+!testRun: #InterfaceTest #test01InvalidUserOrPasswordCannotCreateInterface stamp: 'cc 11/6/2023 20:15:33'!
+PASSED!
+
+!testRun: #InterfaceTest #test01InvalidUserOrPasswordCannotCreateInterface stamp: 'cc 11/6/2023 20:15:33'!
+PASSED!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 20:16:14'!
+test02ValidAuthenticationCreatesCart
+
+	| interface password user |
+	interface := Interface withUser: user withPassword: password withValidator: [:anUser :aPassword  | ].
+	
+	
+	! !
+
+!classDefinition: #Interface category: 'TusLibros' stamp: 'cc 11/6/2023 20:16:36'!
+Object subclass: #Interface
+	instanceVariableNames: 'password authenticatorValidator'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #Interface category: 'TusLibros' stamp: 'cc 11/6/2023 20:16:36'!
+Object subclass: #Interface
+	instanceVariableNames: 'authenticatorValidator'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #Interface category: 'TusLibros' stamp: 'cc 11/6/2023 20:16:37'!
+Object subclass: #Interface
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 20:22:25' prior: 50651067!
+test01InvalidUserOrPasswordCannotCreateInterface
+
+	| interface password userID |
+	Interface := Interface withValidator: [:anUser :aPassword  | ^self error: self invalidUserOrPasswordError].
+	self should: [ 
+		interface createCartWithUser: userID withPassword: password ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError | self assert: anError messageText equals: self invalidUserOrPasswordError.]
+	
+	
+	! !
+
+!testRun: #InterfaceTest #test01InvalidUserOrPasswordCannotCreateInterface stamp: 'cc 11/6/2023 20:22:43'!
+ERROR!
+!Interface class methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 20:22:49'!
+withValidator: aRenameMe1 
+	self shouldBeImplemented.! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 20:23:39' prior: 50651133!
+test01InvalidUserOrPasswordCannotCreateInterface
+
+	| interface password userID |
+	interface := Interface withValidator: [:anUser :aPassword  | ^self error: self invalidUserOrPasswordError].
+	self should: [ 
+		interface createCartWithUser: userID withPassword: password. ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError | self assert: anError messageText equals: self invalidUserOrPasswordError.]
+	
+	
+	! !
+
+!testRun: #InterfaceTest #test01InvalidUserOrPasswordCannotCreateInterface stamp: 'cc 11/6/2023 20:23:44'!
+ERROR!
+!Interface class methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 20:24:15' prior: 50651153!
+withValidator: anAuthenticatorValidator 
+	^self new initializeWithValidator: anAuthenticatorValidator! !
+
+!testRun: #InterfaceTest #test01InvalidUserOrPasswordCannotCreateInterface stamp: 'cc 11/6/2023 20:24:17'!
+ERROR!
+
+!classDefinition: #Interface category: 'TusLibros' stamp: 'cc 11/6/2023 20:24:22'!
+Object subclass: #Interface
+	instanceVariableNames: 'authenticatorValidator'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Interface methodsFor: 'initialization' stamp: 'cc 11/6/2023 20:24:22'!
+initializeWithValidator: anAuthenticatorValidator 
+	self shouldBeImplemented.
+	authenticatorValidator := anAuthenticatorValidator.! !
+!Interface methodsFor: 'initialization' stamp: 'cc 11/6/2023 20:24:25' prior: 50651196!
+initializeWithValidator: anAuthenticatorValidator 
+	authenticatorValidator := anAuthenticatorValidator.! !
+
+!testRun: #InterfaceTest #test01InvalidUserOrPasswordCannotCreateInterface stamp: 'cc 11/6/2023 20:24:26'!
+ERROR!
+!Interface methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 20:24:33'!
+createCartWithUser: userID withPassword: password 
+	self shouldBeImplemented.! !
+!Interface methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 20:24:53' prior: 50651213!
+createCartWithUser: userID withPassword: password 
+	authenticatorValidator value: userID value: password.! !
+
+!testRun: #InterfaceTest #test01InvalidUserOrPasswordCannotCreateInterface stamp: 'cc 11/6/2023 20:24:55'!
+PASSED!
+
+!testRun: #InterfaceTest #test01InvalidUserOrPasswordCannotCreateInterface stamp: 'cc 11/6/2023 20:24:55'!
+PASSED!
+
+!testRun: #InterfaceTest #test02ValidAuthenticationCreatesCart stamp: 'cc 11/6/2023 20:24:55'!
+PASSED!
+
+!testRun: #InterfaceTest #test01InvalidUserOrPasswordCannotCreateInterface stamp: 'cc 11/6/2023 20:25:00'!
+PASSED!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 20:28:37' prior: 50651103!
+test02ValidAuthenticationCreatesCart
+
+	| interface password user idCart |
+	interface := Interface withValidator: [:anUser :aPassword  | ].
+	idCart := interface createCartWithUser: user withPassword: password.
+	 
+	self assert: (interface listCart: idCart) equals: OrderedCollection new.
+	
+	
+	
+	! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 20:29:08' prior: 50651240!
+test02ValidAuthenticationCreatesCart
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ].
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	 
+	self assert: (interface listCart: idCart) equals: OrderedCollection new.
+	
+	
+	
+	! !
+
+!testRun: #InterfaceTest #test02ValidAuthenticationCreatesCart stamp: 'cc 11/6/2023 20:29:15'!
+ERROR!
+!Interface methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 20:29:21'!
+listCart: idCart 
+	self shouldBeImplemented.! !
+!Interface methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 20:29:32' prior: 50651268!
+listCart: idCart 
+	^OrderedCollection new.! !
+
+!testRun: #InterfaceTest #test02ValidAuthenticationCreatesCart stamp: 'cc 11/6/2023 20:29:33'!
+PASSED!
+
+!testRun: #InterfaceTest #test01InvalidUserOrPasswordCannotCreateInterface stamp: 'cc 11/6/2023 20:29:33'!
+PASSED!
+
+!testRun: #InterfaceTest #test02ValidAuthenticationCreatesCart stamp: 'cc 11/6/2023 20:29:33'!
+PASSED!
+!Interface methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 20:30:20' prior: 50651219!
+createCartWithUser: userID withPassword: password 
+	authenticatorValidator value: userID value: password.
+	^1.! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 20:31:12' prior: 50651253!
+test02ValidAuthenticationCreatesCart
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ].
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	 
+	self assert: (interface listCart: 'idCart2' ) equals: OrderedCollection new.
+	
+	
+	
+	! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 20:32:35'!
+test03
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ].
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	 
+	self assert: (interface listCart: 'idCart2' ) equals: OrderedCollection new.
+	
+	
+	
+	! !
+
+!testRun: #InterfaceTest #test03 stamp: 'cc 11/6/2023 20:32:39'!
+PASSED!
+
+!testRun: #InterfaceTest #test01InvalidUserOrPasswordCannotCreateInterface stamp: 'cc 11/6/2023 20:32:39'!
+PASSED!
+
+!testRun: #InterfaceTest #test02ValidAuthenticationCreatesCart stamp: 'cc 11/6/2023 20:32:39'!
+PASSED!
+
+!testRun: #InterfaceTest #test03 stamp: 'cc 11/6/2023 20:32:39'!
+PASSED!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 20:34:02' prior: 50651295!
+test02ValidAuthenticationCreatesCart
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ].
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	 
+	self assert: (interface listCart: idCart ) equals: OrderedCollection new.
+	
+	
+	
+	! !
+
+!testRun: #InterfaceTest #test02ValidAuthenticationCreatesCart stamp: 'cc 11/6/2023 20:34:04'!
+PASSED!
+
+!testRun: #InterfaceTest #test01InvalidUserOrPasswordCannotCreateInterface stamp: 'cc 11/6/2023 20:34:04'!
+PASSED!
+
+!testRun: #InterfaceTest #test02ValidAuthenticationCreatesCart stamp: 'cc 11/6/2023 20:34:04'!
+PASSED!
+
+!testRun: #InterfaceTest #test03 stamp: 'cc 11/6/2023 20:34:04'!
+PASSED!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 20:34:13' prior: 50651158!
+test01InvalidUserOrPasswordCannotCreateInterface
+
+	| interface password userID |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ^self error: self invalidUserOrPasswordError].
+	
+	self should: [ 
+		interface createCartWithUser: userID withPassword: password. ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError | self assert: anError messageText equals: self invalidUserOrPasswordError.]
+	
+	
+	! !
+
+!testRun: #InterfaceTest #test02ValidAuthenticationCreatesCart stamp: 'cc 11/6/2023 20:34:35'!
+PASSED!
+
+!testRun: #InterfaceTest #test03 stamp: 'cc 11/6/2023 20:39:28'!
+PASSED!
+
+!testRun: #InterfaceTest #test01InvalidUserOrPasswordCannotCreateInterface stamp: 'cc 11/6/2023 20:39:28'!
+PASSED!
+
+!testRun: #InterfaceTest #test02ValidAuthenticationCreatesCart stamp: 'cc 11/6/2023 20:39:28'!
+PASSED!
+
+!testRun: #InterfaceTest #test03 stamp: 'cc 11/6/2023 20:39:28'!
+PASSED!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 20:40:57' prior: 50651307!
+test03
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ].
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	 
+	self should: [(interface listCart: 'idCart2' ) ]
+		raise: Error - MessageNodeTest 
+		withExceptionDo: [:anError ]
+	
+	
+	
+	! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 20:41:31' prior: 50651387!
+test03
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ].
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	 
+	self should: [(interface listCart: 'idCart2' ) ]
+		raise: Error - MessageNodeTest 
+		withExceptionDo: [:anError | self assert: anError messageText equals: Interface invalidIdCartError]
+	
+	
+	
+	! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 20:41:40' prior: 50651400!
+test03
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ].
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	 
+	self should: [(interface listCart: 'idCart2' ) ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [:anError | self assert: anError messageText equals: Interface invalidIdCartError]
+	
+	
+	
+	! !
+
+!testRun: #InterfaceTest #test03 stamp: 'cc 11/6/2023 20:41:44'!
+FAILURE!
+
+!classDefinition: #Interface category: 'TusLibros' stamp: 'cc 11/6/2023 20:43:40'!
+Object subclass: #Interface
+	instanceVariableNames: 'authenticatorValidator totalCreatedCarts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Interface methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 20:43:37' prior: 50651288!
+createCartWithUser: userID withPassword: password 
+	authenticatorValidator value: userID value: password.
+	totalCreatedCarts := totalCreatedCarts + 1. 
+	^totalCreatedCarts.! !
+!Interface methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 20:43:44' prior: 50651440!
+createCartWithUser: userID withPassword: password 
+	authenticatorValidator value: userID value: password.
+	
+	totalCreatedCarts := totalCreatedCarts + 1. 
+	^totalCreatedCarts.! !
+
+!testRun: #InterfaceTest #test03 stamp: 'cc 11/6/2023 20:43:46'!
+ERROR!
+!Interface methodsFor: 'initialization' stamp: 'cc 11/6/2023 20:44:13' prior: 50651203!
+initializeWithValidator: anAuthenticatorValidator 
+	authenticatorValidator := anAuthenticatorValidator.
+	totalCreatedCarts := 0.! !
+
+!testRun: #InterfaceTest #test03 stamp: 'cc 11/6/2023 20:44:14'!
+FAILURE!
+
+!testRun: #InterfaceTest #test01InvalidUserOrPasswordCannotCreateInterface stamp: 'cc 11/6/2023 20:44:24'!
+PASSED!
+
+!testRun: #InterfaceTest #test02ValidAuthenticationCreatesCart stamp: 'cc 11/6/2023 20:44:26'!
+PASSED!
+
+!testRun: #InterfaceTest #test03 stamp: 'cc 11/6/2023 20:48:14'!
+FAILURE!
+
+!testRun: #InterfaceTest #test03 stamp: 'cc 11/6/2023 20:48:32'!
+FAILURE!
+!Interface methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 20:50:25' prior: 50651273!
+listCart: idCart 
+	idCart >  totalCreatedCarts ifTrue: [^self error: Interface invalidIdCartError ].! !
+!Interface methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 20:50:35' prior: 50651481!
+listCart: idCart 
+	idCart >  totalCreatedCarts ifTrue: [^self error: Interface invalidIdCartError ].
+	^OrderedCollection new.! !
+
+!testRun: #InterfaceTest #test03 stamp: 'cc 11/6/2023 20:50:37'!
+ERROR!
+!Interface class methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 20:50:42'!
+invalidIdCartError
+	self shouldBeImplemented.! !
+!Interface class methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 20:50:53' prior: 50651497!
+invalidIdCartError
+	^'Invalid cart error'! !
+
+!testRun: #InterfaceTest #test03 stamp: 'cc 11/6/2023 20:50:54'!
+FAILURE!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 20:51:38' prior: 50651415!
+test03
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ].
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	 
+	self should: [(interface listCart: 3 ) ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [:anError | self assert: anError messageText equals: Interface invalidIdCartError]
+	
+	
+	
+	! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 20:51:41' prior: 50651509!
+test03
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ].
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	 
+	self should: [(interface listCart: 3 ) ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [:anError | self assert: anError messageText equals: Interface invalidIdCartError]
+	
+	
+	
+	! !
+
+!testRun: #InterfaceTest #test03 stamp: 'cc 11/6/2023 20:51:43'!
+PASSED!
+
+!testRun: #InterfaceTest #test01InvalidUserOrPasswordCannotCreateInterface stamp: 'cc 11/6/2023 20:51:43'!
+PASSED!
+
+!testRun: #InterfaceTest #test02ValidAuthenticationCreatesCart stamp: 'cc 11/6/2023 20:51:43'!
+PASSED!
+
+!testRun: #InterfaceTest #test03 stamp: 'cc 11/6/2023 20:51:43'!
+PASSED!
+
+!testRun: #InterfaceTest #test02ValidAuthenticationCreatesCart stamp: 'cc 11/6/2023 20:51:47'!
+PASSED!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 20:52:24'!
+test03CannotListInvalidIDCart
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ].
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	 
+	self should: [(interface listCart: 3 ) ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [:anError | self assert: anError messageText equals: Interface invalidIdCartError]
+	
+	
+	
+	! !
+
+!methodRemoval: InterfaceTest #test03 stamp: 'cc 11/6/2023 20:52:29'!
+test03
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ].
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	 
+	self should: [(interface listCart: 3 ) ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [:anError | self assert: anError messageText equals: Interface invalidIdCartError]
+	
+	
+	
+	!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 20:56:30'!
+test04CannotListInvalidIDCart
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ].
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore  quantity: 2.
+	
+	
+	
+	
+	! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 20:56:36'!
+test04
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ].
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore  quantity: 2.
+	
+	
+	
+	
+	! !
+
+!methodRemoval: InterfaceTest #test04CannotListInvalidIDCart stamp: 'cc 11/6/2023 20:56:39'!
+test04CannotListInvalidIDCart
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ].
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore  quantity: 2.
+	
+	
+	
+	
+	!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 20:56:49' prior: 50651594!
+test04
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ].
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore  withQuantity: 2.
+	
+	
+	
+	
+	! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 20:57:49' prior: 50651618!
+test04
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ].
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore  withQuantity: 1.
+	
+	self assert: (interface listCart: idCart) equals: OrderedCollection with: testObjectsFactory itemSellByTheStore.
+	
+	
+	
+	
+	! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 20:57:56' prior: 50651630!
+test04
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ].
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore  withQuantity: 1.
+	
+	self assert: (interface listCart: idCart) equals: (OrderedCollection with: testObjectsFactory itemSellByTheStore).
+	
+	
+	
+	
+	! !
+
+!testRun: #InterfaceTest #test04 stamp: 'cc 11/6/2023 20:58:33'!
+ERROR!
+!Interface methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 20:58:39'!
+addToCart: idCart withISBN: aRenameMe1 withQuantity: aRenameMe2 
+	self shouldBeImplemented.! !
+!Interface methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 20:59:00' prior: 50651664!
+addToCart: idCart withISBN: anISBN withQuantity: aQuantity
+ 
+	! !
+!Interface methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 21:05:42' prior: 50651670!
+addToCart: idCart withISBN: anISBN withQuantity: aQuantity
+ 	
+		! !
+
+!methodRemoval: Interface class #withUser:withPassword:withValidator: stamp: 'cc 11/6/2023 21:06:01'!
+withUser: aUser withPassword: aPassword withValidator: anAuthenticatorValidator 
+	anAuthenticatorValidator value: aUser value:aPassword .
+ !
+!Interface class methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 21:07:37'!
+withValidator: anAuthenticatorValidator withCatalog: aCatalogue  
+	^self new initializeWithValidator: anAuthenticatorValidator! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 21:07:37' prior: 50651646!
+test04
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ] withCatalog: testObjectsFactory defaultCatalog.
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore  withQuantity: 1.
+	
+	self assert: (interface listCart: idCart) equals: (OrderedCollection with: testObjectsFactory itemSellByTheStore).
+	
+	
+	
+	
+	! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 21:07:37' prior: 50651355!
+test01InvalidUserOrPasswordCannotCreateInterface
+
+	| interface password userID |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ^self error: self invalidUserOrPasswordError] withCatalog: testObjectsFactory defaultCatalog.
+	
+	self should: [ 
+		interface createCartWithUser: userID withPassword: password. ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError | self assert: anError messageText equals: self invalidUserOrPasswordError.]
+	
+	
+	! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 21:07:37' prior: 50651330!
+test02ValidAuthenticationCreatesCart
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ] withCatalog: testObjectsFactory defaultCatalog.
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	 
+	self assert: (interface listCart: idCart ) equals: OrderedCollection new.
+	
+	
+	
+	! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 21:07:37' prior: 50651553!
+test03CannotListInvalidIDCart
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ] withCatalog: testObjectsFactory defaultCatalog.
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	 
+	self should: [(interface listCart: 3 ) ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [:anError | self assert: anError messageText equals: Interface invalidIdCartError]
+	
+	
+	
+	! !
+
+!methodRemoval: Interface class #withValidator: stamp: 'cc 11/6/2023 21:07:37'!
+withValidator: anAuthenticatorValidator 
+	^self new initializeWithValidator: anAuthenticatorValidator!
+!Interface class methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 21:07:55' prior: 50651688!
+withValidator: anAuthenticatorValidator withCatalog: aCatalogue  
+	^self new initializeWithValidator: anAuthenticatorValidator! !
+!Interface methodsFor: 'initialization' stamp: 'cc 11/6/2023 21:08:41'!
+initializeWithValidator: anAuthenticatorValidator withCatalog: aCatalogue  
+	authenticatorValidator := anAuthenticatorValidator.
+	totalCreatedCarts := 0.! !
+!Interface class methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 21:08:41' prior: 50651768!
+withValidator: anAuthenticatorValidator withCatalog: aCatalogue  
+	^self new initializeWithValidator: anAuthenticatorValidator withCatalog: testObjectsFactory! !
+
+!methodRemoval: Interface #initializeWithValidator: stamp: 'cc 11/6/2023 21:08:41'!
+initializeWithValidator: anAuthenticatorValidator 
+	authenticatorValidator := anAuthenticatorValidator.
+	totalCreatedCarts := 0.!
+!Interface class methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 21:08:49' prior: 50651783!
+withValidator: anAuthenticatorValidator withCatalog: aCatalog
+	^self new initializeWithValidator: anAuthenticatorValidator withCatalog: aCatalog! !
+
+!classDefinition: #Interface category: 'TusLibros' stamp: 'cc 11/6/2023 21:09:11'!
+Object subclass: #Interface
+	instanceVariableNames: 'authenticatorValidator totalCreatedCarts catalog'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Interface methodsFor: 'initialization' stamp: 'cc 11/6/2023 21:09:09' prior: 50651775!
+initializeWithValidator: anAuthenticatorValidator withCatalog: aCatalogue  
+	authenticatorValidator := anAuthenticatorValidator.
+	catalog := aCatalogue .
+	totalCreatedCarts := 0.! !
+
+!testRun: #InterfaceTest #test01InvalidUserOrPasswordCannotCreateInterface stamp: 'cc 11/6/2023 21:09:22'!
+PASSED!
+
+!testRun: #InterfaceTest #test01InvalidUserOrPasswordCannotCreateInterface stamp: 'cc 11/6/2023 21:09:22'!
+PASSED!
+
+!testRun: #InterfaceTest #test02ValidAuthenticationCreatesCart stamp: 'cc 11/6/2023 21:09:22'!
+PASSED!
+
+!testRun: #InterfaceTest #test03CannotListInvalidIDCart stamp: 'cc 11/6/2023 21:09:22'!
+PASSED!
+
+!testRun: #InterfaceTest #test04 stamp: 'cc 11/6/2023 21:09:22'!
+FAILURE!
+
+!testRun: #InterfaceTest #test04 stamp: 'cc 11/6/2023 21:09:22'!
+FAILURE!
+
+!testRun: #InterfaceTest #test01InvalidUserOrPasswordCannotCreateInterface stamp: 'cc 11/6/2023 21:09:30'!
+PASSED!
+
+!testRun: #InterfaceTest #test02ValidAuthenticationCreatesCart stamp: 'cc 11/6/2023 21:09:33'!
+PASSED!
+
+!testRun: #InterfaceTest #test03CannotListInvalidIDCart stamp: 'cc 11/6/2023 21:09:35'!
+PASSED!
+
+!testRun: #InterfaceTest #test04 stamp: 'cc 11/6/2023 21:09:38'!
+FAILURE!
+
+!testRun: #InterfaceTest #test04 stamp: 'cc 11/6/2023 21:09:38'!
+FAILURE!
+
+!testRun: #InterfaceTest #test04 stamp: 'cc 11/6/2023 21:10:13'!
+FAILURE!
+
+!testRun: #InterfaceTest #test04 stamp: 'cc 11/6/2023 21:10:13'!
+FAILURE!
+
+!classDefinition: #Interface category: 'TusLibros' stamp: 'cc 11/6/2023 21:12:36'!
+Object subclass: #Interface
+	instanceVariableNames: 'authenticatorValidator totalCreatedCarts catalog createdCarts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Interface methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 21:12:31' prior: 50651449!
+createCartWithUser: userID withPassword: password 
+	| newCart |
+	authenticatorValidator value: userID value: password.
+	
+	newCart := Cart acceptingItemsOf: catalog.
+	totalCreatedCarts := totalCreatedCarts + 1. 
+	
+	createdCarts add: totalCreatedCarts -> newCart.
+	
+	^totalCreatedCarts.! !
+
+!testRun: #InterfaceTest #test04 stamp: 'cc 11/6/2023 21:12:39'!
+ERROR!
+!Interface methodsFor: 'initialization' stamp: 'cc 11/6/2023 21:13:00' prior: 50651814!
+initializeWithValidator: anAuthenticatorValidator withCatalog: aCatalogue  
+	authenticatorValidator := anAuthenticatorValidator.
+	catalog := aCatalogue .
+	totalCreatedCarts := 0.
+	createdCarts := Dictionary new.! !
+
+!testRun: #InterfaceTest #test04 stamp: 'cc 11/6/2023 21:13:02'!
+FAILURE!
+!Interface methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 21:15:04' prior: 50651675!
+addToCart: idCart withISBN: anISBN withQuantity: aQuantity
+ 	
+		(createdCarts at: idCart) add: aQuantity of: anISBN..! !
+
+!testRun: #InterfaceTest #test04 stamp: 'cc 11/6/2023 21:15:07'!
+FAILURE!
+!Interface methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 21:17:04' prior: 50651488!
+listCart: idCart 
+	idCart >  totalCreatedCarts ifTrue: [^self error: Interface invalidIdCartError ].
+	^(createdCarts at: idCart) copy. ! !
+
+!testRun: #InterfaceTest #test04 stamp: 'cc 11/6/2023 21:17:05'!
+FAILURE!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 21:19:29' prior: 50651696!
+test04
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ] withCatalog: testObjectsFactory defaultCatalog.
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore withQuantity: 1.
+	
+	self assert: (interface listCart: idCart) equals: (OrderedCollection with: testObjectsFactory itemSellByTheStore).
+	
+	
+	
+	
+	! !
+!Interface methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 21:24:47' prior: 50651906!
+listCart: idCart 
+	idCart >  totalCreatedCarts ifTrue: [^self error: Interface invalidIdCartError ].
+	^(createdCarts at: idCart) printTicket.! !
+
+!testRun: #InterfaceTest #test04 stamp: 'cc 11/6/2023 21:24:51'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 21:24:56'!
+printTicket
+	self shouldBeImplemented.! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 21:30:31' prior: 50651943!
+printTicket
+	| ticket |
+	ticket := '0'.
+	items do: [:anItem | ticket :=  ticket , '|' ,  anItem , '|',  self occurrencesOf: anItem    ].! !
+
+	^ticket.!
+!Cart methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 21:30:40' prior: 50651948!
+printTicket
+	| ticket |
+	ticket := '0'.
+	items do: [:anItem | ticket :=  ticket , '|' ,  anItem , '|',  self occurrencesOf: anItem    ].
+	^ticket.! !
+
+!testRun: #InterfaceTest #test04 stamp: 'cc 11/6/2023 21:30:41'!
+ERROR!
+
+!testRun: #InterfaceTest #test04 stamp: 'cc 11/6/2023 21:31:37'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 21:31:49' prior: 50651956!
+printTicket
+	| ticket |
+	ticket := '0'.
+	items do: [:anItem | ticket :=  ticket , '|' ,  anItem , '|',  (self occurrencesOf: anItem)    ].
+	^ticket.! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 21:31:57' prior: 50651968!
+printTicket
+	| ticket |
+	ticket := '0'.
+	items do: [:anItem | ticket :=  ticket , '|' ,  anItem , '|',  (self occurrencesOf: anItem)  asString  ].
+	^ticket.! !
+
+!testRun: #InterfaceTest #test04 stamp: 'cc 11/6/2023 21:32:36'!
+FAILURE!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 21:32:45' prior: 50651916!
+test04
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ] withCatalog: testObjectsFactory defaultCatalog.
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore withQuantity: 1.
+	
+	self assert: (interface listCart: idCart) equals: ('0|validBook|1').
+	
+	
+	
+	
+	! !
+
+!testRun: #InterfaceTest #test04 stamp: 'cc 11/6/2023 21:32:47'!
+PASSED!
+
+!testRun: #InterfaceTest #test04 stamp: 'cc 11/6/2023 21:32:51'!
+PASSED!
+
+!testRun: #InterfaceTest #test02ValidAuthenticationCreatesCart stamp: 'cc 11/6/2023 21:32:58'!
+FAILURE!
+
+!testRun: #InterfaceTest #test02ValidAuthenticationCreatesCart stamp: 'cc 11/6/2023 21:32:58'!
+FAILURE!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 21:33:10' prior: 50651731!
+test02ValidAuthenticationCreatesCart
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ] withCatalog: testObjectsFactory defaultCatalog.
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	 
+	self assert: (interface listCart: idCart ) equals: '0'.
+	
+	
+	
+	! !
+
+!testRun: #InterfaceTest #test02ValidAuthenticationCreatesCart stamp: 'cc 11/6/2023 21:33:11'!
+PASSED!
+
+!testRun: #InterfaceTest #test01InvalidUserOrPasswordCannotCreateInterface stamp: 'cc 11/6/2023 21:33:11'!
+PASSED!
+
+!testRun: #InterfaceTest #test02ValidAuthenticationCreatesCart stamp: 'cc 11/6/2023 21:33:11'!
+PASSED!
+
+!testRun: #InterfaceTest #test03CannotListInvalidIDCart stamp: 'cc 11/6/2023 21:33:11'!
+PASSED!
+
+!testRun: #InterfaceTest #test04 stamp: 'cc 11/6/2023 21:33:11'!
+PASSED!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 21:33:20' prior: 50651987!
+test04
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ] withCatalog: testObjectsFactory defaultCatalog.
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore withQuantity: 2.
+	
+	self assert: (interface listCart: idCart) equals: ('0|validBook|1').
+	
+	
+	
+	
+	! !
+
+!testRun: #InterfaceTest #test04 stamp: 'cc 11/6/2023 21:33:21'!
+FAILURE!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 21:33:43' prior: 50652043!
+test04
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ] withCatalog: testObjectsFactory defaultCatalog.
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore withQuantity: 2.
+	
+	self assert: (interface listCart: idCart) equals: ('0|validBook|2').
+	
+	
+	
+	
+	! !
+
+!testRun: #InterfaceTest #test04 stamp: 'cc 11/6/2023 21:33:44'!
+FAILURE!
+!Interface methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 21:34:39' prior: 50651933!
+listCart: idCart 
+	idCart >  totalCreatedCarts ifTrue: [^self error: Interface invalidIdCartError ]. 
+	^(createdCarts at: idCart) printTicket.! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 21:35:02' prior: 50651976!
+printTicket
+	| ticket temp |
+	ticket := '0'.
+	temp := Set with: items.
+	temp do: [:anItem | ticket :=  ticket , '|' ,  anItem , '|',  (self occurrencesOf: anItem)  asString  ].
+	^ticket.! !
+
+!testRun: #InterfaceTest #test04 stamp: 'cc 11/6/2023 21:35:06'!
+ERROR!
+
+----End fileIn of /home/camila/Desktop/CUIS-MIS LIBROS 3/linux64/Packages/TerseGuide.pck.st----!
+!Cart methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 21:36:09' prior: 50652087!
+printTicket
+	| ticket temp |
+	ticket := '0'.
+	temp := items asSet.
+	temp do: [:anItem | ticket :=  ticket , '|' ,  anItem , '|',  (self occurrencesOf: anItem)  asString  ].
+	^ticket.! !
+
+!testRun: #InterfaceTest #test04 stamp: 'cc 11/6/2023 21:36:27'!
+PASSED!
+
+!testRun: #InterfaceTest #test01InvalidUserOrPasswordCannotCreateInterface stamp: 'cc 11/6/2023 21:36:27'!
+PASSED!
+
+!testRun: #InterfaceTest #test02ValidAuthenticationCreatesCart stamp: 'cc 11/6/2023 21:36:27'!
+PASSED!
+
+!testRun: #InterfaceTest #test03CannotListInvalidIDCart stamp: 'cc 11/6/2023 21:36:27'!
+PASSED!
+
+!testRun: #InterfaceTest #test04 stamp: 'cc 11/6/2023 21:36:27'!
+PASSED!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 21:36:59'!
+test04ListCartWith2ItemsPrintsValidTicket
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ] withCatalog: testObjectsFactory defaultCatalog.
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore withQuantity: 2.
+	
+	self assert: (interface listCart: idCart) equals: ('0|validBook|2').
+	
+	
+	
+	
+	! !
+
+!methodRemoval: InterfaceTest #test04 stamp: 'cc 11/6/2023 21:36:59'!
+test04
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ] withCatalog: testObjectsFactory defaultCatalog.
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore withQuantity: 2.
+	
+	self assert: (interface listCart: idCart) equals: ('0|validBook|2').
+	
+	
+	
+	
+	!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 21:37:23'!
+test05ListCartWith2ItemsPrintsValidTicket
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ] withCatalog: testObjectsFactory defaultCatalog.
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore withQuantity: 1.
+	interface addToCart: idCart withISBN: testObjectsFactory  withQuantity: 1.
+	
+	
+	self assert: (interface listCart: idCart) equals: ('0|validBook|2').
+	
+	
+	
+	
+	! !
+!StoreTestObjectsFactory methodsFor: 'items' stamp: 'cc 11/6/2023 21:39:37'!
+anotherItemSellByTheStore
+	
+	^ 'validBook2'! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/6/2023 21:40:07'!
+test05
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ] withCatalog: testObjectsFactory defaultCatalog.
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore withQuantity: 1.
+	interface addToCart: idCart withISBN: testObjectsFactory  anotherItemSellByTheStore  withQuantity: 1.
+	
+	
+	self assert: (interface listCart: idCart) equals: ('0|validBook|1|validBook2|1|').
+	
+	
+	
+	
+	! !
+
+!methodRemoval: InterfaceTest #test05ListCartWith2ItemsPrintsValidTicket stamp: 'cc 11/6/2023 21:40:11'!
+test05ListCartWith2ItemsPrintsValidTicket
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ] withCatalog: testObjectsFactory defaultCatalog.
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore withQuantity: 1.
+	interface addToCart: idCart withISBN: testObjectsFactory  withQuantity: 1.
+	
+	
+	self assert: (interface listCart: idCart) equals: ('0|validBook|2').
+	
+	
+	
+	
+	!
+
+!testRun: #InterfaceTest #test05 stamp: 'cc 11/6/2023 21:40:15'!
+ERROR!
+
+----SNAPSHOT----(6 November 2023 21:44:02) CuisUniversity-5981.image priorSource: 10197292!
+
+!testRun: #InterfaceTest #test04ListCartWith2ItemsPrintsValidTicket stamp: 'cc 11/7/2023 16:42:31'!
+PASSED!
+
+!testRun: #InterfaceTest #test01InvalidUserOrPasswordCannotCreateInterface stamp: 'cc 11/7/2023 16:42:31'!
+PASSED!
+
+!testRun: #InterfaceTest #test02ValidAuthenticationCreatesCart stamp: 'cc 11/7/2023 16:42:31'!
+PASSED!
+
+!testRun: #InterfaceTest #test03CannotListInvalidIDCart stamp: 'cc 11/7/2023 16:42:31'!
+PASSED!
+
+!testRun: #InterfaceTest #test04ListCartWith2ItemsPrintsValidTicket stamp: 'cc 11/7/2023 16:42:31'!
+PASSED!
+
+!testRun: #InterfaceTest #test05 stamp: 'cc 11/7/2023 16:42:31'!
+ERROR!
+
+!testRun: #InterfaceTest #test05 stamp: 'cc 11/7/2023 16:42:31'!
+ERROR!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 16:42:50'!
+test05CannotAddItemNotInCataloge
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ] withCatalog: testObjectsFactory defaultCatalog.
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore withQuantity: 1.
+	interface addToCart: idCart withISBN: testObjectsFactory  anotherItemSellByTheStore  withQuantity: 1.
+	
+	
+	self assert: (interface listCart: idCart) equals: ('0|validBook|1|validBook2|1|').
+	
+	
+	
+	
+	! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 16:42:55'!
+test05CannotAddItemNotInCatalog
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ] withCatalog: testObjectsFactory defaultCatalog.
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore withQuantity: 1.
+	interface addToCart: idCart withISBN: testObjectsFactory  anotherItemSellByTheStore  withQuantity: 1.
+	
+	
+	self assert: (interface listCart: idCart) equals: ('0|validBook|1|validBook2|1|').
+	
+	
+	
+	
+	! !
+
+!methodRemoval: InterfaceTest #test05CannotAddItemNotInCataloge stamp: 'cc 11/7/2023 16:42:58'!
+test05CannotAddItemNotInCataloge
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ] withCatalog: testObjectsFactory defaultCatalog.
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore withQuantity: 1.
+	interface addToCart: idCart withISBN: testObjectsFactory  anotherItemSellByTheStore  withQuantity: 1.
+	
+	
+	self assert: (interface listCart: idCart) equals: ('0|validBook|1|validBook2|1|').
+	
+	
+	
+	
+	!
+
+!methodRemoval: InterfaceTest #test05 stamp: 'cc 11/7/2023 16:43:00'!
+test05
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ] withCatalog: testObjectsFactory defaultCatalog.
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore withQuantity: 1.
+	interface addToCart: idCart withISBN: testObjectsFactory  anotherItemSellByTheStore  withQuantity: 1.
+	
+	
+	self assert: (interface listCart: idCart) equals: ('0|validBook|1|validBook2|1|').
+	
+	
+	
+	
+	!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 16:43:26' prior: 50655180!
+test05CannotAddItemNotInCatalog
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ] withCatalog: testObjectsFactory defaultCatalog.
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore withQuantity: 1.
+	interface addToCart: idCart withISBN: testObjectsFactory  itemNotSellByTheStore  withQuantity: 1.
+	
+	
+	self assert: (interface listCart: idCart) equals: ('0|validBook|1|validBook2|1|').
+	
+	
+	
+	
+	! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 16:44:13' prior: 50655239!
+test05CannotAddItemNotInCatalog
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ] withCatalog: testObjectsFactory defaultCatalog.
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore withQuantity: 1.
+	
+	
+	self should: [interface addToCart: idCart withISBN: testObjectsFactory  itemNotSellByTheStore  withQuantity: 1. ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [:anError | self assert: anError messageText equals: Interface invalidIdCartError.
+							     self assert: (interface listCart: idCart) equals: ('0|validBook|1|').]
+	
+	
+	
+	
+	
+	! !
+
+!testRun: #InterfaceTest #test05CannotAddItemNotInCatalog stamp: 'cc 11/7/2023 16:44:18'!
+FAILURE!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 16:44:39' prior: 50655259!
+test05CannotAddItemNotInCatalog
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ] withCatalog: testObjectsFactory defaultCatalog.
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore withQuantity: 1.
+	
+	
+	self should: [interface addToCart: idCart withISBN: testObjectsFactory  itemNotSellByTheStore  withQuantity: 1. ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [:anError | self assert: anError messageText equals: Interface invalidItemError.
+							     self assert: (interface listCart: idCart) equals: ('0|validBook|1|').]
+	
+	
+	
+	
+	
+	! !
+
+!testRun: #InterfaceTest #test05CannotAddItemNotInCatalog stamp: 'cc 11/7/2023 16:44:41'!
+ERROR!
+!Interface class methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 16:44:48'!
+invalidItemError
+	self shouldBeImplemented.! !
+!Interface class methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 16:45:01' prior: 50655315!
+invalidItemError
+	^'Item is not in catalog'
+	! !
+
+!testRun: #InterfaceTest #test05CannotAddItemNotInCatalog stamp: 'cc 11/7/2023 16:45:03'!
+FAILURE!
+!Interface methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 16:45:57' prior: 50651896!
+addToCart: idCart withISBN: anISBN withQuantity: aQuantity
+ 	
+		(createdCarts at: idCart) add: aQuantity of: anISBN.! !
+
+!testRun: #InterfaceTest #test05CannotAddItemNotInCatalog stamp: 'cc 11/7/2023 16:46:05'!
+FAILURE!
+!Interface class methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 16:47:21' prior: 50655320!
+invalidItemError
+	^'Item i'
+	! !
+!Interface class methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 16:47:49' prior: 50655338!
+invalidItemError
+^'Item is not in catalog'
+	! !
+
+!testRun: #InterfaceTest #test05CannotAddItemNotInCatalog stamp: 'cc 11/7/2023 16:47:57'!
+FAILURE!
+
+!methodRemoval: InterfaceTest #test05CannotAddItemNotInCatalog stamp: 'cc 11/7/2023 16:48:15'!
+test05CannotAddItemNotInCatalog
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ] withCatalog: testObjectsFactory defaultCatalog.
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore withQuantity: 1.
+	
+	
+	self should: [interface addToCart: idCart withISBN: testObjectsFactory  itemNotSellByTheStore  withQuantity: 1. ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [:anError | self assert: anError messageText equals: Interface invalidItemError.
+							     self assert: (interface listCart: idCart) equals: ('0|validBook|1|').]
+	
+	
+	
+	
+	
+	!
+
+!testRun: #InterfaceTest #test04ListCartWith2ItemsPrintsValidTicket stamp: 'cc 11/7/2023 16:48:24'!
+PASSED!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 16:49:11'!
+test05CannotAddItemNotInCatalog
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ] withCatalog: testObjectsFactory defaultCatalog.
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore withQuantity: 2.
+	
+	self assert: (interface listCart: idCart) equals: ('0|validBook|2').
+	
+	
+	
+	
+	! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 16:49:26' prior: 50655379!
+test05CannotAddItemNotInCatalog
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ] withCatalog: testObjectsFactory defaultCatalog.
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	interface addToCart: idCart withISBN: testObjectsFactory itemNotSellByTheStore withQuantity: 2.
+	
+	self assert: (interface listCart: idCart) equals: ('0').
+	
+	
+	
+	
+	! !
+
+!testRun: #InterfaceTest #test05CannotAddItemNotInCatalog stamp: 'cc 11/7/2023 16:49:28'!
+ERROR!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 16:50:52' prior: 50655396!
+test05CannotAddItemNotInCatalog
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ] withCatalog: testObjectsFactory defaultCatalog.
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	interface addToCart: idCart withISBN: testObjectsFactory itemNotSellByTheStore withQuantity: 2.
+	
+	self 
+		should: [ interface addToCart: idCart withISBN: testObjectsFactory itemNotSellByTheStore withQuantity: 2. ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = interface invalidItemErrorMessage.
+			self assert: (interface listCart: idCart) equals: ('0'). ]
+	
+	
+	
+	
+	
+	
+	
+	! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 16:51:53' prior: 50655416!
+test05CannotAddItemNotInCatalog
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ] withCatalog: testObjectsFactory defaultCatalog.
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	interface addToCart: idCart withISBN: testObjectsFactory itemNotSellByTheStore withQuantity: 2.
+	
+	self 
+		should: [ interface addToCart: idCart withISBN: testObjectsFactory itemNotSellByTheStore withQuantity: 2. ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cart invalidItemErrorMessage.
+			self assert: (interface listCart: idCart) equals: ('0'). ]
+	
+	
+	
+	
+	
+	
+	
+	! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 16:52:04' prior: 50655441!
+test05CannotAddItemNotInCatalog
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ] withCatalog: testObjectsFactory defaultCatalog.
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	interface addToCart: idCart withISBN: testObjectsFactory itemNotSellByTheStore withQuantity: 2.
+	
+	self 
+		should: [ interface addToCart: idCart withISBN: testObjectsFactory itemNotSellByTheStore withQuantity: 2. ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Interface invalidItemErrorMessage.
+			self assert: (interface listCart: idCart) equals: ('0'). ]
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!testRun: #InterfaceTest #test05CannotAddItemNotInCatalog stamp: 'cc 11/7/2023 16:52:06'!
+ERROR!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 16:52:21' prior: 50655466!
+test05CannotAddItemNotInCatalog
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ] withCatalog: testObjectsFactory defaultCatalog.
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	
+	self 
+		should: [ interface addToCart: idCart withISBN: testObjectsFactory itemNotSellByTheStore withQuantity: 2. ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Interface invalidItemErrorMessage.
+			self assert: (interface listCart: idCart) equals: ('0'). ]
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!testRun: #InterfaceTest #test05CannotAddItemNotInCatalog stamp: 'cc 11/7/2023 16:52:23'!
+ERROR!
+!Interface class methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 16:52:31'!
+invalidItemErrorMessage
+	self shouldBeImplemented.! !
+
+!testRun: #InterfaceTest #test05CannotAddItemNotInCatalog stamp: 'cc 11/7/2023 16:52:46'!
+ERROR!
+!Interface class methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 16:53:08' prior: 50655519!
+invalidItemErrorMessage
+	^'Item not in catalog'! !
+
+!testRun: #InterfaceTest #test05CannotAddItemNotInCatalog stamp: 'cc 11/7/2023 16:53:11'!
+FAILURE!
+
+!testRun: #InterfaceTest #test05CannotAddItemNotInCatalog stamp: 'cc 11/7/2023 16:54:09'!
+FAILURE!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 16:55:58' prior: 50655494!
+test05CannotAddItemNotInCatalog
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ] withCatalog: testObjectsFactory defaultCatalog.
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	
+	self 
+		should: [ interface addToCart: idCart withISBN: testObjectsFactory itemNotSellByTheStore withQuantity: 2. ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = interface invalidItemErrorMessage.
+			self assert: (interface listCart: idCart) equals: ('0'). ]
+	
+	
+	
+	
+	
+	
+	
+	! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 16:57:16'!
+test05ListCartWithDIfferentItemsPrintsValidTicket
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ] withCatalog: testObjectsFactory defaultCatalog.
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	
+	self 
+		should: [ interface addToCart: idCart withISBN: testObjectsFactory itemNotSellByTheStore withQuantity: 2. ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = interface invalidItemErrorMessage.
+			self assert: (interface listCart: idCart) equals: ('0'). ]
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!methodRemoval: InterfaceTest #test05CannotAddItemNotInCatalog stamp: 'cc 11/7/2023 16:57:18'!
+test05CannotAddItemNotInCatalog
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ] withCatalog: testObjectsFactory defaultCatalog.
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	
+	self 
+		should: [ interface addToCart: idCart withISBN: testObjectsFactory itemNotSellByTheStore withQuantity: 2. ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = interface invalidItemErrorMessage.
+			self assert: (interface listCart: idCart) equals: ('0'). ]
+	
+	
+	
+	
+	
+	
+	
+	!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 16:58:11' prior: 50655559!
+test05ListCartWithDIfferentItemsPrintsValidTicket
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ] withCatalog: testObjectsFactory defaultCatalog.
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	
+	interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore withQuantity: 2.
+	interface addToCart: idCart withISBN: testObjectsFactory anotherItemSellByTheStore withQuantity: 1.
+	
+	self assert: (interface listCart: idCart) equals: ('0|validBook|2|validBook2|1').
+	
+	
+	
+	
+	
+	
+	
+	! !
+!StoreTestObjectsFactory methodsFor: 'cart' stamp: 'cc 11/7/2023 16:58:46' prior: 50650846!
+defaultCatalog
+	
+	^ Dictionary new
+		at: self itemSellByTheStore put: self itemSellByTheStorePrice;
+		at: self anotherItemSellByTheStore put: self anotherItemSellByTheStore ;
+		yourself ! !
+
+!testRun: #InterfaceTest #test05ListCartWithDIfferentItemsPrintsValidTicket stamp: 'cc 11/7/2023 16:58:50'!
+PASSED!
+
+!testRun: #InterfaceTest #test01InvalidUserOrPasswordCannotCreateInterface stamp: 'cc 11/7/2023 16:58:54'!
+PASSED!
+
+!testRun: #InterfaceTest #test02ValidAuthenticationCreatesCart stamp: 'cc 11/7/2023 16:58:54'!
+PASSED!
+
+!testRun: #InterfaceTest #test03CannotListInvalidIDCart stamp: 'cc 11/7/2023 16:58:54'!
+PASSED!
+
+!testRun: #InterfaceTest #test04ListCartWith2ItemsPrintsValidTicket stamp: 'cc 11/7/2023 16:58:54'!
+PASSED!
+
+!testRun: #InterfaceTest #test05ListCartWithDIfferentItemsPrintsValidTicket stamp: 'cc 11/7/2023 16:58:54'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'cc 11/7/2023 16:58:56'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'cc 11/7/2023 16:58:56'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'cc 11/7/2023 16:58:56'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'cc 11/7/2023 16:58:56'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'cc 11/7/2023 16:58:56'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'cc 11/7/2023 16:58:56'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'cc 11/7/2023 16:59:00'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'cc 11/7/2023 16:59:00'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'cc 11/7/2023 16:59:00'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'cc 11/7/2023 16:59:00'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'cc 11/7/2023 16:59:00'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'cc 11/7/2023 16:59:00'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'cc 11/7/2023 16:59:00'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'cc 11/7/2023 16:59:00'!
+PASSED!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 16:59:37'!
+test06CheckoutCart
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ] withCatalog: testObjectsFactory defaultCatalog.
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	
+	interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore withQuantity: 2.
+	interface addToCart: idCart withISBN: testObjectsFactory anotherItemSellByTheStore withQuantity: 1.
+	
+	self assert: (interface listCart: idCart) equals: ('0|validBook|2|validBook2|1').
+	
+	
+	
+	
+	
+	
+	
+	! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 17:00:44' prior: 50655699!
+test06CheckoutCart
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ] withCatalog: testObjectsFactory defaultCatalog.
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	
+	interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore withQuantity: 1.
+	"interface checkoutCart: idCart withCreditCard:"
+	
+	self assert: (interface listCart: idCart) equals: ('0|validBook|2|validBook2|1').
+	
+	
+	
+	
+	
+	
+	
+	! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 17:05:09' prior: 50655719!
+test06CheckoutCart
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ] withCatalog: testObjectsFactory defaultCatalog.
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	
+	interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore withQuantity: 1.
+	interface checkoutCart: idCart withCreditCardNumber: '123' expirationDate: '11' owner: 'test'.
+	
+	self assert: (interface listPurchasesFor: 'user1' withPassword: 'password1') equals: ('0|validBook|2|validBook2|1').
+	
+	
+	
+	
+	
+	
+	
+	! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 17:05:35' prior: 50655738!
+test06CheckoutCart
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ] withCatalog: testObjectsFactory defaultCatalog.
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	
+	interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore withQuantity: 1.
+	interface checkoutCart: idCart withCreditCardNumber: '123' expirationDate: '11' owner: 'test'.
+	
+	self assert: (interface listPurchasesFor: 'user1' withPassword: 'password1') equals: ('0|validBook|1|5').
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!testRun: #InterfaceTest #test06CheckoutCart stamp: 'cc 11/7/2023 17:05:41'!
+ERROR!
+!Interface methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 17:05:48'!
+checkoutCart: idCart withCreditCardNumber: aRenameMe1 expirationDate: aRenameMe2 owner: aRenameMe3 
+	self shouldBeImplemented.! !
+
+!testRun: #InterfaceTest #test06CheckoutCart stamp: 'cc 11/7/2023 17:10:12'!
+ERROR!
+
+!classDefinition: #Interface category: 'TusLibros' stamp: 'cc 11/7/2023 17:10:34'!
+Object subclass: #Interface
+	instanceVariableNames: 'authenticatorValidator totalCreatedCarts catalog createdCarts cardValidator'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #Interface category: 'TusLibros' stamp: 'cc 11/7/2023 17:10:37'!
+Object subclass: #Interface
+	instanceVariableNames: 'authenticatorValidator totalCreatedCarts catalog createdCarts cardValidator today'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Interface methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 17:10:26'!
+checkoutCart: idCart withCreditCard: aCreditCard 
+	
+	| cartForCheckout salesBook |
+	cartForCheckout := createdCarts at: idCart.
+	salesBook := OrderedCollection new.
+	Cashier 
+			toCheckout: cartForCheckout 
+			charging: aCreditCard
+			throught: cardValidator
+			on:  today
+			registeringOn:  salesBook! !
+!Interface methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 17:10:43' prior: 50655810!
+checkoutCart: idCart withCreditCard: aCreditCard 
+	
+	| cartForCheckout salesBook |
+	cartForCheckout := createdCarts at: idCart.
+	salesBook := OrderedCollection new.
+	
+	Cashier 
+			toCheckout: cartForCheckout 
+			charging: aCreditCard
+			throught: cardValidator
+			on:  today
+			registeringOn:  salesBook! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 18:24:22' prior: 50655759!
+test06CheckoutCart
+
+	| interface idCart |
+	
+	interface := Interface 
+				withValidator: [:anUser :aPassword  | ] 
+				withCatalog: testObjectsFactory defaultCatalog 
+				withMerchantProcessor: self
+				forDate: testObjectsFactory today.
+				
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	
+	interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore withQuantity: 1.
+	interface checkoutCart: idCart withCreditCardNumber: '123' expirationDate: '11' owner: 'test'.
+	
+	self assert: (interface listPurchasesFor: 'user1' withPassword: 'password1') equals: ('0|validBook|1|5').
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!classDefinition: #InterfaceTest category: 'TusLibros' stamp: 'cc 11/7/2023 18:24:44'!
+TestCase subclass: #InterfaceTest
+	instanceVariableNames: 'testObjectsFactory debitBehavior'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 18:24:42' prior: 50655836!
+test06CheckoutCart
+
+	| interface idCart |
+	
+	debitBehavior := [ :anAmount :aCreditCard | self error: Cashier creditCardHasNoCreditErrorMessage].
+	
+	interface := Interface 
+				withValidator: [:anUser :aPassword  | ] 
+				withCatalog: testObjectsFactory defaultCatalog 
+				withMerchantProcessor: self
+				forDate: testObjectsFactory today.
+				
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	
+	interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore withQuantity: 1.
+	interface checkoutCart: idCart withCreditCardNumber: '123' expirationDate: '11' owner: 'test'.
+	
+	self assert: (interface listPurchasesFor: 'user1' withPassword: 'password1') equals: ('0|validBook|1|5').
+	
+	
+	
+	
+	
+	
+	
+	! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 18:24:57'!
+debit: anAmount from: aCreditCard 
+
+	^debitBehavior value: anAmount value: aCreditCard ! !
+
+!testRun: #InterfaceTest #test06CheckoutCart stamp: 'cc 11/7/2023 18:25:06'!
+ERROR!
+!Interface class methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 18:25:10'!
+withValidator: aRenameMe1 withCatalog: aRenameMe2 withMerchantProcessor: anInterfaceTest forDate: aRenameMe3 
+	self shouldBeImplemented.! !
+!Interface class methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 18:26:03' prior: 50655902!
+withValidator: authValidator withCatalog: aCatalog withMerchantProcessor: anInterfaceTest forDate: aDate 
+	^self new initializeWithValidator: authValidator 
+			withCatalog:  aCatalog
+			withMerchantProcessor: anInterfaceTest
+			forDate: aDate! !
+
+!testRun: #InterfaceTest #test06CheckoutCart stamp: 'cc 11/7/2023 18:26:06'!
+ERROR!
+
+!classDefinition: #Interface category: 'TusLibros' stamp: 'cc 11/7/2023 18:26:10'!
+Object subclass: #Interface
+	instanceVariableNames: 'authenticatorValidator totalCreatedCarts catalog createdCarts cardValidator today authValidator_CHANGE_ME'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #Interface category: 'TusLibros' stamp: 'cc 11/7/2023 18:26:10'!
+Object subclass: #Interface
+	instanceVariableNames: 'authenticatorValidator totalCreatedCarts catalog createdCarts cardValidator today authValidator_CHANGE_ME interfaceTest'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #Interface category: 'TusLibros' stamp: 'cc 11/7/2023 18:26:10'!
+Object subclass: #Interface
+	instanceVariableNames: 'authenticatorValidator totalCreatedCarts catalog createdCarts cardValidator today authValidator_CHANGE_ME interfaceTest date'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Interface methodsFor: 'initialization' stamp: 'cc 11/7/2023 18:26:10'!
+initializeWithValidator: authValidator withCatalog: aCatalog withMerchantProcessor: anInterfaceTest forDate: aDate 
+	self shouldBeImplemented.
+	authValidator_CHANGE_ME := authValidator.
+	catalog := aCatalog.
+	interfaceTest := anInterfaceTest.
+	date := aDate.! !
+!Interface methodsFor: 'initialization' stamp: 'cc 11/7/2023 18:26:55' prior: 50655954!
+initializeWithValidator: authValidator withCatalog: aCatalog withMerchantProcessor: anInterfaceTest forDate: aDate 
+	authenticatorValidator := authValidator.
+	catalog := aCatalog .
+	totalCreatedCarts := 0.
+	createdCarts := Dictionary new.
+	interfaceTest := anInterfaceTest.
+	date := aDate.! !
+
+!testRun: #InterfaceTest #test06CheckoutCart stamp: 'cc 11/7/2023 18:26:58'!
+ERROR!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 18:27:45' prior: 50655867!
+test06CheckoutCart
+
+	| interface idCart |
+	
+	debitBehavior := [ :anAmount :aCreditCard | self error: Cashier creditCardHasNoCreditErrorMessage].
+	
+	interface := Interface 
+				withValidator: [:anUser :aPassword  | ] 
+				withCatalog: testObjectsFactory defaultCatalog 
+				withMerchantProcessor: self
+				forDate: testObjectsFactory today.
+				
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	
+	interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore withQuantity: 1.
+	interface checkoutCart: idCart withCreditCard: testObjectsFactory notExpiredCreditCard .
+	
+	self assert: (interface listPurchasesFor: 'user1' withPassword: 'password1') equals: ('0|validBook|1|5').
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!testRun: #InterfaceTest #test06CheckoutCart stamp: 'cc 11/7/2023 18:27:47'!
+ERROR!
+!Interface methodsFor: 'initialization' stamp: 'cc 11/7/2023 18:28:47' prior: 50655965!
+initializeWithValidator: authValidator withCatalog: aCatalog withMerchantProcessor: anInterfaceTest forDate: aDate 
+	authenticatorValidator := authValidator.
+	catalog := aCatalog .
+	totalCreatedCarts := 0.
+	createdCarts := Dictionary new.
+	cardValidator := anInterfaceTest .
+	today := aDate.! !
+
+!testRun: #InterfaceTest #test06CheckoutCart stamp: 'cc 11/7/2023 18:28:55'!
+ERROR!
+
+!testRun: #InterfaceTest #test06CheckoutCart stamp: 'cc 11/7/2023 18:28:55'!
+ERROR!
+
+!testRun: #InterfaceTest #test06CheckoutCart stamp: 'cc 11/7/2023 18:29:38'!
+ERROR!
+
+!methodRemoval: Interface #checkoutCart:withCreditCardNumber:expirationDate:owner: stamp: 'cc 11/7/2023 18:30:00'!
+checkoutCart: idCart withCreditCardNumber: aRenameMe1 expirationDate: aRenameMe2 owner: aRenameMe3 
+	self shouldBeImplemented.!
+!Interface methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 18:30:32' prior: 50655823!
+checkoutCart: idCart withCreditCard: aCreditCard 
+	
+	| cartForCheckout salesBook cashier total |
+	cartForCheckout := createdCarts at: idCart.
+	salesBook := OrderedCollection new.
+	
+	cashier := Cashier 
+			toCheckout: cartForCheckout 
+			charging: aCreditCard
+			throught: cardValidator
+			on:  today
+			registeringOn:  salesBook.
+			
+	total := cashier checkout.
+	! !
+!Interface methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 18:30:51' prior: 50656037!
+checkoutCart: idCart withCreditCard: aCreditCard 
+	
+	| cartForCheckout salesBook cashier total |
+	cartForCheckout := createdCarts at: idCart.
+	salesBook := OrderedCollection new.
+	
+	cashier := Cashier 
+			toCheckout: cartForCheckout 
+			charging: aCreditCard
+			throught: cardValidator
+			on:  today
+			registeringOn:  salesBook.
+			
+	total := cashier checkOut.
+	! !
+
+!testRun: #InterfaceTest #test06CheckoutCart stamp: 'cc 11/7/2023 18:31:12'!
+ERROR!
+
+!testRun: #InterfaceTest #test06CheckoutCart stamp: 'cc 11/7/2023 18:31:12'!
+ERROR!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 18:31:53' prior: 50655980!
+test06CheckoutCart
+
+	| interface idCart |
+	
+	debitBehavior := [ :anAmount :aCreditCard | | debitedAmout debitedCreditCard | 
+		debitedAmout := anAmount.
+		debitedCreditCard := aCreditCard ].
+	
+	interface := Interface 
+				withValidator: [:anUser :aPassword  | ] 
+				withCatalog: testObjectsFactory defaultCatalog 
+				withMerchantProcessor: self
+				forDate: testObjectsFactory today.
+				
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	
+	interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore withQuantity: 1.
+	interface checkoutCart: idCart withCreditCard: testObjectsFactory notExpiredCreditCard .
+	
+	self assert: (interface listPurchasesFor: 'user1' withPassword: 'password1') equals: ('0|validBook|1|5').
+	
+	
+	
+	
+	
+	
+	
+	! !
+!Interface methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 18:35:53' prior: 50656052!
+checkoutCart: idCart withCreditCard: aCreditCard 
+	
+	| cartForCheckout salesBook cashier total |
+	cartForCheckout := createdCarts at: idCart.
+	salesBook := OrderedCollection new.
+	
+	cashier := Cashier 
+			toCheckout: cartForCheckout 
+			charging: aCreditCard
+			throught: cardValidator
+			on:  today
+			registeringOn:  salesBook.
+			
+	total := cashier checkOut.
+	^total.! !
+
+!testRun: #InterfaceTest #test06CheckoutCart stamp: 'cc 11/7/2023 18:35:54'!
+ERROR!
+
+----SNAPSHOT----(7 November 2023 18:36:15) CuisUniversity-5981.image priorSource: 10351510!
+
+!testRun: #InterfaceTest #test06CheckoutCart stamp: 'cc 11/7/2023 20:37:42'!
+ERROR!
+!Interface methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 20:37:48'!
+listPurchasesFor: aRenameMe1 withPassword: aRenameMe2 
+	self shouldBeImplemented.! !
+!Interface methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 20:41:42' prior: 50656123!
+listPurchasesFor: aUserID withPassword: userPassword 
+	self shouldBeImplemented.! !
+!Interface methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 20:41:51' prior: 50656129!
+listPurchasesFor: aUserID withPassword: userPassword 
+	^10! !
+
+!testRun: #InterfaceTest #test06CheckoutCart stamp: 'cc 11/7/2023 20:41:52'!
+FAILURE!
+!Interface methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 20:42:19' prior: 50656135!
+listPurchasesFor: aUserID withPassword: userPassword 
+	^'0|validBook|1|5'! !
+
+!testRun: #InterfaceTest #test06CheckoutCart stamp: 'cc 11/7/2023 20:42:23'!
+PASSED!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 20:42:47'!
+test06CheckoutCartWithValidCreditCardDebitsCart
+
+	| interface idCart |
+	
+	debitBehavior := [ :anAmount :aCreditCard | | debitedAmout debitedCreditCard | 
+		debitedAmout := anAmount.
+		debitedCreditCard := aCreditCard ].
+	
+	interface := Interface 
+				withValidator: [:anUser :aPassword  | ] 
+				withCatalog: testObjectsFactory defaultCatalog 
+				withMerchantProcessor: self
+				forDate: testObjectsFactory today.
+				
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	
+	interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore withQuantity: 1.
+	interface checkoutCart: idCart withCreditCard: testObjectsFactory notExpiredCreditCard .
+	
+	self assert: (interface listPurchasesFor: 'user1' withPassword: 'password1') equals: ('0|validBook|1|5').
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!methodRemoval: InterfaceTest #test06CheckoutCart stamp: 'cc 11/7/2023 20:42:55'!
+test06CheckoutCart
+
+	| interface idCart |
+	
+	debitBehavior := [ :anAmount :aCreditCard | | debitedAmout debitedCreditCard | 
+		debitedAmout := anAmount.
+		debitedCreditCard := aCreditCard ].
+	
+	interface := Interface 
+				withValidator: [:anUser :aPassword  | ] 
+				withCatalog: testObjectsFactory defaultCatalog 
+				withMerchantProcessor: self
+				forDate: testObjectsFactory today.
+				
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	
+	interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore withQuantity: 1.
+	interface checkoutCart: idCart withCreditCard: testObjectsFactory notExpiredCreditCard .
+	
+	self assert: (interface listPurchasesFor: 'user1' withPassword: 'password1') equals: ('0|validBook|1|5').
+	
+	
+	
+	
+	
+	
+	
+	!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 20:43:41'!
+test06CannotAddToCartInvalidItems
+
+! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 20:43:50'!
+test07CheckoutCartWithValidCreditCardDebitsCart
+
+	| interface idCart |
+	
+	debitBehavior := [ :anAmount :aCreditCard | | debitedAmout debitedCreditCard | 
+		debitedAmout := anAmount.
+		debitedCreditCard := aCreditCard ].
+	
+	interface := Interface 
+				withValidator: [:anUser :aPassword  | ] 
+				withCatalog: testObjectsFactory defaultCatalog 
+				withMerchantProcessor: self
+				forDate: testObjectsFactory today.
+				
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	
+	interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore withQuantity: 1.
+	interface checkoutCart: idCart withCreditCard: testObjectsFactory notExpiredCreditCard .
+	
+	self assert: (interface listPurchasesFor: 'user1' withPassword: 'password1') equals: ('0|validBook|1|5').
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!methodRemoval: InterfaceTest #test06CheckoutCartWithValidCreditCardDebitsCart stamp: 'cc 11/7/2023 20:43:50'!
+test06CheckoutCartWithValidCreditCardDebitsCart
+
+	| interface idCart |
+	
+	debitBehavior := [ :anAmount :aCreditCard | | debitedAmout debitedCreditCard | 
+		debitedAmout := anAmount.
+		debitedCreditCard := aCreditCard ].
+	
+	interface := Interface 
+				withValidator: [:anUser :aPassword  | ] 
+				withCatalog: testObjectsFactory defaultCatalog 
+				withMerchantProcessor: self
+				forDate: testObjectsFactory today.
+				
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	
+	interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore withQuantity: 1.
+	interface checkoutCart: idCart withCreditCard: testObjectsFactory notExpiredCreditCard .
+	
+	self assert: (interface listPurchasesFor: 'user1' withPassword: 'password1') equals: ('0|validBook|1|5').
+	
+	
+	
+	
+	
+	
+	
+	!
+
+!testRun: #InterfaceTest #test07CheckoutCartWithValidCreditCardDebitsCart stamp: 'cc 11/7/2023 20:45:13'!
+PASSED!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 20:47:21'!
+test08CheckoutCartWithInvalidCreditCardDoesNotProcess
+
+	| interface idCart |
+	
+	debitBehavior := [ :anAmount :aCreditCard | | debitedAmout debitedCreditCard | 
+		debitedAmout := anAmount.
+		debitedCreditCard := aCreditCard ].
+	
+	interface := Interface 
+				withValidator: [:anUser :aPassword  | ] 
+				withCatalog: testObjectsFactory defaultCatalog 
+				withMerchantProcessor: self
+				forDate: testObjectsFactory today.
+				
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	
+	interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore withQuantity: 1.
+	interface checkoutCart: idCart withCreditCard: testObjectsFactory notExpiredCreditCard .
+	
+	self assert: (interface listPurchasesFor: 'user1' withPassword: 'password1') equals: ('0|validBook|1|5').
+	
+	
+	
+	
+	
+	
+	
+	! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 20:47:45' prior: 50656271!
+test08CheckoutCartWithInvalidCreditCardDoesNotProcess
+
+	| interface idCart |
+	
+	debitBehavior := [ :anAmount :aCreditCard | self error: Cashier creditCardHasNoCreditErrorMessage].
+	
+	interface := Interface 
+				withValidator: [:anUser :aPassword  | ] 
+				withCatalog: testObjectsFactory defaultCatalog 
+				withMerchantProcessor: self
+				forDate: testObjectsFactory today.
+				
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	
+	interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore withQuantity: 1.
+	interface checkoutCart: idCart withCreditCard: testObjectsFactory notExpiredCreditCard .
+	
+	self assert: (interface listPurchasesFor: 'user1' withPassword: 'password1') equals: ('0|validBook|1|5').
+	
+	
+	
+	
+	
+	
+	
+	! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 20:49:14' prior: 50656300!
+test08CheckoutCartWithInvalidCreditCardDoesNotProcess
+
+	| interface idCart |
+	
+	debitBehavior := [ :anAmount :aCreditCard | self error: Cashier creditCardHasNoCreditErrorMessage].
+	
+	interface := Interface 
+				withValidator: [:anUser :aPassword  | ] 
+				withCatalog: testObjectsFactory defaultCatalog 
+				withMerchantProcessor: self
+				forDate: testObjectsFactory today.
+				
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	
+	interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore withQuantity: 1.
+	
+	
+	self should: [interface checkoutCart: idCart withCreditCard: testObjectsFactory notExpiredCreditCard . ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [:anError | self assert: anError messageText equals: Interface invalidCardError.
+							     self assert: (interface listPurchasesFor: 'user1' withPassword: 'password1') equals: ('0|0').	]
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!testRun: #InterfaceTest #test08CheckoutCartWithInvalidCreditCardDoesNotProcess stamp: 'cc 11/7/2023 20:49:22'!
+ERROR!
+!Interface class methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 20:49:26'!
+invalidCardError
+	self shouldBeImplemented.! !
+!Interface class methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 20:49:59' prior: 50656364!
+invalidCardError
+	^Cashier creditCardHasNoCreditErrorMessage.! !
+
+!testRun: #InterfaceTest #test08CheckoutCartWithInvalidCreditCardDoesNotProcess stamp: 'cc 11/7/2023 20:50:00'!
+FAILURE!
+
+!testRun: #InterfaceTest #test08CheckoutCartWithInvalidCreditCardDoesNotProcess stamp: 'cc 11/7/2023 20:50:59'!
+FAILURE!
+!Interface methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 20:51:19' prior: 50656143!
+listPurchasesFor: aUserID withPassword: userPassword 
+	^'0|0'! !
+
+!testRun: #InterfaceTest #test08CheckoutCartWithInvalidCreditCardDoesNotProcess stamp: 'cc 11/7/2023 20:51:24'!
+PASSED!
+
+!testRun: #InterfaceTest #test01InvalidUserOrPasswordCannotCreateInterface stamp: 'cc 11/7/2023 20:51:24'!
+PASSED!
+
+!testRun: #InterfaceTest #test02ValidAuthenticationCreatesCart stamp: 'cc 11/7/2023 20:51:24'!
+PASSED!
+
+!testRun: #InterfaceTest #test03CannotListInvalidIDCart stamp: 'cc 11/7/2023 20:51:24'!
+PASSED!
+
+!testRun: #InterfaceTest #test04ListCartWith2ItemsPrintsValidTicket stamp: 'cc 11/7/2023 20:51:24'!
+PASSED!
+
+!testRun: #InterfaceTest #test05ListCartWithDIfferentItemsPrintsValidTicket stamp: 'cc 11/7/2023 20:51:24'!
+PASSED!
+
+!testRun: #InterfaceTest #test06CannotAddToCartInvalidItems stamp: 'cc 11/7/2023 20:51:24'!
+PASSED!
+
+!testRun: #InterfaceTest #test07CheckoutCartWithValidCreditCardDebitsCart stamp: 'cc 11/7/2023 20:51:24'!
+FAILURE!
+
+!testRun: #InterfaceTest #test08CheckoutCartWithInvalidCreditCardDoesNotProcess stamp: 'cc 11/7/2023 20:51:24'!
+PASSED!
+
+!testRun: #InterfaceTest #test07CheckoutCartWithValidCreditCardDebitsCart stamp: 'cc 11/7/2023 20:51:24'!
+FAILURE!
+
+!testRun: #InterfaceTest #test08CheckoutCartWithInvalidCreditCardDoesNotProcess stamp: 'cc 11/7/2023 20:51:32'!
+PASSED!
+
+!classDefinition: #Interface category: 'TusLibros' stamp: 'cc 11/7/2023 21:30:35'!
+Object subclass: #Interface
+	instanceVariableNames: 'authenticatorValidator totalCreatedCarts catalog createdCarts cardValidator today authValidator_CHANGE_ME interfaceTest date purchasesRegister'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Interface methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 21:30:32' prior: 50656382!
+listPurchasesFor: aUserID withPassword: userPassword 
+	| userPurchases |
+	userPurchases := purchasesRegister at: aUserID.
+	^userPurchases.! !
+!Interface methodsFor: 'initialization' stamp: 'cc 11/7/2023 21:30:53' prior: 50656009!
+initializeWithValidator: authValidator withCatalog: aCatalog withMerchantProcessor: anInterfaceTest forDate: aDate 
+	authenticatorValidator := authValidator.
+	catalog := aCatalog .
+	totalCreatedCarts := 0.
+	createdCarts := Dictionary new.
+	cardValidator := anInterfaceTest .
+	today := aDate.
+	purchasesRegister := Dictionary new.! !
+!Interface methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 21:34:23' prior: 50651869!
+createCartWithUser: userID withPassword: password 
+	| newCart |
+	authenticatorValidator value: userID value: password.
+	
+	newCart := Cart acceptingItemsOf: catalog withUserID: userID.
+	totalCreatedCarts := totalCreatedCarts + 1. 
+	
+	createdCarts add: totalCreatedCarts -> newCart.
+	
+	^totalCreatedCarts.! !
+
+!testRun: #InterfaceTest #test07CheckoutCartWithValidCreditCardDebitsCart stamp: 'cc 11/7/2023 21:34:26'!
+ERROR!
+!Cart class methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 21:34:31'!
+acceptingItemsOf: aCatalog withUserID: userID 
+	self shouldBeImplemented.! !
+!Cart class methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 21:34:58' prior: 50656475!
+acceptingItemsOf: aCatalog withUserID: aUserID 
+	^self new initializeAcceptingItemsOf: aCatalog withUserID: aUserID.! !
+
+!testRun: #InterfaceTest #test07CheckoutCartWithValidCreditCardDebitsCart stamp: 'cc 11/7/2023 21:35:00'!
+ERROR!
+
+!classDefinition: #Cart category: 'TusLibros' stamp: 'cc 11/7/2023 21:35:05'!
+Object subclass: #Cart
+	instanceVariableNames: 'catalog items userID'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cart methodsFor: 'initialization' stamp: 'cc 11/7/2023 21:35:05'!
+initializeAcceptingItemsOf: aCatalog withUserID: aUserID 
+	self shouldBeImplemented.
+	catalog := aCatalog.
+	userID := aUserID.! !
+!Cart methodsFor: 'initialization' stamp: 'cc 11/7/2023 21:35:19' prior: 50656498!
+initializeAcceptingItemsOf: aCatalog withUserID: aUserID 
+	catalog := aCatalog.
+	userID := aUserID.
+	items := OrderedCollection new.! !
+
+!testRun: #InterfaceTest #test07CheckoutCartWithValidCreditCardDebitsCart stamp: 'cc 11/7/2023 21:35:20'!
+ERROR!
+
+!classDefinition: #Interface category: 'TusLibros' stamp: 'cc 11/7/2023 21:38:05'!
+Object subclass: #Interface
+	instanceVariableNames: 'authenticatorValidator totalCreatedCarts catalog createdCarts cardValidator today authValidator_CHANGE_ME interfaceTest date purchasesRegister totalTransactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Interface methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 21:38:01' prior: 50656100!
+checkoutCart: idCart withCreditCard: aCreditCard 
+	
+	| cartForCheckout salesBook cashier total |
+	cartForCheckout := createdCarts at: idCart.
+	salesBook := OrderedCollection new.
+	
+	cashier := Cashier 
+			toCheckout: cartForCheckout 
+			charging: aCreditCard
+			throught: cardValidator
+			on:  today
+			registeringOn:  salesBook.
+			
+	cashier checkOut.
+	totalTransactions := totalTransactions +1.
+	^totalTransactions.! !
+!Interface methodsFor: 'initialization' stamp: 'cc 11/7/2023 21:39:19' prior: 50656445!
+initializeWithValidator: authValidator withCatalog: aCatalog withMerchantProcessor: anInterfaceTest forDate: aDate 
+	
+	authenticatorValidator := authValidator.
+	cardValidator := anInterfaceTest .
+	catalog := aCatalog .
+	today := aDate.
+	
+	purchasesRegister := Dictionary new.
+	createdCarts := Dictionary new.
+	
+	totalCreatedCarts := 0.
+	totalTransactions := 0.! !
+
+!testRun: #InterfaceTest #test07CheckoutCartWithValidCreditCardDebitsCart stamp: 'cc 11/7/2023 21:39:20'!
+ERROR!
+
+!classDefinition: #Interface category: 'TusLibros' stamp: 'cc 11/7/2023 21:39:38'!
+Object subclass: #Interface
+	instanceVariableNames: 'authenticatorValidator totalCreatedCarts catalog createdCarts cardValidator today authValidator_CHANGE_ME interfaceTest date transactionsRegister totalTransactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Interface methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 21:39:38' prior: 50656437!
+listPurchasesFor: aUserID withPassword: userPassword 
+	| userPurchases |
+	userPurchases := transactionsRegister at: aUserID.
+	^userPurchases.! !
+!Interface methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 21:39:38' prior: 50656544!
+initializeWithValidator: authValidator withCatalog: aCatalog withMerchantProcessor: anInterfaceTest forDate: aDate 
+	
+	authenticatorValidator := authValidator.
+	cardValidator := anInterfaceTest .
+	catalog := aCatalog .
+	today := aDate.
+	
+	transactionsRegister := Dictionary new.
+	createdCarts := Dictionary new.
+	
+	totalCreatedCarts := 0.
+	totalTransactions := 0.! !
+!Interface methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 21:39:49' prior: 50655328!
+addToCart: idCart withISBN: anISBN withQuantity: aQuantity
+ 	
+	(createdCarts at: idCart) add: aQuantity of: anISBN.! !
+!Interface methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 21:40:29' prior: 50656528!
+checkoutCart: idCart withCreditCard: aCreditCard 
+	
+	| cartForCheckout salesBook cashier |
+	cartForCheckout := createdCarts at: idCart.
+	salesBook := OrderedCollection new.
+	
+	cashier := Cashier 
+			toCheckout: cartForCheckout 
+			charging: aCreditCard
+			throught: cardValidator
+			on:  today
+			registeringOn:  salesBook.
+			
+	cashier checkOut.
+	
+	totalTransactions := totalTransactions +1.
+	^totalTransactions.! !
+!Interface methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 21:41:34' prior: 50656604!
+checkoutCart: idCart withCreditCard: aCreditCard 
+	
+	| cartForCheckout salesBook cashier |
+	cartForCheckout := createdCarts at: idCart.
+	salesBook := OrderedCollection new.
+	
+	cashier := Cashier 
+			toCheckout: cartForCheckout 
+			charging: aCreditCard
+			throught: cardValidator
+			on:  today
+			registeringOn:  salesBook.
+			
+	cashier checkOut.
+	
+	totalTransactions := totalTransactions +1.
+	transactionsRegister add: totalTransactions -> cartForCheckout.
+	
+	^totalTransactions.! !
+!Interface methodsFor: 'as yet unclassified' stamp: 'cc 11/7/2023 21:43:15' prior: 50656620!
+checkoutCart: idCart withCreditCard: aCreditCard 
+	
+	| cartForCheckout salesBook cashier |
+	cartForCheckout := createdCarts at: idCart.
+	salesBook := OrderedCollection new.
+	
+	cashier := Cashier 
+			toCheckout: cartForCheckout 
+			charging: aCreditCard
+			throught: cardValidator
+			on:  today
+			registeringOn:  salesBook.
+			
+	cashier checkOut.
+	
+	totalTransactions := totalTransactions +1.
+	transactionsRegister add: totalTransactions -> salesBook.
+	
+	^totalTransactions.! !
+
+!testRun: #InterfaceTest #test07CheckoutCartWithValidCreditCardDebitsCart stamp: 'cc 11/7/2023 21:47:48'!
+ERROR!
+
+----SNAPSHOT----(7 November 2023 21:48:02) CuisUniversity-5981.image priorSource: 10382922!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/8/2023 01:31:07' prior: 50656206!
+test06CannotAddToCartInvalidItems
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ] withCatalog: testObjectsFactory defaultCatalog.
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	
+	self should: [interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore withQuantity: 2.]
+		raise:  Error - MessageNotUnderstood 
+		withExceptionDo: [:anError |
+				
+				self assert: (interface listCart: idCart) equals: ('0|').].
+	
+	! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/8/2023 01:32:00' prior: 50656664!
+test06CannotAddToCartInvalidItems
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ] withCatalog: testObjectsFactory defaultCatalog.
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	
+	self should: [interface addToCart: idCart withISBN: testObjectsFactory itemNotSellByTheStore withQuantity: 2.]
+		raise:  Error - MessageNotUnderstood 
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: Interface invalidItemError.
+				self assert: (interface listCart: idCart) equals: ('0|').].
+	
+	! !
+
+!testRun: #InterfaceTest #test06CannotAddToCartInvalidItems stamp: 'cc 11/8/2023 01:32:02'!
+FAILURE!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/8/2023 01:32:11' prior: 50656683!
+test06CannotAddToCartInvalidItems
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ] withCatalog: testObjectsFactory defaultCatalog.
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	
+	self should: [interface addToCart: idCart withISBN: testObjectsFactory itemNotSellByTheStore withQuantity: 2.]
+		raise:  Error - MessageNotUnderstood 
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: Interface invalidItemError.
+				self assert: (interface listCart: idCart) equals: ('0').].
+	
+	! !
+
+!testRun: #InterfaceTest #test06CannotAddToCartInvalidItems stamp: 'cc 11/8/2023 01:32:11'!
+PASSED!
+
+!testRun: #InterfaceTest #test01InvalidUserOrPasswordCannotCreateInterface stamp: 'cc 11/8/2023 01:32:11'!
+PASSED!
+
+!testRun: #InterfaceTest #test02ValidAuthenticationCreatesCart stamp: 'cc 11/8/2023 01:32:11'!
+PASSED!
+
+!testRun: #InterfaceTest #test03CannotListInvalidIDCart stamp: 'cc 11/8/2023 01:32:11'!
+PASSED!
+
+!testRun: #InterfaceTest #test04ListCartWith2ItemsPrintsValidTicket stamp: 'cc 11/8/2023 01:32:11'!
+PASSED!
+
+!testRun: #InterfaceTest #test05ListCartWithDIfferentItemsPrintsValidTicket stamp: 'cc 11/8/2023 01:32:11'!
+PASSED!
+
+!testRun: #InterfaceTest #test06CannotAddToCartInvalidItems stamp: 'cc 11/8/2023 01:32:11'!
+PASSED!
+
+!testRun: #InterfaceTest #test07CheckoutCartWithValidCreditCardDebitsCart stamp: 'cc 11/8/2023 01:32:12'!
+ERROR!
+
+!testRun: #InterfaceTest #test08CheckoutCartWithInvalidCreditCardDoesNotProcess stamp: 'cc 11/8/2023 01:32:12'!
+ERROR!
+
+!testRun: #InterfaceTest #test06CannotAddToCartInvalidItems stamp: 'cc 11/8/2023 01:32:26'!
+PASSED!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/8/2023 01:32:34' prior: 50656708!
+test06CannotAddToCartInvalidItems
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ] withCatalog: testObjectsFactory defaultCatalog.
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	
+	self should: [interface addToCart: idCart withISBN: testObjectsFactory itemNotSellByTheStore withQuantity: 2.]
+		raise:  Error - MessageNotUnderstood 
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: Interface invalidItemError.
+				self assert: (interface listCart: idCart) equals: ('0').].
+	
+	! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/8/2023 01:33:07'!
+test07CannotAddToCartInvalidQuantityOfItems
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ] withCatalog: testObjectsFactory defaultCatalog.
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	
+	self should: [interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore withQuantity: -1.]
+		raise:  Error - MessageNotUnderstood 
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: Interface invalidItemError.
+				self assert: (interface listCart: idCart) equals: ('0').].
+	
+	! !
+
+!testRun: #InterfaceTest #test07CannotAddToCartInvalidQuantityOfItems stamp: 'cc 11/8/2023 01:33:11'!
+FAILURE!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/8/2023 01:33:26' prior: 50656784!
+test07CannotAddToCartInvalidQuantityOfItems
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ] withCatalog: testObjectsFactory defaultCatalog.
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	
+	self should: [interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore withQuantity: -1.]
+		raise:  Error - MessageNotUnderstood 
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: Interface invalidAmountOfItems.
+				self assert: (interface listCart: idCart) equals: ('0').].
+	
+	! !
+
+!testRun: #InterfaceTest #test07CannotAddToCartInvalidQuantityOfItems stamp: 'cc 11/8/2023 01:33:28'!
+ERROR!
+!Interface class methodsFor: 'as yet unclassified' stamp: 'cc 11/8/2023 01:33:32'!
+invalidAmountOfItems
+	self shouldBeImplemented.! !
+!Interface class methodsFor: 'as yet unclassified' stamp: 'cc 11/8/2023 01:34:11' prior: 50656834!
+invalidAmountOfItems
+	^'Invalid number of items'! !
+
+!testRun: #InterfaceTest #test07CannotAddToCartInvalidQuantityOfItems stamp: 'cc 11/8/2023 01:34:12'!
+PASSED!
+
+!testRun: #InterfaceTest #test01InvalidUserOrPasswordCannotCreateInterface stamp: 'cc 11/8/2023 01:34:12'!
+PASSED!
+
+!testRun: #InterfaceTest #test02ValidAuthenticationCreatesCart stamp: 'cc 11/8/2023 01:34:12'!
+PASSED!
+
+!testRun: #InterfaceTest #test03CannotListInvalidIDCart stamp: 'cc 11/8/2023 01:34:12'!
+PASSED!
+
+!testRun: #InterfaceTest #test04ListCartWith2ItemsPrintsValidTicket stamp: 'cc 11/8/2023 01:34:12'!
+PASSED!
+
+!testRun: #InterfaceTest #test05ListCartWithDIfferentItemsPrintsValidTicket stamp: 'cc 11/8/2023 01:34:12'!
+PASSED!
+
+!testRun: #InterfaceTest #test06CannotAddToCartInvalidItems stamp: 'cc 11/8/2023 01:34:12'!
+PASSED!
+
+!testRun: #InterfaceTest #test07CannotAddToCartInvalidQuantityOfItems stamp: 'cc 11/8/2023 01:34:12'!
+PASSED!
+
+!testRun: #InterfaceTest #test07CheckoutCartWithValidCreditCardDebitsCart stamp: 'cc 11/8/2023 01:34:12'!
+ERROR!
+
+!testRun: #InterfaceTest #test08CheckoutCartWithInvalidCreditCardDoesNotProcess stamp: 'cc 11/8/2023 01:34:12'!
+ERROR!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/8/2023 01:36:08'!
+test08CheckoutCartWithValidCreditCardDebitsCart
+
+	| interface idCart |
+	
+	debitBehavior := [ :anAmount :aCreditCard | | debitedAmout debitedCreditCard | 
+		debitedAmout := anAmount.
+		debitedCreditCard := aCreditCard ].
+	
+	interface := Interface 
+				withValidator: [:anUser :aPassword  | ] 
+				withCatalog: testObjectsFactory defaultCatalog 
+				withMerchantProcessor: self
+				forDate: testObjectsFactory today.
+				
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	
+	interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore withQuantity: 1.
+	interface checkoutCart: idCart withCreditCard: testObjectsFactory notExpiredCreditCard .
+	
+	self assert: (interface listPurchasesFor: 'user1' withPassword: 'password1') equals: ('0|validBook|1|5').
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!methodRemoval: InterfaceTest #test07CheckoutCartWithValidCreditCardDebitsCart stamp: 'cc 11/8/2023 01:36:08'!
+test07CheckoutCartWithValidCreditCardDebitsCart
+
+	| interface idCart |
+	
+	debitBehavior := [ :anAmount :aCreditCard | | debitedAmout debitedCreditCard | 
+		debitedAmout := anAmount.
+		debitedCreditCard := aCreditCard ].
+	
+	interface := Interface 
+				withValidator: [:anUser :aPassword  | ] 
+				withCatalog: testObjectsFactory defaultCatalog 
+				withMerchantProcessor: self
+				forDate: testObjectsFactory today.
+				
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	
+	interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore withQuantity: 1.
+	interface checkoutCart: idCart withCreditCard: testObjectsFactory notExpiredCreditCard .
+	
+	self assert: (interface listPurchasesFor: 'user1' withPassword: 'password1') equals: ('0|validBook|1|5').
+	
+	
+	
+	
+	
+	
+	
+	!
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/8/2023 01:36:26'!
+test09CheckoutCartWithValidCreditCardDebitsCart
+
+	| interface idCart |
+	
+	debitBehavior := [ :anAmount :aCreditCard | | debitedAmout debitedCreditCard | 
+		debitedAmout := anAmount.
+		debitedCreditCard := aCreditCard ].
+	
+	interface := Interface 
+				withValidator: [:anUser :aPassword  | ] 
+				withCatalog: testObjectsFactory defaultCatalog 
+				withMerchantProcessor: self
+				forDate: testObjectsFactory today.
+				
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	
+	interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore withQuantity: 1.
+	interface checkoutCart: idCart withCreditCard: testObjectsFactory notExpiredCreditCard .
+	
+	self assert: (interface listPurchasesFor: 'user1' withPassword: 'password1') equals: ('0|validBook|1|5').
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!methodRemoval: InterfaceTest #test08CheckoutCartWithValidCreditCardDebitsCart stamp: 'cc 11/8/2023 01:36:26'!
+test08CheckoutCartWithValidCreditCardDebitsCart
+
+	| interface idCart |
+	
+	debitBehavior := [ :anAmount :aCreditCard | | debitedAmout debitedCreditCard | 
+		debitedAmout := anAmount.
+		debitedCreditCard := aCreditCard ].
+	
+	interface := Interface 
+				withValidator: [:anUser :aPassword  | ] 
+				withCatalog: testObjectsFactory defaultCatalog 
+				withMerchantProcessor: self
+				forDate: testObjectsFactory today.
+				
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	
+	interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore withQuantity: 1.
+	interface checkoutCart: idCart withCreditCard: testObjectsFactory notExpiredCreditCard .
+	
+	self assert: (interface listPurchasesFor: 'user1' withPassword: 'password1') equals: ('0|validBook|1|5').
+	
+	
+	
+	
+	
+	
+	
+	!
+
+----STARTUP---- (8 November 2023 23:23:20) as /home/camila/Desktop/CUIS-MIS LIBROS 3/linux64/CuisUniversity-5981.image!
+
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/8/2023 01:31:07' prior: 50656206!
+test06CannotAddToCartInvalidItems
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ] withCatalog: testObjectsFactory defaultCatalog.
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	
+	self should: [interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore withQuantity: 2.]
+		raise:  Error - MessageNotUnderstood 
+		withExceptionDo: [:anError |
+				
+				self assert: (interface listCart: idCart) equals: ('0|').].
+	
+	! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/8/2023 01:32:00' prior: 50656996!
+test06CannotAddToCartInvalidItems
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ] withCatalog: testObjectsFactory defaultCatalog.
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	
+	self should: [interface addToCart: idCart withISBN: testObjectsFactory itemNotSellByTheStore withQuantity: 2.]
+		raise:  Error - MessageNotUnderstood 
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: Interface invalidItemError.
+				self assert: (interface listCart: idCart) equals: ('0|').].
+	
+	! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/8/2023 01:32:11' prior: 50657015!
+test06CannotAddToCartInvalidItems
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ] withCatalog: testObjectsFactory defaultCatalog.
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	
+	self should: [interface addToCart: idCart withISBN: testObjectsFactory itemNotSellByTheStore withQuantity: 2.]
+		raise:  Error - MessageNotUnderstood 
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: Interface invalidItemError.
+				self assert: (interface listCart: idCart) equals: ('0').].
+	
+	! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/8/2023 01:32:34' prior: 50657037!
+test06CannotAddToCartInvalidItems
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ] withCatalog: testObjectsFactory defaultCatalog.
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	
+	self should: [interface addToCart: idCart withISBN: testObjectsFactory itemNotSellByTheStore withQuantity: 2.]
+		raise:  Error - MessageNotUnderstood 
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: Interface invalidItemError.
+				self assert: (interface listCart: idCart) equals: ('0').].
+	
+	! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/8/2023 01:33:07'!
+test07CannotAddToCartInvalidQuantityOfItems
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ] withCatalog: testObjectsFactory defaultCatalog.
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	
+	self should: [interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore withQuantity: -1.]
+		raise:  Error - MessageNotUnderstood 
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: Interface invalidItemError.
+				self assert: (interface listCart: idCart) equals: ('0').].
+	
+	! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/8/2023 01:33:26' prior: 50657080!
+test07CannotAddToCartInvalidQuantityOfItems
+
+	| interface idCart |
+	
+	interface := Interface withValidator: [:anUser :aPassword  | ] withCatalog: testObjectsFactory defaultCatalog.
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	
+	self should: [interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore withQuantity: -1.]
+		raise:  Error - MessageNotUnderstood 
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: Interface invalidAmountOfItems.
+				self assert: (interface listCart: idCart) equals: ('0').].
+	
+	! !
+!Interface class methodsFor: 'as yet unclassified' stamp: 'cc 11/8/2023 01:33:32'!
+invalidAmountOfItems
+	self shouldBeImplemented.! !
+!Interface class methodsFor: 'as yet unclassified' stamp: 'cc 11/8/2023 01:34:11' prior: 50657123!
+invalidAmountOfItems
+	^'Invalid number of items'! !
+!InterfaceTest methodsFor: 'as yet unclassified' stamp: 'cc 11/8/2023 01:36:08'!
+test08CheckoutCartWithValidCreditCardDebitsCart
+
+	| interface idCart |
+	
+	debitBehavior := [ :anAmount :aCreditCard | | debitedAmout debitedCreditCard | 
+		debitedAmout := anAmount.
+		debitedCreditCard := aCreditCard ].
+	
+	interface := Interface 
+				withValidator: [:anUser :aPassword  | ] 
+				withCatalog: testObjectsFactory defaultCatalog 
+				withMerchantProcessor: self
+				forDate: testObjectsFactory today.
+				
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	
+	interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore withQuantity: 1.
+	interface checkoutCart: idCart withCreditCard: testObjectsFactory notExpiredCreditCard .
+	
+	self assert: (interface listPurchasesFor: 'user1' withPassword: 'password1') equals: ('0|validBook|1|5').
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!methodRemoval: InterfaceTest #test07CheckoutCartWithValidCreditCardDebitsCart stamp: 'cc 11/8/2023 23:25:12'!
+test07CheckoutCartWithValidCreditCardDebitsCart
+
+	| interface idCart |
+	
+	debitBehavior := [ :anAmount :aCreditCard | | debitedAmout debitedCreditCard | 
+		debitedAmout := anAmount.
+		debitedCreditCard := aCreditCard ].
+	
+	interface := Interface 
+				withValidator: [:anUser :aPassword  | ] 
+				withCatalog: testObjectsFactory defaultCatalog 
+				withMerchantProcessor: self
+				forDate: testObjectsFactory today.
+				
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	
+	interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore withQuantity: 1.
+	interface checkoutCart: idCart withCreditCard: testObjectsFactory notExpiredCreditCard .
+	
+	self assert: (interface listPurchasesFor: 'user1' withPassword: 'password1') equals: ('0|validBook|1|5').
+	
+	
+	
+	
+	
+	
+	
+	!
+
+!methodRemoval: InterfaceTest #test08CheckoutCartWithValidCreditCardDebitsCart stamp: 'cc 11/8/2023 23:25:12'!
+test08CheckoutCartWithValidCreditCardDebitsCart
+
+	| interface idCart |
+	
+	debitBehavior := [ :anAmount :aCreditCard | | debitedAmout debitedCreditCard | 
+		debitedAmout := anAmount.
+		debitedCreditCard := aCreditCard ].
+	
+	interface := Interface 
+				withValidator: [:anUser :aPassword  | ] 
+				withCatalog: testObjectsFactory defaultCatalog 
+				withMerchantProcessor: self
+				forDate: testObjectsFactory today.
+				
+	idCart := interface createCartWithUser: 'user1' withPassword: 'password1'.
+	
+	interface addToCart: idCart withISBN: testObjectsFactory itemSellByTheStore withQuantity: 1.
+	interface checkoutCart: idCart withCreditCard: testObjectsFactory notExpiredCreditCard .
+	
+	self assert: (interface listPurchasesFor: 'user1' withPassword: 'password1') equals: ('0|validBook|1|5').
+	
+	
+	
+	
+	
+	
+	
+	!
+
+!testRun: #InterfaceTest #test08CheckoutCartWithInvalidCreditCardDoesNotProcess stamp: 'cc 11/8/2023 23:25:16'!
+ERROR!
+
+!testRun: #InterfaceTest #test08CheckoutCartWithInvalidCreditCardDoesNotProcess stamp: 'cc 11/8/2023 23:25:16'!
+ERROR!
+
+!testRun: #InterfaceTest #test01InvalidUserOrPasswordCannotCreateInterface stamp: 'cc 11/8/2023 23:25:22'!
+PASSED!
+
+!testRun: #InterfaceTest #test02ValidAuthenticationCreatesCart stamp: 'cc 11/8/2023 23:25:22'!
+PASSED!
+
+!testRun: #InterfaceTest #test03CannotListInvalidIDCart stamp: 'cc 11/8/2023 23:25:22'!
+PASSED!
+
+!testRun: #InterfaceTest #test04ListCartWith2ItemsPrintsValidTicket stamp: 'cc 11/8/2023 23:25:22'!
+PASSED!
+
+!testRun: #InterfaceTest #test05ListCartWithDIfferentItemsPrintsValidTicket stamp: 'cc 11/8/2023 23:25:22'!
+PASSED!
+
+!testRun: #InterfaceTest #test06CannotAddToCartInvalidItems stamp: 'cc 11/8/2023 23:25:22'!
+PASSED!
+
+!testRun: #InterfaceTest #test07CannotAddToCartInvalidQuantityOfItems stamp: 'cc 11/8/2023 23:25:22'!
+PASSED!
+
+!testRun: #InterfaceTest #test08CheckoutCartWithInvalidCreditCardDoesNotProcess stamp: 'cc 11/8/2023 23:25:22'!
+ERROR!
+
+!testRun: #InterfaceTest #test08CheckoutCartWithInvalidCreditCardDoesNotProcess stamp: 'cc 11/8/2023 23:25:22'!
+ERROR!
+
+!testRun: #InterfaceTest #test07CannotAddToCartInvalidQuantityOfItems stamp: 'cc 11/8/2023 23:25:47'!
+PASSED!
+
+!testRun: #InterfaceTest #test06CannotAddToCartInvalidItems stamp: 'cc 11/8/2023 23:25:48'!
+PASSED!
+
+!testRun: #InterfaceTest #test05ListCartWithDIfferentItemsPrintsValidTicket stamp: 'cc 11/8/2023 23:25:49'!
+PASSED!
+
+!testRun: #InterfaceTest #test05ListCartWithDIfferentItemsPrintsValidTicket stamp: 'cc 11/8/2023 23:25:50'!
+PASSED!
+
+!testRun: #InterfaceTest #test04ListCartWith2ItemsPrintsValidTicket stamp: 'cc 11/8/2023 23:25:54'!
+PASSED!
+
+!testRun: #InterfaceTest #test03CannotListInvalidIDCart stamp: 'cc 11/8/2023 23:25:55'!
+PASSED!
+
+----SNAPSHOT----(8 November 2023 23:26:08) CuisUniversity-5981.image priorSource: 10400303!
+
+----QUIT----(8 November 2023 23:26:15) CuisUniversity-5981.image priorSource: 10420056!
