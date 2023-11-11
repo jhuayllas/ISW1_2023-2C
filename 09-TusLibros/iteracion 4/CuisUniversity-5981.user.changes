@@ -1,0 +1,2951 @@
+
+
+----QUIT----(13 August 2023 19:14:09) CuisUniversity-5981.image priorSource: 5713367!
+
+----STARTUP---- (13 August 2023 19:14:10) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5981.image!
+
+
+----QUIT----(13 August 2023 19:14:10) CuisUniversity-5981.image priorSource: 10197065!
+
+----STARTUP---- (9 November 2023 20:23:02) as C:\Users\crist\Desktop\ASF7\CuisUniversity-5981.image!
+
+
+----SNAPSHOT----(9 November 2023 20:23:30) CuisUniversity-5981.image priorSource: 10197292!
+
+----QUIT----(9 November 2023 20:46:47) CuisUniversity-5981.image priorSource: 10197483!
+
+----STARTUP---- (9 November 2023 20:47:12) as C:\Users\crist\Desktop\ASF7\CuisUniversity-5981.image!
+
+
+----QUIT----(10 November 2023 09:45:54) CuisUniversity-5981.image priorSource: 10197576!
+
+----STARTUP---- (10 November 2023 18:26:19) as C:\Users\crist\Desktop\ASF7\CuisUniversity-5981.image!
+
+
+----End fileIn of C:\Users\crist\Desktop\ASF7\TusLibrosREST Ejercicio it4.st----!
+
+----End fileIn of C:\Users\crist\Desktop\ASF7\TusLibros-Tests Ejercicio it4.st----!
+
+----End fileIn of C:\Users\crist\Desktop\ASF7\Packages\System\Collections-CompactArrays.pck.st----!
+
+----End fileIn of C:\Users\crist\Desktop\ASF7\Packages\Features\Compression.pck.st----!
+
+----End fileIn of C:\Users\crist\Desktop\ASF7\Packages\Features\Sound.pck.st----!
+
+----End fileIn of C:\Users\crist\Desktop\ASF7\Packages\Features\Cryptography-DigitalSignatures.pck.st----!
+
+----End fileIn of C:\Users\crist\Desktop\ASF7\Packages\Features\Identities-UUID.pck.st----!
+
+----End fileIn of C:\Users\crist\Desktop\ASF7\Packages\System\Network-Kernel.pck.st----!
+
+----End fileIn of C:\Users\crist\Desktop\ASF7\WebClient.pck.st----!
+
+!classDefinition: #Cart category: 'TusLibros-Model' stamp: 'CJF 11/10/2023 18:43:45'!
+Object subclass: #Cart
+	instanceVariableNames: 'catalog items'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Model'!
+!Cart methodsFor: 'error messages' stamp: 'HernanWilkinson 6/21/2013 23:59'!
+invalidItemErrorMessage
+	
+	^self class invalidItemErrorMessage ! !
+!Cart methodsFor: 'error messages' stamp: 'HernanWilkinson 6/22/2013 00:00'!
+invalidQuantityErrorMessage
+	
+	^self class invalidQuantityErrorMessage ! !
+!Cart methodsFor: 'assertions' stamp: 'HernanWilkinson 6/22/2013 14:17'!
+assertIsValidItem: anItem
+
+	(catalog includesKey: anItem) ifFalse: [ self signalInvalidItem ]! !
+!Cart methodsFor: 'assertions' stamp: 'HernanWilkinson 6/22/2013 14:18'!
+assertIsValidQuantity: aQuantity
+
+	aQuantity strictlyPositive ifFalse: [self signalInvalidQuantity ]! !
+!Cart methodsFor: 'initialization' stamp: 'HernanWilkinson 6/22/2013 12:29'!
+initializeAcceptingItemsOf: aCatalog
+
+	catalog := aCatalog.
+	items := Bag new.! !
+!Cart methodsFor: 'testing' stamp: 'HernanWilkinson 6/17/2013 17:44'!
+includes: anItem
+
+	^items includes: anItem ! !
+!Cart methodsFor: 'testing' stamp: 'HernanWilkinson 6/17/2013 17:44'!
+isEmpty
+	
+	^items isEmpty ! !
+!Cart methodsFor: 'adding' stamp: 'HernanWilkinson 6/17/2013 17:44'!
+add: anItem
+
+	^ self add: 1 of: anItem ! !
+!Cart methodsFor: 'adding' stamp: 'HernanWilkinson 6/22/2013 12:31'!
+add: aQuantity of: anItem
+
+	self assertIsValidQuantity: aQuantity.
+	self assertIsValidItem: anItem.
+
+	items add: anItem withOccurrences: aQuantity ! !
+!Cart methodsFor: 'content' stamp: 'HernanWilkinson 6/22/2013 12:17'!
+catalog
+	
+	^ catalog! !
+!Cart methodsFor: 'content' stamp: 'HernanWilkinson 6/22/2013 12:30'!
+content
+	
+	^items copy! !
+!Cart methodsFor: 'content' stamp: 'HernanWilkinson 6/23/2013 12:10'!
+itemsAndQuantitiesDo: aBlock
+	
+	^ items contents keysAndValuesDo: [ :anItem :aQuantity | aBlock value: anItem value: aQuantity ]! !
+!Cart methodsFor: 'content' stamp: 'HernanWilkinson 6/17/2013 17:45'!
+occurrencesOf: anItem
+
+	^items occurrencesOf: anItem  ! !
+!Cart methodsFor: 'error signal' stamp: 'HernanWilkinson 6/22/2013 14:18'!
+signalInvalidItem 
+
+	self error: self invalidItemErrorMessage! !
+!Cart methodsFor: 'error signal' stamp: 'HernanWilkinson 6/22/2013 14:19'!
+signalInvalidQuantity 
+
+	self error: self invalidQuantityErrorMessage ! !
+
+!classDefinition: 'Cart class' category: 'TusLibros-Model' stamp: 'CJF 11/10/2023 18:43:47'!
+Cart class
+	instanceVariableNames: ''!
+!Cart class methodsFor: 'instance creation' stamp: 'HernanWilkinson 6/17/2013 17:48'!
+acceptingItemsOf: aCatalog
+
+	^self new initializeAcceptingItemsOf: aCatalog ! !
+!Cart class methodsFor: 'error messages' stamp: 'HernanWilkinson 6/21/2013 23:59'!
+invalidItemErrorMessage
+	
+	^'Item is not in catalog'! !
+!Cart class methodsFor: 'error messages' stamp: 'HernanWilkinson 6/22/2013 00:00'!
+invalidQuantityErrorMessage
+	
+	^'Invalid number of items'! !
+
+!classDefinition: #CartSession category: 'TusLibros-Model' stamp: 'CJF 11/10/2023 18:43:47'!
+Object subclass: #CartSession
+	instanceVariableNames: 'owner cart lastUsedTime systemFacade'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Model'!
+!CartSession methodsFor: 'time/expiration' stamp: 'HernanWilkinson 6/17/2015 20:34'!
+assertIsNotExpirtedAt: aTime
+
+	(self isExpiredAt: aTime) ifTrue: [ self signalCartSessionExpired ]! !
+!CartSession methodsFor: 'time/expiration' stamp: 'HernanWilkinson 6/17/2015 20:36'!
+isExpiredAt: aTime 
+	
+	^ (lastUsedTime + systemFacade sessionDuration) < aTime! !
+!CartSession methodsFor: 'time/expiration' stamp: 'HernanWilkinson 6/17/2015 20:36'!
+now
+
+	^systemFacade now! !
+!CartSession methodsFor: 'time/expiration' stamp: 'HernanWilkinson 6/17/2015 20:37'!
+today
+
+	^systemFacade today! !
+!CartSession methodsFor: 'session management' stamp: 'HernanWilkinson 6/17/2015 20:35'!
+do: aBlock
+
+	| now |
+
+	now := self now.
+	self assertIsNotExpirtedAt: now.
+	
+	^ [ aBlock value: self ] ensure: [ lastUsedTime := now  ]! !
+!CartSession methodsFor: 'initialization' stamp: 'HernanWilkinson 6/17/2015 20:36'!
+initializeOwnedBy: aCustomer with: aCart on: aSystemFacade
+
+	owner := aCustomer.
+	cart := aCart.
+	systemFacade := aSystemFacade.
+	lastUsedTime := self now.! !
+!CartSession methodsFor: 'error signal' stamp: 'HernanWilkinson 6/17/2015 20:37'!
+signalCartSessionExpired
+	
+	self error: systemFacade sessionHasExpiredErrorDescription ! !
+!CartSession methodsFor: 'cart' stamp: 'HernanWilkinson 6/17/2015 20:34'!
+addToCart: anAmount of: aBook
+
+	^cart add: anAmount of: aBook! !
+!CartSession methodsFor: 'cart' stamp: 'HernanWilkinson 6/17/2015 20:35'!
+cartContent
+
+	^cart content! !
+!CartSession methodsFor: 'cart' stamp: 'HAW 7/23/2020 15:22:42'!
+checkOutCartWithCreditCardNumbered: aCreditCartNumber ownedBy: anOwner expiringOn: anExpirationMonthOfYear 
+
+	^(Cashier 
+		toCheckout: cart 
+		ownedBy: owner
+		charging: (CreditCard numbered: aCreditCartNumber ownedBy: anOwner expiringOn: anExpirationMonthOfYear) 
+		throught: systemFacade merchantProcessor 
+		on: self today 
+		registeringOn: systemFacade salesBook) checkOut ! !
+
+!classDefinition: 'CartSession class' category: 'TusLibros-Model' stamp: 'CJF 11/10/2023 18:43:48'!
+CartSession class
+	instanceVariableNames: ''!
+!CartSession class methodsFor: 'instance creation' stamp: 'HernanWilkinson 6/17/2015 20:37'!
+ownedBy: aCustomer with: aCart on: aSystemFacade
+
+	^self new initializeOwnedBy: aCustomer with: aCart on: aSystemFacade! !
+
+!classDefinition: #Cashier category: 'TusLibros-Model' stamp: 'CJF 11/10/2023 18:43:48'!
+Object subclass: #Cashier
+	instanceVariableNames: 'cart salesBook merchantProcessor creditCard owner ticket'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Model'!
+!Cashier methodsFor: 'checkout - private' stamp: 'HernanWilkinson 6/22/2013 12:17'!
+createLineItemOf: anItem quantity: aQuantity 
+
+	^LineItem of: anItem quantity: aQuantity total: (self totalOf: anItem quantity: aQuantity) ! !
+!Cashier methodsFor: 'checkout - private' stamp: 'HernanWilkinson 6/22/2013 12:25'!
+createSale
+
+	^ Sale doneBy: owner certifiedWith: ticket
+! !
+!Cashier methodsFor: 'checkout - private' stamp: 'HernanWilkinson 6/22/2013 12:28'!
+createTicket
+
+	| lineItems |
+	
+	lineItems := OrderedCollection new.
+	cart itemsAndQuantitiesDo: [ :anItem :aQuantity | 
+		lineItems add: (self createLineItemOf: anItem quantity: aQuantity)].
+	
+	ticket := Ticket of: lineItems 
+	! !
+!Cashier methodsFor: 'checkout - private' stamp: 'HAW 5/5/2020 18:04:55'!
+debitTotal
+
+	| transactionId |
+	
+	transactionId := merchantProcessor debit: ticket total from: creditCard.
+	ticket transactionId: transactionId! !
+!Cashier methodsFor: 'checkout - private' stamp: 'HernanWilkinson 6/17/2013 19:06'!
+registerSale
+
+	salesBook add: self createSale! !
+!Cashier methodsFor: 'checkout - private' stamp: 'HernanWilkinson 6/22/2013 12:17'!
+totalOf: anItem quantity: aQuantity 
+
+	^(cart catalog at: anItem) * aQuantity  ! !
+!Cashier methodsFor: 'checkout' stamp: 'HernanWilkinson 6/22/2013 12:28'!
+checkOut
+
+	self createTicket.
+	self debitTotal.
+	self registerSale.
+
+	^ ticket ! !
+!Cashier methodsFor: 'initialization' stamp: 'HernanWilkinson 6/22/2013 12:02'!
+initializeToCheckout: aCart ownedBy: anOwner charging: aCreditCard throught: aMerchantProcessor registeringOn: aSalesBook
+	
+	cart := aCart.
+	owner := anOwner.
+	creditCard := aCreditCard.
+	merchantProcessor := aMerchantProcessor.
+	salesBook := aSalesBook! !
+
+!classDefinition: 'Cashier class' category: 'TusLibros-Model' stamp: 'CJF 11/10/2023 18:43:49'!
+Cashier class
+	instanceVariableNames: ''!
+!Cashier class methodsFor: 'assertions' stamp: 'HernanWilkinson 6/22/2013 14:22'!
+assertIsNotEmpty: aCart 
+	
+	aCart isEmpty ifTrue: [self signalCartCanNotBeEmpty ]! !
+!Cashier class methodsFor: 'assertions' stamp: 'HernanWilkinson 6/22/2013 14:22'!
+assertIsNotExpired: aCreditCard on: aDate
+	
+	(aCreditCard isExpiredOn: aDate) ifTrue: [self signalCanNotChargeAnExpiredCreditCard]! !
+!Cashier class methodsFor: 'instance creation' stamp: 'HernanWilkinson 6/22/2013 12:00'!
+toCheckout: aCart ownedBy: anOwner charging: aCreditCard throught: aMerchantProcessor on: aDate registeringOn: aSalesBook
+	
+	self assertIsNotEmpty: aCart.
+	self assertIsNotExpired: aCreditCard on: aDate.
+	
+	^self new initializeToCheckout: aCart ownedBy: anOwner charging: aCreditCard throught: aMerchantProcessor registeringOn: aSalesBook! !
+!Cashier class methodsFor: 'error messages' stamp: 'HernanWilkinson 6/17/2013 18:21'!
+canNotChargeAnExpiredCreditCardErrorMessage
+	
+	^'Can not charge an expired credit card'! !
+!Cashier class methodsFor: 'error messages' stamp: 'HernanWilkinson 6/17/2013 17:56'!
+cartCanNotBeEmptyErrorMessage
+	
+	^'Can not check out an empty cart'! !
+!Cashier class methodsFor: 'error messages' stamp: 'HernanWilkinson 6/17/2013 19:02'!
+creditCardHasNoCreditErrorMessage
+	
+	^'Credit card has no credit'! !
+!Cashier class methodsFor: 'error signal' stamp: 'HernanWilkinson 6/22/2013 14:22'!
+signalCanNotChargeAnExpiredCreditCard
+
+	 self error: self canNotChargeAnExpiredCreditCardErrorMessage ! !
+!Cashier class methodsFor: 'error signal' stamp: 'HernanWilkinson 6/22/2013 14:22'!
+signalCartCanNotBeEmpty
+
+	self error: self cartCanNotBeEmptyErrorMessage! !
+
+!classDefinition: #Clock category: 'TusLibros-Model' stamp: 'CJF 11/10/2023 18:43:50'!
+Object subclass: #Clock
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Model'!
+!Clock methodsFor: 'time' stamp: 'HernanWilkinson 6/22/2013 14:23'!
+now
+
+	self subclassResponsibility ! !
+!Clock methodsFor: 'time' stamp: 'HernanWilkinson 6/22/2013 14:23'!
+today
+
+	self subclassResponsibility ! !
+
+!classDefinition: #CreditCard category: 'TusLibros-Model' stamp: 'CJF 11/10/2023 18:43:50'!
+Object subclass: #CreditCard
+	instanceVariableNames: 'expiration number ownerName'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Model'!
+!CreditCard methodsFor: 'testing' stamp: 'HernanWilkinson 6/17/2013 18:39'!
+isExpiredOn: aDate 
+	
+	^expiration start < (Month month: aDate monthIndex year: aDate yearNumber) start ! !
+!CreditCard methodsFor: 'initialization' stamp: 'HAW 7/22/2020 14:39:22'!
+initializeNumbered: aNumber ownedBy: anOwnerName expiringOn: aMonth 
+	
+	number := aNumber.
+	ownerName := anOwnerName.
+	expiration := aMonth ! !
+!CreditCard methodsFor: 'accessing' stamp: 'HAW 7/22/2020 14:37:53'!
+expiration
+	
+	^expiration ! !
+!CreditCard methodsFor: 'accessing' stamp: 'HAW 7/22/2020 14:37:11'!
+number
+	
+	^number! !
+!CreditCard methodsFor: 'accessing' stamp: 'HAW 7/22/2020 14:39:22'!
+ownerName
+	
+	^ownerName ! !
+
+!classDefinition: 'CreditCard class' category: 'TusLibros-Model' stamp: 'CJF 11/10/2023 18:43:50'!
+CreditCard class
+	instanceVariableNames: ''!
+!CreditCard class methodsFor: 'instance creation' stamp: 'HAW 7/22/2020 14:40:01'!
+numbered: aNumber ownedBy: anOwnerName expiringOn: aMonth 
+	
+	self assertIsValidNumber: aNumber.
+	self assertIsValidOwnerName: anOwnerName.
+	
+	^self new initializeNumbered: aNumber ownedBy: anOwnerName expiringOn: aMonth! !
+!CreditCard class methodsFor: 'exceptions' stamp: 'HAW 7/22/2020 14:19:45'!
+invalidNumberErrorDescription
+	
+	^'Invalid credit card number. It must be 16 digits'! !
+!CreditCard class methodsFor: 'exceptions' stamp: 'HAW 7/22/2020 14:27:09'!
+invalidOwnerNameErrorDescription
+	
+	^'Owner name can not be empty'! !
+!CreditCard class methodsFor: 'exceptions' stamp: 'HAW 7/22/2020 14:21:14'!
+signalInvalidNumber
+	
+	self error: self invalidNumberErrorDescription ! !
+!CreditCard class methodsFor: 'exceptions' stamp: 'HAW 7/22/2020 14:28:05'!
+signalInvalidOwnerName
+	
+	self error: self invalidOwnerNameErrorDescription ! !
+!CreditCard class methodsFor: 'assertions' stamp: 'HAW 7/22/2020 14:39:48'!
+assertIsValidNumber: aNumber
+
+	aNumber size = 16 ifFalse: [ self signalInvalidNumber ].
+	(aNumber anySatisfy: [ :aCharacter | aCharacter isDigit not ]) ifTrue: [ self signalInvalidNumber ]! !
+!CreditCard class methodsFor: 'assertions' stamp: 'HAW 7/22/2020 14:40:28'!
+assertIsValidOwnerName: anOwnerName
+
+	anOwnerName isEmpty ifTrue: [ self signalInvalidOwnerName ]! !
+
+!classDefinition: #LineItem category: 'TusLibros-Model' stamp: 'CJF 11/10/2023 18:43:51'!
+Object subclass: #LineItem
+	instanceVariableNames: 'item quantity total'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Model'!
+!LineItem methodsFor: 'accessing' stamp: 'HernanWilkinson 6/22/2013 12:33'!
+item
+	
+	^ item! !
+!LineItem methodsFor: 'accessing' stamp: 'HAW 7/23/2020 15:33:00'!
+quantity
+
+	^quantity ! !
+!LineItem methodsFor: 'accessing' stamp: 'HernanWilkinson 6/22/2013 12:21'!
+total
+	
+	^ total! !
+!LineItem methodsFor: 'initialization' stamp: 'HernanWilkinson 6/22/2013 12:18'!
+initializeOf: anItem quantity: aQuantity total: aTotal
+
+	item := anItem.
+	quantity := aQuantity.
+	total := aTotal 
+
+! !
+
+!classDefinition: 'LineItem class' category: 'TusLibros-Model' stamp: 'CJF 11/10/2023 18:43:51'!
+LineItem class
+	instanceVariableNames: ''!
+!LineItem class methodsFor: 'instance creation' stamp: 'HernanWilkinson 6/22/2013 12:18'!
+of: anItem quantity: aQuantity total: aTotal
+
+	^self new initializeOf: anItem quantity: aQuantity total: aTotal
+
+! !
+
+!classDefinition: #MerchantProcessor category: 'TusLibros-Model' stamp: 'CJF 11/10/2023 18:43:52'!
+Object subclass: #MerchantProcessor
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Model'!
+!MerchantProcessor methodsFor: 'debit' stamp: 'HernanWilkinson 6/22/2013 14:31'!
+README
+
+	"Aunque nadie subclasifica esta clase, esta para definir el protocolo que se espera que todo MerchantProcessor sepa responder - Hernan"! !
+!MerchantProcessor methodsFor: 'debit' stamp: 'HernanWilkinson 6/22/2013 14:30'!
+debit: anAmount from: aCreditCard 
+
+	self subclassResponsibility ! !
+
+!classDefinition: #Sale category: 'TusLibros-Model' stamp: 'CJF 11/10/2023 18:43:52'!
+Object subclass: #Sale
+	instanceVariableNames: 'customer ticket'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Model'!
+!Sale methodsFor: 'total' stamp: 'HernanWilkinson 6/22/2013 12:26'!
+total
+	
+	^ ticket total! !
+!Sale methodsFor: 'initialization' stamp: 'HernanWilkinson 6/22/2013 12:26'!
+initializeDoneBy: aCustomer certifiedWith: aTicket 
+
+	customer := aCustomer.
+	ticket := aTicket ! !
+!Sale methodsFor: 'testing' stamp: 'HernanWilkinson 6/22/2013 12:06'!
+wasDoneBy: aCustomer
+
+	^customer = aCustomer ! !
+!Sale methodsFor: 'line items' stamp: 'HernanWilkinson 6/22/2013 12:33'!
+lineItemsDo: aBlock
+	
+	^ticket lineItemsDo: aBlock ! !
+
+!classDefinition: 'Sale class' category: 'TusLibros-Model' stamp: 'CJF 11/10/2023 18:43:52'!
+Sale class
+	instanceVariableNames: ''!
+!Sale class methodsFor: 'instance creation' stamp: 'HernanWilkinson 6/22/2013 12:25'!
+doneBy: aCustomer certifiedWith: aTicket 
+
+	^self new initializeDoneBy: aCustomer certifiedWith: aTicket ! !
+
+!classDefinition: #Ticket category: 'TusLibros-Model' stamp: 'CJF 11/10/2023 18:43:52'!
+Object subclass: #Ticket
+	instanceVariableNames: 'lineItems transactionId transactionIdSale transactionIdTaxes'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Model'!
+!Ticket methodsFor: 'total' stamp: 'HernanWilkinson 6/17/2015 20:39'!
+total
+	
+	^lineItems sum: [ :aLineItem | aLineItem total]! !
+!Ticket methodsFor: 'initialization' stamp: 'HernanWilkinson 6/22/2013 12:20'!
+initializeOf: aCollectionOfLineItems 
+
+	lineItems := aCollectionOfLineItems ! !
+!Ticket methodsFor: 'initialization' stamp: 'HAW 5/5/2020 18:06:16'!
+transactionId
+
+	^transactionId ! !
+!Ticket methodsFor: 'initialization' stamp: 'NR 6/13/2022 07:21:08'!
+transactionId: anId
+
+	transactionId := anId! !
+!Ticket methodsFor: 'line items' stamp: 'HernanWilkinson 6/22/2013 12:33'!
+lineItemsDo: aBlock
+	
+	^lineItems do: aBlock ! !
+
+!classDefinition: 'Ticket class' category: 'TusLibros-Model' stamp: 'CJF 11/10/2023 18:43:53'!
+Ticket class
+	instanceVariableNames: ''!
+!Ticket class methodsFor: 'instance creation' stamp: 'HernanWilkinson 6/22/2013 12:20'!
+of: aCollectionOfLineItems
+
+	^self new initializeOf: aCollectionOfLineItems ! !
+
+!classDefinition: #TusLibrosSystemFacade category: 'TusLibros-Model' stamp: 'CJF 11/10/2023 18:43:53'!
+Object subclass: #TusLibrosSystemFacade
+	instanceVariableNames: 'validUsersAndPasswords catalog lastId merchantProcessor salesBook clock cartSessions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Model'!
+!TusLibrosSystemFacade methodsFor: 'error messages' stamp: 'HernanWilkinson 6/22/2013 11:24'!
+canNotChargeAnExpiredCreditCardErrorMessage
+	
+	^Cashier canNotChargeAnExpiredCreditCardErrorMessage ! !
+!TusLibrosSystemFacade methodsFor: 'error messages' stamp: 'HernanWilkinson 6/22/2013 11:17'!
+cartCanNotBeEmptyErrorMessage
+	
+	^Cashier cartCanNotBeEmptyErrorMessage ! !
+!TusLibrosSystemFacade methodsFor: 'error messages' stamp: 'HernanWilkinson 6/21/2013 23:27'!
+invalidCartIdErrorDescription
+	
+	^'Invalid cart id'! !
+!TusLibrosSystemFacade methodsFor: 'error messages' stamp: 'HernanWilkinson 6/21/2013 23:59'!
+invalidItemErrorMessage
+	
+	^Cart invalidItemErrorMessage ! !
+!TusLibrosSystemFacade methodsFor: 'error messages' stamp: 'HernanWilkinson 6/21/2013 23:03'!
+invalidUserAndOrPasswordErrorDescription
+	
+	^'Invalid user and/or password'! !
+!TusLibrosSystemFacade methodsFor: 'error messages' stamp: 'HernanWilkinson 6/22/2013 13:07'!
+sessionHasExpiredErrorDescription
+	
+	^'Can not use the cart after ', self sessionDuration minutes printString , ' minutes of inactivity'! !
+!TusLibrosSystemFacade methodsFor: 'time' stamp: 'HernanWilkinson 6/22/2013 13:02'!
+now
+	
+	^clock now! !
+!TusLibrosSystemFacade methodsFor: 'time' stamp: 'HernanWilkinson 6/22/2013 12:49'!
+today
+	
+	^clock today! !
+!TusLibrosSystemFacade methodsFor: 'authentication' stamp: 'HernanWilkinson 6/23/2013 12:18'!
+does: aUser authenticatesWith: aPassword 
+
+	"Recordar que esto es solo un ejemplo. No se deben guardar passwords en un sistema de verdad sino un
+	hash o similar - Hernan"
+	
+	| storedPassword |
+	
+	storedPassword := validUsersAndPasswords at: aUser ifAbsent: [ ^false ].
+	^aPassword = storedPassword ! !
+!TusLibrosSystemFacade methodsFor: 'authentication' stamp: 'HernanWilkinson 6/23/2013 12:18'!
+if: aUser authenticatesWith: aPassword do: aBlock
+
+	^ (self does: aUser authenticatesWith: aPassword) 
+		ifTrue: aBlock 
+		ifFalse: [ self signalInvalidUserAndOrPassword ].
+	! !
+!TusLibrosSystemFacade methodsFor: 'error signal' stamp: 'HernanWilkinson 6/21/2013 23:27'!
+signalInvalidCartId
+	
+	self error: self invalidCartIdErrorDescription ! !
+!TusLibrosSystemFacade methodsFor: 'error signal' stamp: 'HernanWilkinson 6/21/2013 23:02'!
+signalInvalidUserAndOrPassword
+	
+	self error: self invalidUserAndOrPasswordErrorDescription! !
+!TusLibrosSystemFacade methodsFor: 'cart session management' stamp: 'HernanWilkinson 6/21/2013 23:32'!
+generateCartId
+	
+	"Recuerden que esto es un ejemplo, por lo que voy a generar ids numericos consecutivos, pero en una 
+	implementacion real no deberian se numeros consecutivos ni nada que genere problemas de seguridad - Hernan"
+	
+	lastId := lastId + 1.
+	^lastId! !
+!TusLibrosSystemFacade methodsFor: 'cart session management' stamp: 'HAW 5/6/2020 13:57:29'!
+removeCartId: aCartId
+
+	"I'll not generate an error if the cartId is invalid because when used from http
+	request can be duplicated - Hernan"
+	cartSessions removeKey: aCartId ifAbsent: []! !
+!TusLibrosSystemFacade methodsFor: 'cart session management' stamp: 'HernanWilkinson 6/22/2013 13:02'!
+sessionDuration
+	
+	^30 minutes! !
+!TusLibrosSystemFacade methodsFor: 'cart session management' stamp: 'HernanWilkinson 6/17/2015 20:50'!
+withCartSessionIdentifiedAs: aCartId do: aBlock
+
+	| cartSession |
+	
+	cartSession := cartSessions at: aCartId ifAbsent: [self signalInvalidCartId ].
+	^cartSession do: aBlock
+! !
+!TusLibrosSystemFacade methodsFor: 'facade protocol' stamp: 'HernanWilkinson 6/17/2015 20:41'!
+add: anAmount of: aBook toCartIdentifiedAs: aCartId
+
+	self withCartSessionIdentifiedAs: aCartId do: [ :cartSession | cartSession addToCart: anAmount of: aBook ]! !
+!TusLibrosSystemFacade methodsFor: 'facade protocol' stamp: 'HAW 7/23/2020 15:24:41'!
+checkOutCartIdentifiedAs: aCartId withCreditCardNumbered: aCreditCartNumber ownedBy: anOwner expiringOn: anExpirationMonthOfYear
+
+	^self 
+		withCartSessionIdentifiedAs: aCartId 
+		do: [ :cartSession | | ticket | 
+			ticket := cartSession 
+				checkOutCartWithCreditCardNumbered: aCreditCartNumber 
+				ownedBy: anOwner 
+				expiringOn: anExpirationMonthOfYear.
+			self removeCartId: aCartId.
+			ticket transactionId ]
+! !
+!TusLibrosSystemFacade methodsFor: 'facade protocol' stamp: 'HernanWilkinson 6/17/2015 20:52'!
+createCartFor: aUser authenticatedWith: aPassword
+
+	^ self if: aUser authenticatesWith: aPassword do: [ | cartId cartSession |
+	
+		cartId := self generateCartId.
+		cartSession := CartSession ownedBy: aUser with: (Cart acceptingItemsOf: catalog) on: self..
+		cartSessions at: cartId put: cartSession.
+	
+		cartId  ]! !
+!TusLibrosSystemFacade methodsFor: 'facade protocol' stamp: 'HernanWilkinson 6/17/2015 20:48'!
+listCartIdentifiedAs: aCartId
+
+	^ self withCartSessionIdentifiedAs: aCartId do: [ :cartSession | cartSession cartContent ]! !
+!TusLibrosSystemFacade methodsFor: 'facade protocol' stamp: 'NR 6/13/2022 07:30:44'!
+listPurchasesOf: aUser
+
+	| sales soldItems total |
+	
+	sales := self salesDoneBy: aUser.	
+	soldItems := sales
+		inject: Dictionary new
+		into: [ :quantitiesByItem :aSale | 
+			self list: aSale on: quantitiesByItem.
+			quantitiesByItem ].
+	total := sales sum: [ :aSale | aSale total ] ifEmpty: [ 0 ].
+	^Array with: soldItems with: total! !
+!TusLibrosSystemFacade methodsFor: 'facade protocol' stamp: 'NR 6/13/2022 07:30:37'!
+listPurchasesOf: aUser authenticatingWith: aPassword
+
+	^self if: aUser authenticatesWith: aPassword do: [	self listPurchasesOf: aUser]! !
+!TusLibrosSystemFacade methodsFor: 'checkout support' stamp: 'HernanWilkinson 6/17/2015 20:49'!
+merchantProcessor
+
+	^ merchantProcessor! !
+!TusLibrosSystemFacade methodsFor: 'checkout support' stamp: 'HernanWilkinson 6/17/2015 20:50'!
+salesBook
+
+	^ salesBook! !
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'NR 6/13/2022 07:51:00'!
+bookPerformance: anItem
+
+	| bookPerformance totalMoney totalSales |
+
+	bookPerformance := Dictionary new.
+	
+	totalSales := self totalSalesOf: anItem.
+	totalMoney := self totalMoneyRaisedBy: anItem.
+	
+	bookPerformance at: 'quantity' put: totalSales.
+	bookPerformance at: 'total' put: totalMoney.
+	bookPerformance at: 'summary' put: anItem,' was selled ',totalSales asString, ' times and raised a total amount of money equal to: ', totalMoney asString.
+	
+	^bookPerformance
+	
+
+! !
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'HAW 7/23/2020 15:34:54'!
+list: aSale on: quantitiesByItem 
+
+	"Esto es un indicio de que por ahi conviene empezar a pensar en modelar un SaleBook - Hernan"
+	aSale lineItemsDo: [ :aLineItem | | oldQuantity newQuantity |
+		oldQuantity := quantitiesByItem at: aLineItem item ifAbsentPut: [ 0 ].
+		newQuantity := oldQuantity + aLineItem quantity.
+		quantitiesByItem at: aLineItem item put: newQuantity ]! !
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'HernanWilkinson 6/17/2015 20:55'!
+salesDoneBy: aUser
+
+	"Esto es un indicio de que por ahi conviene empezar a pensar en modelar un SaleBook - Hernan"
+	^ salesBook select: [ :aSale | aSale wasDoneBy: aUser ]! !
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'NR 6/13/2022 09:53:13'!
+storePerformance
+
+	| totalMoney totalSales performance |
+	
+	performance := Dictionary new.
+	
+	totalSales := self totalSales.
+	totalMoney := self totalMoneyRaised.
+	
+	performance at: 'quantity' put: totalSales.
+	performance at: 'total' put: totalMoney.
+	performance at: 'summary' put: 'The store selled a total of ',totalSales asString, ' books and raised a total amount of money equal to: ', totalMoney asString.
+	
+	^performance
+	
+
+! !
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'NR 6/12/2022 21:34:25'!
+totalMoneyRaised
+	
+	(Delay forSeconds: 1) wait.
+	
+	^salesBook sum: [:aSale | aSale total].
+	
+! !
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'NR 6/13/2022 07:15:41'!
+totalMoneyRaisedBy: anItem
+	
+	(Delay forSeconds: 1) wait.
+
+	^salesBook sum: [:aSale | | totalPerItem |
+		totalPerItem :=0.
+		aSale lineItemsDo: [:aLineItem | (aLineItem item = anItem) ifTrue: [totalPerItem := totalPerItem + aLineItem total]].
+		totalPerItem].
+	
+	! !
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'NR 6/13/2022 07:18:34'!
+totalSales
+	
+	(Delay forSeconds: 1) wait.
+
+	^salesBook sum: [:aSale | | totalQuantity |
+		totalQuantity := 0.
+		aSale lineItemsDo: [:aLineItem | totalQuantity := totalQuantity + aLineItem quantity].
+		totalQuantity].
+	
+! !
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'NR 6/13/2022 07:15:27'!
+totalSalesOf: anItem
+	
+	(Delay forSeconds: 1) wait.
+
+	^salesBook sum: [:aSale | | quantityPerItem | 
+		quantityPerItem := 0.
+		aSale lineItemsDo: [:aLineItem | (aLineItem item = anItem) ifTrue: [quantityPerItem := quantityPerItem + aLineItem quantity]].
+		quantityPerItem].
+
+! !
+!TusLibrosSystemFacade methodsFor: 'initialization' stamp: 'HernanWilkinson 6/22/2013 14:17'!
+initializeAuthenticatingWith: aValidUsersAndPasswords 
+	acceptingItemsOf: aCatalog 
+	registeringOn: aSalesBook 
+	debitingThrought: aMerchantProcessor 
+	measuringTimeWith: aClock
+
+	validUsersAndPasswords := aValidUsersAndPasswords.
+	catalog := aCatalog.
+	salesBook := aSalesBook.
+	merchantProcessor := aMerchantProcessor.
+	clock := aClock.
+	
+	cartSessions := Dictionary new.
+	lastId := 0.! !
+
+!classDefinition: 'TusLibrosSystemFacade class' category: 'TusLibros-Model' stamp: 'CJF 11/10/2023 18:43:56'!
+TusLibrosSystemFacade class
+	instanceVariableNames: ''!
+!TusLibrosSystemFacade class methodsFor: 'instance creation' stamp: 'HernanWilkinson 6/22/2013 14:17'!
+authenticatingWith: aValidUsersAndPasswords 
+	acceptingItemsOf: aCatalog 
+	registeringOn: aSalesBook 
+	debitingThrought: aMerchantProcessor 
+	measuringTimeWith: aClock
+
+	^self new 
+		initializeAuthenticatingWith: aValidUsersAndPasswords 
+		acceptingItemsOf: aCatalog 
+		registeringOn: aSalesBook 
+		debitingThrought: aMerchantProcessor 
+		measuringTimeWith: aClock! !
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'CJF 11/10/2023 18:45:13'!
+FAILURE!
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'CJF 11/10/2023 18:45:15'!
+FAILURE!
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'CJF 11/10/2023 18:46:23'!
+FAILURE!
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'CJF 11/10/2023 19:08:29'!
+FAILURE!
+
+[ ^(1 + 2) asString ] fork. !
+
+[ ^(1 + 2) ] fork. !
+
+[ 1+2 ] fork!
+
+[ 1+2 ] fork!
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'CJF 11/10/2023 19:15:24' prior: 50689656!
+bookPerformance: anItem
+
+	| bookPerformance totalMoney totalSales  sem |
+
+	bookPerformance := Dictionary new.
+	
+	sem := Semaphore new.
+	
+	[totalSales := self totalSalesOf: anItem.
+		sem signal.] fork.
+	
+	
+	
+	[totalMoney := self totalMoneyRaisedBy: anItem.
+		sem wait.]fork.
+	
+	
+	
+	bookPerformance at: 'quantity' put: totalSales.
+	bookPerformance at: 'total' put: totalMoney.
+	bookPerformance at: 'summary' put: anItem,' was selled ',totalSales asString, ' times and raised a total amount of money equal to: ', totalMoney asString.
+	
+	^bookPerformance
+	
+
+! !
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'CJF 11/10/2023 19:15:33'!
+FAILURE!
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'CJF 11/10/2023 19:15:33'!
+FAILURE!
+!TusLibrosSystemFacadeTest methodsFor: 'tests - performance' stamp: 'CJF 11/10/2023 19:15:47' prior: 50651501!
+test20BookPerformanceShouldNotTakeTooLong
+
+	| cartId bookPerformance quantity total |
+
+	cartId := systemFacade createCartFor: self validUser authenticatedWith: self validUserPassword.
+	systemFacade add: 2 of: self validBook toCartIdentifiedAs: cartId.
+	systemFacade 
+		checkOutCartIdentifiedAs: cartId 
+		withCreditCardNumbered: testObjectsFactory validCreditCardNumber 
+		ownedBy: testObjectsFactory validOwnerName 
+		expiringOn: testObjectsFactory notExpiredMonthOfYear.
+		
+	cartId := systemFacade createCartFor: self anotherValidUser authenticatedWith: self anotherValidUserPassword.
+	systemFacade add: 5 of: self validBook toCartIdentifiedAs: cartId.
+	systemFacade 
+		checkOutCartIdentifiedAs: cartId 
+		withCreditCardNumbered: testObjectsFactory validCreditCardNumber 
+		ownedBy: testObjectsFactory validOwnerName 
+		expiringOn: testObjectsFactory notExpiredMonthOfYear.
+	self halt.
+	self should: [bookPerformance := systemFacade bookPerformance: self validBook ] 
+		notTakeMoreThanMilliseconds: 1100.	
+
+	quantity := bookPerformance at: 'quantity'.
+	total := bookPerformance at: 'total'.
+	self assert: 7 equals: quantity.
+	self assert: (testObjectsFactory itemSellByTheStorePrice * 7) equals: total.
+	self assert: 
+		self validBook,' was selled ',quantity asString, ' times and raised a total amount of money equal to: ', total asString
+		equals: (bookPerformance at: 'summary')
+	! !
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'CJF 11/10/2023 19:16:47' prior: 50689807!
+bookPerformance: anItem
+
+	| bookPerformance totalMoney totalSales  sem |
+
+	bookPerformance := Dictionary new.
+	
+	sem := Semaphore new.
+	
+	[totalSales := self totalSalesOf: anItem.
+	"	sem signal."] fork.
+	
+	
+	
+	[totalMoney := self totalMoneyRaisedBy: anItem.
+		"sem wait."]fork.
+	
+	
+	
+	bookPerformance at: 'quantity' put: totalSales.
+	bookPerformance at: 'total' put: totalMoney.
+	bookPerformance at: 'summary' put: anItem,' was selled ',totalSales asString, ' times and raised a total amount of money equal to: ', totalMoney asString.
+	
+	^bookPerformance
+	
+
+! !
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'CJF 11/10/2023 19:16:49'!
+FAILURE!
+!TusLibrosSystemFacadeTest methodsFor: 'tests - performance' stamp: 'CJF 11/10/2023 19:16:59' prior: 50689836!
+test20BookPerformanceShouldNotTakeTooLong
+
+	| cartId bookPerformance quantity total |
+
+	cartId := systemFacade createCartFor: self validUser authenticatedWith: self validUserPassword.
+	systemFacade add: 2 of: self validBook toCartIdentifiedAs: cartId.
+	systemFacade 
+		checkOutCartIdentifiedAs: cartId 
+		withCreditCardNumbered: testObjectsFactory validCreditCardNumber 
+		ownedBy: testObjectsFactory validOwnerName 
+		expiringOn: testObjectsFactory notExpiredMonthOfYear.
+		
+	cartId := systemFacade createCartFor: self anotherValidUser authenticatedWith: self anotherValidUserPassword.
+	systemFacade add: 5 of: self validBook toCartIdentifiedAs: cartId.
+	systemFacade 
+		checkOutCartIdentifiedAs: cartId 
+		withCreditCardNumbered: testObjectsFactory validCreditCardNumber 
+		ownedBy: testObjectsFactory validOwnerName 
+		expiringOn: testObjectsFactory notExpiredMonthOfYear.
+	"self halt."
+	self should: [bookPerformance := systemFacade bookPerformance: self validBook ] 
+		notTakeMoreThanMilliseconds: 1100.	
+
+	quantity := bookPerformance at: 'quantity'.
+	total := bookPerformance at: 'total'.
+	self assert: 7 equals: quantity.
+	self assert: (testObjectsFactory itemSellByTheStorePrice * 7) equals: total.
+	self assert: 
+		self validBook,' was selled ',quantity asString, ' times and raised a total amount of money equal to: ', total asString
+		equals: (bookPerformance at: 'summary')
+	! !
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'CJF 11/10/2023 19:17:02'!
+FAILURE!
+!TusLibrosSystemFacadeTest methodsFor: 'tests - performance' stamp: 'CJF 11/10/2023 19:18:00' prior: 50689908!
+test20BookPerformanceShouldNotTakeTooLong
+
+	| cartId bookPerformance quantity total |
+
+	cartId := systemFacade createCartFor: self validUser authenticatedWith: self validUserPassword.
+	systemFacade add: 2 of: self validBook toCartIdentifiedAs: cartId.
+	systemFacade 
+		checkOutCartIdentifiedAs: cartId 
+		withCreditCardNumbered: testObjectsFactory validCreditCardNumber 
+		ownedBy: testObjectsFactory validOwnerName 
+		expiringOn: testObjectsFactory notExpiredMonthOfYear.
+		
+	cartId := systemFacade createCartFor: self anotherValidUser authenticatedWith: self anotherValidUserPassword.
+	systemFacade add: 5 of: self validBook toCartIdentifiedAs: cartId.
+	systemFacade 
+		checkOutCartIdentifiedAs: cartId 
+		withCreditCardNumbered: testObjectsFactory validCreditCardNumber 
+		ownedBy: testObjectsFactory validOwnerName 
+		expiringOn: testObjectsFactory notExpiredMonthOfYear.
+	self halt.
+	self should: [bookPerformance := systemFacade bookPerformance: self validBook ] 
+		notTakeMoreThanMilliseconds: 1100.	
+
+	quantity := bookPerformance at: 'quantity'.
+	total := bookPerformance at: 'total'.
+	self assert: 7 equals: quantity.
+	self assert: (testObjectsFactory itemSellByTheStorePrice * 7) equals: total.
+	self assert: 
+		self validBook,' was selled ',quantity asString, ' times and raised a total amount of money equal to: ', total asString
+		equals: (bookPerformance at: 'summary')
+	! !
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'CJF 11/10/2023 19:18:39' prior: 50689883!
+bookPerformance: anItem
+
+	| bookPerformance totalMoney totalSales  sem |
+
+	bookPerformance := Dictionary new.
+	
+	sem := Semaphore new.
+	
+	[totalSales := self totalSalesOf: anItem.
+	"	sem signal."] fork.
+	
+	
+	
+	totalMoney := self totalMoneyRaisedBy: anItem.
+		
+	
+	
+	
+	bookPerformance at: 'quantity' put: totalSales.
+	bookPerformance at: 'total' put: totalMoney.
+	bookPerformance at: 'summary' put: anItem,' was selled ',totalSales asString, ' times and raised a total amount of money equal to: ', totalMoney asString.
+	
+	^bookPerformance
+	
+
+! !
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'CJF 11/10/2023 19:24:19' prior: 50690006!
+bookPerformance: anItem
+
+	| bookPerformance totalMoney totalSales  sem bloque |
+
+	bookPerformance := Dictionary new.
+	
+	sem := Semaphore new.
+	bloque := [ :semaforo | totalSales := self totalSalesOf: anItem. 
+								sem signal.].
+	(bloque value: sem) fork.
+	
+	
+	
+	
+	totalMoney := self totalMoneyRaisedBy: anItem.
+		
+	
+	
+	
+	bookPerformance at: 'quantity' put: totalSales.
+	bookPerformance at: 'total' put: totalMoney.
+	bookPerformance at: 'summary' put: anItem,' was selled ',totalSales asString, ' times and raised a total amount of money equal to: ', totalMoney asString.
+	
+	^bookPerformance
+	
+
+! !
+!TusLibrosSystemFacadeTest methodsFor: 'tests - performance' stamp: 'CJF 11/10/2023 19:24:25' prior: 50689959!
+test20BookPerformanceShouldNotTakeTooLong
+
+	| cartId bookPerformance quantity total |
+
+	cartId := systemFacade createCartFor: self validUser authenticatedWith: self validUserPassword.
+	systemFacade add: 2 of: self validBook toCartIdentifiedAs: cartId.
+	systemFacade 
+		checkOutCartIdentifiedAs: cartId 
+		withCreditCardNumbered: testObjectsFactory validCreditCardNumber 
+		ownedBy: testObjectsFactory validOwnerName 
+		expiringOn: testObjectsFactory notExpiredMonthOfYear.
+		
+	cartId := systemFacade createCartFor: self anotherValidUser authenticatedWith: self anotherValidUserPassword.
+	systemFacade add: 5 of: self validBook toCartIdentifiedAs: cartId.
+	systemFacade 
+		checkOutCartIdentifiedAs: cartId 
+		withCreditCardNumbered: testObjectsFactory validCreditCardNumber 
+		ownedBy: testObjectsFactory validOwnerName 
+		expiringOn: testObjectsFactory notExpiredMonthOfYear.
+	"self halt."
+	self should: [bookPerformance := systemFacade bookPerformance: self validBook ] 
+		notTakeMoreThanMilliseconds: 1100.	
+
+	quantity := bookPerformance at: 'quantity'.
+	total := bookPerformance at: 'total'.
+	self assert: 7 equals: quantity.
+	self assert: (testObjectsFactory itemSellByTheStorePrice * 7) equals: total.
+	self assert: 
+		self validBook,' was selled ',quantity asString, ' times and raised a total amount of money equal to: ', total asString
+		equals: (bookPerformance at: 'summary')
+	! !
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'CJF 11/10/2023 19:24:29'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'CJF 11/10/2023 19:24:30'!
+ERROR!
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'CJF 11/10/2023 19:25:01' prior: 50690026!
+bookPerformance: anItem
+
+	| bookPerformance totalMoney totalSales  sem bloque |
+
+	bookPerformance := Dictionary new.
+	
+	sem := Semaphore new.
+	bloque := [ :semaforo | totalSales := self totalSalesOf: anItem. 
+								semaforo signal.].
+	(bloque value: sem) fork.
+	
+	
+	
+	
+	totalMoney := self totalMoneyRaisedBy: anItem.
+		
+	
+	
+	
+	bookPerformance at: 'quantity' put: totalSales.
+	bookPerformance at: 'total' put: totalMoney.
+	bookPerformance at: 'summary' put: anItem,' was selled ',totalSales asString, ' times and raised a total amount of money equal to: ', totalMoney asString.
+	
+	^bookPerformance
+	
+
+! !
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'CJF 11/10/2023 19:25:07'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'CJF 11/10/2023 19:25:08'!
+ERROR!
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'CJF 11/10/2023 19:25:50' prior: 50690104!
+bookPerformance: anItem
+
+	| bookPerformance totalMoney totalSales  sem bloque |
+
+	bookPerformance := Dictionary new.
+	
+	sem := Semaphore new.
+	bloque := [ :semaforo | totalSales := self totalSalesOf: anItem. 
+								semaforo signal.
+								totalSales := totalSales].
+	(bloque value: sem) fork.
+	
+	
+	
+	
+	totalMoney := self totalMoneyRaisedBy: anItem.
+		
+	
+	
+	
+	bookPerformance at: 'quantity' put: totalSales.
+	bookPerformance at: 'total' put: totalMoney.
+	bookPerformance at: 'summary' put: anItem,' was selled ',totalSales asString, ' times and raised a total amount of money equal to: ', totalMoney asString.
+	
+	^bookPerformance
+	
+
+! !
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'CJF 11/10/2023 19:26:04'!
+ERROR!
+!TusLibrosSystemFacadeTest methodsFor: 'tests - performance' stamp: 'CJF 11/10/2023 19:26:12' prior: 50690049!
+test20BookPerformanceShouldNotTakeTooLong
+
+	| cartId bookPerformance quantity total |
+
+	cartId := systemFacade createCartFor: self validUser authenticatedWith: self validUserPassword.
+	systemFacade add: 2 of: self validBook toCartIdentifiedAs: cartId.
+	systemFacade 
+		checkOutCartIdentifiedAs: cartId 
+		withCreditCardNumbered: testObjectsFactory validCreditCardNumber 
+		ownedBy: testObjectsFactory validOwnerName 
+		expiringOn: testObjectsFactory notExpiredMonthOfYear.
+		
+	cartId := systemFacade createCartFor: self anotherValidUser authenticatedWith: self anotherValidUserPassword.
+	systemFacade add: 5 of: self validBook toCartIdentifiedAs: cartId.
+	systemFacade 
+		checkOutCartIdentifiedAs: cartId 
+		withCreditCardNumbered: testObjectsFactory validCreditCardNumber 
+		ownedBy: testObjectsFactory validOwnerName 
+		expiringOn: testObjectsFactory notExpiredMonthOfYear.
+	self halt.
+	self should: [bookPerformance := systemFacade bookPerformance: self validBook ] 
+		notTakeMoreThanMilliseconds: 1100.	
+
+	quantity := bookPerformance at: 'quantity'.
+	total := bookPerformance at: 'total'.
+	self assert: 7 equals: quantity.
+	self assert: (testObjectsFactory itemSellByTheStorePrice * 7) equals: total.
+	self assert: 
+		self validBook,' was selled ',quantity asString, ' times and raised a total amount of money equal to: ', total asString
+		equals: (bookPerformance at: 'summary')
+	! !
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'CJF 11/10/2023 19:27:31' prior: 50690134!
+bookPerformance: anItem
+
+	| bookPerformance totalMoney totalSales  sem bloque |
+
+	bookPerformance := Dictionary new.
+	
+	sem := Semaphore new.
+	bloque := [ :semaforo | totalSales := self totalSalesOf: anItem. 
+								semaforo signal.
+								totalSales := totalSales].
+	(bloque) fork.
+	
+	
+	
+	
+	totalMoney := self totalMoneyRaisedBy: anItem.
+		
+	
+	
+	
+	bookPerformance at: 'quantity' put: totalSales.
+	bookPerformance at: 'total' put: totalMoney.
+	bookPerformance at: 'summary' put: anItem,' was selled ',totalSales asString, ' times and raised a total amount of money equal to: ', totalMoney asString.
+	
+	^bookPerformance
+	
+
+! !
+
+----End fileIn of C:\Users\crist\Desktop\ASF7\Packages\TerseGuide.pck.st----!
+!TusLibrosSystemFacadeTest methodsFor: 'tests - performance' stamp: 'CJF 11/10/2023 19:31:45' prior: 50690162!
+test20BookPerformanceShouldNotTakeTooLong
+
+	| cartId bookPerformance quantity total |
+
+	cartId := systemFacade createCartFor: self validUser authenticatedWith: self validUserPassword.
+	systemFacade add: 2 of: self validBook toCartIdentifiedAs: cartId.
+	systemFacade 
+		checkOutCartIdentifiedAs: cartId 
+		withCreditCardNumbered: testObjectsFactory validCreditCardNumber 
+		ownedBy: testObjectsFactory validOwnerName 
+		expiringOn: testObjectsFactory notExpiredMonthOfYear.
+		
+	cartId := systemFacade createCartFor: self anotherValidUser authenticatedWith: self anotherValidUserPassword.
+	systemFacade add: 5 of: self validBook toCartIdentifiedAs: cartId.
+	systemFacade 
+		checkOutCartIdentifiedAs: cartId 
+		withCreditCardNumbered: testObjectsFactory validCreditCardNumber 
+		ownedBy: testObjectsFactory validOwnerName 
+		expiringOn: testObjectsFactory notExpiredMonthOfYear.
+	"self halt."
+	self should: [bookPerformance := systemFacade bookPerformance: self validBook ] 
+		notTakeMoreThanMilliseconds: 1100.	
+
+	quantity := bookPerformance at: 'quantity'.
+	total := bookPerformance at: 'total'.
+	self assert: 7 equals: quantity.
+	self assert: (testObjectsFactory itemSellByTheStorePrice * 7) equals: total.
+	self assert: 
+		self validBook,' was selled ',quantity asString, ' times and raised a total amount of money equal to: ', total asString
+		equals: (bookPerformance at: 'summary')
+	! !
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'CJF 11/10/2023 19:16:47' prior: 50690209!
+bookPerformance: anItem
+
+	| bookPerformance totalMoney totalSales  sem |
+
+	bookPerformance := Dictionary new.
+	
+	sem := Semaphore new.
+	
+	[totalSales := self totalSalesOf: anItem.
+	"	sem signal."] fork.
+	
+	
+	
+	[totalMoney := self totalMoneyRaisedBy: anItem.
+		"sem wait."]fork.
+	
+	
+	
+	bookPerformance at: 'quantity' put: totalSales.
+	bookPerformance at: 'total' put: totalMoney.
+	bookPerformance at: 'summary' put: anItem,' was selled ',totalSales asString, ' times and raised a total amount of money equal to: ', totalMoney asString.
+	
+	^bookPerformance
+	
+
+! !
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'CJF 11/10/2023 19:15:24' prior: 50693199!
+bookPerformance: anItem
+
+	| bookPerformance totalMoney totalSales  sem |
+
+	bookPerformance := Dictionary new.
+	
+	sem := Semaphore new.
+	
+	[totalSales := self totalSalesOf: anItem.
+		sem signal.] fork.
+	
+	
+	
+	[totalMoney := self totalMoneyRaisedBy: anItem.
+		sem wait.]fork.
+	
+	
+	
+	bookPerformance at: 'quantity' put: totalSales.
+	bookPerformance at: 'total' put: totalMoney.
+	bookPerformance at: 'summary' put: anItem,' was selled ',totalSales asString, ' times and raised a total amount of money equal to: ', totalMoney asString.
+	
+	^bookPerformance
+	
+
+! !
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'CJF 11/10/2023 19:34:16' prior: 50693220!
+bookPerformance: anItem
+
+	| bookPerformance totalMoney totalSales  sem1 sem2 |
+
+	bookPerformance := Dictionary new.
+	
+	sem1 := Semaphore new.
+	sem2 := Semaphore new. 
+	[totalSales := self totalSalesOf: anItem.
+		sem1 signal.] fork.
+	
+	
+	
+	[totalMoney := self totalMoneyRaisedBy: anItem.
+		sem2 signal.]fork.
+	
+	sem1 wait.
+	sem2 wait.
+	
+	
+	bookPerformance at: 'quantity' put: totalSales.
+	bookPerformance at: 'total' put: totalMoney.
+	bookPerformance at: 'summary' put: anItem,' was selled ',totalSales asString, ' times and raised a total amount of money equal to: ', totalMoney asString.
+	
+	^bookPerformance
+	
+
+! !
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'CJF 11/10/2023 19:34:25' prior: 50693241!
+bookPerformance: anItem
+
+	| bookPerformance totalMoney totalSales  sem1 sem2 |
+
+	bookPerformance := Dictionary new.
+	
+	sem1 := Semaphore new.
+	sem2 := Semaphore new. 
+	
+	[totalSales := self totalSalesOf: anItem.
+		sem1 signal.] fork.
+	
+	
+	
+	[totalMoney := self totalMoneyRaisedBy: anItem.
+		sem2 signal.]fork.
+	
+	sem1 wait.
+	sem2 wait.
+	
+	
+	bookPerformance at: 'quantity' put: totalSales.
+	bookPerformance at: 'total' put: totalMoney.
+	bookPerformance at: 'summary' put: anItem,' was selled ',totalSales asString, ' times and raised a total amount of money equal to: ', totalMoney asString.
+	
+	^bookPerformance
+	
+
+! !
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'CJF 11/10/2023 19:34:29'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01CanCreateCartWithValidUserAndPassword stamp: 'CJF 11/10/2023 19:34:29'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02CanNotCreateCartWithInvalidUser stamp: 'CJF 11/10/2023 19:34:29'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03CanNotCreateCartWithInvalidPassword stamp: 'CJF 11/10/2023 19:34:29'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test04CanAddItemsToACreatedCart stamp: 'CJF 11/10/2023 19:34:29'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test05CanNotAddItemToNotCreatedCart stamp: 'CJF 11/10/2023 19:34:29'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test06CanNotAddItemNotSellByTheStore stamp: 'CJF 11/10/2023 19:34:29'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test08CanNotListCartOfInvalidCartId stamp: 'CJF 11/10/2023 19:34:29'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'CJF 11/10/2023 19:34:29'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test10CheckOutReturnsTransactionIdAndImpactsCustomerPurchases stamp: 'CJF 11/10/2023 19:34:29'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test10_1_CanNotCheckoutAnAlreadyCheckedOutCart stamp: 'CJF 11/10/2023 19:34:29'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test11CanNotCheckoutANotCreatedCart stamp: 'CJF 11/10/2023 19:34:29'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test12CanNotCheckoutAnEmptyCart stamp: 'CJF 11/10/2023 19:34:29'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test13CanNotCheckoutWithAnExpiredCreditCard stamp: 'CJF 11/10/2023 19:34:29'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test14ListPurchasesIncludesBoughtItems stamp: 'CJF 11/10/2023 19:34:29'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test15CanNotListPurchasesOfInvalidCustomer stamp: 'CJF 11/10/2023 19:34:29'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test16CanNotListPurchasesOfValidCustomerWithInvalidPassword stamp: 'CJF 11/10/2023 19:34:29'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test17CanNotAddToCartWhenSessionIsExpired stamp: 'CJF 11/10/2023 19:34:29'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test18CanNotListCartWhenSessionIsExpired stamp: 'CJF 11/10/2023 19:34:29'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test19CanNotCheckOutCartWhenSessionIsExpired stamp: 'CJF 11/10/2023 19:34:29'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'CJF 11/10/2023 19:34:30'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test21StorePerformanceShouldNotTakeTooLong stamp: 'CJF 11/10/2023 19:34:32'!
+FAILURE!
+
+!testRun: #TusLibrosSystemFacadeTest #test21StorePerformanceShouldNotTakeTooLong stamp: 'CJF 11/10/2023 19:34:34'!
+FAILURE!
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'CJF 11/10/2023 19:36:17' prior: 50689697!
+storePerformance
+
+	| totalMoney totalSales performance sem1 sem2 |
+	
+	performance := Dictionary new.
+	
+	sem1 := Semaphore new.
+	sem2 := Semaphore new.
+	
+	[totalSales := self totalSales.
+		sem1 signal.] fork.
+	[totalMoney := self totalMoneyRaised.
+		sem2 signal.] fork.
+	
+	sem1 wait.
+	sem2 wait.
+	
+	performance at: 'quantity' put: totalSales.
+	performance at: 'total' put: totalMoney.
+	performance at: 'summary' put: 'The store selled a total of ',totalSales asString, ' books and raised a total amount of money equal to: ', totalMoney asString.
+	
+	^performance
+	
+
+! !
+
+!testRun: #TusLibrosSystemFacadeTest #test21StorePerformanceShouldNotTakeTooLong stamp: 'CJF 11/10/2023 19:36:27'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01CanCreateCartWithValidUserAndPassword stamp: 'CJF 11/10/2023 19:36:27'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02CanNotCreateCartWithInvalidUser stamp: 'CJF 11/10/2023 19:36:27'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03CanNotCreateCartWithInvalidPassword stamp: 'CJF 11/10/2023 19:36:27'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test04CanAddItemsToACreatedCart stamp: 'CJF 11/10/2023 19:36:27'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test05CanNotAddItemToNotCreatedCart stamp: 'CJF 11/10/2023 19:36:27'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test06CanNotAddItemNotSellByTheStore stamp: 'CJF 11/10/2023 19:36:27'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test08CanNotListCartOfInvalidCartId stamp: 'CJF 11/10/2023 19:36:27'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'CJF 11/10/2023 19:36:27'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test10CheckOutReturnsTransactionIdAndImpactsCustomerPurchases stamp: 'CJF 11/10/2023 19:36:27'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test10_1_CanNotCheckoutAnAlreadyCheckedOutCart stamp: 'CJF 11/10/2023 19:36:27'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test11CanNotCheckoutANotCreatedCart stamp: 'CJF 11/10/2023 19:36:27'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test12CanNotCheckoutAnEmptyCart stamp: 'CJF 11/10/2023 19:36:27'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test13CanNotCheckoutWithAnExpiredCreditCard stamp: 'CJF 11/10/2023 19:36:27'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test14ListPurchasesIncludesBoughtItems stamp: 'CJF 11/10/2023 19:36:27'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test15CanNotListPurchasesOfInvalidCustomer stamp: 'CJF 11/10/2023 19:36:27'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test16CanNotListPurchasesOfValidCustomerWithInvalidPassword stamp: 'CJF 11/10/2023 19:36:27'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test17CanNotAddToCartWhenSessionIsExpired stamp: 'CJF 11/10/2023 19:36:27'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test18CanNotListCartWhenSessionIsExpired stamp: 'CJF 11/10/2023 19:36:27'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test19CanNotCheckOutCartWhenSessionIsExpired stamp: 'CJF 11/10/2023 19:36:27'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'CJF 11/10/2023 19:36:28'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test21StorePerformanceShouldNotTakeTooLong stamp: 'CJF 11/10/2023 19:36:29'!
+PASSED!
+
+!classDefinition: #TaskRunner category: 'TusLibros-Model' stamp: 'CJF 11/10/2023 19:40:14'!
+Object subclass: #TaskRunner
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Model'!
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'CJF 11/10/2023 19:40:09' prior: 50693264!
+bookPerformance: anItem
+
+	| bookPerformance totalMoney totalSales  sem1 sem2 bloque1 bloque2|
+
+	bookPerformance := Dictionary new.
+	
+	sem1 := Semaphore new.
+	sem2 := Semaphore new. 
+	
+	bloque1 := TaskRunner for: [totalSales := self totalSalesOf: anItem.
+		sem1 signal.].
+	
+	"[totalSales := self totalSalesOf: anItem.
+		sem1 signal.] fork.
+	"
+	bloque2 := TaskRunner for: [totalMoney := self totalMoneyRaisedBy: anItem.
+		sem2 signal.].
+	
+	"[totalMoney := self totalMoneyRaisedBy: anItem.
+		sem2 signal.]fork.
+	"
+	sem1 wait.
+	sem2 wait.
+	
+	
+	bookPerformance at: 'quantity' put: totalSales.
+	bookPerformance at: 'total' put: totalMoney.
+	bookPerformance at: 'summary' put: anItem,' was selled ',totalSales asString, ' times and raised a total amount of money equal to: ', totalMoney asString.
+	
+	^bookPerformance
+	
+
+! !
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'CJF 11/10/2023 19:40:56' prior: 50693488!
+bookPerformance: anItem
+
+	| bookPerformance totalMoney totalSales  sem1 sem2 bloque1 bloque2|
+
+	bookPerformance := Dictionary new.
+	
+	sem1 := Semaphore new.
+	sem2 := Semaphore new. 
+	
+	bloque1 := TaskRunner for: [totalSales := self totalSalesOf: anItem.
+		sem1 signal.].
+	bloque1 run.
+	"[totalSales := self totalSalesOf: anItem.
+		sem1 signal.] fork.
+	"
+	bloque2 := TaskRunner for: [totalMoney := self totalMoneyRaisedBy: anItem.
+		sem2 signal.].
+	bloque2 run.
+	"[totalMoney := self totalMoneyRaisedBy: anItem.
+		sem2 signal.]fork.
+	"
+	sem1 wait.
+	sem2 wait.
+	
+	
+	bookPerformance at: 'quantity' put: totalSales.
+	bookPerformance at: 'total' put: totalMoney.
+	bookPerformance at: 'summary' put: anItem,' was selled ',totalSales asString, ' times and raised a total amount of money equal to: ', totalMoney asString.
+	
+	^bookPerformance
+	
+
+! !
+
+!testRun: #TusLibrosSystemFacadeTest #test01CanCreateCartWithValidUserAndPassword stamp: 'CJF 11/10/2023 19:41:01'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02CanNotCreateCartWithInvalidUser stamp: 'CJF 11/10/2023 19:41:01'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03CanNotCreateCartWithInvalidPassword stamp: 'CJF 11/10/2023 19:41:01'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test04CanAddItemsToACreatedCart stamp: 'CJF 11/10/2023 19:41:01'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test05CanNotAddItemToNotCreatedCart stamp: 'CJF 11/10/2023 19:41:01'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test06CanNotAddItemNotSellByTheStore stamp: 'CJF 11/10/2023 19:41:01'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test08CanNotListCartOfInvalidCartId stamp: 'CJF 11/10/2023 19:41:01'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'CJF 11/10/2023 19:41:01'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test10CheckOutReturnsTransactionIdAndImpactsCustomerPurchases stamp: 'CJF 11/10/2023 19:41:01'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test10_1_CanNotCheckoutAnAlreadyCheckedOutCart stamp: 'CJF 11/10/2023 19:41:01'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test11CanNotCheckoutANotCreatedCart stamp: 'CJF 11/10/2023 19:41:01'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test12CanNotCheckoutAnEmptyCart stamp: 'CJF 11/10/2023 19:41:01'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test13CanNotCheckoutWithAnExpiredCreditCard stamp: 'CJF 11/10/2023 19:41:01'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test14ListPurchasesIncludesBoughtItems stamp: 'CJF 11/10/2023 19:41:01'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test15CanNotListPurchasesOfInvalidCustomer stamp: 'CJF 11/10/2023 19:41:01'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test16CanNotListPurchasesOfValidCustomerWithInvalidPassword stamp: 'CJF 11/10/2023 19:41:01'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test17CanNotAddToCartWhenSessionIsExpired stamp: 'CJF 11/10/2023 19:41:01'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test18CanNotListCartWhenSessionIsExpired stamp: 'CJF 11/10/2023 19:41:01'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test19CanNotCheckOutCartWhenSessionIsExpired stamp: 'CJF 11/10/2023 19:41:01'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'CJF 11/10/2023 19:41:01'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test21StorePerformanceShouldNotTakeTooLong stamp: 'CJF 11/10/2023 19:41:02'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'CJF 11/10/2023 19:41:02'!
+ERROR!
+!TaskRunner class methodsFor: 'instance creation' stamp: 'CJF 11/10/2023 19:41:08'!
+for: aRenameMe1 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeFor: aRenameMe1 ! !
+!TaskRunner class methodsFor: 'instance creation' stamp: 'CJF 11/10/2023 19:41:23' prior: 50693631!
+for: aBlockToRun 
+
+	^self new initializeFor: aBlockToRun ! !
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'CJF 11/10/2023 19:41:27'!
+ERROR!
+
+!classDefinition: #TaskRunner category: 'TusLibros-Model' stamp: 'CJF 11/10/2023 19:41:41'!
+Object subclass: #TaskRunner
+	instanceVariableNames: 'blockToRun'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Model'!
+!TaskRunner methodsFor: 'initialization' stamp: 'CJF 11/10/2023 19:41:41'!
+initializeFor: aBlockToRun 
+	self shouldBeImplemented.
+	blockToRun := aBlockToRun.! !
+!TaskRunner methodsFor: 'initialization' stamp: 'CJF 11/10/2023 19:41:47' prior: 50693655!
+initializeFor: aBlockToRun 
+	blockToRun := aBlockToRun.! !
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'CJF 11/10/2023 19:41:49'!
+ERROR!
+!TaskRunner methodsFor: 'run' stamp: 'CJF 11/10/2023 19:42:01'!
+run
+	self shouldBeImplemented.! !
+!TaskRunner methodsFor: 'run' stamp: 'CJF 11/10/2023 19:42:10' prior: 50693669!
+run
+	blockToRun fork.! !
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'CJF 11/10/2023 19:42:14'!
+FAILURE!
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'CJF 11/10/2023 19:43:03'!
+PASSED!
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'CJF 11/10/2023 19:43:52' prior: 50693517!
+bookPerformance: anItem
+
+	| bookPerformance totalMoney totalSales  sem1 sem2 bloque1 bloque2|
+
+	bookPerformance := Dictionary new.
+	
+	sem1 := Semaphore new.
+	sem2 := Semaphore new. 
+	
+	bloque1 := TaskRunner for: [totalSales := self totalSalesOf: anItem.
+		sem1 signal.].
+	bloque1 run.
+
+	bloque2 := TaskRunner for: [totalMoney := self totalMoneyRaisedBy: anItem.
+		sem2 signal.].
+	bloque2 run.
+
+	sem1 wait.
+	sem2 wait.
+	
+	
+	bookPerformance at: 'quantity' put: totalSales.
+	bookPerformance at: 'total' put: totalMoney.
+	bookPerformance at: 'summary' put: anItem,' was selled ',totalSales asString, ' times and raised a total amount of money equal to: ', totalMoney asString.
+	
+	^bookPerformance
+	
+
+! !
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'CJF 11/10/2023 19:51:09' prior: 50693685!
+bookPerformance: anItem
+
+	| bookPerformance totalMoney totalSales  taskRunner |
+
+	bookPerformance := Dictionary new.
+		
+	taskRunner := TaskRunner for: [ self totalSalesOf: anItem.] 
+						andFor: [self totalMoneyRaisedBy: anItem.].
+	
+	totalSales := taskRunner firstBlockResult.
+	totalMoney := taskRunner secondBlockResult.
+	
+	bookPerformance at: 'quantity' put: totalSales.
+	bookPerformance at: 'total' put: totalMoney.
+	bookPerformance at: 'summary' put: anItem,' was selled ',totalSales asString, ' times and raised a total amount of money equal to: ', totalMoney asString.
+	
+	^bookPerformance
+	
+
+! !
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'CJF 11/10/2023 19:51:34'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'CJF 11/10/2023 19:51:34'!
+ERROR!
+!TaskRunner class methodsFor: 'instance creation' stamp: 'CJF 11/10/2023 19:51:40'!
+for: aRenameMe1 andFor: aRenameMe2 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeFor: aRenameMe1 andFor: aRenameMe2 ! !
+!TaskRunner class methodsFor: 'instance creation' stamp: 'CJF 11/10/2023 19:51:53' prior: 50693740!
+for: aRenameMe1 andFor: aRenameMe2 
+	
+	^self new initializeFor: aRenameMe1 andFor: aRenameMe2 ! !
+!TaskRunner class methodsFor: 'instance creation' stamp: 'CJF 11/10/2023 19:52:00' prior: 50693750!
+for: aBlockToRun1 andFor: aRenameMe2 
+	
+	^self new initializeFor: aBlockToRun1 andFor: aRenameMe2 ! !
+!TaskRunner class methodsFor: 'instance creation' stamp: 'CJF 11/10/2023 19:52:14' prior: 50693757!
+for: aFirstBlockToRun andFor: aRenameMe2 
+	
+	^self new initializeFor: aFirstBlockToRun andFor: aRenameMe2 ! !
+!TaskRunner class methodsFor: 'instance creation' stamp: 'CJF 11/10/2023 19:52:22' prior: 50693764!
+for: aFirstBlockToRun andFor: aSecondBlockToRun 
+	
+	^self new initializeFor: aFirstBlockToRun andFor: aSecondBlockToRun ! !
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'CJF 11/10/2023 19:52:25'!
+ERROR!
+
+!classDefinition: #TaskRunner category: 'TusLibros-Model' stamp: 'CJF 11/10/2023 19:52:29'!
+Object subclass: #TaskRunner
+	instanceVariableNames: 'blockToRun firstBlockToRun'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Model'!
+
+!classDefinition: #TaskRunner category: 'TusLibros-Model' stamp: 'CJF 11/10/2023 19:52:30'!
+Object subclass: #TaskRunner
+	instanceVariableNames: 'blockToRun firstBlockToRun secondBlockToRun'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Model'!
+!TaskRunner methodsFor: 'initialization' stamp: 'CJF 11/10/2023 19:52:30'!
+initializeFor: aFirstBlockToRun andFor: aSecondBlockToRun 
+	self shouldBeImplemented.
+	firstBlockToRun := aFirstBlockToRun.
+	secondBlockToRun := aSecondBlockToRun.! !
+!TaskRunner methodsFor: 'initialization' stamp: 'CJF 11/10/2023 19:52:37' prior: 50693798!
+initializeFor: aFirstBlockToRun andFor: aSecondBlockToRun 
+	firstBlockToRun := aFirstBlockToRun.
+	secondBlockToRun := aSecondBlockToRun.! !
+
+!classDefinition: #TaskRunner category: 'TusLibros-Model' stamp: 'CJF 11/10/2023 19:53:45'!
+Object subclass: #TaskRunner
+	instanceVariableNames: 'blockToRun firstBlockToRun secondBlockToRun semFirstBlock'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Model'!
+
+!classDefinition: #TaskRunner category: 'TusLibros-Model' stamp: 'CJF 11/10/2023 19:53:47'!
+Object subclass: #TaskRunner
+	instanceVariableNames: 'blockToRun firstBlockToRun secondBlockToRun semFirstBlock semSecondBlock'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Model'!
+!TaskRunner methodsFor: 'initialization' stamp: 'CJF 11/10/2023 19:53:42' prior: 50693807!
+initializeFor: aFirstBlockToRun andFor: aSecondBlockToRun
+	semFirstBlock := Semaphore new. 
+	
+	semSecondBlock := Semaphore new.
+	
+	firstBlockToRun := aFirstBlockToRun.
+	secondBlockToRun := aSecondBlockToRun.! !
+!TaskRunner methodsFor: 'initialization' stamp: 'CJF 11/10/2023 19:56:59' prior: 50693833!
+initializeFor: aFirstBlockToRun andFor: aSecondBlockToRun
+	semFirstBlock := Semaphore new. 
+	
+	semSecondBlock := Semaphore new.
+	
+	[firstBlockToRun := aFirstBlockToRun value.
+		semFirstBlock signal.] fork.
+	
+	
+	[secondBlockToRun := aSecondBlockToRun value.
+		semSecondBlock signal.] fork.! !
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'CJF 11/10/2023 19:57:04'!
+ERROR!
+!TaskRunner methodsFor: 'results ' stamp: 'CJF 11/10/2023 19:57:25'!
+firstBlockResult
+	self shouldBeImplemented.! !
+!TaskRunner methodsFor: 'results' stamp: 'CJF 11/10/2023 19:57:50' prior: 50693859!
+firstBlockResult
+	semFirstBlock wait.
+	^firstBlockToRun .! !
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'CJF 11/10/2023 19:57:52'!
+ERROR!
+!TaskRunner methodsFor: 'results' stamp: 'CJF 11/10/2023 19:57:56'!
+secondBlockResult
+	self shouldBeImplemented.! !
+!TaskRunner methodsFor: 'results' stamp: 'CJF 11/10/2023 19:58:13' prior: 50693872!
+secondBlockResult
+	semSecondBlock wait.
+	^secondBlockToRun ! !
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'CJF 11/10/2023 19:58:14'!
+FAILURE!
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'CJF 11/10/2023 19:58:27'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'CJF 11/10/2023 19:58:59'!
+FAILURE!
+!TusLibrosSystemFacadeTest methodsFor: 'tests - performance' stamp: 'CJF 11/10/2023 19:59:14' prior: 50693152!
+test20BookPerformanceShouldNotTakeTooLong
+
+	| cartId bookPerformance quantity total |
+
+	cartId := systemFacade createCartFor: self validUser authenticatedWith: self validUserPassword.
+	systemFacade add: 2 of: self validBook toCartIdentifiedAs: cartId.
+	systemFacade 
+		checkOutCartIdentifiedAs: cartId 
+		withCreditCardNumbered: testObjectsFactory validCreditCardNumber 
+		ownedBy: testObjectsFactory validOwnerName 
+		expiringOn: testObjectsFactory notExpiredMonthOfYear.
+		
+	cartId := systemFacade createCartFor: self anotherValidUser authenticatedWith: self anotherValidUserPassword.
+	systemFacade add: 5 of: self validBook toCartIdentifiedAs: cartId.
+	systemFacade 
+		checkOutCartIdentifiedAs: cartId 
+		withCreditCardNumbered: testObjectsFactory validCreditCardNumber 
+		ownedBy: testObjectsFactory validOwnerName 
+		expiringOn: testObjectsFactory notExpiredMonthOfYear.
+
+	self should: [bookPerformance := systemFacade bookPerformance: self validBook ] 
+		notTakeMoreThanMilliseconds: 1100.	
+
+	quantity := bookPerformance at: 'quantity'.
+	total := bookPerformance at: 'total'.
+	self assert: 7 equals: quantity.
+	self assert: (testObjectsFactory itemSellByTheStorePrice * 7) equals: total.
+	self assert: 
+		self validBook,' was selled ',quantity asString, ' times and raised a total amount of money equal to: ', total asString
+		equals: (bookPerformance at: 'summary')
+	! !
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'CJF 11/10/2023 19:59:16'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01CanCreateCartWithValidUserAndPassword stamp: 'CJF 11/10/2023 19:59:16'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02CanNotCreateCartWithInvalidUser stamp: 'CJF 11/10/2023 19:59:16'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03CanNotCreateCartWithInvalidPassword stamp: 'CJF 11/10/2023 19:59:16'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test04CanAddItemsToACreatedCart stamp: 'CJF 11/10/2023 19:59:17'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test05CanNotAddItemToNotCreatedCart stamp: 'CJF 11/10/2023 19:59:17'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test06CanNotAddItemNotSellByTheStore stamp: 'CJF 11/10/2023 19:59:17'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test08CanNotListCartOfInvalidCartId stamp: 'CJF 11/10/2023 19:59:17'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'CJF 11/10/2023 19:59:17'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test10CheckOutReturnsTransactionIdAndImpactsCustomerPurchases stamp: 'CJF 11/10/2023 19:59:17'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test10_1_CanNotCheckoutAnAlreadyCheckedOutCart stamp: 'CJF 11/10/2023 19:59:17'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test11CanNotCheckoutANotCreatedCart stamp: 'CJF 11/10/2023 19:59:17'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test12CanNotCheckoutAnEmptyCart stamp: 'CJF 11/10/2023 19:59:17'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test13CanNotCheckoutWithAnExpiredCreditCard stamp: 'CJF 11/10/2023 19:59:17'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test14ListPurchasesIncludesBoughtItems stamp: 'CJF 11/10/2023 19:59:17'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test15CanNotListPurchasesOfInvalidCustomer stamp: 'CJF 11/10/2023 19:59:17'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test16CanNotListPurchasesOfValidCustomerWithInvalidPassword stamp: 'CJF 11/10/2023 19:59:17'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test17CanNotAddToCartWhenSessionIsExpired stamp: 'CJF 11/10/2023 19:59:17'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test18CanNotListCartWhenSessionIsExpired stamp: 'CJF 11/10/2023 19:59:17'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test19CanNotCheckOutCartWhenSessionIsExpired stamp: 'CJF 11/10/2023 19:59:17'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'CJF 11/10/2023 19:59:18'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test21StorePerformanceShouldNotTakeTooLong stamp: 'CJF 11/10/2023 19:59:19'!
+PASSED!
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'CJF 11/10/2023 20:01:39' prior: 50693375!
+storePerformance
+
+	| totalMoney totalSales performance taskRunner |
+	
+	performance := Dictionary new.
+	
+	taskRunner := TaskRunner for: [self totalSales. ] andFor: [self totalMoneyRaised.].
+	
+	
+	totalSales := taskRunner firstBlockResult .
+	totalMoney := taskRunner secondBlockResult .
+	performance at: 'quantity' put: totalSales.
+	performance at: 'total' put: totalMoney.
+	performance at: 'summary' put: 'The store selled a total of ',totalSales asString, ' books and raised a total amount of money equal to: ', totalMoney asString.
+	
+	^performance
+	
+
+! !
+
+!testRun: #TusLibrosSystemFacadeTest #test21StorePerformanceShouldNotTakeTooLong stamp: 'CJF 11/10/2023 20:01:46'!
+PASSED!
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'CJF 11/10/2023 20:06:25' prior: 50694026!
+storePerformance
+
+	| totalMoney totalSales performance taskRunner |
+	
+	performance := Dictionary new.
+	
+	taskRunner := TaskRunner for: [self totalSales. ] andFor: [self totalMoneyRaised.].
+	
+	
+	totalSales := taskRunner firstBlockResult .
+	totalMoney := taskRunner secondBlockResult .
+	
+	^self fillPerformanceBookwithQuantity: totalSales 
+						withTotal: totalMoney 
+						andSummary: ('The store selled a total of ',totalSales asString, ' books and raised a total amount of money equal to: ', totalMoney asString).
+	
+"	performance at: 'quantity' put: totalSales.
+	performance at: 'total' put: totalMoney.
+	performance at: 'summary' put: ('The store selled a total of ',totalSales asString, ' books and raised a total amount of money equal to: ', totalMoney asString).
+	
+	^performance"
+	
+
+! !
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'CJF 11/10/2023 20:06:43' prior: 50694051!
+storePerformance
+
+	| totalMoney totalSales  taskRunner |
+	
+	
+	taskRunner := TaskRunner for: [self totalSales. ] andFor: [self totalMoneyRaised.].
+	
+	
+	totalSales := taskRunner firstBlockResult .
+	totalMoney := taskRunner secondBlockResult .
+	
+	^self fillPerformanceBookwithQuantity: totalSales 
+						withTotal: totalMoney 
+						andSummary: ('The store selled a total of ',totalSales asString, ' books and raised a total amount of money equal to: ', totalMoney asString).
+	
+"	performance at: 'quantity' put: totalSales.
+	performance at: 'total' put: totalMoney.
+	performance at: 'summary' put: ('The store selled a total of ',totalSales asString, ' books and raised a total amount of money equal to: ', totalMoney asString).
+	
+	^performance"
+	
+
+! !
+
+!testRun: #TusLibrosSystemFacadeTest #test21StorePerformanceShouldNotTakeTooLong stamp: 'CJF 11/10/2023 20:07:02'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test21StorePerformanceShouldNotTakeTooLong stamp: 'CJF 11/10/2023 20:07:03'!
+ERROR!
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'CJF 11/10/2023 20:07:15'!
+fillPerformanceBookwithQuantity: totalSales withTotal: totalMoney andSummary: aRenameMe1 
+	self shouldBeImplemented.! !
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'CJF 11/10/2023 20:09:23' prior: 50694113!
+fillPerformanceBookwithQuantity: totalSales withTotal: totalMoney andSummary: aSummary 
+	|performance|
+	performance := Dictionary new. 
+	performance at: 'quantity' put: totalSales.
+	performance at: 'total' put: totalMoney.
+	performance at: 'summary' put: aSummary .
+	
+	^performance
+	! !
+
+!testRun: #TusLibrosSystemFacadeTest #test21StorePerformanceShouldNotTakeTooLong stamp: 'CJF 11/10/2023 20:09:23'!
+FAILURE!
+
+!testRun: #TusLibrosSystemFacadeTest #test21StorePerformanceShouldNotTakeTooLong stamp: 'CJF 11/10/2023 20:09:34'!
+PASSED!
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'CJF 11/10/2023 20:09:42' prior: 50694079!
+storePerformance
+
+	| totalMoney totalSales  taskRunner |
+	
+	
+	taskRunner := TaskRunner for: [self totalSales. ] andFor: [self totalMoneyRaised.].
+	
+	
+	totalSales := taskRunner firstBlockResult .
+	totalMoney := taskRunner secondBlockResult .
+	
+	^self fillPerformanceBookwithQuantity: totalSales 
+						withTotal: totalMoney 
+						andSummary: ('The store selled a total of ',totalSales asString, ' books and raised a total amount of money equal to: ', totalMoney asString).
+
+! !
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'CJF 11/10/2023 20:11:05' prior: 50693710!
+bookPerformance: anItem
+
+	|  totalMoney totalSales  taskRunner |
+
+		
+	taskRunner := TaskRunner for: [ self totalSalesOf: anItem.] 
+						andFor: [self totalMoneyRaisedBy: anItem.].
+	
+	totalSales := taskRunner firstBlockResult.
+	totalMoney := taskRunner secondBlockResult.
+	
+	^self fillPerformanceBookwithQuantity: totalSales 
+						withTotal: totalMoney 
+						andSummary: (anItem,' was selled ',totalSales asString, ' times and raised a total amount of money equal to: ', totalMoney asString).
+	
+	
+! !
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'CJF 11/10/2023 20:11:11'!
+PASSED!
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'CJF 11/10/2023 20:11:59' prior: 50694140!
+storePerformance
+
+	| totalMoney totalSales  taskRunner |
+	
+	
+	taskRunner := TaskRunner for: [self totalSales. ] andFor: [self totalMoneyRaised.].
+	
+	
+	totalSales := taskRunner firstBlockResult .
+	totalMoney := taskRunner secondBlockResult .
+	
+	^self fillPerformanceBookwithQuantity: taskRunner firstBlockResult 
+						withTotal: totalMoney 
+						andSummary: ('The store selled a total of ',totalSales asString, ' books and raised a total amount of money equal to: ', totalMoney asString).
+
+! !
+
+TusLibrosServerRestInterface installForDefaultSystem.!
+
+TusLibrosClientTestWindow open.!
+!TusLibrosServerRestInterface class methodsFor: 'installation' stamp: 'CJF 11/10/2023 20:23:55' prior: 50651013!
+installForDefaultSystem
+
+	"self installForDefaultSystem"
+	
+	| server port interface |
+	
+	interface := self on: self defaultSystem.
+	
+	"Esto es para poder acceder a la interface de manera global - Hernan"
+	Smalltalk at: #CurrentTusLibrosRestInterface put: interface.
+	
+	port := 9999.
+	server := WebServer reset default.
+	server listenOn: port.
+	server 
+		addService: '/createCart' 
+		action: [ [:request | interface createCart: request ] fork].
+	server 
+		addService: '/addToCart' 
+		action: [:request | interface addToCart: request ].
+	server
+		addService: '/listCart' 
+		action: [:request | interface listCart: request ].
+	server
+		addService: '/checkOutCart' 
+		action: [:request | interface checkOutCart: request ].
+	server
+		addService: '/listPurchases' 
+		action: [:request | interface listPurchases: request ].
+	server useDebugErrorHandler ! !
+!TusLibrosServerRestInterface class methodsFor: 'installation' stamp: 'CJF 11/10/2023 20:24:52' prior: 50694203!
+installForDefaultSystem
+
+	"self installForDefaultSystem"
+	
+	| server port interface |
+	
+	interface := self on: self defaultSystem.
+	
+	"Esto es para poder acceder a la interface de manera global - Hernan"
+	Smalltalk at: #CurrentTusLibrosRestInterface put: interface.
+	
+	port := 9999.
+	server := WebServer reset default.
+	server listenOn: port.
+	server 
+		addService: '/createCart' 
+		action: [ [:request | interface createCart: request ] fork].
+	server 
+		addService: '/addToCart' 
+		action: [[:request | interface addToCart: request] fork].
+	server
+		addService: '/listCart' 
+		action: [[:request | interface listCart: request ]fork].
+	server
+		addService: '/checkOutCart' 
+		action: [[:request | interface checkOutCart: request ]fork].
+	server
+		addService: '/listPurchases' 
+		action: [[:request | interface listPurchases: request] fork ].
+	server useDebugErrorHandler ! !
+
+WebServer reset .!
+
+TusLibrosServerRestInterface installForDefaultSystem.
+!
+
+TusLibrosClientTestWindow open.
+!
+!TusLibrosServerRestInterface class methodsFor: 'installation' stamp: 'HAW 7/24/2020 11:07:02' prior: 50694234!
+installForDefaultSystem
+
+	"self installForDefaultSystem"
+	
+	| server port interface |
+	
+	interface := self on: self defaultSystem.
+	
+	"Esto es para poder acceder a la interface de manera global - Hernan"
+	Smalltalk at: #CurrentTusLibrosRestInterface put: interface.
+	
+	port := 9999.
+	server := WebServer reset default.
+	server listenOn: port.
+	server 
+		addService: '/createCart' 
+		action: [:request | interface createCart: request ].
+	server 
+		addService: '/addToCart' 
+		action: [:request | interface addToCart: request ].
+	server
+		addService: '/listCart' 
+		action: [:request | interface listCart: request ].
+	server
+		addService: '/checkOutCart' 
+		action: [:request | interface checkOutCart: request ].
+	server
+		addService: '/listPurchases' 
+		action: [:request | interface listPurchases: request ].
+	server useDebugErrorHandler ! !
+
+TusLibrosClientTestWindow open.
+!
+
+TusLibrosClientTestWindow open.
+!
+
+WebServer reset .!
+
+TusLibrosServerRestInterface installForDefaultSystem.
+!
+
+TusLibrosClientTestWindow open.
+!
+
+----SNAPSHOT----(10 November 2023 20:38:42) CuisUniversity-5981.image priorSource: 10197768!
+!TusLibrosClientRestInterface methodsFor: 'requests' stamp: 'CJF 11/10/2023 20:40:16' prior: 50650632!
+createCartFor: aUser password: aPassword
+
+	| fieldDict resp sem bloque|
+	
+	fieldDict := Dictionary newFromPairs: {'clientId'. aUser. 'password'. aPassword}.		
+	sem := Semaphore new. 
+	bloque := [
+	resp := WebClient htmlSubmit: (self url,'/createCart') fields: fieldDict. 
+		sem signal.].
+	sem wait. 
+	resp isSuccess 
+		ifTrue:[^(WebUtils jsonDecode: ((resp content) readStream))] 
+		ifFalse:[^self error: resp content]! !
+
+WebServer reset .!
+
+TusLibrosServerRestInterface installForDefaultSystem.!
+
+TusLibrosClientTestWindow open.!
+
+----STARTUP---- (10 November 2023 20:41:41) as C:\Users\crist\Desktop\ASF7\CuisUniversity-5981.image!
+
+!TusLibrosClientRestInterface methodsFor: 'requests' stamp: 'CJF 11/10/2023 20:42:49' prior: 50650617!
+add: quantity of: bookIsbn toCartIdentifiedAs: cartId
+
+	| fieldDict resp  sem |
+
+	fieldDict := Dictionary newFromPairs: {'cartId'. cartId. 'bookIsbn'. bookIsbn. 'bookQuantity'. quantity}.		
+	sem := Semaphore new.
+	[resp := WebClient htmlSubmit: (self url,'/addToCart') fields: fieldDict.
+		sem signal.] fork.
+	sem wait. 
+		
+	resp isSuccess 
+		ifTrue:[^(WebUtils jsonDecode: ((resp content) readStream))]
+		ifFalse:[^self error: resp content]! !
+
+WebServer reset .!
+
+TusLibrosServerRestInterface installForDefaultSystem.
+!
+
+TusLibrosClientTestWindow open.
+!
+!TusLibrosClientRestInterface methodsFor: 'requests' stamp: 'CJF 11/10/2023 20:43:57' prior: 50650632!
+createCartFor: aUser password: aPassword
+
+	| fieldDict resp sem|
+	
+	fieldDict := Dictionary newFromPairs: {'clientId'. aUser. 'password'. aPassword}.		
+	sem := Semaphore new.
+	[resp := WebClient htmlSubmit: (self url,'/createCart') fields: fieldDict. sem signal.]fork.
+	sem wait.
+		
+	resp isSuccess 
+		ifTrue:[^(WebUtils jsonDecode: ((resp content) readStream))] 
+		ifFalse:[^self error: resp content]! !
+!TusLibrosClientRestInterface methodsFor: 'requests' stamp: 'CJF 11/10/2023 20:44:37' prior: 50650646!
+listCart: cartId
+
+	| fieldDict resp sem|
+	
+	fieldDict := Dictionary newFromPairs: {'cartId'. cartId. }.		
+	sem := Semaphore new. 
+	[resp := WebClient htmlSubmit: (self url,'/listCart') fields: fieldDict. sem signal.] fork.
+	sem wait.
+		
+	resp isSuccess 
+		ifTrue:[^(WebUtils jsonDecode: ((resp content) readStream)) asOrderedCollection] 
+		ifFalse:[^self error: resp content]! !
+
+WebServer reset .!
+
+TusLibrosServerRestInterface installForDefaultSystem.
+!
+
+TusLibrosClientTestWindow open.
+!
+
+WebServer reset .!
+
+TusLibrosServerRestInterface installForDefaultSystem.
+!
+
+TusLibrosClientTestWindow open.
+!
+!TusLibrosClientRestInterface methodsFor: 'requests' stamp: 'CJF 11/10/2023 20:48:46' prior: 50694369!
+listCart: cartId
+
+	| fieldDict resp sem|
+	
+	fieldDict := Dictionary newFromPairs: {'cartId'. cartId. }.		
+	"sem := Semaphore new." 
+	[resp := WebClient htmlSubmit: (self url,'/listCart') fields: fieldDict. "sem signal."] fork.
+	"sem wait."
+		
+	resp isSuccess 
+		ifTrue:[^(WebUtils jsonDecode: ((resp content) readStream)) asOrderedCollection] 
+		ifFalse:[^self error: resp content]! !
+!TusLibrosClientRestInterface methodsFor: 'requests' stamp: 'CJF 11/10/2023 20:49:05' prior: 50694353!
+createCartFor: aUser password: aPassword
+
+	| fieldDict resp sem|
+	
+	fieldDict := Dictionary newFromPairs: {'clientId'. aUser. 'password'. aPassword}.		
+	"sem := Semaphore new."
+	[resp := WebClient htmlSubmit: (self url,'/createCart') fields: fieldDict. "sem signal."]fork.
+	"sem wait."
+		
+	resp isSuccess 
+		ifTrue:[^(WebUtils jsonDecode: ((resp content) readStream))] 
+		ifFalse:[^self error: resp content]! !
+!TusLibrosClientRestInterface methodsFor: 'requests' stamp: 'CJF 11/10/2023 20:49:28' prior: 50694332!
+add: quantity of: bookIsbn toCartIdentifiedAs: cartId
+
+	| fieldDict resp  |
+
+	fieldDict := Dictionary newFromPairs: {'cartId'. cartId. 'bookIsbn'. bookIsbn. 'bookQuantity'. quantity}.		
+	"sem := Semaphore new."
+	[resp := WebClient htmlSubmit: (self url,'/addToCart') fields: fieldDict.
+		"sem signal."] fork.
+	"sem wait. "
+		
+	resp isSuccess 
+		ifTrue:[^(WebUtils jsonDecode: ((resp content) readStream))]
+		ifFalse:[^self error: resp content]! !
+
+WebServer reset .!
+
+TusLibrosServerRestInterface installForDefaultSystem.
+!
+
+TusLibrosClientTestWindow open.
+!
+!TusLibrosClientRestInterface methodsFor: 'requests' stamp: 'CJF 11/10/2023 20:51:45' prior: 50694408!
+createCartFor: aUser password: aPassword
+
+	| fieldDict resp sem|
+	
+	fieldDict := Dictionary newFromPairs: {'clientId'. aUser. 'password'. aPassword}.		
+	"sem := Semaphore new."
+	resp := WebClient htmlSubmit: (self url,'/createCart') fields: fieldDict. "sem signal.]fork."
+	"sem wait."
+		
+	resp isSuccess 
+		ifTrue:[^(WebUtils jsonDecode: ((resp content) readStream))] 
+		ifFalse:[^self error: resp content]! !
+!TusLibrosClientRestInterface methodsFor: 'requests' stamp: 'CJF 11/10/2023 20:51:59' prior: 50694446!
+createCartFor: aUser password: aPassword
+
+	| fieldDict resp sem|
+	
+	fieldDict := Dictionary newFromPairs: {'clientId'. aUser. 'password'. aPassword}.		
+	
+	
+	self halt.
+	resp := WebClient htmlSubmit: (self url,'/createCart') fields: fieldDict.
+		
+	resp isSuccess 
+		ifTrue:[^(WebUtils jsonDecode: ((resp content) readStream))] 
+		ifFalse:[^self error: resp content]! !
+
+WebServer reset .!
+
+TusLibrosServerRestInterface installForDefaultSystem.
+!
+
+TusLibrosClientTestWindow open.
+!
+!TusLibrosServerRestInterface methodsFor: 'rest interface' stamp: 'CJF 11/10/2023 20:53:47' prior: 50650909!
+createCart: aRequest
+
+	| clientId password |
+	self halt.
+	(Delay forSeconds: 1) wait.
+		
+	self withFieldsOf: aRequest do: [ :requestFields |
+		clientId := self clientIdFrom: requestFields.
+		password := self passwordFrom: requestFields ].
+	
+	self 
+		answer: [ | cartId | 
+			cartId := systemFacade createCartFor: clientId authenticatedWith: password.
+			cartId printString ]
+		to: aRequest ! !
+
+WebServer reset .!
+
+TusLibrosServerRestInterface installForDefaultSystem.
+!
+
+TusLibrosClientTestWindow open.
+!
+
+WebServer reset .!
+
+TusLibrosServerRestInterface installForDefaultSystem.!
+
+TusLibrosClientTestWindow open.!
+!TusLibrosClientRestInterface methodsFor: 'requests' stamp: 'CJF 11/10/2023 20:56:13' prior: 50694463!
+createCartFor: aUser password: aPassword
+
+	| fieldDict resp sem|
+	
+	fieldDict := Dictionary newFromPairs: {'clientId'. aUser. 'password'. aPassword}.		
+	
+	
+	
+	[resp := WebClient htmlSubmit: (self url,'/createCart') fields: fieldDict.
+		
+	resp isSuccess 
+		ifTrue:[^(WebUtils jsonDecode: ((resp content) readStream))] 
+		ifFalse:[^self error: resp content] ] fork.! !
+
+WebServer reset .!
+
+TusLibrosServerRestInterface installForDefaultSystem.!
+
+TusLibrosClientTestWindow open.!
+!TusLibrosServerRestInterface methodsFor: 'rest interface' stamp: 'CJF 11/10/2023 20:56:44' prior: 50694482!
+createCart: aRequest
+
+	| clientId password |
+	
+	(Delay forSeconds: 1) wait.
+		
+	self withFieldsOf: aRequest do: [ :requestFields |
+		clientId := self clientIdFrom: requestFields.
+		password := self passwordFrom: requestFields ].
+	
+	self 
+		answer: [ | cartId | 
+			cartId := systemFacade createCartFor: clientId authenticatedWith: password.
+			cartId printString ]
+		to: aRequest ! !
+
+WebServer reset .!
+
+TusLibrosServerRestInterface installForDefaultSystem.!
+
+TusLibrosClientTestWindow open.!
+
+TusLibrosClientTestWindow open.!
+!TusLibrosClientRestInterface methodsFor: 'requests' stamp: 'CJF 11/10/2023 20:58:13' prior: 50694505!
+createCartFor: aUser password: aPassword
+
+	| fieldDict resp sem|
+	
+	fieldDict := Dictionary newFromPairs: {'clientId'. aUser. 'password'. aPassword}.		
+	
+	sem := Semaphore new.
+	
+	[resp := WebClient htmlSubmit: (self url,'/createCart') fields: fieldDict.
+		
+	resp isSuccess 
+		ifTrue:[^(WebUtils jsonDecode: ((resp content) readStream))] 
+		ifFalse:[^self error: resp content] .
+		sem signal.] fork.
+	sem wait.! !
+
+WebServer reset .!
+
+TusLibrosServerRestInterface installForDefaultSystem.
+!
+
+TusLibrosClientTestWindow open.
+!
+
+WebServer reset .!
+
+TusLibrosServerRestInterface installForDefaultSystem.!
+
+TusLibrosClientTestWindow open.!
+
+!methodRemoval: TaskRunner #initializeFor: stamp: 'CJF 11/10/2023 21:02:19'!
+initializeFor: aBlockToRun 
+	blockToRun := aBlockToRun.!
+
+!methodRemoval: TaskRunner #run stamp: 'CJF 11/10/2023 22:24:37'!
+run
+	blockToRun fork.!
+
+!methodRemoval: TaskRunner class #for: stamp: 'CJF 11/10/2023 22:25:01'!
+for: aBlockToRun 
+
+	^self new initializeFor: aBlockToRun !
+
+!classDefinition: #TaskRunner category: 'TusLibros-Model' stamp: 'CJF 11/10/2023 22:25:42'!
+Object subclass: #TaskRunner
+	instanceVariableNames: 'blockToRun firstBlockToRun secondBlockToRun semaphoreForFirstBlock semSecondBlock'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Model'!
+!TaskRunner methodsFor: 'as yet unclassified' stamp: 'CJF 11/10/2023 22:25:42' prior: 50693864!
+firstBlockResult
+	semaphoreForFirstBlock wait.
+	^firstBlockToRun .! !
+!TaskRunner methodsFor: 'as yet unclassified' stamp: 'CJF 11/10/2023 22:25:42' prior: 50693843!
+initializeFor: aFirstBlockToRun andFor: aSecondBlockToRun
+	semaphoreForFirstBlock := Semaphore new. 
+	
+	semSecondBlock := Semaphore new.
+	
+	[firstBlockToRun := aFirstBlockToRun value.
+		semaphoreForFirstBlock signal.] fork.
+	
+	
+	[secondBlockToRun := aSecondBlockToRun value.
+		semSecondBlock signal.] fork.! !
+
+!classDefinition: #TaskRunner category: 'TusLibros-Model' stamp: 'CJF 11/10/2023 22:25:51'!
+Object subclass: #TaskRunner
+	instanceVariableNames: 'blockToRun firstBlockToRun secondBlockToRun semaphoreForFirstBlock semaphoreForSecondBlock'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Model'!
+!TaskRunner methodsFor: 'as yet unclassified' stamp: 'CJF 11/10/2023 22:25:51' prior: 50693877!
+secondBlockResult
+	semaphoreForSecondBlock wait.
+	^secondBlockToRun ! !
+!TaskRunner methodsFor: 'as yet unclassified' stamp: 'CJF 11/10/2023 22:25:51' prior: 50694594!
+initializeFor: aFirstBlockToRun andFor: aSecondBlockToRun
+	semaphoreForFirstBlock := Semaphore new. 
+	
+	semaphoreForSecondBlock := Semaphore new.
+	
+	[firstBlockToRun := aFirstBlockToRun value.
+		semaphoreForFirstBlock signal.] fork.
+	
+	
+	[secondBlockToRun := aSecondBlockToRun value.
+		semaphoreForSecondBlock signal.] fork.! !
+
+!classDefinition: #TaskRunner category: 'TusLibros-Model' stamp: 'CJF 11/10/2023 22:28:39'!
+Object subclass: #TaskRunner
+	instanceVariableNames: 'blockToRun firstBlockResult secondBlockToRun semaphoreForFirstBlock semaphoreForSecondBlock'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Model'!
+!TaskRunner methodsFor: 'as yet unclassified' stamp: 'CJF 11/10/2023 22:28:39' prior: 50694588!
+firstBlockResult
+	semaphoreForFirstBlock wait.
+	^firstBlockResult .! !
+!TaskRunner methodsFor: 'as yet unclassified' stamp: 'CJF 11/10/2023 22:28:39' prior: 50694623!
+initializeFor: aFirstBlockToRun andFor: aSecondBlockToRun
+	semaphoreForFirstBlock := Semaphore new. 
+	
+	semaphoreForSecondBlock := Semaphore new.
+	
+	[firstBlockResult := aFirstBlockToRun value.
+		semaphoreForFirstBlock signal.] fork.
+	
+	
+	[secondBlockToRun := aSecondBlockToRun value.
+		semaphoreForSecondBlock signal.] fork.! !
+
+!classDefinition: #TaskRunner category: 'TusLibros-Model' stamp: 'CJF 11/10/2023 22:28:48'!
+Object subclass: #TaskRunner
+	instanceVariableNames: 'blockToRun firstBlockResult secondBlockResult semaphoreForFirstBlock semaphoreForSecondBlock'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Model'!
+!TaskRunner methodsFor: 'as yet unclassified' stamp: 'CJF 11/10/2023 22:28:48' prior: 50694617!
+secondBlockResult
+	semaphoreForSecondBlock wait.
+	^secondBlockResult ! !
+!TaskRunner methodsFor: 'as yet unclassified' stamp: 'CJF 11/10/2023 22:28:48' prior: 50694653!
+initializeFor: aFirstBlockToRun andFor: aSecondBlockToRun
+	semaphoreForFirstBlock := Semaphore new. 
+	
+	semaphoreForSecondBlock := Semaphore new.
+	
+	[firstBlockResult := aFirstBlockToRun value.
+		semaphoreForFirstBlock signal.] fork.
+	
+	
+	[secondBlockResult := aSecondBlockToRun value.
+		semaphoreForSecondBlock signal.] fork.! !
+
+!classDefinition: #TaskRunner category: 'TusLibros-Model' stamp: 'CJF 11/10/2023 22:29:01'!
+Object subclass: #TaskRunner
+	instanceVariableNames: 'firstBlockResult secondBlockResult semaphoreForFirstBlock semaphoreForSecondBlock'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Model'!
+!TusLibrosClientRestInterface methodsFor: 'requests' stamp: 'CJF 11/10/2023 23:07:52' prior: 50694544!
+createCartFor: aUser password: aPassword
+
+	| fieldDict resp |
+	
+	fieldDict := Dictionary newFromPairs: {'clientId'. aUser. 'password'. aPassword}.		
+	
+	[resp := WebClient htmlSubmit: (self url,'/createCart') fields: fieldDict.
+		
+	resp isSuccess 
+		ifTrue:[^(WebUtils jsonDecode: ((resp content) readStream))] 
+		ifFalse:[^self error: resp content] .
+	] fork.
+	! !
+!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'CJF 11/10/2023 23:21:40' prior: 50650758!
+createCart
+
+	| newCartId |
+	
+	newCartId := restInterface createCartFor: 'hernan' password: 'smalltalk'.
+	cartIds add: newCartId.
+	self triggerEvent: #newCartIdArrived.
+	
+"	[ :newCartId | cartIds add: newCartId. 
+				self triggerEvent: #newCartIdArrived.] "
+	! !
+!TusLibrosClientRestInterface methodsFor: 'requests' stamp: 'CJF 11/10/2023 23:23:43'!
+createCartFor: aUser password: aPassword thenRun: aBlock 
+
+	| fieldDict resp |
+	
+	fieldDict := Dictionary newFromPairs: {'clientId'. aUser. 'password'. aPassword}.		
+	
+	[resp := WebClient htmlSubmit: (self url,'/createCart') fields: fieldDict.
+		
+	resp isSuccess 
+		ifTrue:[^(WebUtils jsonDecode: ((resp content) readStream))] 
+		ifFalse:[^self error: resp content] .
+	] fork.
+	! !
+!TusLibrosClientRestInterface methodsFor: 'requests' stamp: 'CJF 11/10/2023 23:25:07'!
+createCartFor: aUser password: aPassword thenExecute: aBlockToRun 
+
+	| fieldDict resp |
+	
+	fieldDict := Dictionary newFromPairs: {'clientId'. aUser. 'password'. aPassword}.		
+	
+	[resp := WebClient htmlSubmit: (self url,'/createCart') fields: fieldDict.
+		
+	resp isSuccess 
+		ifTrue:[^(WebUtils jsonDecode: ((resp content) readStream))] 
+		ifFalse:[^self error: resp content] .
+	] fork.
+	! !
+!TusLibrosClientRestInterface methodsFor: 'requests' stamp: 'CJF 11/10/2023 23:27:47'!
+createCartFor: aUser password: aPassword execute: aBlock 
+
+	| fieldDict resp |
+	
+	fieldDict := Dictionary newFromPairs: {'clientId'. aUser. 'password'. aPassword}.		
+	
+	[resp := WebClient htmlSubmit: (self url,'/createCart') fields: fieldDict.
+		
+	resp isSuccess 
+		ifTrue:[^(WebUtils jsonDecode: ((resp content) readStream))] 
+		ifFalse:[^self error: resp content] .
+	] fork.
+	! !
+!TusLibrosClientTestWindowModel methodsFor: 'as yet unclassified' stamp: 'CJF 11/10/2023 23:27:47' prior: 50694722!
+createCart
+
+	| newCartId |
+	
+	newCartId := restInterface createCartFor: 'hernan' password: 'smalltalk' execute: [self].
+	cartIds add: newCartId.
+	self triggerEvent: #newCartIdArrived.
+	
+"	[ :newCartId | cartIds add: newCartId. 
+				self triggerEvent: #newCartIdArrived.] "
+	! !
+
+!methodRemoval: TusLibrosClientRestInterface #createCartFor:password: stamp: 'CJF 11/10/2023 23:27:47'!
+createCartFor: aUser password: aPassword
+
+	| fieldDict resp |
+	
+	fieldDict := Dictionary newFromPairs: {'clientId'. aUser. 'password'. aPassword}.		
+	
+	[resp := WebClient htmlSubmit: (self url,'/createCart') fields: fieldDict.
+		
+	resp isSuccess 
+		ifTrue:[^(WebUtils jsonDecode: ((resp content) readStream))] 
+		ifFalse:[^self error: resp content] .
+	] fork.
+	!
+!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'CJF 11/10/2023 23:29:29' prior: 50694779!
+createCart
+	restInterface createCartFor: 'hernan' password: 'smalltalk' execute: [ :newCartId | cartIds add: newCartId. self triggerEvent: #newCartIdArrived.]
+"	cartIds add: newCartId.
+	self triggerEvent: #newCartIdArrived.
+	
+	[ :newCartId | cartIds add: newCartId. 
+				self triggerEvent: #newCartIdArrived.] "
+	! !
+
+!methodRemoval: TusLibrosClientRestInterface #createCartFor:password:thenExecute: stamp: 'CJF 11/10/2023 23:30:18'!
+createCartFor: aUser password: aPassword thenExecute: aBlockToRun 
+
+	| fieldDict resp |
+	
+	fieldDict := Dictionary newFromPairs: {'clientId'. aUser. 'password'. aPassword}.		
+	
+	[resp := WebClient htmlSubmit: (self url,'/createCart') fields: fieldDict.
+		
+	resp isSuccess 
+		ifTrue:[^(WebUtils jsonDecode: ((resp content) readStream))] 
+		ifFalse:[^self error: resp content] .
+	] fork.
+	!
+
+!methodRemoval: TusLibrosClientRestInterface #createCartFor:password:thenRun: stamp: 'CJF 11/10/2023 23:30:25'!
+createCartFor: aUser password: aPassword thenRun: aBlock 
+
+	| fieldDict resp |
+	
+	fieldDict := Dictionary newFromPairs: {'clientId'. aUser. 'password'. aPassword}.		
+	
+	[resp := WebClient htmlSubmit: (self url,'/createCart') fields: fieldDict.
+		
+	resp isSuccess 
+		ifTrue:[^(WebUtils jsonDecode: ((resp content) readStream))] 
+		ifFalse:[^self error: resp content] .
+	] fork.
+	!
+!TusLibrosClientRestInterface methodsFor: 'requests' stamp: 'CJF 11/10/2023 23:32:36' prior: 50694763!
+createCartFor: aUser password: aPassword execute: aBlock 
+
+	| fieldDict resp |
+	
+	fieldDict := Dictionary newFromPairs: {'clientId'. aUser. 'password'. aPassword}.		
+	
+	[resp := WebClient htmlSubmit: (self url,'/createCart') fields: fieldDict.
+		
+	resp isSuccess 
+		ifTrue:[  aBlock value: (WebUtils jsonDecode: ((resp content) readStream))  ] 
+		ifFalse:[self error: resp content] .
+	] fork.
+	! !
+
+WebServer reset .!
+
+TusLibrosServerRestInterface installForDefaultSystem.
+!
+
+TusLibrosClientTestWindow open.
+!
+!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'CJF 11/10/2023 23:34:11' prior: 50694806!
+createCart
+	restInterface createCartFor: 'hernan' password: 'smalltalk' execute: [ :newCartId | cartIds add: newCartId. self triggerEvent: #newCartIdArrived.]
+! !
+
+WebServer reset .!
+
+TusLibrosServerRestInterface installForDefaultSystem.!
+
+TusLibrosClientTestWindow open.!
+!TusLibrosClientRestInterface methodsFor: 'requests' stamp: 'CJF 11/10/2023 23:39:54' prior: 50694425!
+add: quantity of: bookIsbn toCartIdentifiedAs: cartId
+
+	| fieldDict resp  |
+
+	fieldDict := Dictionary newFromPairs: {'cartId'. cartId. 'bookIsbn'. bookIsbn. 'bookQuantity'. quantity}.		
+
+	[resp := WebClient htmlSubmit: (self url,'/addToCart') fields: fieldDict. ] fork.
+	
+		
+	resp isSuccess 
+		ifTrue:[^(WebUtils jsonDecode: ((resp content) readStream))]
+		ifFalse:[^self error: resp content]! !
+!TusLibrosClientRestInterface methodsFor: 'requests' stamp: 'CJF 11/10/2023 23:40:17' prior: 50694883!
+add: quantity of: bookIsbn toCartIdentifiedAs: cartId
+
+	| fieldDict resp  |
+
+	fieldDict := Dictionary newFromPairs: {'cartId'. cartId. 'bookIsbn'. bookIsbn. 'bookQuantity'. quantity}.		
+
+	[resp := WebClient htmlSubmit: (self url,'/addToCart') fields: fieldDict. 
+	
+		
+	resp isSuccess 
+		ifTrue:[^(WebUtils jsonDecode: ((resp content) readStream))]
+		ifFalse:[^self error: resp content]
+	] fork.! !
+
+WebServer reset .!
+
+TusLibrosServerRestInterface installForDefaultSystem.!
+
+TusLibrosClientTestWindow open.!
+!TusLibrosClientRestInterface methodsFor: 'requests' stamp: 'CJF 11/10/2023 23:41:49' prior: 50694899!
+add: quantity of: bookIsbn toCartIdentifiedAs: cartId
+
+	| fieldDict resp  |
+
+	fieldDict := Dictionary newFromPairs: {'cartId'. cartId. 'bookIsbn'. bookIsbn. 'bookQuantity'. quantity}.		
+
+	[resp := WebClient htmlSubmit: (self url,'/addToCart') fields: fieldDict. 
+	
+		
+	resp isSuccess 
+		ifTrue:[(WebUtils jsonDecode: ((resp content) readStream))]
+		ifFalse:[self error: resp content]
+	] fork.! !
+
+WebServer reset .!
+
+TusLibrosServerRestInterface installForDefaultSystem.!
+
+TusLibrosClientTestWindow open.!
+!TusLibrosClientRestInterface methodsFor: 'requests' stamp: 'CJF 11/10/2023 23:44:22' prior: 50694392!
+listCart: cartId
+
+	| fieldDict resp |
+	
+	fieldDict := Dictionary newFromPairs: {'cartId'. cartId. }.		
+
+	[resp := WebClient htmlSubmit: (self url,'/listCart') fields: fieldDict.
+	
+	resp isSuccess 
+		ifTrue:[^(WebUtils jsonDecode: ((resp content) readStream)) asOrderedCollection] 
+		ifFalse:[^self error: resp content]
+	] fork.! !
+
+WebServer reset .!
+
+TusLibrosServerRestInterface installForDefaultSystem.!
+
+TusLibrosClientTestWindow open.!
+!TusLibrosClientRestInterface methodsFor: 'requests' stamp: 'CJF 11/10/2023 23:54:01'!
+listCart: cartId execute: aBlock 
+
+	| fieldDict resp |
+	
+	fieldDict := Dictionary newFromPairs: {'cartId'. cartId. }.		
+
+	[resp := WebClient htmlSubmit: (self url,'/listCart') fields: fieldDict.
+	
+	resp isSuccess 
+		ifTrue:[^(WebUtils jsonDecode: ((resp content) readStream)) asOrderedCollection] 
+		ifFalse:[^self error: resp content]
+	] fork.! !
+!TusLibrosServerRestInterface methodsFor: 'rest interface' stamp: 'CJF 11/10/2023 23:54:01'!
+listCart: aRequest execute: aBlock 
+
+	| cartId |
+
+	(Delay forSeconds: 10) wait.
+	
+	self withFieldsOf: aRequest do: [ :requestFields |
+		cartId := self cartIdFrom: requestFields ].
+	
+	self 
+		answer: [(systemFacade listCartIdentifiedAs: cartId) asArray]
+		to: aRequest 
+! !
+!TusLibrosServerRestInterface class methodsFor: 'as yet unclassified' stamp: 'CJF 11/10/2023 23:54:01' prior: 50694269!
+installForDefaultSystem
+
+	"self installForDefaultSystem"
+	
+	| server port interface |
+	
+	interface := self on: self defaultSystem.
+	
+	"Esto es para poder acceder a la interface de manera global - Hernan"
+	Smalltalk at: #CurrentTusLibrosRestInterface put: interface.
+	
+	port := 9999.
+	server := WebServer reset default.
+	server listenOn: port.
+	server 
+		addService: '/createCart' 
+		action: [:request | interface createCart: request ].
+	server 
+		addService: '/addToCart' 
+		action: [:request | interface addToCart: request ].
+	server
+		addService: '/listCart' 
+		action: [:request | interface listCart: request execute: [self] ].
+	server
+		addService: '/checkOutCart' 
+		action: [:request | interface checkOutCart: request ].
+	server
+		addService: '/listPurchases' 
+		action: [:request | interface listPurchases: request ].
+	server useDebugErrorHandler ! !
+!TusLibrosClientTestWindowModel methodsFor: 'as yet unclassified' stamp: 'CJF 11/10/2023 23:54:01' prior: 50650767!
+listCart
+
+	| cartId |
+	
+	(self isCartIdSelected) ifTrue:[
+		cartId := self selectedCartId.
+		currentSelectedCartContent := restInterface listCart: cartId execute: [self].
+		self triggerEvent: #newCurrentSelectedCartContentArrived with: cartId ].! !
+
+!methodRemoval: TusLibrosClientRestInterface #listCart: stamp: 'CJF 11/10/2023 23:54:01'!
+listCart: cartId
+
+	| fieldDict resp |
+	
+	fieldDict := Dictionary newFromPairs: {'cartId'. cartId. }.		
+
+	[resp := WebClient htmlSubmit: (self url,'/listCart') fields: fieldDict.
+	
+	resp isSuccess 
+		ifTrue:[^(WebUtils jsonDecode: ((resp content) readStream)) asOrderedCollection] 
+		ifFalse:[^self error: resp content]
+	] fork.!
+
+!methodRemoval: TusLibrosServerRestInterface #listCart: stamp: 'CJF 11/10/2023 23:54:01'!
+listCart: aRequest
+
+	| cartId |
+
+	(Delay forSeconds: 10) wait.
+	
+	self withFieldsOf: aRequest do: [ :requestFields |
+		cartId := self cartIdFrom: requestFields ].
+	
+	self 
+		answer: [(systemFacade listCartIdentifiedAs: cartId) asArray]
+		to: aRequest 
+!
+!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'CJF 11/10/2023 23:55:50' prior: 50695014!
+listCart
+
+	| cartId |
+	
+	(self isCartIdSelected) ifTrue:[
+		cartId := self selectedCartId.
+		restInterface listCart: cartId execute: [ :resp | currentSelectedCartContent := resp. self triggerEvent: #newCurrentSelectedCartContentArrived with: cartId].
+		 ].! !
+!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'CJF 11/10/2023 23:55:58' prior: 50695050!
+listCart
+
+	| cartId |
+	
+	(self isCartIdSelected) ifTrue:[
+		cartId := self selectedCartId.
+		restInterface listCart: cartId execute: [ :resp | currentSelectedCartContent := resp. 
+											self triggerEvent: #newCurrentSelectedCartContentArrived with: cartId].
+		 ].! !
+!TusLibrosClientRestInterface methodsFor: 'requests' stamp: 'CJF 11/10/2023 23:56:42' prior: 50694956!
+listCart: cartId execute: aBlock 
+
+	| fieldDict resp |
+	
+	fieldDict := Dictionary newFromPairs: {'cartId'. cartId. }.		
+
+	[resp := WebClient htmlSubmit: (self url,'/listCart') fields: fieldDict.
+	
+	resp isSuccess 
+		ifTrue:[aBlock value: (WebUtils jsonDecode: ((resp content) readStream)) asOrderedCollection] 
+		ifFalse:[self error: resp content]
+	] fork.! !
+
+WebServer reset .!
+
+TusLibrosServerRestInterface installForDefaultSystem.!
+
+TusLibrosClientTestWindow open.!
+
+----QUIT----(10 November 2023 23:58:38) CuisUniversity-5981.image priorSource: 11604895!
