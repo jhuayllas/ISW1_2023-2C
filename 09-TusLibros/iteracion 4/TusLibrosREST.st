@@ -12,6 +12,10 @@ informBook: bookIsbn addedToCart: cartId
 	
 ! !
 
+!TusLibrosClientTestWindow methodsFor: 'events' stamp: 'CJF 11/12/2023 18:54:04'!
+informError: errorText
+	self inform: errorText! !
+
 !TusLibrosClientTestWindow methodsFor: 'events' stamp: 'NR 6/13/2022 07:06:29'!
 refreshCartButtonsLabels: anIndex
 
@@ -169,7 +173,7 @@ heightOfButtons
 	^ 66! !
 
 
-!TusLibrosClientTestWindow methodsFor: 'initialization' stamp: 'NR 6/13/2022 07:07:04'!
+!TusLibrosClientTestWindow methodsFor: 'initialization' stamp: 'CJF 11/12/2023 18:15:24'!
 initializeWith: aTitle
 
 	self setLabel: aTitle.
@@ -181,7 +185,10 @@ initializeWith: aTitle
 	self model when: #newCartIdArrived send: #refreshListOfCartIds to: self.		
 	self model when: #selectedCartChanged send: #refreshCartButtonsLabels: to: self.	
 	self model when: #bookAddedToCart send: #informBook:addedToCart: to: self.
-	self model when: #newCurrentSelectedCartContentArrived send: #refreshCurrentSelectedCartContent: to: self! !
+	self model when: #newCurrentSelectedCartContentArrived send: #refreshCurrentSelectedCartContent: to: self.
+	
+	self model when: #errorMessageBox send: #informError: to:self
+	! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -202,38 +209,42 @@ Object subclass: #TusLibrosClientRestInterface
 	poolDictionaries: ''
 	category: 'TusLibrosREST'!
 
-!TusLibrosClientRestInterface methodsFor: 'requests' stamp: 'CJF 11/10/2023 23:41:49'!
-add: quantity of: bookIsbn toCartIdentifiedAs: cartId
+!TusLibrosClientRestInterface methodsFor: 'requests' stamp: 'CJF 11/12/2023 19:42:03'!
+add: quantity of: bookIsbn toCartIdentifiedAs: cartId execute: aBlock executeOnError: anErrorBlock 
 
 	| fieldDict resp  |
 
 	fieldDict := Dictionary newFromPairs: {'cartId'. cartId. 'bookIsbn'. bookIsbn. 'bookQuantity'. quantity}.		
 
-	[resp := WebClient htmlSubmit: (self url,'/addToCart') fields: fieldDict. 
+	[
+		
+	resp := WebClient htmlSubmit: (self url,'/addToCart') fields: fieldDict. 
 	
 		
 	resp isSuccess 
-		ifTrue:[(WebUtils jsonDecode: ((resp content) readStream))]
-		ifFalse:[self error: resp content]
+		ifTrue:[(WebUtils jsonDecode: ((resp content) readStream)).
+				aBlock value.]
+		ifFalse:[  [self error: resp content] on: Error do: [ :anError | anErrorBlock value: anError messageText ]  ]
 	] fork.! !
 
-!TusLibrosClientRestInterface methodsFor: 'requests' stamp: 'CJF 11/10/2023 23:32:36'!
-createCartFor: aUser password: aPassword execute: aBlock 
+!TusLibrosClientRestInterface methodsFor: 'requests' stamp: 'CJF 11/12/2023 19:11:50'!
+createCartFor: aUser password: aPassword execute: aBlock executeOnError: anErrorBlock  
 
 	| fieldDict resp |
 	
 	fieldDict := Dictionary newFromPairs: {'clientId'. aUser. 'password'. aPassword}.		
 	
-	[resp := WebClient htmlSubmit: (self url,'/createCart') fields: fieldDict.
+		
+	[	resp := WebClient htmlSubmit: (self url,'/createCart') fields: fieldDict.
 		
 	resp isSuccess 
 		ifTrue:[  aBlock value: (WebUtils jsonDecode: ((resp content) readStream))  ] 
-		ifFalse:[self error: resp content] .
-	] fork.
-	! !
+		ifFalse:[ [self error: resp content] on: Error do: [ :anError | anErrorBlock value: anError messageText ]] .
+	
+	]fork! !
 
-!TusLibrosClientRestInterface methodsFor: 'requests' stamp: 'CJF 11/10/2023 23:56:42'!
-listCart: cartId execute: aBlock 
+!TusLibrosClientRestInterface methodsFor: 'requests' stamp: 'CJF 11/12/2023 19:15:20'!
+listCart: cartId execute: aBlock executeOnError: anErrorBlock  
 
 	| fieldDict resp |
 	
@@ -243,7 +254,7 @@ listCart: cartId execute: aBlock
 	
 	resp isSuccess 
 		ifTrue:[aBlock value: (WebUtils jsonDecode: ((resp content) readStream)) asOrderedCollection] 
-		ifFalse:[self error: resp content]
+		ifFalse:[[self error: resp content] on: Error do: [ :anError | anErrorBlock value: anError messageText ]  ]
 	] fork.! !
 
 
@@ -326,7 +337,7 @@ cartIdsIndex: anIndex
 	! !
 
 
-!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'NR 6/13/2022 07:07:36'!
+!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'CJF 11/12/2023 19:24:25'!
 addToCart
 
 	| cartId bookIsbn |
@@ -334,23 +345,33 @@ addToCart
 	(self areCartIdAndBookSelected) ifTrue:[
 		cartId := self selectedCartId.
 		bookIsbn := self selectedBook.
-		restInterface add: 1 of: bookIsbn toCartIdentifiedAs: cartId.
-		self triggerEvent: #bookAddedToCart withArguments: (Array with: bookIsbn with: cartId)]! !
+		restInterface add: 1 
+					of: bookIsbn 
+					toCartIdentifiedAs: cartId 
+					execute: [   self triggerEvent: #bookAddedToCart withArguments: (Array with: bookIsbn with: cartId)  ] 
+					executeOnError: [ :anErrorText | self triggerEvent: #errorMessageBox with: anErrorText ].
+					
+		]! !
 
-!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'CJF 11/10/2023 23:34:11'!
+!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'CJF 11/12/2023 19:22:03'!
 createCart
-	restInterface createCartFor: 'hernan' password: 'smalltalk' execute: [ :newCartId | cartIds add: newCartId. self triggerEvent: #newCartIdArrived.]
-! !
+	restInterface createCartFor: 'hernan' 
+				password: 'smalltalk' 
+				execute: [ :newCartId | cartIds add: newCartId. self triggerEvent: #newCartIdArrived.] 
+				executeOnError: [ :anErrorText | self triggerEvent: #errorMessageBox with: anErrorText ].
+	! !
 
-!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'CJF 11/10/2023 23:55:58'!
+!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'CJF 11/12/2023 19:14:26'!
 listCart
 
 	| cartId |
 	
 	(self isCartIdSelected) ifTrue:[
 		cartId := self selectedCartId.
-		restInterface listCart: cartId execute: [ :resp | currentSelectedCartContent := resp. 
-											self triggerEvent: #newCurrentSelectedCartContentArrived with: cartId].
+		restInterface listCart: cartId 
+					execute: [ :resp | currentSelectedCartContent := resp. 
+									self triggerEvent: #newCurrentSelectedCartContentArrived with: cartId] 
+					executeOnError: [ :anErrorText | self triggerEvent: #errorMessageBox with: anErrorText  ].
 		 ].! !
 
 
@@ -476,13 +497,13 @@ checkOutCart: aRequest
 			transactionId printString ]
 		to: aRequest ! !
 
-!TusLibrosServerRestInterface methodsFor: 'rest interface' stamp: 'CJF 11/10/2023 20:56:44'!
+!TusLibrosServerRestInterface methodsFor: 'rest interface' stamp: 'NR 6/13/2022 07:11:38'!
 createCart: aRequest
 
 	| clientId password |
-	
+
 	(Delay forSeconds: 1) wait.
-		
+	
 	self withFieldsOf: aRequest do: [ :requestFields |
 		clientId := self clientIdFrom: requestFields.
 		password := self passwordFrom: requestFields ].
@@ -493,7 +514,7 @@ createCart: aRequest
 			cartId printString ]
 		to: aRequest ! !
 
-!TusLibrosServerRestInterface methodsFor: 'rest interface' stamp: 'CJF 11/10/2023 23:54:01'!
+!TusLibrosServerRestInterface methodsFor: 'rest interface' stamp: 'CJF 11/12/2023 19:41:04'!
 listCart: aRequest execute: aBlock 
 
 	| cartId |
@@ -584,7 +605,7 @@ on: aTusLibrosSystemFacade
 	^self new initializeOn: aTusLibrosSystemFacade ! !
 
 
-!TusLibrosServerRestInterface class methodsFor: 'installation' stamp: 'CJF 11/10/2023 23:54:01'!
+!TusLibrosServerRestInterface class methodsFor: 'installation' stamp: 'CJF 11/12/2023 19:13:36'!
 installForDefaultSystem
 
 	"self installForDefaultSystem"
@@ -607,7 +628,7 @@ installForDefaultSystem
 		action: [:request | interface addToCart: request ].
 	server
 		addService: '/listCart' 
-		action: [:request | interface listCart: request execute: [self] ].
+		action: [:request | interface listCart: request execute: [self] executeOnError: [self] ].
 	server
 		addService: '/checkOutCart' 
 		action: [:request | interface checkOutCart: request ].
