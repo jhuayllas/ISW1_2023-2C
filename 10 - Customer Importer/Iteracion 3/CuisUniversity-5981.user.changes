@@ -1,0 +1,3500 @@
+
+
+----QUIT----(13 August 2023 19:14:09) CuisUniversity-5981.image priorSource: 5713367!
+
+----STARTUP---- (13 August 2023 19:14:10) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5981.image!
+
+
+----QUIT----(13 August 2023 19:14:10) CuisUniversity-5981.image priorSource: 10197065!
+
+----STARTUP---- (16 November 2023 19:05:58) as C:\Users\crist\Desktop\ASF7\CuisUniversity-5981.image!
+
+
+----End fileIn of C:\Users\crist\Desktop\ASF7\CustomerImporter-1.st----!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 19:20:59' prior: 50650628 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	| newCustomer line |
+
+	line := readStream nextLine.
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [ newCustomer := Customer new.
+			newCustomer firstName: (line findTokens: $,) second.
+			newCustomer lastName: (line findTokens: $,) third.
+			newCustomer identificationType: (line findTokens: $,) fourth.
+			newCustomer identificationNumber: (line findTokens: $,) fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := line findTokens: $,.
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: addressData second.
+			newAddress streetNumber: addressData third asNumber .
+			newAddress town: addressData fourth.
+			newAddress zipCode: addressData fifth asNumber .
+			newAddress province: addressData sixth ].
+
+		line := readStream nextLine. ].
+
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 19:21:24' prior: 50650841 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	| newCustomer line |
+
+	line := readStream nextLine.
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [ newCustomer := Customer new.
+			newCustomer firstName: (line findTokens: $,) second.
+			newCustomer lastName: (line findTokens: $,) third.
+			newCustomer identificationType: (line findTokens: $,) fourth.
+			newCustomer identificationNumber: (line findTokens: $,) fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | newAddress |
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: (line findTokens: $,) second.
+			newAddress streetNumber: (line findTokens: $,) third asNumber .
+			newAddress town: (line findTokens: $,) fourth.
+			newAddress zipCode: (line findTokens: $,) fifth asNumber .
+			newAddress province: (line findTokens: $,) sixth ].
+
+		line := readStream nextLine. ].
+
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 19:21:27' prior: 50650873 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	| newCustomer line |
+
+	line := readStream nextLine.
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [ 
+			
+			newCustomer := Customer new.
+			newCustomer firstName: (line findTokens: $,) second.
+			newCustomer lastName: (line findTokens: $,) third.
+			newCustomer identificationType: (line findTokens: $,) fourth.
+			newCustomer identificationNumber: (line findTokens: $,) fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := line findTokens: $,.
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: addressData second.
+			newAddress streetNumber: addressData third asNumber .
+			newAddress town: addressData fourth.
+			newAddress zipCode: addressData fifth asNumber .
+			newAddress province: addressData sixth ].
+
+		line := readStream nextLine. ].
+
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 19:21:34' prior: 50650905 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	| newCustomer line |
+
+	line := readStream nextLine.
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [ 
+			
+			newCustomer := Customer new.
+			newCustomer firstName: (line findTokens: $,) second.
+			newCustomer lastName: (line findTokens: $,) third.
+			newCustomer identificationType: (line findTokens: $,) fourth.
+			newCustomer identificationNumber: (line findTokens: $,) fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | newAddress |
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: (line findTokens: $,) second.
+			newAddress streetNumber: (line findTokens: $,) third asNumber .
+			newAddress town: (line findTokens: $,) fourth.
+			newAddress zipCode: (line findTokens: $,) fifth asNumber .
+			newAddress province: (line findTokens: $,) sixth ].
+
+		line := readStream nextLine. ].
+
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 19:21:47' prior: 50650938 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	| newCustomer line |
+
+	line := readStream nextLine.
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [ 
+			
+			newCustomer := Customer new.
+			newCustomer firstName: (line findTokens: $,) second.
+			newCustomer lastName: (line findTokens: $,) third.
+			newCustomer identificationType: (line findTokens: $,) fourth.
+			newCustomer identificationNumber: (line findTokens: $,) fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | newAddress |
+			
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: (line findTokens: $,) second.
+			newAddress streetNumber: (line findTokens: $,) third asNumber .
+			newAddress town: (line findTokens: $,) fourth.
+			newAddress zipCode: (line findTokens: $,) fifth asNumber .
+			newAddress province: (line findTokens: $,) sixth ].
+
+		line := readStream nextLine. ].
+
+	! !
+!CustomerImporter methodsFor: 'as yet unclassified' stamp: 'CJF 11/16/2023 19:22:00' prior: 50650971 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	| newCustomer  |
+
+	line := readStream nextLine.
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [ 
+			
+			newCustomer := Customer new.
+			newCustomer firstName: (line findTokens: $,) second.
+			newCustomer lastName: (line findTokens: $,) third.
+			newCustomer identificationType: (line findTokens: $,) fourth.
+			newCustomer identificationNumber: (line findTokens: $,) fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | newAddress |
+			
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: (line findTokens: $,) second.
+			newAddress streetNumber: (line findTokens: $,) third asNumber .
+			newAddress town: (line findTokens: $,) fourth.
+			newAddress zipCode: (line findTokens: $,) fifth asNumber .
+			newAddress province: (line findTokens: $,) sixth ].
+
+		line := readStream nextLine. ].
+
+	! !
+
+!classDefinition: #CustomerImporter category: 'CustomerImporter' stamp: 'CJF 11/16/2023 19:22:00'!
+Object subclass: #CustomerImporter
+	instanceVariableNames: 'session readStream line'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 19:22:14' prior: 50651004 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	| newCustomer  |
+
+	line := readStream nextLine.
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [ 
+			
+			newCustomer := Customer new.
+			newCustomer firstName: (line findTokens: $,) second.
+			newCustomer lastName: (line findTokens: $,) third.
+			newCustomer identificationType: (line findTokens: $,) fourth.
+			newCustomer identificationNumber: (line findTokens: $,) fifth.
+			
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | newAddress |
+			
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: (line findTokens: $,) second.
+			newAddress streetNumber: (line findTokens: $,) third asNumber .
+			newAddress town: (line findTokens: $,) fourth.
+			newAddress zipCode: (line findTokens: $,) fifth asNumber .
+			newAddress province: (line findTokens: $,) sixth ].
+
+		line := readStream nextLine. ].
+
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 19:22:45'!
+isACostumerRecord
+
+	^ line beginsWith: 'C'! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 19:22:45' prior: 50651045 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	| newCustomer  |
+
+	line := readStream nextLine.
+	[ line notNil ] whileTrue: [
+		(self isACostumerRecord) ifTrue: [ 
+			
+			newCustomer := Customer new.
+			newCustomer firstName: (line findTokens: $,) second.
+			newCustomer lastName: (line findTokens: $,) third.
+			newCustomer identificationType: (line findTokens: $,) fourth.
+			newCustomer identificationNumber: (line findTokens: $,) fifth.
+			
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | newAddress |
+			
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: (line findTokens: $,) second.
+			newAddress streetNumber: (line findTokens: $,) third asNumber .
+			newAddress town: (line findTokens: $,) fourth.
+			newAddress zipCode: (line findTokens: $,) fifth asNumber .
+			newAddress province: (line findTokens: $,) sixth ].
+
+		line := readStream nextLine. ].
+
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 19:23:01'!
+isAddressRecord
+
+	^ line beginsWith: 'A'! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 19:23:01' prior: 50651082 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	| newCustomer  |
+
+	line := readStream nextLine.
+	[ line notNil ] whileTrue: [
+		(self isACostumerRecord) ifTrue: [ 
+			
+			newCustomer := Customer new.
+			newCustomer firstName: (line findTokens: $,) second.
+			newCustomer lastName: (line findTokens: $,) third.
+			newCustomer identificationType: (line findTokens: $,) fourth.
+			newCustomer identificationNumber: (line findTokens: $,) fifth.
+			
+			session persist: newCustomer ].
+
+		(self isAddressRecord) ifTrue: [ | newAddress |
+			
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: (line findTokens: $,) second.
+			newAddress streetNumber: (line findTokens: $,) third asNumber .
+			newAddress town: (line findTokens: $,) fourth.
+			newAddress zipCode: (line findTokens: $,) fifth asNumber .
+			newAddress province: (line findTokens: $,) sixth ].
+
+		line := readStream nextLine. ].
+
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 19:23:12'!
+isCostumerRecord
+
+	^ line beginsWith: 'C'! !
+!CustomerImporter methodsFor: 'as yet unclassified' stamp: 'CJF 11/16/2023 19:23:12' prior: 50651119 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	| newCustomer  |
+
+	line := readStream nextLine.
+	[ line notNil ] whileTrue: [
+		(self isCostumerRecord) ifTrue: [ 
+			
+			newCustomer := Customer new.
+			newCustomer firstName: (line findTokens: $,) second.
+			newCustomer lastName: (line findTokens: $,) third.
+			newCustomer identificationType: (line findTokens: $,) fourth.
+			newCustomer identificationNumber: (line findTokens: $,) fifth.
+			
+			session persist: newCustomer ].
+
+		(self isAddressRecord) ifTrue: [ | newAddress |
+			
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: (line findTokens: $,) second.
+			newAddress streetNumber: (line findTokens: $,) third asNumber .
+			newAddress town: (line findTokens: $,) fourth.
+			newAddress zipCode: (line findTokens: $,) fifth asNumber .
+			newAddress province: (line findTokens: $,) sixth ].
+
+		line := readStream nextLine. ].
+
+	! !
+
+!methodRemoval: CustomerImporter #isACostumerRecord stamp: 'CJF 11/16/2023 19:23:12'!
+isACostumerRecord
+
+	^ line beginsWith: 'C'!
+!CustomerImporter methodsFor: 'as yet unclassified' stamp: 'CJF 11/16/2023 19:24:51' prior: 50651157 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	 
+
+	line := readStream nextLine.
+	[ line notNil ] whileTrue: [
+		(self isCostumerRecord) ifTrue: [ 
+			
+			newCustomer := Customer new.
+			newCustomer firstName: (line findTokens: $,) second.
+			newCustomer lastName: (line findTokens: $,) third.
+			newCustomer identificationType: (line findTokens: $,) fourth.
+			newCustomer identificationNumber: (line findTokens: $,) fifth.
+			
+			session persist: newCustomer ].
+
+		(self isAddressRecord) ifTrue: [ | newAddress |
+			
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: (line findTokens: $,) second.
+			newAddress streetNumber: (line findTokens: $,) third asNumber .
+			newAddress town: (line findTokens: $,) fourth.
+			newAddress zipCode: (line findTokens: $,) fifth asNumber .
+			newAddress province: (line findTokens: $,) sixth ].
+
+		line := readStream nextLine. ].
+
+	! !
+
+!classDefinition: #CustomerImporter category: 'CustomerImporter' stamp: 'CJF 11/16/2023 19:24:52'!
+Object subclass: #CustomerImporter
+	instanceVariableNames: 'session readStream line newCustomer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!CustomerImporter methodsFor: 'as yet unclassified' stamp: 'CJF 11/16/2023 19:25:00' prior: 50651194 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	 
+
+	line := readStream nextLine.
+	[ line notNil ] whileTrue: [
+		(self isCostumerRecord) ifTrue: [ 
+			
+			newCustomer := Customer new.
+			newCustomer firstName: (line findTokens: $,) second.
+			newCustomer lastName: (line findTokens: $,) third.
+			newCustomer identificationType: (line findTokens: $,) fourth.
+			newCustomer identificationNumber: (line findTokens: $,) fifth.
+			
+			session persist: newCustomer ].
+
+		(self isAddressRecord) ifTrue: [  
+			
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: (line findTokens: $,) second.
+			newAddress streetNumber: (line findTokens: $,) third asNumber .
+			newAddress town: (line findTokens: $,) fourth.
+			newAddress zipCode: (line findTokens: $,) fifth asNumber .
+			newAddress province: (line findTokens: $,) sixth ].
+
+		line := readStream nextLine. ].
+
+	! !
+
+!classDefinition: #CustomerImporter category: 'CustomerImporter' stamp: 'CJF 11/16/2023 19:25:00'!
+Object subclass: #CustomerImporter
+	instanceVariableNames: 'session readStream line newCustomer newAddress'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 19:25:14'!
+importNewCostumer
+
+	newCustomer := Customer new.
+			newCustomer firstName: (line findTokens: $,) second.
+			newCustomer lastName: (line findTokens: $,) third.
+			newCustomer identificationType: (line findTokens: $,) fourth.
+			newCustomer identificationNumber: (line findTokens: $,) fifth.
+			
+			session persist: newCustomer! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 19:25:15' prior: 50651235 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	 
+
+	line := readStream nextLine.
+	[ line notNil ] whileTrue: [
+		(self isCostumerRecord) ifTrue: [ 
+			
+			self importNewCostumer ].
+
+		(self isAddressRecord) ifTrue: [  
+			
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: (line findTokens: $,) second.
+			newAddress streetNumber: (line findTokens: $,) third asNumber .
+			newAddress town: (line findTokens: $,) fourth.
+			newAddress zipCode: (line findTokens: $,) fifth asNumber .
+			newAddress province: (line findTokens: $,) sixth ].
+
+		line := readStream nextLine. ].
+
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 19:25:29'!
+importNewAddress
+
+	newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: (line findTokens: $,) second.
+			newAddress streetNumber: (line findTokens: $,) third asNumber .
+			newAddress town: (line findTokens: $,) fourth.
+			newAddress zipCode: (line findTokens: $,) fifth asNumber .
+			newAddress province: (line findTokens: $,) sixth! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 19:25:29' prior: 50651289 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	 
+
+	line := readStream nextLine.
+	[ line notNil ] whileTrue: [
+		(self isCostumerRecord) ifTrue: [ 
+			
+			self importNewCostumer ].
+
+		(self isAddressRecord) ifTrue: [  
+			
+			self importNewAddress ].
+
+		line := readStream nextLine. ].
+
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 19:26:37' prior: 50651327 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	 
+
+	[line := readStream nextLine.
+	 line notNil ] whileTrue: [
+		(self isCostumerRecord) ifTrue: [ self importNewCostumer ].
+		(self isAddressRecord) ifTrue: [ self importNewAddress ].
+
+		].
+
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 19:26:50'!
+importRecord
+
+	(self isCostumerRecord) ifTrue: [ self importNewCostumer ].
+		(self isAddressRecord) ifTrue: [ self importNewAddress ]! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 19:26:50' prior: 50651340 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	 
+
+	[line := readStream nextLine.
+	 line notNil ] whileTrue: [
+		self importRecord.
+
+		].
+
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 19:27:17' prior: 50651358 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	 
+
+	[line := readStream nextLine.
+	 line notNil ] whileTrue: [
+		self importRecord.].
+
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 19:27:51'!
+newRecordAvaliable
+
+	line := readStream nextLine.
+	 line notNil! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 19:27:51' prior: 50651366 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	 
+
+	[self newRecordAvaliable ] whileTrue: [
+		self importRecord.].
+
+	! !
+
+!testRun: #ImportTest #test01Import stamp: 'CJF 11/16/2023 19:28:00'!
+ERROR!
+
+!testRun: #ImportTest #test01Import stamp: 'CJF 11/16/2023 19:28:00'!
+ERROR!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 19:28:20' prior: 50651373!
+newRecordAvaliable
+
+	line := readStream nextLine.
+	^line notNil! !
+
+!testRun: #ImportTest #test01Import stamp: 'CJF 11/16/2023 19:28:25'!
+PASSED!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 19:28:40' prior: 50651379 overrides: 16902254!
+value
+
+	[self newRecordAvaliable ] 
+		whileTrue: [
+		self importRecord.].
+
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 19:28:53' prior: 50651350!
+importRecord
+
+	(self isCostumerRecord) ifTrue: [ self importNewCostumer ].
+	(self isAddressRecord) ifTrue: [ self importNewAddress ]! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 19:29:27' prior: 50651311!
+importNewAddress
+
+	newAddress := Address new.
+	newCustomer addAddress: newAddress.
+	newAddress streetName: (line findTokens: $,) second.
+	newAddress streetNumber: (line findTokens: $,) third asNumber .
+	newAddress town: (line findTokens: $,) fourth.
+	newAddress zipCode: (line findTokens: $,) fifth asNumber .
+	newAddress province: (line findTokens: $,) sixth! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 19:29:37' prior: 50651275!
+importNewCostumer
+
+	newCustomer := Customer new.
+	newCustomer firstName: (line findTokens: $,) second.
+	newCustomer lastName: (line findTokens: $,) third.
+	newCustomer identificationType: (line findTokens: $,) fourth.
+	newCustomer identificationNumber: (line findTokens: $,) fifth.
+		
+	session persist: newCustomer! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 19:31:42' prior: 50651406!
+importRecord
+
+	(self isCostumerRecord) ifTrue: [ 
+		self importNewCostumer 
+		].
+	(self isAddressRecord) ifTrue: [ 
+		self importNewAddress 
+		]! !
+
+!methodRemoval: CustomerImporter #importNewCostumer stamp: 'CJF 11/16/2023 19:32:05'!
+importNewCostumer
+
+	newCustomer := Customer new.
+	newCustomer firstName: (line findTokens: $,) second.
+	newCustomer lastName: (line findTokens: $,) third.
+	newCustomer identificationType: (line findTokens: $,) fourth.
+	newCustomer identificationNumber: (line findTokens: $,) fifth.
+		
+	session persist: newCustomer!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 19:32:05' prior: 50651442!
+importRecord
+
+	(self isCostumerRecord) ifTrue: [ 
+		newCustomer := Customer new.
+		newCustomer firstName: (line findTokens: $,) second.
+		newCustomer lastName: (line findTokens: $,) third.
+		newCustomer identificationType: (line findTokens: $,) fourth.
+		newCustomer identificationNumber: (line findTokens: $,) fifth.
+session persist: newCustomer 
+		].
+	(self isAddressRecord) ifTrue: [ 
+		self importNewAddress 
+		]! !
+
+!methodRemoval: CustomerImporter #importNewAddress stamp: 'CJF 11/16/2023 19:32:23'!
+importNewAddress
+
+	newAddress := Address new.
+	newCustomer addAddress: newAddress.
+	newAddress streetName: (line findTokens: $,) second.
+	newAddress streetNumber: (line findTokens: $,) third asNumber .
+	newAddress town: (line findTokens: $,) fourth.
+	newAddress zipCode: (line findTokens: $,) fifth asNumber .
+	newAddress province: (line findTokens: $,) sixth!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 19:32:23' prior: 50651463!
+importRecord
+
+	(self isCostumerRecord) ifTrue: [ 
+		newCustomer := Customer new.
+		newCustomer firstName: (line findTokens: $,) second.
+		newCustomer lastName: (line findTokens: $,) third.
+		newCustomer identificationType: (line findTokens: $,) fourth.
+		newCustomer identificationNumber: (line findTokens: $,) fifth.
+session persist: newCustomer 
+		].
+	(self isAddressRecord) ifTrue: [ 
+		newAddress := Address new.
+		newCustomer addAddress: newAddress.
+		newAddress streetName: (line findTokens: $,) second.
+		newAddress streetNumber: (line findTokens: $,) third asNumber .
+		newAddress town: (line findTokens: $,) fourth.
+		newAddress zipCode: (line findTokens: $,) fifth asNumber .
+newAddress province: (line findTokens: $,) sixth 
+		]! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 19:32:44' prior: 50651493!
+importRecord
+
+	(self isCostumerRecord) ifTrue: [ 
+		newCustomer := Customer new.
+		newCustomer firstName: (line findTokens: $,) second.
+		newCustomer lastName: (line findTokens: $,) third.
+		newCustomer identificationType: (line findTokens: $,) fourth.
+		newCustomer identificationNumber: (line findTokens: $,) fifth.
+		session persist: newCustomer 
+		].
+	(self isAddressRecord) ifTrue: [ 
+		newAddress := Address new.
+		newCustomer addAddress: newAddress.
+		newAddress streetName: (line findTokens: $,) second.
+		newAddress streetNumber: (line findTokens: $,) third asNumber .
+		newAddress town: (line findTokens: $,) fourth.
+		newAddress zipCode: (line findTokens: $,) fifth asNumber .
+		newAddress province: (line findTokens: $,) sixth 
+		]! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 19:33:48'!
+lineData
+
+	^ line findTokens: $,! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 19:33:48' prior: 50651520!
+importRecord
+
+	(self isCostumerRecord) ifTrue: [ 
+		newCustomer := Customer new.
+		newCustomer firstName: (self lineData) second.
+		newCustomer lastName: (line findTokens: $,) third.
+		newCustomer identificationType: (line findTokens: $,) fourth.
+		newCustomer identificationNumber: (line findTokens: $,) fifth.
+		session persist: newCustomer 
+		].
+	(self isAddressRecord) ifTrue: [ 
+		newAddress := Address new.
+		newCustomer addAddress: newAddress.
+		newAddress streetName: (line findTokens: $,) second.
+		newAddress streetNumber: (line findTokens: $,) third asNumber .
+		newAddress town: (line findTokens: $,) fourth.
+		newAddress zipCode: (line findTokens: $,) fifth asNumber .
+		newAddress province: (line findTokens: $,) sixth 
+		]! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 19:33:48' prior: 50651551!
+importRecord
+
+	(self isCostumerRecord) ifTrue: [ 
+		newCustomer := Customer new.
+		newCustomer firstName: (self lineData) second.
+		newCustomer lastName: (self lineData) third.
+		newCustomer identificationType: (line findTokens: $,) fourth.
+		newCustomer identificationNumber: (line findTokens: $,) fifth.
+		session persist: newCustomer 
+		].
+	(self isAddressRecord) ifTrue: [ 
+		newAddress := Address new.
+		newCustomer addAddress: newAddress.
+		newAddress streetName: (line findTokens: $,) second.
+		newAddress streetNumber: (line findTokens: $,) third asNumber .
+		newAddress town: (line findTokens: $,) fourth.
+		newAddress zipCode: (line findTokens: $,) fifth asNumber .
+		newAddress province: (line findTokens: $,) sixth 
+		]! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 19:33:48' prior: 50651578!
+importRecord
+
+	(self isCostumerRecord) ifTrue: [ 
+		newCustomer := Customer new.
+		newCustomer firstName: (self lineData) second.
+		newCustomer lastName: (self lineData) third.
+		newCustomer identificationType: (self lineData) fourth.
+		newCustomer identificationNumber: (line findTokens: $,) fifth.
+		session persist: newCustomer 
+		].
+	(self isAddressRecord) ifTrue: [ 
+		newAddress := Address new.
+		newCustomer addAddress: newAddress.
+		newAddress streetName: (line findTokens: $,) second.
+		newAddress streetNumber: (line findTokens: $,) third asNumber .
+		newAddress town: (line findTokens: $,) fourth.
+		newAddress zipCode: (line findTokens: $,) fifth asNumber .
+		newAddress province: (line findTokens: $,) sixth 
+		]! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 19:33:48' prior: 50651604!
+importRecord
+
+	(self isCostumerRecord) ifTrue: [ 
+		newCustomer := Customer new.
+		newCustomer firstName: (self lineData) second.
+		newCustomer lastName: (self lineData) third.
+		newCustomer identificationType: (self lineData) fourth.
+		newCustomer identificationNumber: (self lineData) fifth.
+		session persist: newCustomer 
+		].
+	(self isAddressRecord) ifTrue: [ 
+		newAddress := Address new.
+		newCustomer addAddress: newAddress.
+		newAddress streetName: (line findTokens: $,) second.
+		newAddress streetNumber: (line findTokens: $,) third asNumber .
+		newAddress town: (line findTokens: $,) fourth.
+		newAddress zipCode: (line findTokens: $,) fifth asNumber .
+		newAddress province: (line findTokens: $,) sixth 
+		]! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 19:33:48' prior: 50651630!
+importRecord
+
+	(self isCostumerRecord) ifTrue: [ 
+		newCustomer := Customer new.
+		newCustomer firstName: (self lineData) second.
+		newCustomer lastName: (self lineData) third.
+		newCustomer identificationType: (self lineData) fourth.
+		newCustomer identificationNumber: (self lineData) fifth.
+		session persist: newCustomer 
+		].
+	(self isAddressRecord) ifTrue: [ 
+		newAddress := Address new.
+		newCustomer addAddress: newAddress.
+		newAddress streetName: (self lineData) second.
+		newAddress streetNumber: (line findTokens: $,) third asNumber .
+		newAddress town: (line findTokens: $,) fourth.
+		newAddress zipCode: (line findTokens: $,) fifth asNumber .
+		newAddress province: (line findTokens: $,) sixth 
+		]! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 19:33:48' prior: 50651656!
+importRecord
+
+	(self isCostumerRecord) ifTrue: [ 
+		newCustomer := Customer new.
+		newCustomer firstName: (self lineData) second.
+		newCustomer lastName: (self lineData) third.
+		newCustomer identificationType: (self lineData) fourth.
+		newCustomer identificationNumber: (self lineData) fifth.
+		session persist: newCustomer 
+		].
+	(self isAddressRecord) ifTrue: [ 
+		newAddress := Address new.
+		newCustomer addAddress: newAddress.
+		newAddress streetName: (self lineData) second.
+		newAddress streetNumber: (self lineData) third asNumber .
+		newAddress town: (line findTokens: $,) fourth.
+		newAddress zipCode: (line findTokens: $,) fifth asNumber .
+		newAddress province: (line findTokens: $,) sixth 
+		]! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 19:33:48' prior: 50651682!
+importRecord
+
+	(self isCostumerRecord) ifTrue: [ 
+		newCustomer := Customer new.
+		newCustomer firstName: (self lineData) second.
+		newCustomer lastName: (self lineData) third.
+		newCustomer identificationType: (self lineData) fourth.
+		newCustomer identificationNumber: (self lineData) fifth.
+		session persist: newCustomer 
+		].
+	(self isAddressRecord) ifTrue: [ 
+		newAddress := Address new.
+		newCustomer addAddress: newAddress.
+		newAddress streetName: (self lineData) second.
+		newAddress streetNumber: (self lineData) third asNumber .
+		newAddress town: (self lineData) fourth.
+		newAddress zipCode: (line findTokens: $,) fifth asNumber .
+		newAddress province: (line findTokens: $,) sixth 
+		]! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 19:33:48' prior: 50651708!
+importRecord
+
+	(self isCostumerRecord) ifTrue: [ 
+		newCustomer := Customer new.
+		newCustomer firstName: (self lineData) second.
+		newCustomer lastName: (self lineData) third.
+		newCustomer identificationType: (self lineData) fourth.
+		newCustomer identificationNumber: (self lineData) fifth.
+		session persist: newCustomer 
+		].
+	(self isAddressRecord) ifTrue: [ 
+		newAddress := Address new.
+		newCustomer addAddress: newAddress.
+		newAddress streetName: (self lineData) second.
+		newAddress streetNumber: (self lineData) third asNumber .
+		newAddress town: (self lineData) fourth.
+		newAddress zipCode: (self lineData) fifth asNumber .
+		newAddress province: (line findTokens: $,) sixth 
+		]! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 19:33:48' prior: 50651733!
+importRecord
+
+	(self isCostumerRecord) ifTrue: [ 
+		newCustomer := Customer new.
+		newCustomer firstName: (self lineData) second.
+		newCustomer lastName: (self lineData) third.
+		newCustomer identificationType: (self lineData) fourth.
+		newCustomer identificationNumber: (self lineData) fifth.
+		session persist: newCustomer 
+		].
+	(self isAddressRecord) ifTrue: [ 
+		newAddress := Address new.
+		newCustomer addAddress: newAddress.
+		newAddress streetName: (self lineData) second.
+		newAddress streetNumber: (self lineData) third asNumber .
+		newAddress town: (self lineData) fourth.
+		newAddress zipCode: (self lineData) fifth asNumber .
+		newAddress province: (self lineData) sixth 
+		]! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 19:34:17'!
+importCustomerRecord
+
+	newCustomer := Customer new.
+		newCustomer firstName: (self lineData) second.
+		newCustomer lastName: (self lineData) third.
+		newCustomer identificationType: (self lineData) fourth.
+		newCustomer identificationNumber: (self lineData) fifth.
+		session persist: newCustomer! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 19:34:17' prior: 50651758!
+importRecord
+
+	(self isCostumerRecord) ifTrue: [ 
+		self importCustomerRecord 
+		].
+	(self isAddressRecord) ifTrue: [ 
+		newAddress := Address new.
+		newCustomer addAddress: newAddress.
+		newAddress streetName: (self lineData) second.
+		newAddress streetNumber: (self lineData) third asNumber .
+		newAddress town: (self lineData) fourth.
+		newAddress zipCode: (self lineData) fifth asNumber .
+		newAddress province: (self lineData) sixth 
+		]! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 19:34:25'!
+importAddressRecord
+
+	newAddress := Address new.
+		newCustomer addAddress: newAddress.
+		newAddress streetName: (self lineData) second.
+		newAddress streetNumber: (self lineData) third asNumber .
+		newAddress town: (self lineData) fourth.
+		newAddress zipCode: (self lineData) fifth asNumber .
+		newAddress province: (self lineData) sixth! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 19:34:25' prior: 50651796!
+importRecord
+
+	(self isCostumerRecord) ifTrue: [ 
+		self importCustomerRecord 
+		].
+	(self isAddressRecord) ifTrue: [ 
+		self importAddressRecord 
+		]! !
+
+!testRun: #ImportTest #test01Import stamp: 'CJF 11/16/2023 19:34:32'!
+PASSED!
+!ImportTest methodsFor: 'tests' stamp: 'CJF 11/16/2023 19:37:36'!
+test02ImportFailsIfRecordHasLessThanFiveFields
+	! !
+!ImportTest methodsFor: 'tests' stamp: 'CJF 11/16/2023 19:37:56' prior: 50651837!
+test02ImportFailsIfRecordHasLessThanFiveFields
+	CustomerImporter valueFrom: self validImportData into: session..
+! !
+!ImportTest methodsFor: 'tests' stamp: 'CJF 11/16/2023 19:39:01' prior: 50651842!
+test02ImportFailsIfRecordHasLessThanFiveFields
+	CustomerImporter valueFrom: self inputWithFourFieldsInRow into: session..
+! !
+!ImportTest methodsFor: 'tests' stamp: 'CJF 11/16/2023 19:39:22' prior: 50651849!
+test02ImportFailsIfRecordHasLessThanFiveFields
+	CustomerImporter valueFrom: self inputWithFourFieldsInRow into: session..
+	! !
+!ImportTest methodsFor: 'tests' stamp: 'CJF 11/16/2023 19:39:38' prior: 50651856!
+test02ImportFailsIfRecordHasLessThanFiveFields
+	CustomerImporter valueFrom: self inputWithFourFieldsInRow into: session..
+	
+	! !
+!ImportTest methodsFor: 'tests' stamp: 'CJF 11/16/2023 19:43:48' prior: 50651863!
+test02ImportFailsIfRecordHasLessThanFiveFields
+	CustomerImporter valueFrom: self inputWithFourFieldsInRow into: session..
+	
+	self should: []
+		raise: Error 
+		withExceptionDo: [  :anError | 
+			self assert: anError messageText equals: CustomerImporter dataMustHaveFiveFields.
+			self assert: 0 equals: ( session selectAllOfType: Customer) size ].! !
+!ImportTest methodsFor: 'tests' stamp: 'CJF 11/16/2023 19:44:14' prior: 50651870!
+test02ImportFailsIfRecordHasLessThanFiveFields
+	
+	self should: [  CustomerImporter valueFrom: self inputWithFourFieldsInRow into: session.  ]
+		raise: Error 
+		withExceptionDo: [  :anError | 
+			self assert: anError messageText equals: CustomerImporter dataMustHaveFiveFields.
+			self assert: 0 equals: ( session selectAllOfType: Customer) size ].! !
+
+!testRun: #ImportTest #test02ImportFailsIfRecordHasLessThanFiveFields stamp: 'CJF 11/16/2023 19:44:16'!
+ERROR!
+!CustomerImporter class methodsFor: 'error Messages' stamp: 'CJF 11/16/2023 19:44:35'!
+dataMustHaveFiveFields
+	self shouldBeImplemented.! !
+!CustomerImporter class methodsFor: 'error Messages' stamp: 'CJF 11/16/2023 19:44:52' prior: 50651902!
+dataMustHaveFiveFields
+	^' Fields must have five fields '! !
+
+!testRun: #ImportTest #test02ImportFailsIfRecordHasLessThanFiveFields stamp: 'CJF 11/16/2023 19:44:53'!
+FAILURE!
+!ImportTest methodsFor: 'tests' stamp: 'CJF 11/16/2023 19:45:09' prior: 50651884!
+test02ImportFailsIfRecordHasLessThanFiveFields
+	
+	self should: [  CustomerImporter valueFrom: self inputWithFourFieldsInRow into: session.  ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [  :anError | 
+			self assert: anError messageText equals: CustomerImporter dataMustHaveFiveFields.
+			self assert: 0 equals: ( session selectAllOfType: Customer) size ].! !
+
+!testRun: #ImportTest #test02ImportFailsIfRecordHasLessThanFiveFields stamp: 'CJF 11/16/2023 19:45:10'!
+ERROR!
+!ImportTest methodsFor: 'test data' stamp: 'CJF 11/16/2023 19:45:50'!
+inputWithFourFieldsInRow
+	self shouldBeImplemented.! !
+!ImportTest methodsFor: 'test data' stamp: 'CJF 11/16/2023 19:46:17' prior: 50651934!
+inputWithFourFieldsInRow
+	^ ReadStream on:
+'C,Pepe,Sanchez,D,22333444
+A,San Martin,3322,Olivos,1636,BsAs
+A,Maipu,888,Florida,1122,Buenos Aires
+C,Juan,Perez,C,23-25666777-9
+A,Alem,1122,CABA,1001,CABA'! !
+!ImportTest methodsFor: 'test data' stamp: 'CJF 11/16/2023 19:46:23' prior: 50651939!
+inputWithFourFieldsInRow
+	^ ReadStream on:
+'C,PepeSanchez,D,22333444
+A,San Martin,3322,Olivos,1636,BsAs
+A,Maipu,888,Florida,1122,Buenos Aires
+C,Juan,Perez,C,23-25666777-9
+A,Alem,1122,CABA,1001,CABA'! !
+
+!testRun: #ImportTest #test02ImportFailsIfRecordHasLessThanFiveFields stamp: 'CJF 11/16/2023 19:46:25'!
+FAILURE!
+
+!testRun: #ImportTest #test02ImportFailsIfRecordHasLessThanFiveFields stamp: 'CJF 11/16/2023 19:46:36'!
+FAILURE!
+
+!testRun: #ImportTest #test02ImportFailsIfRecordHasLessThanFiveFields stamp: 'CJF 11/16/2023 19:46:36'!
+FAILURE!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 19:47:48' prior: 50651783!
+importCustomerRecord
+		
+		(self lineData size <5) ifTrue: [ ^ self error: CustomerImporter dataMustHaveFiveFields ].
+		
+		newCustomer := Customer new.
+		newCustomer firstName: (self lineData) second.
+		newCustomer lastName: (self lineData) third.
+		newCustomer identificationType: (self lineData) fourth.
+		newCustomer identificationNumber: (self lineData) fifth.
+		session persist: newCustomer! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 19:47:54' prior: 50651969!
+importCustomerRecord
+		
+		(self lineData size <5) 
+			ifTrue: [ ^ self error: CustomerImporter dataMustHaveFiveFields ].
+		
+		newCustomer := Customer new.
+		newCustomer firstName: (self lineData) second.
+		newCustomer lastName: (self lineData) third.
+		newCustomer identificationType: (self lineData) fourth.
+		newCustomer identificationNumber: (self lineData) fifth.
+		session persist: newCustomer! !
+
+!testRun: #ImportTest #test02ImportFailsIfRecordHasLessThanFiveFields stamp: 'CJF 11/16/2023 19:48:02'!
+PASSED!
+!ImportTest methodsFor: 'tests' stamp: 'CJF 11/16/2023 19:48:42'!
+test03ImportFailsIfRecordHasMoreThanFiveFields
+	
+	self should: [  CustomerImporter valueFrom: self inputWithSixFieldsInRow into: session.  ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [  :anError | 
+			self assert: anError messageText equals: CustomerImporter dataMustHaveFiveFields.
+			self assert: 0 equals: ( session selectAllOfType: Customer) size ].! !
+
+!testRun: #ImportTest #test03ImportFailsIfRecordHasMoreThanFiveFields stamp: 'CJF 11/16/2023 19:48:45'!
+ERROR!
+!ImportTest methodsFor: 'test data' stamp: 'CJF 11/16/2023 19:48:55'!
+inputWithSixFieldsInRow
+	self shouldBeImplemented.! !
+!ImportTest methodsFor: 'test data' stamp: 'CJF 11/16/2023 19:49:18' prior: 50652022!
+inputWithSixFieldsInRow
+	^ ReadStream on:
+'C,Pepe,Sanchez,D,2233,3444
+A,San Martin,3322,Olivos,1636,BsAs
+A,Maipu,888,Florida,1122,Buenos Aires
+C,Juan,Perez,C,23-25666777-9
+A,Alem,1122,CABA,1001,CABA'! !
+
+!testRun: #ImportTest #test03ImportFailsIfRecordHasMoreThanFiveFields stamp: 'CJF 11/16/2023 19:49:21'!
+FAILURE!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 19:49:56' prior: 50651985!
+importCustomerRecord
+		
+		(self lineData size <5) 
+			ifTrue: [ ^ self error: CustomerImporter dataMustHaveFiveFields ].
+		( self lineData size >5)
+			ifTrue: [ ^ self error: CustomerImporter dataMustHaveFiveFields ].
+		
+		newCustomer := Customer new.
+		newCustomer firstName: (self lineData) second.
+		newCustomer lastName: (self lineData) third.
+		newCustomer identificationType: (self lineData) fourth.
+		newCustomer identificationNumber: (self lineData) fifth.
+		session persist: newCustomer! !
+!CustomerImporter class methodsFor: 'error Messages' stamp: 'CJF 11/16/2023 19:50:20'!
+dataCustomerMustHaveFiveFields
+	^' Fields must have five fields '! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'CJF 11/16/2023 19:50:20' prior: 50652004!
+test03ImportFailsIfRecordHasMoreThanFiveFields
+	
+	self should: [  CustomerImporter valueFrom: self inputWithSixFieldsInRow into: session.  ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [  :anError | 
+			self assert: anError messageText equals: CustomerImporter dataCustomerMustHaveFiveFields.
+			self assert: 0 equals: ( session selectAllOfType: Customer) size ].! !
+!CustomerImporter methodsFor: 'as yet unclassified' stamp: 'CJF 11/16/2023 19:50:20' prior: 50652040!
+importCustomerRecord
+		
+		(self lineData size <5) 
+			ifTrue: [ ^ self error: CustomerImporter dataCustomerMustHaveFiveFields ].
+		( self lineData size >5)
+			ifTrue: [ ^ self error: CustomerImporter dataCustomerMustHaveFiveFields ].
+		
+		newCustomer := Customer new.
+		newCustomer firstName: (self lineData) second.
+		newCustomer lastName: (self lineData) third.
+		newCustomer identificationType: (self lineData) fourth.
+		newCustomer identificationNumber: (self lineData) fifth.
+		session persist: newCustomer! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'CJF 11/16/2023 19:50:20' prior: 50651916!
+test02ImportFailsIfRecordHasLessThanFiveFields
+	
+	self should: [  CustomerImporter valueFrom: self inputWithFourFieldsInRow into: session.  ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [  :anError | 
+			self assert: anError messageText equals: CustomerImporter dataCustomerMustHaveFiveFields.
+			self assert: 0 equals: ( session selectAllOfType: Customer) size ].! !
+
+!methodRemoval: CustomerImporter class #dataMustHaveFiveFields stamp: 'CJF 11/16/2023 19:50:20'!
+dataMustHaveFiveFields
+	^' Fields must have five fields '!
+
+!testRun: #ImportTest #test03ImportFailsIfRecordHasMoreThanFiveFields stamp: 'CJF 11/16/2023 19:50:39'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportFailsIfRecordHasLessThanFiveFields stamp: 'CJF 11/16/2023 19:50:41'!
+PASSED!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 19:51:02' prior: 50652081!
+importCustomerRecord
+		
+		(self lineData size <5) 
+			ifTrue: [ self error: CustomerImporter dataCustomerMustHaveFiveFields ].
+		( self lineData size >5)
+			ifTrue: [ self error: CustomerImporter dataCustomerMustHaveFiveFields ].
+		
+		newCustomer := Customer new.
+		newCustomer firstName: (self lineData) second.
+		newCustomer lastName: (self lineData) third.
+		newCustomer identificationType: (self lineData) fourth.
+		newCustomer identificationNumber: (self lineData) fifth.
+		session persist: newCustomer! !
+
+!testRun: #ImportTest #test02ImportFailsIfRecordHasLessThanFiveFields stamp: 'CJF 11/16/2023 19:51:06'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportFailsIfRecordHasMoreThanFiveFields stamp: 'CJF 11/16/2023 19:51:07'!
+PASSED!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 19:51:40'!
+assertCustomerRecordMustHaveFiveFields
+
+	(self lineData size <5) 
+			ifTrue: [ self error: CustomerImporter dataCustomerMustHaveFiveFields ].
+		( self lineData size >5)
+			ifTrue: [ self error: CustomerImporter dataCustomerMustHaveFiveFields ]! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 19:51:40' prior: 50652128!
+importCustomerRecord
+		
+		self assertCustomerRecordMustHaveFiveFields.
+		
+		newCustomer := Customer new.
+		newCustomer firstName: (self lineData) second.
+		newCustomer lastName: (self lineData) third.
+		newCustomer identificationType: (self lineData) fourth.
+		newCustomer identificationNumber: (self lineData) fifth.
+		session persist: newCustomer! !
+!ImportTest methodsFor: 'tests' stamp: 'CJF 11/16/2023 19:52:15'!
+test02CustomerRecordsHasLessThanFiveFields
+	
+	self should: [  CustomerImporter valueFrom: self inputWithFourFieldsInRow into: session.  ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [  :anError | 
+			self assert: anError messageText equals: CustomerImporter dataCustomerMustHaveFiveFields.
+			self assert: 0 equals: ( session selectAllOfType: Customer) size ].! !
+
+!methodRemoval: ImportTest #test02ImportFailsIfRecordHasLessThanFiveFields stamp: 'CJF 11/16/2023 19:52:15'!
+test02ImportFailsIfRecordHasLessThanFiveFields
+	
+	self should: [  CustomerImporter valueFrom: self inputWithFourFieldsInRow into: session.  ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [  :anError | 
+			self assert: anError messageText equals: CustomerImporter dataCustomerMustHaveFiveFields.
+			self assert: 0 equals: ( session selectAllOfType: Customer) size ].!
+!ImportTest methodsFor: 'tests' stamp: 'CJF 11/16/2023 19:52:29'!
+test03CustomerRecordsHasMoreThanFiveFields
+	
+	self should: [  CustomerImporter valueFrom: self inputWithSixFieldsInRow into: session.  ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [  :anError | 
+			self assert: anError messageText equals: CustomerImporter dataCustomerMustHaveFiveFields.
+			self assert: 0 equals: ( session selectAllOfType: Customer) size ].! !
+
+!methodRemoval: ImportTest #test03ImportFailsIfRecordHasMoreThanFiveFields stamp: 'CJF 11/16/2023 19:52:29'!
+test03ImportFailsIfRecordHasMoreThanFiveFields
+	
+	self should: [  CustomerImporter valueFrom: self inputWithSixFieldsInRow into: session.  ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [  :anError | 
+			self assert: anError messageText equals: CustomerImporter dataCustomerMustHaveFiveFields.
+			self assert: 0 equals: ( session selectAllOfType: Customer) size ].!
+!ImportTest methodsFor: 'tests' stamp: 'CJF 11/16/2023 19:53:05'!
+test04AddressRecordsHasLessThanSixFields
+	
+	self should: [  CustomerImporter valueFrom: self inputWithFourFieldsInRow into: session.  ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [  :anError | 
+			self assert: anError messageText equals: CustomerImporter dataCustomerMustHaveFiveFields.
+			self assert: 0 equals: ( session selectAllOfType: Customer) size ].! !
+!ImportTest methodsFor: 'test data' stamp: 'CJF 11/16/2023 19:53:51'!
+customerRecordWithFourFieldsInRow
+	^ ReadStream on:
+'C,PepeSanchez,D,22333444
+A,San Martin,3322,Olivos,1636,BsAs
+A,Maipu,888,Florida,1122,Buenos Aires
+C,Juan,Perez,C,23-25666777-9
+A,Alem,1122,CABA,1001,CABA'! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'CJF 11/16/2023 19:53:52' prior: 50652239!
+test04AddressRecordsHasLessThanSixFields
+	
+	self should: [  CustomerImporter valueFrom: self customerRecordWithFourFieldsInRow into: session.  ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [  :anError | 
+			self assert: anError messageText equals: CustomerImporter dataCustomerMustHaveFiveFields.
+			self assert: 0 equals: ( session selectAllOfType: Customer) size ].! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'CJF 11/16/2023 19:53:52' prior: 50652179!
+test02CustomerRecordsHasLessThanFiveFields
+	
+	self should: [  CustomerImporter valueFrom: self customerRecordWithFourFieldsInRow into: session.  ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [  :anError | 
+			self assert: anError messageText equals: CustomerImporter dataCustomerMustHaveFiveFields.
+			self assert: 0 equals: ( session selectAllOfType: Customer) size ].! !
+
+!methodRemoval: ImportTest #inputWithFourFieldsInRow stamp: 'CJF 11/16/2023 19:53:52'!
+inputWithFourFieldsInRow
+	^ ReadStream on:
+'C,PepeSanchez,D,22333444
+A,San Martin,3322,Olivos,1636,BsAs
+A,Maipu,888,Florida,1122,Buenos Aires
+C,Juan,Perez,C,23-25666777-9
+A,Alem,1122,CABA,1001,CABA'!
+!ImportTest methodsFor: 'test data' stamp: 'CJF 11/16/2023 19:54:10'!
+customerRecordWithSixFieldsInRow
+	^ ReadStream on:
+'C,Pepe,Sanchez,D,2233,3444
+A,San Martin,3322,Olivos,1636,BsAs
+A,Maipu,888,Florida,1122,Buenos Aires
+C,Juan,Perez,C,23-25666777-9
+A,Alem,1122,CABA,1001,CABA'! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'CJF 11/16/2023 19:54:10' prior: 50652209!
+test03CustomerRecordsHasMoreThanFiveFields
+	
+	self should: [  CustomerImporter valueFrom: self customerRecordWithSixFieldsInRow into: session.  ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [  :anError | 
+			self assert: anError messageText equals: CustomerImporter dataCustomerMustHaveFiveFields.
+			self assert: 0 equals: ( session selectAllOfType: Customer) size ].! !
+
+!methodRemoval: ImportTest #inputWithSixFieldsInRow stamp: 'CJF 11/16/2023 19:54:10'!
+inputWithSixFieldsInRow
+	^ ReadStream on:
+'C,Pepe,Sanchez,D,2233,3444
+A,San Martin,3322,Olivos,1636,BsAs
+A,Maipu,888,Florida,1122,Buenos Aires
+C,Juan,Perez,C,23-25666777-9
+A,Alem,1122,CABA,1001,CABA'!
+!ImportTest methodsFor: 'tests' stamp: 'CJF 11/16/2023 19:54:46' prior: 50652263!
+test04AddressRecordsHasLessThanSixFields
+	
+	self should: [  CustomerImporter valueFrom: self addressRecordWithFiveFieldsInRow into: session.  ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [  :anError | 
+			self assert: anError messageText equals: CustomerImporter dataAddressMustHaveSixFields.
+			self assert: 0 equals: ( session selectAllOfType: Customer) size ].! !
+
+!testRun: #ImportTest #test04AddressRecordsHasLessThanSixFields stamp: 'CJF 11/16/2023 19:54:50'!
+ERROR!
+!ImportTest methodsFor: 'test data' stamp: 'CJF 11/16/2023 19:54:57'!
+addressRecordWithFiveFieldsInRow
+	self shouldBeImplemented.! !
+!ImportTest methodsFor: 'test data' stamp: 'CJF 11/16/2023 19:55:25' prior: 50652355!
+addressRecordWithFiveFieldsInRow
+		^ ReadStream on:
+'C,Pepe,Sanchez,D,22333444
+A,San Martin3322,Olivos,1636,BsAs
+A,Maipu,888,Florida,1122,Buenos Aires
+C,Juan,Perez,C,23-25666777-9
+A,Alem,1122,CABA,1001,CABA'! !
+
+!testRun: #ImportTest #test04AddressRecordsHasLessThanSixFields stamp: 'CJF 11/16/2023 19:55:26'!
+ERROR!
+!CustomerImporter class methodsFor: 'error Messages' stamp: 'CJF 11/16/2023 19:55:34'!
+dataAddressMustHaveSixFields
+	self shouldBeImplemented.! !
+!CustomerImporter class methodsFor: 'error Messages' stamp: 'CJF 11/16/2023 19:55:53' prior: 50652373!
+dataAddressMustHaveSixFields
+	^'address record must have six fields'! !
+
+!testRun: #ImportTest #test04AddressRecordsHasLessThanSixFields stamp: 'CJF 11/16/2023 19:55:54'!
+FAILURE!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 19:56:56' prior: 50651813!
+importAddressRecord
+		
+		(self lineData size < 6) ifTrue: [ self error: CustomerImporter dataAddressMustHaveSixFields ].
+		
+		newAddress := Address new.
+		newCustomer addAddress: newAddress.
+		newAddress streetName: (self lineData) second.
+		newAddress streetNumber: (self lineData) third asNumber .
+		newAddress town: (self lineData) fourth.
+		newAddress zipCode: (self lineData) fifth asNumber .
+		newAddress province: (self lineData) sixth! !
+
+!testRun: #ImportTest #test04AddressRecordsHasLessThanSixFields stamp: 'CJF 11/16/2023 19:57:01'!
+FAILURE!
+
+!testRun: #ImportTest #test04AddressRecordsHasLessThanSixFields stamp: 'CJF 11/16/2023 19:57:01'!
+FAILURE!
+!ImportTest methodsFor: 'tests' stamp: 'CJF 11/16/2023 19:58:11' prior: 50652337!
+test04AddressRecordsHasLessThanSixFields
+	
+	self should: [  CustomerImporter valueFrom: self addressRecordWithFiveFieldsInRow into: session.  ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [  :anError | 
+			self assert: anError messageText equals: CustomerImporter dataAddressMustHaveSixFields.
+			self assert: 1 equals: ( session selectAllOfType: Customer) size ].! !
+
+!testRun: #ImportTest #test04AddressRecordsHasLessThanSixFields stamp: 'CJF 11/16/2023 19:58:14'!
+PASSED!
+!ImportTest methodsFor: 'tests' stamp: 'CJF 11/16/2023 19:58:35'!
+test05AddressRecordsHasMoreThanSixFields
+	
+	self should: [  CustomerImporter valueFrom: self addressRecordWithSevenFieldsInRow into: session.  ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [  :anError | 
+			self assert: anError messageText equals: CustomerImporter dataAddressMustHaveSixFields.
+			self assert: 1 equals: ( session selectAllOfType: Customer) size ].! !
+
+!testRun: #ImportTest #test05AddressRecordsHasMoreThanSixFields stamp: 'CJF 11/16/2023 19:58:38'!
+ERROR!
+!ImportTest methodsFor: 'test data' stamp: 'CJF 11/16/2023 19:58:45'!
+addressRecordWithSevenFieldsInRow
+	self shouldBeImplemented.! !
+!ImportTest methodsFor: 'test data' stamp: 'CJF 11/16/2023 19:59:05' prior: 50652448!
+addressRecordWithSevenFieldsInRow
+	'C,Pepe,Sanchez,D,22333444
+A,San,Martin,3322,Olivos,1636,BsAs
+A,Maipu,888,Florida,1122,Buenos Aires
+C,Juan,Perez,C,23-25666777-9
+A,Alem,1122,CABA,1001,CABA'! !
+
+!testRun: #ImportTest #test05AddressRecordsHasMoreThanSixFields stamp: 'CJF 11/16/2023 19:59:09'!
+ERROR!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 19:59:34' prior: 50652388!
+importAddressRecord
+		
+		(self lineData size < 6) ifTrue: [ self error: CustomerImporter dataAddressMustHaveSixFields ].
+		(self lineData size > 6) ifTrue: [ self error: CustomerImporter dataAddressMustHaveSixFields ].
+		
+		newAddress := Address new.
+		newCustomer addAddress: newAddress.
+		newAddress streetName: (self lineData) second.
+		newAddress streetNumber: (self lineData) third asNumber .
+		newAddress town: (self lineData) fourth.
+		newAddress zipCode: (self lineData) fifth asNumber .
+		newAddress province: (self lineData) sixth! !
+
+!testRun: #ImportTest #test05AddressRecordsHasMoreThanSixFields stamp: 'CJF 11/16/2023 19:59:41'!
+ERROR!
+
+!testRun: #ImportTest #test05AddressRecordsHasMoreThanSixFields stamp: 'CJF 11/16/2023 19:59:41'!
+ERROR!
+
+!testRun: #ImportTest #test05AddressRecordsHasMoreThanSixFields stamp: 'CJF 11/16/2023 20:01:14'!
+ERROR!
+
+!testRun: #ImportTest #test04AddressRecordsHasLessThanSixFields stamp: 'CJF 11/16/2023 20:01:31'!
+PASSED!
+!ImportTest methodsFor: 'test data' stamp: 'CJF 11/16/2023 20:02:04' prior: 50652453!
+addressRecordWithSevenFieldsInRow
+^ ReadStream on:
+	'C,Pepe,Sanchez,D,22333444
+A,San,Martin,3322,Olivos,1636,BsAs
+A,Maipu,888,Florida,1122,Buenos Aires
+C,Juan,Perez,C,23-25666777-9
+A,Alem,1122,CABA,1001,CABA'! !
+
+!testRun: #ImportTest #test05AddressRecordsHasMoreThanSixFields stamp: 'CJF 11/16/2023 20:02:07'!
+PASSED!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 20:02:37'!
+assertAddressRecortMustHaveSixFields
+
+	(self lineData size < 6) ifTrue: [ self error: CustomerImporter dataAddressMustHaveSixFields ].
+		(self lineData size > 6) ifTrue: [ self error: CustomerImporter dataAddressMustHaveSixFields ]! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 20:02:37' prior: 50652466!
+importAddressRecord
+		
+		self assertAddressRecortMustHaveSixFields.
+		
+		newAddress := Address new.
+		newCustomer addAddress: newAddress.
+		newAddress streetName: (self lineData) second.
+		newAddress streetNumber: (self lineData) third asNumber .
+		newAddress town: (self lineData) fourth.
+		newAddress zipCode: (self lineData) fifth asNumber .
+		newAddress province: (self lineData) sixth! !
+
+!testRun: #ImportTest #test01Import stamp: 'CJF 11/16/2023 20:02:43'!
+PASSED!
+
+!testRun: #ImportTest #test02CustomerRecordsHasLessThanFiveFields stamp: 'CJF 11/16/2023 20:02:43'!
+PASSED!
+
+!testRun: #ImportTest #test03CustomerRecordsHasMoreThanFiveFields stamp: 'CJF 11/16/2023 20:02:43'!
+PASSED!
+
+!testRun: #ImportTest #test04AddressRecordsHasLessThanSixFields stamp: 'CJF 11/16/2023 20:02:43'!
+PASSED!
+
+!testRun: #ImportTest #test05AddressRecordsHasMoreThanSixFields stamp: 'CJF 11/16/2023 20:02:44'!
+PASSED!
+!ImportTest methodsFor: 'tests' stamp: 'CJF 11/16/2023 20:06:37'!
+test06FirstLetterMustRepresentACustomerOrAddress
+	
+	self should: [  CustomerImporter valueFrom: self dataWithFirstValueInvalid into: session.  ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [  :anError | 
+			self assert: anError messageText equals: CustomerImporter firstFieldsMustBeCorD.
+			"self assert: 1 equals: ( session selectAllOfType: Customer) size "].! !
+
+!testRun: #ImportTest #test06FirstLetterMustRepresentACustomerOrAddress stamp: 'CJF 11/16/2023 20:06:40'!
+ERROR!
+!ImportTest methodsFor: 'test data' stamp: 'CJF 11/16/2023 20:06:48'!
+dataWithFirstValueInvalid
+	self shouldBeImplemented.! !
+!ImportTest methodsFor: 'test data' stamp: 'CJF 11/16/2023 20:07:14' prior: 50652572!
+dataWithFirstValueInvalid
+	
+	^ ReadStream on:
+'Z,Pepe,Sanchez,D,22333444
+A,San Martin,3322,Olivos,1636,BsAs
+A,Maipu,888,Florida,1122,Buenos Aires
+C,Juan,Perez,C,23-25666777-9
+A,Alem,1122,CABA,1001,CABA'! !
+
+!testRun: #ImportTest #test06FirstLetterMustRepresentACustomerOrAddress stamp: 'CJF 11/16/2023 20:07:17'!
+ERROR!
+!ImportTest methodsFor: 'test data' stamp: 'CJF 11/16/2023 20:08:24' prior: 50652577!
+dataWithFirstValueInvalid
+	
+	^ ReadStream on:
+'Z,Pepe,Sanchez,D,22333444'! !
+!ImportTest methodsFor: 'tests' stamp: 'CJF 11/16/2023 20:08:40' prior: 50652554!
+test06FirstLetterMustRepresentACustomerOrAddress
+	
+	self should: [  CustomerImporter valueFrom: self dataWithFirstValueInvalid into: session.  ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [  :anError | 
+			self assert: anError messageText equals: CustomerImporter firstFieldsMustBeCorD.
+			self assert: 0 equals: ( session selectAllOfType: Customer) size ].! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 20:13:43' prior: 50651827!
+importRecord
+	( (self lineData beginsWith: 'C') or: [ self lineData beginsWith: 'A']) ifFalse: [self error: CustomerImporter firstFieldsMustBeCorD ].
+	
+	(self isCostumerRecord) ifTrue: [ 
+		self importCustomerRecord 
+		].
+	(self isAddressRecord) ifTrue: [ 
+		self importAddressRecord 
+		]! !
+
+!testRun: #ImportTest #test06FirstLetterMustRepresentACustomerOrAddress stamp: 'CJF 11/16/2023 20:13:45'!
+ERROR!
+!CustomerImporter class methodsFor: 'error Messages' stamp: 'CJF 11/16/2023 20:13:52'!
+firstFieldsMustBeCorD
+	self shouldBeImplemented.! !
+!CustomerImporter class methodsFor: 'error Messages' stamp: 'CJF 11/16/2023 20:14:06' prior: 50652626!
+firstFieldsMustBeCorD
+	^'invalid first field record'! !
+
+!testRun: #ImportTest #test06FirstLetterMustRepresentACustomerOrAddress stamp: 'CJF 11/16/2023 20:14:08'!
+PASSED!
+
+!testRun: #ImportTest #test06FirstLetterMustRepresentACustomerOrAddress stamp: 'CJF 11/16/2023 20:14:10'!
+PASSED!
+!ImportTest methodsFor: 'tests' stamp: 'CJF 11/16/2023 20:17:06'!
+test07firstRecordMustBeCustomer
+	
+	self should: [  CustomerImporter valueFrom: self dataWithNoCustomers into: session.  ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [  :anError | 
+			self assert: anError messageText equals: CustomerImporter firstRecordMustBeCustomer.
+			self assert: 0 equals: ( session selectAllOfType: Customer) size ].! !
+
+!testRun: #ImportTest #test07firstRecordMustBeCustomer stamp: 'CJF 11/16/2023 20:17:12'!
+ERROR!
+!ImportTest methodsFor: 'test data' stamp: 'CJF 11/16/2023 20:17:20'!
+dataWithNoCustomers
+	self shouldBeImplemented.! !
+!ImportTest methodsFor: 'test data' stamp: 'CJF 11/16/2023 20:17:55' prior: 50652659!
+dataWithNoCustomers
+		^ ReadStream on:
+'A,San Martin,3322,Olivos,1636,BsAs
+A,Maipu,888,Florida,1122,Buenos Aires
+A,Alem,1122,CABA,1001,CABA'! !
+
+!testRun: #ImportTest #test07firstRecordMustBeCustomer stamp: 'CJF 11/16/2023 20:17:57'!
+ERROR!
+!CustomerImporter class methodsFor: 'error Messages' stamp: 'CJF 11/16/2023 20:18:03'!
+firstRecordMustBeCustomer
+	self shouldBeImplemented.! !
+!CustomerImporter class methodsFor: 'error Messages' stamp: 'CJF 11/16/2023 20:18:21' prior: 50652675!
+firstRecordMustBeCustomer
+	^' first record must be customer '! !
+
+!testRun: #ImportTest #test07firstRecordMustBeCustomer stamp: 'CJF 11/16/2023 20:18:22'!
+FAILURE!
+
+!testRun: #ImportTest #test07firstRecordMustBeCustomer stamp: 'CJF 11/16/2023 20:20:43'!
+FAILURE!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 20:22:47' prior: 50652610!
+importRecord
+	( ( (self lineData) beginsWith: 'C') or: [ (self lineData) beginsWith: 'A']) ifFalse: [self error: CustomerImporter firstFieldsMustBeCorD ].
+	
+	(self isCostumerRecord) ifTrue: [ 
+		self importCustomerRecord 
+		].
+	(self isAddressRecord) ifTrue: [ 
+		self importAddressRecord 
+		]! !
+!CustomerImporter class methodsFor: 'error Messages' stamp: 'CJF 11/16/2023 20:23:22'!
+firstFieldsMustBeCorA
+	^'invalid first field record'! !
+!CustomerImporter methodsFor: 'as yet unclassified' stamp: 'CJF 11/16/2023 20:23:22' prior: 50652692!
+importRecord
+	( ( (self lineData) beginsWith: 'C') or: [ (self lineData) beginsWith: 'A']) ifFalse: [self error: CustomerImporter firstFieldsMustBeCorA ].
+	
+	(self isCostumerRecord) ifTrue: [ 
+		self importCustomerRecord 
+		].
+	(self isAddressRecord) ifTrue: [ 
+		self importAddressRecord 
+		]! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'CJF 11/16/2023 20:23:22' prior: 50652595!
+test06FirstLetterMustRepresentACustomerOrAddress
+	
+	self should: [  CustomerImporter valueFrom: self dataWithFirstValueInvalid into: session.  ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [  :anError | 
+			self assert: anError messageText equals: CustomerImporter firstFieldsMustBeCorA.
+			self assert: 0 equals: ( session selectAllOfType: Customer) size ].! !
+
+!methodRemoval: CustomerImporter class #firstFieldsMustBeCorD stamp: 'CJF 11/16/2023 20:23:22'!
+firstFieldsMustBeCorD
+	^'invalid first field record'!
+
+self lineData beginsWith: 'C'!
+
+self lineData beginsWith: 'C'!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 20:25:43' prior: 50652709!
+importRecord
+	( [( (self lineData) beginsWith: 'C')] or: [ (self lineData) beginsWith: 'A']) ifFalse: [self error: CustomerImporter firstFieldsMustBeCorD ].
+	
+	(self isCostumerRecord) ifTrue: [ 
+		self importCustomerRecord 
+		].
+	(self isAddressRecord) ifTrue: [ 
+		self importAddressRecord 
+		]
+	
+	! !
+
+self lineData beginsWith: 'C'.!
+
+self lineData beginsWith: 'C'.!
+
+self lineData beginsWith: 'A'.!
+!CustomerImporter methodsFor: 'as yet unclassified' stamp: 'CJF 11/16/2023 20:27:13' prior: 50652744!
+importRecord
+	( [( (self lineData) beginsWith: 'C')] or: [ (self lineData) beginsWith: 'A']) ifFalse: [self error: CustomerImporter firstFieldsMustBeCorA ].
+	
+	(self isCostumerRecord) ifTrue: [ 
+		self importCustomerRecord 
+		].
+	(self isAddressRecord) ifTrue: [ 
+		self importAddressRecord 
+		]
+	
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 20:27:33' prior: 50652760!
+importRecord
+	( ( (self lineData) beginsWith: 'C') or: [ (self lineData) beginsWith: 'A']) ifFalse: [self error: CustomerImporter firstFieldsMustBeCorA ].
+	
+	(self isCostumerRecord) ifTrue: [ 
+		self importCustomerRecord 
+		].
+	(self isAddressRecord) ifTrue: [ 
+		self importAddressRecord 
+		]
+	
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 20:27:56' prior: 50652773!
+importRecord
+	( ( self lineData beginsWith: 'C') or: [ self lineData beginsWith: 'A']) 
+		ifFalse: [self error: CustomerImporter firstFieldsMustBeCorA ].
+	
+	(self isCostumerRecord) ifTrue: [ 
+		self importCustomerRecord 
+		].
+	(self isAddressRecord) ifTrue: [ 
+		self importAddressRecord 
+		]
+	
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 20:28:34' prior: 50652786!
+importRecord
+	( ( self lineData beginsWith: 'C') or: [ self lineData beginsWith: 'A']) 
+		ifFalse: [self error: CustomerImporter firstFieldsMustBeCorA ].
+	
+	(self isCostumerRecord) ifTrue: [ 
+		self importCustomerRecord 
+		].
+	(self isAddressRecord) ifTrue: [ 
+		self importAddressRecord 
+		].
+	
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 20:28:47' prior: 50652799!
+importRecord
+	( true) 
+		ifFalse: [self error: CustomerImporter firstFieldsMustBeCorA ].
+	
+	(self isCostumerRecord) ifTrue: [ 
+		self importCustomerRecord 
+		].
+	(self isAddressRecord) ifTrue: [ 
+		self importAddressRecord 
+		].
+	
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 20:29:02' prior: 50652812!
+importRecord
+	( true ) ifFalse: [self error: CustomerImporter firstFieldsMustBeCorA ].
+	
+	(self isCostumerRecord) ifTrue: [ 
+		self importCustomerRecord 
+		].
+	(self isAddressRecord) ifTrue: [ 
+		self importAddressRecord 
+		].
+	
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 20:29:40' prior: 50652823!
+importRecord
+	( ( self lineData beginsWith: 'C') or: [ self lineData beginsWith: 'A'] ) ifFalse: [self error: CustomerImporter firstFieldsMustBeCorA ].
+	
+	(self isCostumerRecord) ifTrue: [ 
+		self importCustomerRecord 
+		].
+	(self isAddressRecord) ifTrue: [ 
+		self importAddressRecord 
+		].
+	
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 20:30:10' prior: 50652834!
+importRecord
+	self assertValidFirstFields.
+	(self isCostumerRecord) ifTrue: [ 
+		self importCustomerRecord 
+		].
+	(self isAddressRecord) ifTrue: [ 
+		self importAddressRecord 
+		].
+	
+	! !
+!CustomerImporter methodsFor: 'nil' stamp: 'CJF 11/16/2023 20:33:42'!
+assertValidFirstFields
+	| customerFieldEvaluation addressFiedsEvaluation retEvaluation|
+	
+	customerFieldEvaluation := self lineData beginsWith: 'C'.
+	addressFiedsEvaluation := self lineData beginsWith: 'A'.
+	retEvaluation := customerFieldEvaluation or: addressFiedsEvaluation .
+	
+	retEvaluation ifFalse: [self error: CustomerImporter firstFieldsMustBeCorA ].
+	
+	"( ( self lineData beginsWith: 'C') or: [ self lineData beginsWith: 'A'] ) ifFalse: [self error: CustomerImporter firstFieldsMustBeCorA ]."! !
+
+self lineData !
+!CustomerImporter methodsFor: 'as yet unclassified' stamp: 'CJF 11/16/2023 20:39:10' prior: 50652856!
+assertValidFirstFields
+	| customerFieldEvaluation addressFiedsEvaluation retEvaluation|
+	
+	customerFieldEvaluation := self lineData first = 'C'.
+	addressFiedsEvaluation := self lineData first = 'A'.
+	retEvaluation := customerFieldEvaluation or: addressFiedsEvaluation .
+	
+	retEvaluation ifFalse: [self error: CustomerImporter firstFieldsMustBeCorA ].
+	
+	"( ( self lineData beginsWith: 'C') or: [ self lineData beginsWith: 'A'] ) ifFalse: [self error: CustomerImporter firstFieldsMustBeCorA ]."! !
+
+!testRun: #ImportTest #test07firstRecordMustBeCustomer stamp: 'CJF 11/16/2023 20:39:26'!
+ERROR!
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'CJF 11/17/2023 08:42:29' prior: 50650459 overrides: 16961394!
+setUp
+"mover la session al customer system con  move instance variable
+tenemos que mover session := DataBase a un nuevo metodo y luego el nuevo metodo lo movemos a persisten customer system4
+luego hacemos lo mismo con el beginTransaction
+luego tenemos que ahcer lo mismo con el tearDown
+
+"
+	session := DataBaseSession for: (Array with: Address with: Customer).
+	session beginTransaction.
+! !
+
+----QUIT----(17 November 2023 08:42:34) CuisUniversity-5981.image priorSource: 10197292!
+
+----STARTUP---- (20 November 2023 17:54:28) as C:\Users\crist\Desktop\ASF7\CuisUniversity-5981.image!
+
+
+----QUIT----(20 November 2023 17:54:49) CuisUniversity-5981.image priorSource: 10280423!
+
+----STARTUP---- (20 November 2023 18:21:17) as C:\Users\crist\Desktop\ASF7\CuisUniversity-5981.image!
+
+
+!testRun: #ImportTest #test07firstRecordMustBeCustomer stamp: 'CJF 11/20/2023 18:24:35'!
+ERROR!
+
+!testRun: #ImportTest #test07firstRecordMustBeCustomer stamp: 'CJF 11/20/2023 18:25:02'!
+ERROR!
+!CustomerImporter methodsFor: 'as yet unclassified' stamp: 'CJF 11/20/2023 18:29:31' prior: 50652876!
+assertValidFirstFields
+	| customerFieldEvaluation addressFiedsEvaluation retEvaluation|
+	
+	(self lineData first = 'A' and: [ newCustomer isNil ]) ifTrue: 
+						[ self error: CustomerImporter firstRecordMustBeCustomer].
+	
+	customerFieldEvaluation := self lineData first = 'C'.
+	addressFiedsEvaluation := self lineData first = 'A'.
+	retEvaluation := customerFieldEvaluation or: addressFiedsEvaluation .
+	
+	retEvaluation ifFalse: [self error: CustomerImporter firstFieldsMustBeCorA ].
+	
+	"( ( self lineData beginsWith: 'C') or: [ self lineData beginsWith: 'A'] ) ifFalse: [self error: CustomerImporter firstFieldsMustBeCorA ]."! !
+
+!testRun: #ImportTest #test07firstRecordMustBeCustomer stamp: 'CJF 11/20/2023 18:30:11'!
+PASSED!
+
+!testRun: #ImportTest #test07firstRecordMustBeCustomer stamp: 'CJF 11/20/2023 18:30:14'!
+PASSED!
+
+!testRun: #ImportTest #test01Import stamp: 'CJF 11/20/2023 18:30:14'!
+PASSED!
+
+!testRun: #ImportTest #test02CustomerRecordsHasLessThanFiveFields stamp: 'CJF 11/20/2023 18:30:15'!
+PASSED!
+
+!testRun: #ImportTest #test03CustomerRecordsHasMoreThanFiveFields stamp: 'CJF 11/20/2023 18:30:15'!
+PASSED!
+
+!testRun: #ImportTest #test04AddressRecordsHasLessThanSixFields stamp: 'CJF 11/20/2023 18:30:15'!
+PASSED!
+
+!testRun: #ImportTest #test05AddressRecordsHasMoreThanSixFields stamp: 'CJF 11/20/2023 18:30:15'!
+PASSED!
+
+!testRun: #ImportTest #test06FirstLetterMustRepresentACustomerOrAddress stamp: 'CJF 11/20/2023 18:30:15'!
+PASSED!
+
+!testRun: #ImportTest #test07firstRecordMustBeCustomer stamp: 'CJF 11/20/2023 18:30:15'!
+PASSED!
+!ImportTest methodsFor: 'tests' stamp: 'CJF 11/20/2023 18:32:10' prior: 50652642!
+test07firstRecordMustBeCustomer
+	
+	self should: [  CustomerImporter valueFrom: self dataWithNoCustomers into: session.  ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [  :anError | 
+			self assert: anError messageText equals: CustomerImporter firstRecordMustBeCustomer.
+			self assert: 0 equals: ( session selectAllOfType: Customer) size ].
+		
+		! !
+!ImportTest methodsFor: 'tests' stamp: 'CJF 11/20/2023 18:33:07'!
+test08FirstFieldMustContainSingleCharacters
+	
+	self should: [  CustomerImporter valueFrom: self dataWithNoCustomers into: session.  ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [  :anError | 
+			self assert: anError messageText equals: CustomerImporter firstRecordMustBeCustomer.
+			self assert: 0 equals: ( session selectAllOfType: Customer) size ].
+		
+		! !
+!ImportTest methodsFor: 'tests' stamp: 'CJF 11/20/2023 18:33:34' prior: 50652998!
+test08FirstFieldMustContainSingleCharacters
+	
+	self should: [  CustomerImporter valueFrom: self dataWithNoSingleFields into: session.  ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [  :anError | 
+			self assert: anError messageText equals: CustomerImporter firstRecordMustBeCustomer.
+			self assert: 0 equals: ( session selectAllOfType: Customer) size ].
+		
+		! !
+!ImportTest methodsFor: 'tests' stamp: 'CJF 11/20/2023 18:34:29' prior: 50653013!
+test08FirstFieldMustContainSingleCharacters
+	
+	self should: [  CustomerImporter valueFrom: self dataWithNoSingleFields into: session.  ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [  :anError | 
+			self assert: anError messageText equals: CustomerImporter firstFieldsMustBeCorA .
+			self assert: 0 equals: ( session selectAllOfType: Customer) size ].
+		
+		! !
+
+!testRun: #ImportTest #test08FirstFieldMustContainSingleCharacters stamp: 'CJF 11/20/2023 18:34:43'!
+ERROR!
+!ImportTest methodsFor: 'test data' stamp: 'CJF 11/20/2023 18:34:50'!
+dataWithNoSingleFields
+	self shouldBeImplemented.! !
+!ImportTest methodsFor: 'test data' stamp: 'CJF 11/20/2023 18:35:46' prior: 50653046!
+dataWithNoSingleFields
+		^ ReadStream on:
+'CC,Pepe,Sanchez,D,22333444
+A,San Martin,3322,Olivos,1636,BsAs
+A,Maipu,888,Florida,1122,Buenos Aires
+C,Juan,Perez,C,23-25666777-9
+A,Alem,1122,CABA,1001,CABA'! !
+
+!testRun: #ImportTest #test01Import stamp: 'CJF 11/20/2023 18:35:52'!
+PASSED!
+
+!testRun: #ImportTest #test02CustomerRecordsHasLessThanFiveFields stamp: 'CJF 11/20/2023 18:35:52'!
+PASSED!
+
+!testRun: #ImportTest #test03CustomerRecordsHasMoreThanFiveFields stamp: 'CJF 11/20/2023 18:35:53'!
+PASSED!
+
+!testRun: #ImportTest #test04AddressRecordsHasLessThanSixFields stamp: 'CJF 11/20/2023 18:35:53'!
+PASSED!
+
+!testRun: #ImportTest #test05AddressRecordsHasMoreThanSixFields stamp: 'CJF 11/20/2023 18:35:53'!
+PASSED!
+
+!testRun: #ImportTest #test06FirstLetterMustRepresentACustomerOrAddress stamp: 'CJF 11/20/2023 18:35:53'!
+PASSED!
+
+!testRun: #ImportTest #test07firstRecordMustBeCustomer stamp: 'CJF 11/20/2023 18:35:53'!
+PASSED!
+
+!testRun: #ImportTest #test08FirstFieldMustContainSingleCharacters stamp: 'CJF 11/20/2023 18:35:53'!
+PASSED!
+!ImportTest methodsFor: 'test data' stamp: 'CJF 11/20/2023 18:36:24' prior: 50653051!
+dataWithNoSingleFields
+		^ ReadStream on:
+'Cc,Pepe,Sanchez,D,22333444
+A,San Martin,3322,Olivos,1636,BsAs
+A,Maipu,888,Florida,1122,Buenos Aires
+C,Juan,Perez,C,23-25666777-9
+A,Alem,1122,CABA,1001,CABA'! !
+!ImportTest methodsFor: 'test data' stamp: 'CJF 11/20/2023 18:36:28' prior: 50653087!
+dataWithNoSingleFields
+		^ ReadStream on:
+'cC,Pepe,Sanchez,D,22333444
+A,San Martin,3322,Olivos,1636,BsAs
+A,Maipu,888,Florida,1122,Buenos Aires
+C,Juan,Perez,C,23-25666777-9
+A,Alem,1122,CABA,1001,CABA'! !
+
+!testRun: #ImportTest #test08FirstFieldMustContainSingleCharacters stamp: 'CJF 11/20/2023 18:36:39'!
+PASSED!
+
+!testRun: #ImportTest #test01Import stamp: 'CJF 11/20/2023 18:36:40'!
+PASSED!
+
+!testRun: #ImportTest #test02CustomerRecordsHasLessThanFiveFields stamp: 'CJF 11/20/2023 18:36:40'!
+PASSED!
+
+!testRun: #ImportTest #test03CustomerRecordsHasMoreThanFiveFields stamp: 'CJF 11/20/2023 18:36:40'!
+PASSED!
+
+!testRun: #ImportTest #test04AddressRecordsHasLessThanSixFields stamp: 'CJF 11/20/2023 18:36:40'!
+PASSED!
+
+!testRun: #ImportTest #test05AddressRecordsHasMoreThanSixFields stamp: 'CJF 11/20/2023 18:36:40'!
+PASSED!
+
+!testRun: #ImportTest #test06FirstLetterMustRepresentACustomerOrAddress stamp: 'CJF 11/20/2023 18:36:41'!
+PASSED!
+
+!testRun: #ImportTest #test07firstRecordMustBeCustomer stamp: 'CJF 11/20/2023 18:36:41'!
+PASSED!
+
+!testRun: #ImportTest #test08FirstFieldMustContainSingleCharacters stamp: 'CJF 11/20/2023 18:36:41'!
+PASSED!
+
+!testRun: #ImportTest #test08FirstFieldMustContainSingleCharacters stamp: 'CJF 11/20/2023 18:38:48'!
+PASSED!
+!ImportTest methodsFor: 'tests' stamp: 'CJF 11/20/2023 18:40:52'!
+test09RecordsCannotHaveEmptyFields
+	
+	self should: [  CustomerImporter valueFrom: self dataWithFirstRecordWithEmptyFields into: session.  ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [  :anError | 
+			self assert: anError messageText equals: CustomerImporter emptyFieldsInRecord .
+			self assert: 0 equals: ( session selectAllOfType: Customer) size ].
+		
+		! !
+
+!testRun: #ImportTest #test09RecordsCannotHaveEmptyFields stamp: 'CJF 11/20/2023 18:41:12'!
+ERROR!
+!ImportTest methodsFor: 'test data' stamp: 'CJF 11/20/2023 18:41:19'!
+dataWithFirstRecordWithEmptyFields
+	self shouldBeImplemented.! !
+!ImportTest methodsFor: 'test data' stamp: 'CJF 11/20/2023 18:41:33' prior: 50653157!
+dataWithFirstRecordWithEmptyFields
+	
+	^ ReadStream on:
+'C,,Sanchez,D,22333444'! !
+
+!testRun: #ImportTest #test09RecordsCannotHaveEmptyFields stamp: 'CJF 11/20/2023 18:41:35'!
+ERROR!
+!CustomerImporter class methodsFor: 'error Messages' stamp: 'CJF 11/20/2023 18:41:43'!
+emptyFieldsInRecord
+	self shouldBeImplemented.! !
+!CustomerImporter class methodsFor: 'error Messages' stamp: 'CJF 11/20/2023 18:41:58' prior: 50653171!
+emptyFieldsInRecord
+	^'Empty fields in record'! !
+
+!testRun: #ImportTest #test09RecordsCannotHaveEmptyFields stamp: 'CJF 11/20/2023 18:41:59'!
+FAILURE!
+!CustomerImporter methodsFor: 'as yet unclassified' stamp: 'CJF 11/20/2023 18:45:50' prior: 50652933!
+assertValidFirstFields
+	| customerFieldEvaluation addressFiedsEvaluation retEvaluation|
+	
+	self lineData do: [ :field | field ifEmpty: [ self error: CustomerImporter emptyFieldsInRecord]  ].
+	
+	(self lineData first = 'A' and: [ newCustomer isNil ]) ifTrue: 
+						[ self error: CustomerImporter firstRecordMustBeCustomer].
+	
+	customerFieldEvaluation := self lineData first = 'C'.
+	addressFiedsEvaluation := self lineData first = 'A'.
+	retEvaluation := customerFieldEvaluation or: addressFiedsEvaluation .
+	
+	retEvaluation ifFalse: [self error: CustomerImporter firstFieldsMustBeCorA ].
+	
+	"( ( self lineData beginsWith: 'C') or: [ self lineData beginsWith: 'A'] ) ifFalse: [self error: CustomerImporter firstFieldsMustBeCorA ]."! !
+
+!testRun: #ImportTest #test09RecordsCannotHaveEmptyFields stamp: 'CJF 11/20/2023 18:45:54'!
+FAILURE!
+
+!testRun: #ImportTest #test09RecordsCannotHaveEmptyFields stamp: 'CJF 11/20/2023 18:46:13'!
+FAILURE!
+
+!methodRemoval: ImportTest #test09RecordsCannotHaveEmptyFields stamp: 'CJF 11/20/2023 18:49:11'!
+test09RecordsCannotHaveEmptyFields
+	
+	self should: [  CustomerImporter valueFrom: self dataWithFirstRecordWithEmptyFields into: session.  ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [  :anError | 
+			self assert: anError messageText equals: CustomerImporter emptyFieldsInRecord .
+			self assert: 0 equals: ( session selectAllOfType: Customer) size ].
+		
+		!
+
+----SNAPSHOT----(20 November 2023 18:49:51) CuisUniversity-5981.image priorSource: 10280617!
+
+----SNAPSHOT----(20 November 2023 18:52:56) CuisUniversity-5981.image priorSource: 10290559!
+
+----QUIT----(20 November 2023 18:53:26) CuisUniversity-5981.image priorSource: 10290653!
+
+----STARTUP---- (22 November 2023 16:38:54) as C:\Users\crist\Desktop\ASF7\CuisUniversity-5981.image!
+
+
+!testRun: #ImportTest #test01Import stamp: 'CJF 11/22/2023 19:02:47'!
+PASSED!
+
+!testRun: #ImportTest #test02CustomerRecordsHasLessThanFiveFields stamp: 'CJF 11/22/2023 19:02:47'!
+PASSED!
+
+!testRun: #ImportTest #test03CustomerRecordsHasMoreThanFiveFields stamp: 'CJF 11/22/2023 19:02:47'!
+PASSED!
+
+!testRun: #ImportTest #test04AddressRecordsHasLessThanSixFields stamp: 'CJF 11/22/2023 19:02:48'!
+PASSED!
+
+!testRun: #ImportTest #test05AddressRecordsHasMoreThanSixFields stamp: 'CJF 11/22/2023 19:02:48'!
+PASSED!
+
+!testRun: #ImportTest #test06FirstLetterMustRepresentACustomerOrAddress stamp: 'CJF 11/22/2023 19:02:48'!
+PASSED!
+
+!testRun: #ImportTest #test07firstRecordMustBeCustomer stamp: 'CJF 11/22/2023 19:02:48'!
+PASSED!
+
+!testRun: #ImportTest #test08FirstFieldMustContainSingleCharacters stamp: 'CJF 11/22/2023 19:02:48'!
+PASSED!
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'CJF 11/22/2023 19:05:24'!
+createSession
+
+	^ DataBaseSession for: (Array with: Address with: Customer)! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'CJF 11/22/2023 19:05:24' prior: 50652899 overrides: 16961394!
+setUp
+"mover la session al customer system con  move instance variable
+tenemos que mover session := DataBase a un nuevo metodo y luego el nuevo metodo lo movemos a persisten customer system4
+luego hacemos lo mismo con el beginTransaction
+luego tenemos que ahcer lo mismo con el tearDown
+
+"
+	session := self createSession.
+	session beginTransaction.
+! !
+
+!classDefinition: #PersistentCustomerSystem category: 'CustomerImporter' stamp: 'CJF 11/22/2023 19:06:08'!
+Object subclass: #PersistentCustomerSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!PersistentCustomerSystem methodsFor: 'as yet unclassified' stamp: 'CJF 11/22/2023 19:06:08'!
+createSession
+
+	^ DataBaseSession for: (Array with: Address with: Customer)! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'CJF 11/22/2023 19:06:08' prior: 50653269!
+createSession
+	^(PersistentCustomerSystem new) createSession! !
+
+!methodRemoval: ImportTest #createSession stamp: 'CJF 11/22/2023 19:06:42'!
+createSession
+	^(PersistentCustomerSystem new) createSession!
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'CJF 11/22/2023 19:06:42' prior: 50653275 overrides: 16961394!
+setUp
+"mover la session al customer system con  move instance variable
+tenemos que mover session := DataBase a un nuevo metodo y luego el nuevo metodo lo movemos a persisten customer system4
+luego hacemos lo mismo con el beginTransaction
+luego tenemos que ahcer lo mismo con el tearDown
+
+"
+	session := (PersistentCustomerSystem new) createSession.
+	session beginTransaction.
+! !
+
+----STARTUP---- (22 November 2023 19:27:23) as C:\Users\crist\Desktop\ASF7\CuisUniversity-5981.image!
+
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'CJF 11/22/2023 19:34:30' prior: 50652899 overrides: 16961394!
+setUp
+"mover la session al customer system con  move instance variable
+tenemos que mover session := DataBase a un nuevo metodo y luego el nuevo metodo lo movemos a persisten customer system4
+luego hacemos lo mismo con el beginTransaction
+luego tenemos que ahcer lo mismo con el tearDown
+
+"
+	"system := PersistentCustomerSystem new."
+	session := DataBaseSession for: (Array with: Address with: Customer).
+	session beginTransaction.
+! !
+
+Object subclass: #PersistentCustomerSystem
+	instanceVariableNames: 'session'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #PersistentCustomerSystem category: 'CustomerImporter' stamp: 'CJF 11/22/2023 19:35:57'!
+Object subclass: #PersistentCustomerSystem
+	instanceVariableNames: 'session'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #ImportTest category: 'CustomerImporter' stamp: 'CJF 11/22/2023 19:36:24'!
+TestCase subclass: #ImportTest
+	instanceVariableNames: 'session system'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'CJF 11/22/2023 19:36:19' prior: 50653244 overrides: 16961394!
+setUp
+"mover la session al customer system con  move instance variable
+tenemos que mover session := DataBase a un nuevo metodo y luego el nuevo metodo lo movemos a persisten customer system4
+luego hacemos lo mismo con el beginTransaction
+luego tenemos que ahcer lo mismo con el tearDown
+
+"
+	system := PersistentCustomerSystem new.
+	
+	session := DataBaseSession for: (Array with: Address with: Customer).
+	session beginTransaction.
+! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'CJF 11/22/2023 19:37:04' prior: 50653282 overrides: 16961394!
+setUp
+"mover la session al customer system con  move instance variable
+tenemos que mover session := DataBase a un nuevo metodo y luego el nuevo metodo lo movemos a persisten customer system4
+luego hacemos lo mismo con el beginTransaction
+luego tenemos que ahcer lo mismo con el tearDown
+
+"
+	"system := PersistentCustomerSystem new."
+	
+	session := DataBaseSession for: (Array with: Address with: Customer).
+	session beginTransaction.
+! !
+
+!classRemoval: #PersistentCustomerSystem stamp: 'CJF 11/22/2023 19:37:07'!
+Object subclass: #PersistentCustomerSystem
+	instanceVariableNames: 'session'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'CJF 11/22/2023 19:37:34'!
+newSession
+
+	^ DataBaseSession for: (Array with: Address with: Customer)! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'CJF 11/22/2023 19:37:34' prior: 50653300 overrides: 16961394!
+setUp
+"mover la session al customer system con  move instance variable
+tenemos que mover session := DataBase a un nuevo metodo y luego el nuevo metodo lo movemos a persisten customer system4
+luego hacemos lo mismo con el beginTransaction
+luego tenemos que ahcer lo mismo con el tearDown
+
+"
+	"system := PersistentCustomerSystem new."
+	
+	session := self newSession.
+	session beginTransaction.
+! !
+
+!classDefinition: #PersistentCustomerSystem category: 'CustomerImporter' stamp: 'CJF 11/22/2023 19:38:10'!
+Object subclass: #PersistentCustomerSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!PersistentCustomerSystem methodsFor: 'as yet unclassified' stamp: 'CJF 11/22/2023 19:38:10'!
+new
+
+	^ DataBaseSession for: (Array with: Address with: Customer)! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'CJF 11/22/2023 19:38:10' prior: 50653324!
+newSession
+	^(PersistentCustomerSystem new) new! !
+
+!classDefinition: #PersistentCustomerSystem category: 'CustomerImporter' stamp: 'CJF 11/22/2023 19:38:55'!
+Object subclass: #PersistentCustomerSystem
+	instanceVariableNames: 'session'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!PersistentCustomerSystem methodsFor: 'evaluating' stamp: 'CJF 11/22/2023 19:38:49' prior: 50653354!
+new
+
+	session := DataBaseSession for: (Array with: Address with: Customer)! !
+
+!methodRemoval: ImportTest #newSession stamp: 'CJF 11/22/2023 19:39:47'!
+newSession
+	^(PersistentCustomerSystem new) new!
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'CJF 11/22/2023 19:39:47' prior: 50653330 overrides: 16961394!
+setUp
+"mover la session al customer system con  move instance variable
+tenemos que mover session := DataBase a un nuevo metodo y luego el nuevo metodo lo movemos a persisten customer system4
+luego hacemos lo mismo con el beginTransaction
+luego tenemos que ahcer lo mismo con el tearDown
+
+"
+	"system := PersistentCustomerSystem new."
+	
+	session := (PersistentCustomerSystem new) new.
+	session beginTransaction.
+! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'CJF 11/22/2023 19:41:04' prior: 50653383 overrides: 16961394!
+setUp
+"mover la session al customer system con  move instance variable
+tenemos que mover session := DataBase a un nuevo metodo y luego el nuevo metodo lo movemos a persisten customer system4
+luego hacemos lo mismo con el beginTransaction
+luego tenemos que ahcer lo mismo con el tearDown
+
+"
+	"system := PersistentCustomerSystem new."
+	
+	system := (PersistentCustomerSystem new) new.
+	system session beginTransaction.
+! !
+!PersistentCustomerSystem methodsFor: 'getter' stamp: 'CJF 11/22/2023 19:41:56'!
+session
+	self shouldBeImplemented.
+	^session! !
+!PersistentCustomerSystem methodsFor: 'getter' stamp: 'CJF 11/22/2023 19:42:00' prior: 50653416!
+session
+	^session! !
+
+!testRun: #ImportTest #test01Import stamp: 'CJF 11/22/2023 19:42:03'!
+ERROR!
+
+!testRun: #ImportTest #test01Import stamp: 'CJF 11/22/2023 19:42:27'!
+ERROR!
+
+!testRun: #ImportTest #test01Import stamp: 'CJF 11/22/2023 19:42:30'!
+ERROR!
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'CJF 11/22/2023 19:44:16' prior: 50650466 overrides: 16961402!
+tearDown
+
+	system session commit.
+	system session close.
+	! !
+!ImportTest methodsFor: 'assertions' stamp: 'CJF 11/22/2023 19:44:35' prior: 50650424!
+assertImportedRightNumberOfCustomers
+
+	^ self assert: 2 equals: (system session selectAllOfType: Customer) size! !
+!ImportTest methodsFor: 'tests' stamp: 'CJF 11/22/2023 19:44:54' prior: 50650377!
+test01Import
+
+	CustomerImporter valueFrom: self validImportData into: system session.
+
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly ! !
+!ImportTest methodsFor: 'tests' stamp: 'CJF 11/22/2023 19:45:02' prior: 50652279!
+test02CustomerRecordsHasLessThanFiveFields
+	
+	self should: [  CustomerImporter valueFrom: self customerRecordWithFourFieldsInRow into: system session.  ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [  :anError | 
+			self assert: anError messageText equals: CustomerImporter dataCustomerMustHaveFiveFields.
+			self assert: 0 equals: ( session selectAllOfType: Customer) size ].! !
+!ImportTest methodsFor: 'tests' stamp: 'CJF 11/22/2023 19:45:05' prior: 50653455!
+test02CustomerRecordsHasLessThanFiveFields
+	
+	self should: [  CustomerImporter valueFrom: self customerRecordWithFourFieldsInRow into: system session.  ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [  :anError | 
+			self assert: anError messageText equals: CustomerImporter dataCustomerMustHaveFiveFields.
+			self assert: 0 equals: ( system session selectAllOfType: Customer) size ].! !
+!ImportTest methodsFor: 'tests' stamp: 'CJF 11/22/2023 19:45:20' prior: 50652313!
+test03CustomerRecordsHasMoreThanFiveFields
+	
+	self should: [  CustomerImporter valueFrom: self customerRecordWithSixFieldsInRow into: system session.  ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [  :anError | 
+			self assert: anError messageText equals: CustomerImporter dataCustomerMustHaveFiveFields.
+			self assert: 0 equals: ( system session selectAllOfType: Customer) size ].! !
+!ImportTest methodsFor: 'tests' stamp: 'CJF 11/22/2023 19:45:29' prior: 50652412!
+test04AddressRecordsHasLessThanSixFields
+	
+	self should: [  CustomerImporter valueFrom: self addressRecordWithFiveFieldsInRow into: system session.  ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [  :anError | 
+			self assert: anError messageText equals: CustomerImporter dataAddressMustHaveSixFields.
+			self assert: 1 equals: (system session selectAllOfType: Customer) size ].! !
+!ImportTest methodsFor: 'tests' stamp: 'CJF 11/22/2023 19:45:41' prior: 50652430!
+test05AddressRecordsHasMoreThanSixFields
+	
+	self should: [  CustomerImporter valueFrom: self addressRecordWithSevenFieldsInRow into: system session.  ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [  :anError | 
+			self assert: anError messageText equals: CustomerImporter dataAddressMustHaveSixFields.
+			self assert: 1 equals: ( system session selectAllOfType: Customer) size ].! !
+!ImportTest methodsFor: 'tests' stamp: 'CJF 11/22/2023 19:45:50' prior: 50652722!
+test06FirstLetterMustRepresentACustomerOrAddress
+	
+	self should: [  CustomerImporter valueFrom: self dataWithFirstValueInvalid into: system session.  ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [  :anError | 
+			self assert: anError messageText equals: CustomerImporter firstFieldsMustBeCorA.
+			self assert: 0 equals: ( system session selectAllOfType: Customer) size ].! !
+!ImportTest methodsFor: 'tests' stamp: 'CJF 11/22/2023 19:46:01' prior: 50652984!
+test07firstRecordMustBeCustomer
+	
+	self should: [  CustomerImporter valueFrom: self dataWithNoCustomers into: system session.  ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [  :anError | 
+			self assert: anError messageText equals: CustomerImporter firstRecordMustBeCustomer.
+			self assert: 0 equals: ( system session selectAllOfType: Customer) size ].
+		
+		! !
+!ImportTest methodsFor: 'tests' stamp: 'CJF 11/22/2023 19:46:10' prior: 50653028!
+test08FirstFieldMustContainSingleCharacters
+	
+	self should: [  CustomerImporter valueFrom: self dataWithNoSingleFields into: system session.  ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [  :anError | 
+			self assert: anError messageText equals: CustomerImporter firstFieldsMustBeCorA .
+			self assert: 0 equals: ( system session selectAllOfType: Customer) size ].
+		
+		! !
+
+!testRun: #ImportTest #test01Import stamp: 'CJF 11/22/2023 19:46:14'!
+ERROR!
+
+!testRun: #ImportTest #test01Import stamp: 'CJF 11/22/2023 19:46:15'!
+ERROR!
+!ImportTest methodsFor: 'customer' stamp: 'CJF 11/22/2023 19:46:27' prior: 50650470!
+customerWithIdentificationType: anIdType number: anIdNumber
+
+	^ (system session
+		select: [ :aCustomer | aCustomer identificationType = anIdType and: [ aCustomer identificationNumber = anIdNumber ]]
+		ofType: Customer) anyOne! !
+
+!testRun: #ImportTest #test01Import stamp: 'CJF 11/22/2023 19:46:31'!
+PASSED!
+
+!testRun: #ImportTest #test01Import stamp: 'CJF 11/22/2023 19:46:36'!
+PASSED!
+
+!testRun: #ImportTest #test02CustomerRecordsHasLessThanFiveFields stamp: 'CJF 11/22/2023 19:46:36'!
+PASSED!
+
+!testRun: #ImportTest #test03CustomerRecordsHasMoreThanFiveFields stamp: 'CJF 11/22/2023 19:46:36'!
+PASSED!
+
+!testRun: #ImportTest #test04AddressRecordsHasLessThanSixFields stamp: 'CJF 11/22/2023 19:46:36'!
+PASSED!
+
+!testRun: #ImportTest #test05AddressRecordsHasMoreThanSixFields stamp: 'CJF 11/22/2023 19:46:36'!
+PASSED!
+
+!testRun: #ImportTest #test06FirstLetterMustRepresentACustomerOrAddress stamp: 'CJF 11/22/2023 19:46:36'!
+PASSED!
+
+!testRun: #ImportTest #test07firstRecordMustBeCustomer stamp: 'CJF 11/22/2023 19:46:36'!
+PASSED!
+
+!testRun: #ImportTest #test08FirstFieldMustContainSingleCharacters stamp: 'CJF 11/22/2023 19:46:36'!
+PASSED!
+!PersistentCustomerSystem methodsFor: 'evaluating' stamp: 'CJF 11/22/2023 19:54:52'!
+initializeSession
+
+	session := DataBaseSession for: (Array with: Address with: Customer)! !
+!CustomerImporter methodsFor: 'as yet unclassified' stamp: 'CJF 11/22/2023 19:54:52' prior: 50652523!
+importAddressRecord
+		
+		self assertAddressRecortMustHaveSixFields.
+		
+		newAddress := Address initializeSession.
+		newCustomer addAddress: newAddress.
+		newAddress streetName: (self lineData) second.
+		newAddress streetNumber: (self lineData) third asNumber .
+		newAddress town: (self lineData) fourth.
+		newAddress zipCode: (self lineData) fifth asNumber .
+		newAddress province: (self lineData) sixth! !
+!CustomerImporter class methodsFor: 'as yet unclassified' stamp: 'CJF 11/22/2023 19:54:52' prior: 50650669!
+from: aReadStream into: aSession
+	^self initializeSession initializeFrom: aReadStream into: aSession! !
+!DataBaseSession methodsFor: 'as yet unclassified' stamp: 'CJF 11/22/2023 19:54:52' prior: 50650787!
+initializeFor: aConfiguration
+
+	configuration := aConfiguration.
+	tables := Dictionary initializeSession.
+	id := 0.
+	inTransaction := false.
+	closed := false.! !
+!DataBaseSession methodsFor: 'as yet unclassified' stamp: 'CJF 11/22/2023 19:54:52' prior: 50650782!
+tableOfType: aType
+
+	^ tables at: aType ifAbsentPut: [ Set initializeSession ]! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'CJF 11/22/2023 19:54:52' prior: 50653400 overrides: 16961394!
+setUp
+"mover la session al customer system con  move instance variable
+tenemos que mover session := DataBase a un nuevo metodo y luego el nuevo metodo lo movemos a persisten customer system4
+luego hacemos lo mismo con el beginTransaction
+luego tenemos que ahcer lo mismo con el tearDown
+
+"
+	"system := PersistentCustomerSystem new."
+	
+	system := (PersistentCustomerSystem initializeSession) initializeSession.
+	system session beginTransaction.
+! !
+!DataBaseSession class methodsFor: 'as yet unclassified' stamp: 'CJF 11/22/2023 19:54:52' prior: 50650833!
+for: aConfiguration
+
+	^self initializeSession initializeFor: aConfiguration! !
+!PersistentSet class methodsFor: 'as yet unclassified' stamp: 'CJF 11/22/2023 19:54:52' prior: 50650360!
+on: aSession from: aNonPersistentSet
+
+	^self initializeSession initializeOn: aSession from: aNonPersistentSet
+! !
+!CustomerImporter methodsFor: 'as yet unclassified' stamp: 'CJF 11/22/2023 19:54:52' prior: 50652165!
+importCustomerRecord
+		
+		self assertCustomerRecordMustHaveFiveFields.
+		
+		newCustomer := Customer initializeSession.
+		newCustomer firstName: (self lineData) second.
+		newCustomer lastName: (self lineData) third.
+		newCustomer identificationType: (self lineData) fourth.
+		newCustomer identificationNumber: (self lineData) fifth.
+		session persist: newCustomer! !
+!Customer methodsFor: 'as yet unclassified' stamp: 'CJF 11/22/2023 19:54:52' prior: 50650604 overrides: 16920235!
+initialize
+
+	super initialize.
+	addresses := OrderedCollection initializeSession.! !
+
+!methodRemoval: PersistentCustomerSystem #new stamp: 'CJF 11/22/2023 19:54:53'!
+new
+
+	session := DataBaseSession for: (Array with: Address with: Customer)!
+!PersistentSet class methodsFor: 'instance creation' stamp: 'HAW 11/14/2023 08:25:00' prior: 50653692!
+on: aSession from: aNonPersistentSet
+
+	^self new initializeOn: aSession from: aNonPersistentSet
+! !
+!Customer methodsFor: 'initialization' stamp: 'HAW 5/22/2022 00:19:29' prior: 50653714 overrides: 16920235!
+initialize
+
+	super initialize.
+	addresses := OrderedCollection new.! !
+!CustomerImporter class methodsFor: 'instance creation' stamp: 'HAW 5/22/2022 18:06:47' prior: 50653645!
+from: aReadStream into: aSession
+	^self new initializeFrom: aReadStream into: aSession! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/22/2023 19:54:52' prior: 50653628!
+importAddressRecord
+		
+		self assertAddressRecortMustHaveSixFields.
+		
+		newAddress := Address initializeSession.
+		newCustomer addAddress: newAddress.
+		newAddress streetName: (self lineData) second.
+		newAddress streetNumber: (self lineData) third asNumber .
+		newAddress town: (self lineData) fourth.
+		newAddress zipCode: (self lineData) fifth asNumber .
+		newAddress province: (self lineData) sixth! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/16/2023 20:02:37' prior: 50653744!
+importAddressRecord
+		
+		self assertAddressRecortMustHaveSixFields.
+		
+		newAddress := Address new.
+		newCustomer addAddress: newAddress.
+		newAddress streetName: (self lineData) second.
+		newAddress streetNumber: (self lineData) third asNumber .
+		newAddress town: (self lineData) fourth.
+		newAddress zipCode: (self lineData) fifth asNumber .
+		newAddress province: (self lineData) sixth! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'CJF 11/22/2023 19:57:11' prior: 50653699!
+importCustomerRecord
+		
+		self assertCustomerRecordMustHaveFiveFields.
+		
+		newCustomer := Customer new.
+		newCustomer firstName: (self lineData) second.
+		newCustomer lastName: (self lineData) third.
+		newCustomer identificationType: (self lineData) fourth.
+		newCustomer identificationNumber: (self lineData) fifth.
+		session persist: newCustomer! !
+!DataBaseSession class methodsFor: 'instance creation' stamp: 'HAW 5/22/2022 00:19:29' prior: 50653686!
+for: aConfiguration
+
+	^self new initializeFor: aConfiguration! !
+!DataBaseSession methodsFor: 'initialization' stamp: 'CJF 11/22/2023 19:57:31' prior: 50653652!
+initializeFor: aConfiguration
+
+	configuration := aConfiguration.
+	tables := Dictionary new.
+	id := 0.
+	inTransaction := false.
+	closed := false.! !
+!DataBaseSession methodsFor: 'persistence - private' stamp: 'CJF 11/22/2023 19:57:36' prior: 50653661!
+tableOfType: aType
+
+	^ tables at: aType ifAbsentPut: [ Set new ]! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'CJF 11/22/2023 19:58:16' prior: 50653668 overrides: 16961394!
+setUp
+"mover la session al customer system con  move instance variable
+tenemos que mover session := DataBase a un nuevo metodo y luego el nuevo metodo lo movemos a persisten customer system4
+luego hacemos lo mismo con el beginTransaction
+luego tenemos que ahcer lo mismo con el tearDown
+
+"
+	"system := PersistentCustomerSystem new."
+	
+	system := (PersistentCustomerSystem new) initializeSession.
+	system session beginTransaction.
+! !
+
+!testRun: #ImportTest #test01Import stamp: 'CJF 11/22/2023 19:58:18'!
+PASSED!
+
+!testRun: #ImportTest #test02CustomerRecordsHasLessThanFiveFields stamp: 'CJF 11/22/2023 19:58:18'!
+PASSED!
+
+!testRun: #ImportTest #test03CustomerRecordsHasMoreThanFiveFields stamp: 'CJF 11/22/2023 19:58:19'!
+PASSED!
+
+!testRun: #ImportTest #test04AddressRecordsHasLessThanSixFields stamp: 'CJF 11/22/2023 19:58:19'!
+PASSED!
+
+!testRun: #ImportTest #test05AddressRecordsHasMoreThanSixFields stamp: 'CJF 11/22/2023 19:58:19'!
+PASSED!
+
+!testRun: #ImportTest #test06FirstLetterMustRepresentACustomerOrAddress stamp: 'CJF 11/22/2023 19:58:19'!
+PASSED!
+
+!testRun: #ImportTest #test07firstRecordMustBeCustomer stamp: 'CJF 11/22/2023 19:58:19'!
+PASSED!
+
+!testRun: #ImportTest #test08FirstFieldMustContainSingleCharacters stamp: 'CJF 11/22/2023 19:58:19'!
+PASSED!
+
+----SNAPSHOT----(22 November 2023 19:58:32) CuisUniversity-5981.image priorSource: 10290747!
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'CJF 11/22/2023 20:00:24' prior: 50653811 overrides: 16961394!
+setUp
+"mover la session al customer system con  move instance variable
+tenemos que mover session := DataBase a un nuevo metodo y luego el nuevo metodo lo movemos a persisten customer system4
+luego hacemos lo mismo con el beginTransaction
+luego tenemos que ahcer lo mismo con el tearDown
+
+"
+	"system := PersistentCustomerSystem new."
+	
+	system := (PersistentCustomerSystem new).
+	system session beginTransaction.
+! !
+!PersistentCustomerSystem methodsFor: 'evaluating' stamp: 'CJF 11/22/2023 20:01:11' overrides: 16920235!
+initialize
+	super initialize .
+	self initializeSession .! !
+
+!testRun: #ImportTest #test01Import stamp: 'CJF 11/22/2023 20:01:22'!
+PASSED!
+
+!testRun: #ImportTest #test02CustomerRecordsHasLessThanFiveFields stamp: 'CJF 11/22/2023 20:01:22'!
+PASSED!
+
+!testRun: #ImportTest #test03CustomerRecordsHasMoreThanFiveFields stamp: 'CJF 11/22/2023 20:01:22'!
+PASSED!
+
+!testRun: #ImportTest #test04AddressRecordsHasLessThanSixFields stamp: 'CJF 11/22/2023 20:01:23'!
+PASSED!
+
+!testRun: #ImportTest #test05AddressRecordsHasMoreThanSixFields stamp: 'CJF 11/22/2023 20:01:23'!
+PASSED!
+
+!testRun: #ImportTest #test06FirstLetterMustRepresentACustomerOrAddress stamp: 'CJF 11/22/2023 20:01:23'!
+PASSED!
+
+!testRun: #ImportTest #test07firstRecordMustBeCustomer stamp: 'CJF 11/22/2023 20:01:23'!
+PASSED!
+
+!testRun: #ImportTest #test08FirstFieldMustContainSingleCharacters stamp: 'CJF 11/22/2023 20:01:23'!
+PASSED!
+
+----SNAPSHOT----(22 November 2023 20:01:36) CuisUniversity-5981.image priorSource: 10310483!
+!PersistentCustomerSystem methodsFor: 'nil' stamp: 'CJF 11/22/2023 20:04:26'!
+beginTransaction
+	session beginTransaction .! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'CJF 11/22/2023 20:04:38' prior: 50653858 overrides: 16961394!
+setUp
+"mover la session al customer system con  move instance variable
+tenemos que mover session := DataBase a un nuevo metodo y luego el nuevo metodo lo movemos a persisten customer system4
+luego hacemos lo mismo con el beginTransaction
+luego tenemos que ahcer lo mismo con el tearDown
+
+"
+	"system := PersistentCustomerSystem new."
+	
+	system := (PersistentCustomerSystem new).
+	system beginTransaction.
+! !
+
+!testRun: #ImportTest #test01Import stamp: 'CJF 11/22/2023 20:04:43'!
+PASSED!
+
+!testRun: #ImportTest #test02CustomerRecordsHasLessThanFiveFields stamp: 'CJF 11/22/2023 20:04:43'!
+PASSED!
+
+!testRun: #ImportTest #test03CustomerRecordsHasMoreThanFiveFields stamp: 'CJF 11/22/2023 20:04:43'!
+PASSED!
+
+!testRun: #ImportTest #test04AddressRecordsHasLessThanSixFields stamp: 'CJF 11/22/2023 20:04:43'!
+PASSED!
+
+!testRun: #ImportTest #test05AddressRecordsHasMoreThanSixFields stamp: 'CJF 11/22/2023 20:04:44'!
+PASSED!
+
+!testRun: #ImportTest #test06FirstLetterMustRepresentACustomerOrAddress stamp: 'CJF 11/22/2023 20:04:44'!
+PASSED!
+
+!testRun: #ImportTest #test07firstRecordMustBeCustomer stamp: 'CJF 11/22/2023 20:04:44'!
+PASSED!
+
+!testRun: #ImportTest #test08FirstFieldMustContainSingleCharacters stamp: 'CJF 11/22/2023 20:04:44'!
+PASSED!
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'CJF 11/22/2023 20:06:17' prior: 50653433 overrides: 16961402!
+tearDown
+
+	system  commit.
+	system  close.
+	! !
+!PersistentCustomerSystem methodsFor: 'nil' stamp: 'CJF 11/22/2023 20:06:33'!
+commit.
+	session commit 	! !
+!PersistentCustomerSystem methodsFor: 'as yet unclassified' stamp: 'CJF 11/22/2023 20:06:42'!
+close
+	session close	! !
+
+!testRun: #ImportTest #test01Import stamp: 'CJF 11/22/2023 20:06:47'!
+PASSED!
+
+!testRun: #ImportTest #test02CustomerRecordsHasLessThanFiveFields stamp: 'CJF 11/22/2023 20:06:47'!
+PASSED!
+
+!testRun: #ImportTest #test03CustomerRecordsHasMoreThanFiveFields stamp: 'CJF 11/22/2023 20:06:47'!
+PASSED!
+
+!testRun: #ImportTest #test04AddressRecordsHasLessThanSixFields stamp: 'CJF 11/22/2023 20:06:47'!
+PASSED!
+
+!testRun: #ImportTest #test05AddressRecordsHasMoreThanSixFields stamp: 'CJF 11/22/2023 20:06:47'!
+PASSED!
+
+!testRun: #ImportTest #test06FirstLetterMustRepresentACustomerOrAddress stamp: 'CJF 11/22/2023 20:06:47'!
+PASSED!
+
+!testRun: #ImportTest #test07firstRecordMustBeCustomer stamp: 'CJF 11/22/2023 20:06:47'!
+PASSED!
+
+!testRun: #ImportTest #test08FirstFieldMustContainSingleCharacters stamp: 'CJF 11/22/2023 20:06:48'!
+PASSED!
+!ImportTest methodsFor: 'tests' stamp: 'CJF 11/22/2023 20:12:01' prior: 50653470!
+test02CustomerRecordsHasLessThanFiveFields
+	
+	self should: [  CustomerImporter valueFrom: self customerRecordWithFourFieldsInRow into: system session.  ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [  :anError | 
+			self assert: anError messageText equals: CustomerImporter dataCustomerMustHaveFiveFields.
+			self assert: 0 equals: ( system selectAllOfType: Customer) size ].! !
+!ImportTest methodsFor: 'tests' stamp: 'CJF 11/22/2023 20:12:28' prior: 50653995!
+test02CustomerRecordsHasLessThanFiveFields
+	
+	self should: [  CustomerImporter valueFrom: self customerRecordWithFourFieldsInRow into: system session.  ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [  :anError | 
+			self assert: anError messageText equals: CustomerImporter dataCustomerMustHaveFiveFields.
+			self assert: 0 equals: ( system selectAllOfType: Customer) size ].! !
+!PersistentCustomerSystem methodsFor: 'nil' stamp: 'CJF 11/22/2023 20:13:03'!
+selectAllOfType: customerClass
+	session selectAllOfType: customerClass! !
+
+!testRun: #ImportTest #test01Import stamp: 'CJF 11/22/2023 20:13:18'!
+PASSED!
+
+!testRun: #ImportTest #test02CustomerRecordsHasLessThanFiveFields stamp: 'CJF 11/22/2023 20:13:18'!
+ERROR!
+
+!testRun: #ImportTest #test03CustomerRecordsHasMoreThanFiveFields stamp: 'CJF 11/22/2023 20:13:18'!
+PASSED!
+
+!testRun: #ImportTest #test04AddressRecordsHasLessThanSixFields stamp: 'CJF 11/22/2023 20:13:19'!
+PASSED!
+
+!testRun: #ImportTest #test05AddressRecordsHasMoreThanSixFields stamp: 'CJF 11/22/2023 20:13:19'!
+PASSED!
+
+!testRun: #ImportTest #test06FirstLetterMustRepresentACustomerOrAddress stamp: 'CJF 11/22/2023 20:13:19'!
+PASSED!
+
+!testRun: #ImportTest #test07firstRecordMustBeCustomer stamp: 'CJF 11/22/2023 20:13:19'!
+PASSED!
+
+!testRun: #ImportTest #test08FirstFieldMustContainSingleCharacters stamp: 'CJF 11/22/2023 20:13:19'!
+PASSED!
+
+!testRun: #ImportTest #test02CustomerRecordsHasLessThanFiveFields stamp: 'CJF 11/22/2023 20:13:19'!
+ERROR!
+!PersistentCustomerSystem methodsFor: 'as yet unclassified' stamp: 'CJF 11/22/2023 20:13:41' prior: 50654025!
+selectAllOfType: customerClass
+	^session selectAllOfType: customerClass! !
+
+!testRun: #ImportTest #test01Import stamp: 'CJF 11/22/2023 20:13:44'!
+PASSED!
+
+!testRun: #ImportTest #test02CustomerRecordsHasLessThanFiveFields stamp: 'CJF 11/22/2023 20:13:44'!
+PASSED!
+
+!testRun: #ImportTest #test03CustomerRecordsHasMoreThanFiveFields stamp: 'CJF 11/22/2023 20:13:44'!
+PASSED!
+
+!testRun: #ImportTest #test04AddressRecordsHasLessThanSixFields stamp: 'CJF 11/22/2023 20:13:44'!
+PASSED!
+
+!testRun: #ImportTest #test05AddressRecordsHasMoreThanSixFields stamp: 'CJF 11/22/2023 20:13:45'!
+PASSED!
+
+!testRun: #ImportTest #test06FirstLetterMustRepresentACustomerOrAddress stamp: 'CJF 11/22/2023 20:13:45'!
+PASSED!
+
+!testRun: #ImportTest #test07firstRecordMustBeCustomer stamp: 'CJF 11/22/2023 20:13:45'!
+PASSED!
+
+!testRun: #ImportTest #test08FirstFieldMustContainSingleCharacters stamp: 'CJF 11/22/2023 20:13:45'!
+PASSED!
+!ImportTest methodsFor: 'tests' stamp: 'CJF 11/22/2023 20:14:21' prior: 50653486!
+test03CustomerRecordsHasMoreThanFiveFields
+	
+	self should: [  CustomerImporter valueFrom: self customerRecordWithSixFieldsInRow into: system session.  ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [  :anError | 
+			self assert: anError messageText equals: CustomerImporter dataCustomerMustHaveFiveFields.
+			self assert: 0 equals: ( system selectAllOfType: Customer) size ].! !
+!ImportTest methodsFor: 'tests' stamp: 'CJF 11/22/2023 20:14:26' prior: 50653502!
+test04AddressRecordsHasLessThanSixFields
+	
+	self should: [  CustomerImporter valueFrom: self addressRecordWithFiveFieldsInRow into: system session.  ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [  :anError | 
+			self assert: anError messageText equals: CustomerImporter dataAddressMustHaveSixFields.
+			self assert: 1 equals: (system selectAllOfType: Customer) size ].! !
+!ImportTest methodsFor: 'tests' stamp: 'CJF 11/22/2023 20:14:30' prior: 50653517!
+test05AddressRecordsHasMoreThanSixFields
+	
+	self should: [  CustomerImporter valueFrom: self addressRecordWithSevenFieldsInRow into: system session.  ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [  :anError | 
+			self assert: anError messageText equals: CustomerImporter dataAddressMustHaveSixFields.
+			self assert: 1 equals: ( system selectAllOfType: Customer) size ].! !
+!ImportTest methodsFor: 'tests' stamp: 'CJF 11/22/2023 20:14:34' prior: 50653532!
+test06FirstLetterMustRepresentACustomerOrAddress
+	
+	self should: [  CustomerImporter valueFrom: self dataWithFirstValueInvalid into: system session.  ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [  :anError | 
+			self assert: anError messageText equals: CustomerImporter firstFieldsMustBeCorA.
+			self assert: 0 equals: ( system selectAllOfType: Customer) size ].! !
+!ImportTest methodsFor: 'tests' stamp: 'CJF 11/22/2023 20:14:38' prior: 50653547!
+test07firstRecordMustBeCustomer
+	
+	self should: [  CustomerImporter valueFrom: self dataWithNoCustomers into: system session.  ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [  :anError | 
+			self assert: anError messageText equals: CustomerImporter firstRecordMustBeCustomer.
+			self assert: 0 equals: ( system selectAllOfType: Customer) size ].
+		
+		! !
+!ImportTest methodsFor: 'tests' stamp: 'CJF 11/22/2023 20:14:42' prior: 50653562!
+test08FirstFieldMustContainSingleCharacters
+	
+	self should: [  CustomerImporter valueFrom: self dataWithNoSingleFields into: system session.  ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [  :anError | 
+			self assert: anError messageText equals: CustomerImporter firstFieldsMustBeCorA .
+			self assert: 0 equals: ( system selectAllOfType: Customer) size ].
+		
+		! !
+!ImportTest methodsFor: 'assertions' stamp: 'CJF 11/22/2023 20:15:14' prior: 50653438!
+assertImportedRightNumberOfCustomers
+
+	^ self assert: 2 equals: (system selectAllOfType: Customer) size! !
+!ImportTest methodsFor: 'customer' stamp: 'CJF 11/22/2023 20:16:17' prior: 50653582!
+customerWithIdentificationType: anIdType number: anIdNumber
+
+	^ (system		select: [ :aCustomer | aCustomer identificationType = anIdType and: [ aCustomer identificationNumber = anIdNumber ] ]
+		ofType: Customer) anyOne! !
+!ImportTest methodsFor: 'customer' stamp: 'CJF 11/22/2023 20:17:47' prior: 50654188!
+customerWithIdentificationType: anIdType number: anIdNumber
+
+	^ (system		select: [ :aCustomer | aCustomer identificationType = anIdType and: [ aCustomer identificationNumber = anIdNumber ]]
+		ofType: Customer) anyOne! !
+!ImportTest methodsFor: 'customer' stamp: 'CJF 11/22/2023 20:19:11' prior: 50654198!
+customerWithIdentificationType: anIdType number: anIdNumber
+	^system customerWithIdentificationType: anIdType number: anIdNumber
+
+
+
+"	^ (system session
+		select: [ :aCustomer | aCustomer identificationType = anIdType and: [ aCustomer identificationNumber = anIdNumber ]]
+		ofType: Customer) anyOne"! !
+!PersistentCustomerSystem methodsFor: 'nil' stamp: 'CJF 11/22/2023 20:20:08'!
+customerWithIdentificationType: anIdType number: anIdNumber
+	^(session select: [ :aCustomer | aCustomer identificationType = anIdType and: [ aCustomer identificationNumber = anIdNumber ]]
+		ofType: Customer) anyOne! !
+
+!testRun: #ImportTest #test01Import stamp: 'CJF 11/22/2023 20:20:13'!
+PASSED!
+
+!testRun: #ImportTest #test02CustomerRecordsHasLessThanFiveFields stamp: 'CJF 11/22/2023 20:20:13'!
+PASSED!
+
+!testRun: #ImportTest #test03CustomerRecordsHasMoreThanFiveFields stamp: 'CJF 11/22/2023 20:20:13'!
+PASSED!
+
+!testRun: #ImportTest #test04AddressRecordsHasLessThanSixFields stamp: 'CJF 11/22/2023 20:20:13'!
+PASSED!
+
+!testRun: #ImportTest #test05AddressRecordsHasMoreThanSixFields stamp: 'CJF 11/22/2023 20:20:13'!
+PASSED!
+
+!testRun: #ImportTest #test06FirstLetterMustRepresentACustomerOrAddress stamp: 'CJF 11/22/2023 20:20:13'!
+PASSED!
+
+!testRun: #ImportTest #test07firstRecordMustBeCustomer stamp: 'CJF 11/22/2023 20:20:14'!
+PASSED!
+
+!testRun: #ImportTest #test08FirstFieldMustContainSingleCharacters stamp: 'CJF 11/22/2023 20:20:14'!
+PASSED!
+
+!methodRemoval: ImportTest #customerWithIdentificationType:number: stamp: 'CJF 11/22/2023 20:21:45'!
+customerWithIdentificationType: anIdType number: anIdNumber
+	^system customerWithIdentificationType: anIdType number: anIdNumber
+
+
+
+"	^ (system session
+		select: [ :aCustomer | aCustomer identificationType = anIdType and: [ aCustomer identificationNumber = anIdNumber ]]
+		ofType: Customer) anyOne"!
+!ImportTest methodsFor: 'assertions' stamp: 'CJF 11/22/2023 20:21:45' prior: 50650405!
+assertCustomerWithIdentificationType: anIdType number: anIdNumber hasFirstName: aFirstName lastName: aLastName
+
+	| importedCustomer |
+
+	importedCustomer := system customerWithIdentificationType: anIdType number: anIdNumber
+
+
+
+"	^ (system session
+		select: [ :aCustomer | aCustomer identificationType = anIdType and: [ aCustomer identificationNumber = anIdNumber ]]
+		ofType: Customer) anyOne".
+
+	self assert: aFirstName equals: importedCustomer firstName.
+	self assert: aLastName equals: importedCustomer lastName.
+	self assert: anIdType equals: importedCustomer identificationType.
+	self assert: anIdNumber equals: importedCustomer identificationNumber.
+
+	^importedCustomer
+
+	! !
+
+!testRun: #ImportTest #test01Import stamp: 'CJF 11/22/2023 20:21:53'!
+PASSED!
+
+!testRun: #ImportTest #test02CustomerRecordsHasLessThanFiveFields stamp: 'CJF 11/22/2023 20:21:54'!
+PASSED!
+
+!testRun: #ImportTest #test03CustomerRecordsHasMoreThanFiveFields stamp: 'CJF 11/22/2023 20:21:54'!
+PASSED!
+
+!testRun: #ImportTest #test04AddressRecordsHasLessThanSixFields stamp: 'CJF 11/22/2023 20:21:54'!
+PASSED!
+
+!testRun: #ImportTest #test05AddressRecordsHasMoreThanSixFields stamp: 'CJF 11/22/2023 20:21:54'!
+PASSED!
+
+!testRun: #ImportTest #test06FirstLetterMustRepresentACustomerOrAddress stamp: 'CJF 11/22/2023 20:21:54'!
+PASSED!
+
+!testRun: #ImportTest #test07firstRecordMustBeCustomer stamp: 'CJF 11/22/2023 20:21:54'!
+PASSED!
+
+!testRun: #ImportTest #test08FirstFieldMustContainSingleCharacters stamp: 'CJF 11/22/2023 20:21:54'!
+PASSED!
+
+----SNAPSHOT----(22 November 2023 20:33:35) CuisUniversity-5981.image priorSource: 10312157!
+!ImportTest methodsFor: 'tests' stamp: 'CJF 11/22/2023 20:33:47' prior: 50653445!
+test01Import
+
+	CustomerImporter valueFrom: self validImportData into: system.
+
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly ! !
+
+!testRun: #ImportTest #test01Import stamp: 'CJF 11/22/2023 20:33:51'!
+ERROR!
+
+!testRun: #ImportTest #test01Import stamp: 'CJF 11/22/2023 20:33:51'!
+ERROR!
+
+!testRun: #ImportTest #test01Import stamp: 'CJF 11/22/2023 20:34:33'!
+ERROR!
+
+!testRun: #ImportTest #test01Import stamp: 'CJF 11/22/2023 20:34:33'!
+ERROR!
+!CustomerImporter methodsFor: 'initialization' stamp: 'CJF 11/22/2023 20:35:16' prior: 50650622!
+initializeFrom: aReadStream into: aSession
+	session := aSession session.
+	readStream := aReadStream.! !
+
+!testRun: #ImportTest #test01Import stamp: 'CJF 11/22/2023 20:35:19'!
+PASSED!
+
+!testRun: #ImportTest #test01Import stamp: 'CJF 11/22/2023 20:35:21'!
+PASSED!
+!CustomerImporter methodsFor: 'initialization' stamp: 'CJF 11/22/2023 20:35:59' prior: 50654342!
+initializeFrom: aReadStream into: aSystem
+	session := aSystem session.
+	readStream := aReadStream.! !
+!CustomerImporter methodsFor: 'initialization' stamp: 'CJF 11/22/2023 20:36:06' prior: 50654354!
+initializeFrom: aReadStream into: aSystem
+	session := aSystem.
+	readStream := aReadStream.! !
+
+!classDefinition: #CustomerImporter category: 'CustomerImporter' stamp: 'CJF 11/22/2023 20:36:18'!
+Object subclass: #CustomerImporter
+	instanceVariableNames: 'system readStream line newCustomer newAddress'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!CustomerImporter methodsFor: 'as yet unclassified' stamp: 'CJF 11/22/2023 20:36:18' prior: 50653776!
+importCustomerRecord
+		
+		self assertCustomerRecordMustHaveFiveFields.
+		
+		newCustomer := Customer new.
+		newCustomer firstName: (self lineData) second.
+		newCustomer lastName: (self lineData) third.
+		newCustomer identificationType: (self lineData) fourth.
+		newCustomer identificationNumber: (self lineData) fifth.
+		system persist: newCustomer! !
+!CustomerImporter methodsFor: 'as yet unclassified' stamp: 'CJF 11/22/2023 20:36:18' prior: 50654361!
+initializeFrom: aReadStream into: aSystem
+	system := aSystem.
+	readStream := aReadStream.! !
+
+!testRun: #ImportTest #test01Import stamp: 'CJF 11/22/2023 20:36:33'!
+ERROR!
+!PersistentCustomerSystem methodsFor: 'as yet unclassified' stamp: 'CJF 11/22/2023 20:36:59'!
+persist: aNewCustomer 
+	self shouldBeImplemented.! !
+!PersistentCustomerSystem methodsFor: 'as yet unclassified' stamp: 'CJF 11/22/2023 20:37:17' prior: 50654400!
+persist: aNewCustomer 
+	session persist: aNewCustomer.! !
+
+!testRun: #ImportTest #test01Import stamp: 'CJF 11/22/2023 20:37:19'!
+PASSED!
+
+!testRun: #ImportTest #test01Import stamp: 'CJF 11/22/2023 20:37:23'!
+PASSED!
+!ImportTest methodsFor: 'tests' stamp: 'CJF 11/22/2023 20:37:32' prior: 50654010!
+test02CustomerRecordsHasLessThanFiveFields
+	
+	self should: [  CustomerImporter valueFrom: self customerRecordWithFourFieldsInRow into: system.  ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [  :anError | 
+			self assert: anError messageText equals: CustomerImporter dataCustomerMustHaveFiveFields.
+			self assert: 0 equals: ( system selectAllOfType: Customer) size ].! !
+
+!testRun: #ImportTest #test02CustomerRecordsHasLessThanFiveFields stamp: 'CJF 11/22/2023 20:37:34'!
+PASSED!
+!ImportTest methodsFor: 'tests' stamp: 'CJF 11/22/2023 20:37:40' prior: 50654092!
+test03CustomerRecordsHasMoreThanFiveFields
+	
+	self should: [  CustomerImporter valueFrom: self customerRecordWithSixFieldsInRow into: system.  ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [  :anError | 
+			self assert: anError messageText equals: CustomerImporter dataCustomerMustHaveFiveFields.
+			self assert: 0 equals: ( system selectAllOfType: Customer) size ].! !
+
+!testRun: #ImportTest #test03CustomerRecordsHasMoreThanFiveFields stamp: 'CJF 11/22/2023 20:37:42'!
+PASSED!
+
+!testRun: #ImportTest #test01Import stamp: 'CJF 11/22/2023 20:37:43'!
+PASSED!
+
+!testRun: #ImportTest #test02CustomerRecordsHasLessThanFiveFields stamp: 'CJF 11/22/2023 20:37:43'!
+PASSED!
+
+!testRun: #ImportTest #test03CustomerRecordsHasMoreThanFiveFields stamp: 'CJF 11/22/2023 20:37:43'!
+PASSED!
+
+!testRun: #ImportTest #test04AddressRecordsHasLessThanSixFields stamp: 'CJF 11/22/2023 20:37:43'!
+PASSED!
+
+!testRun: #ImportTest #test05AddressRecordsHasMoreThanSixFields stamp: 'CJF 11/22/2023 20:37:43'!
+PASSED!
+
+!testRun: #ImportTest #test06FirstLetterMustRepresentACustomerOrAddress stamp: 'CJF 11/22/2023 20:37:43'!
+PASSED!
+
+!testRun: #ImportTest #test07firstRecordMustBeCustomer stamp: 'CJF 11/22/2023 20:37:44'!
+PASSED!
+
+!testRun: #ImportTest #test08FirstFieldMustContainSingleCharacters stamp: 'CJF 11/22/2023 20:37:44'!
+PASSED!
+!ImportTest methodsFor: 'tests' stamp: 'CJF 11/22/2023 20:37:48' prior: 50654107!
+test04AddressRecordsHasLessThanSixFields
+	
+	self should: [  CustomerImporter valueFrom: self addressRecordWithFiveFieldsInRow into: system .  ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [  :anError | 
+			self assert: anError messageText equals: CustomerImporter dataAddressMustHaveSixFields.
+			self assert: 1 equals: (system selectAllOfType: Customer) size ].! !
+!ImportTest methodsFor: 'tests' stamp: 'CJF 11/22/2023 20:37:50' prior: 50654122!
+test05AddressRecordsHasMoreThanSixFields
+	
+	self should: [  CustomerImporter valueFrom: self addressRecordWithSevenFieldsInRow into: system .  ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [  :anError | 
+			self assert: anError messageText equals: CustomerImporter dataAddressMustHaveSixFields.
+			self assert: 1 equals: ( system selectAllOfType: Customer) size ].! !
+!ImportTest methodsFor: 'tests' stamp: 'CJF 11/22/2023 20:37:54' prior: 50654137!
+test06FirstLetterMustRepresentACustomerOrAddress
+	
+	self should: [  CustomerImporter valueFrom: self dataWithFirstValueInvalid into: system .  ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [  :anError | 
+			self assert: anError messageText equals: CustomerImporter firstFieldsMustBeCorA.
+			self assert: 0 equals: ( system selectAllOfType: Customer) size ].! !
+!ImportTest methodsFor: 'tests' stamp: 'CJF 11/22/2023 20:37:57' prior: 50654152!
+test07firstRecordMustBeCustomer
+	
+	self should: [  CustomerImporter valueFrom: self dataWithNoCustomers into: system .  ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [  :anError | 
+			self assert: anError messageText equals: CustomerImporter firstRecordMustBeCustomer.
+			self assert: 0 equals: ( system selectAllOfType: Customer) size ].
+		
+		! !
+!ImportTest methodsFor: 'tests' stamp: 'CJF 11/22/2023 20:38:01' prior: 50654167!
+test08FirstFieldMustContainSingleCharacters
+	
+	self should: [  CustomerImporter valueFrom: self dataWithNoSingleFields into: system .  ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [  :anError | 
+			self assert: anError messageText equals: CustomerImporter firstFieldsMustBeCorA .
+			self assert: 0 equals: ( system selectAllOfType: Customer) size ].
+		
+		! !
+
+!testRun: #ImportTest #test08FirstFieldMustContainSingleCharacters stamp: 'CJF 11/22/2023 20:38:02'!
+PASSED!
+
+!testRun: #ImportTest #test01Import stamp: 'CJF 11/22/2023 20:38:03'!
+PASSED!
+
+!testRun: #ImportTest #test02CustomerRecordsHasLessThanFiveFields stamp: 'CJF 11/22/2023 20:38:03'!
+PASSED!
+
+!testRun: #ImportTest #test03CustomerRecordsHasMoreThanFiveFields stamp: 'CJF 11/22/2023 20:38:03'!
+PASSED!
+
+!testRun: #ImportTest #test04AddressRecordsHasLessThanSixFields stamp: 'CJF 11/22/2023 20:38:03'!
+PASSED!
+
+!testRun: #ImportTest #test05AddressRecordsHasMoreThanSixFields stamp: 'CJF 11/22/2023 20:38:03'!
+PASSED!
+
+!testRun: #ImportTest #test06FirstLetterMustRepresentACustomerOrAddress stamp: 'CJF 11/22/2023 20:38:03'!
+PASSED!
+
+!testRun: #ImportTest #test07firstRecordMustBeCustomer stamp: 'CJF 11/22/2023 20:38:04'!
+PASSED!
+
+!testRun: #ImportTest #test08FirstFieldMustContainSingleCharacters stamp: 'CJF 11/22/2023 20:38:04'!
+PASSED!
+
+!methodRemoval: PersistentCustomerSystem #session stamp: 'CJF 11/22/2023 20:42:47'!
+session
+	^session!
+
+----SNAPSHOT----(22 November 2023 20:45:00) CuisUniversity-5981.image priorSource: 10325386!
+
+!classDefinition: #CustomerSystem category: 'CustomerImporter' stamp: 'CJF 11/22/2023 20:45:19'!
+Object subclass: #CustomerSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #PersistentCustomerSystem category: 'CustomerImporter' stamp: 'CJF 11/22/2023 20:45:19'!
+CustomerSystem subclass: #PersistentCustomerSystem
+	instanceVariableNames: 'session'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!CustomerSystem methodsFor: 'as yet unclassified' stamp: 'CJF 11/22/2023 20:46:14'!
+beginTransaction
+
+	self subclassResponsibility! !
+!CustomerSystem methodsFor: 'as yet unclassified' stamp: 'CJF 11/22/2023 20:46:22'!
+close
+
+	self subclassResponsibility! !
+!CustomerSystem methodsFor: 'as yet unclassified' stamp: 'CJF 11/22/2023 20:46:28'!
+commit
+
+	self subclassResponsibility! !
+!CustomerSystem methodsFor: 'as yet unclassified' stamp: 'CJF 11/22/2023 20:46:32'!
+customerWithIdentificationType: anIdType number: anIdNumber
+
+	self subclassResponsibility! !
+!CustomerSystem methodsFor: 'evaluating' stamp: 'CJF 11/22/2023 20:46:37' overrides: 16920235!
+initialize
+
+	self subclassResponsibility! !
+!CustomerSystem methodsFor: 'evaluating' stamp: 'CJF 11/22/2023 20:46:41'!
+initializeSession
+
+	self subclassResponsibility! !
+!CustomerSystem methodsFor: 'as yet unclassified' stamp: 'CJF 11/22/2023 20:46:46'!
+persist: aNewCustomer
+
+	self subclassResponsibility! !
+!CustomerSystem methodsFor: 'as yet unclassified' stamp: 'CJF 11/22/2023 20:46:50'!
+selectAllOfType: customerClass
+
+	self subclassResponsibility! !
+
+!classDefinition: #TransientCustomerSystem category: 'CustomerImporter' stamp: 'CJF 11/22/2023 20:49:26'!
+CustomerSystem subclass: #TransientCustomerSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'CJF 11/22/2023 20:49:07' prior: 50653914 overrides: 16961394!
+setUp
+"mover la session al customer system con  move instance variable
+tenemos que mover session := DataBase a un nuevo metodo y luego el nuevo metodo lo movemos a persisten customer system4
+luego hacemos lo mismo con el beginTransaction
+luego tenemos que ahcer lo mismo con el tearDown
+
+"
+	"system := PersistentCustomerSystem new."
+	
+	system := (TransientCustomerSystem new).
+	system beginTransaction.
+! !
+
+!methodRemoval: CustomerSystem #initialize stamp: 'CJF 11/22/2023 20:50:39'!
+initialize
+
+	self subclassResponsibility!
+!TransientCustomerSystem methodsFor: 'as yet unclassified' stamp: 'CJF 11/22/2023 20:53:14' overrides: 50654604!
+beginTransaction
+	self shouldBeImplemented.! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'CJF 11/22/2023 20:53:30' prior: 50654651 overrides: 16961394!
+setUp
+"mover la session al customer system con  move instance variable
+tenemos que mover session := DataBase a un nuevo metodo y luego el nuevo metodo lo movemos a persisten customer system4
+luego hacemos lo mismo con el beginTransaction
+luego tenemos que ahcer lo mismo con el tearDown
+
+"
+	"system := PersistentCustomerSystem new."
+	
+	system := (PersistentCustomerSystem new).
+	system beginTransaction.
+! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'CJF 11/22/2023 20:54:06' prior: 50654676 overrides: 16961394!
+setUp
+"mover la session al customer system con  move instance variable
+tenemos que mover session := DataBase a un nuevo metodo y luego el nuevo metodo lo movemos a persisten customer system4
+luego hacemos lo mismo con el beginTransaction
+luego tenemos que ahcer lo mismo con el tearDown
+
+"
+	"system := PersistentCustomerSystem new."
+	self halt.
+	system := (PersistentCustomerSystem new).
+	system beginTransaction.
+! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'CJF 11/22/2023 20:54:55' prior: 50654693 overrides: 16961394!
+setUp
+"mover la session al customer system con  move instance variable
+tenemos que mover session := DataBase a un nuevo metodo y luego el nuevo metodo lo movemos a persisten customer system4
+luego hacemos lo mismo con el beginTransaction
+luego tenemos que ahcer lo mismo con el tearDown
+
+"
+	"system := PersistentCustomerSystem new."
+	self halt.
+	system := (TransientCustomerSystem new).
+	system beginTransaction.
+! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'CJF 11/22/2023 20:55:28' prior: 50654710 overrides: 16961394!
+setUp
+"mover la session al customer system con  move instance variable
+tenemos que mover session := DataBase a un nuevo metodo y luego el nuevo metodo lo movemos a persisten customer system4
+luego hacemos lo mismo con el beginTransaction
+luego tenemos que ahcer lo mismo con el tearDown
+
+"
+	"system := PersistentCustomerSystem new."
+	system := (TransientCustomerSystem new).
+	system beginTransaction.
+! !
+
+!classDefinition: #TransientCustomerSystem category: 'CustomerImporter' stamp: 'CJF 11/22/2023 20:57:05'!
+CustomerSystem subclass: #TransientCustomerSystem
+	instanceVariableNames: 'customers'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!TransientCustomerSystem methodsFor: 'nil' stamp: 'CJF 11/22/2023 20:57:02' overrides: 16920235!
+initialize
+	customers := OrderedCollection new.! !
+!TransientCustomerSystem methodsFor: 'as yet unclassified' stamp: 'CJF 11/22/2023 20:58:55' prior: 50654671 overrides: 50654604!
+beginTransaction
+	! !
+
+!testRun: #ImportTest #test01Import stamp: 'CJF 11/22/2023 20:59:01'!
+ERROR!
+
+!testRun: #ImportTest #test01Import stamp: 'CJF 11/22/2023 20:59:09'!
+ERROR!
+!TransientCustomerSystem methodsFor: 'as yet unclassified' stamp: 'CJF 11/22/2023 20:59:28' overrides: 50654632!
+persist: aNewCustomer 
+	self shouldBeImplemented.! !
+!TransientCustomerSystem methodsFor: 'as yet unclassified' stamp: 'CJF 11/22/2023 20:59:38' prior: 50654768 overrides: 50654632!
+persist: aNewCustomer 
+	customers add: aNewCustomer ! !
+
+!testRun: #ImportTest #test01Import stamp: 'CJF 11/22/2023 20:59:39'!
+ERROR!
+!TransientCustomerSystem methodsFor: 'as yet unclassified' stamp: 'CJF 11/22/2023 20:59:48' overrides: 50654637!
+selectAllOfType: Customer 
+	self shouldBeImplemented.! !
+!TransientCustomerSystem methodsFor: 'as yet unclassified' stamp: 'CJF 11/22/2023 21:03:22' prior: 50654782 overrides: 50654637!
+selectAllOfType: Customer 
+	^customers select: [ :aCustomer | aCustomer isKindOf: Customer class].! !
+
+!testRun: #ImportTest #test01Import stamp: 'CJF 11/22/2023 21:03:23'!
+FAILURE!
+
+!testRun: #ImportTest #test01Import stamp: 'CJF 11/22/2023 21:03:56'!
+FAILURE!
+!TransientCustomerSystem methodsFor: 'as yet unclassified' stamp: 'CJF 11/22/2023 21:04:51' prior: 50654788 overrides: 50654637!
+selectAllOfType: Customer 
+	^customers select: [ :aCustomer | aCustomer isKindOf: Customer ].! !
+!TransientCustomerSystem methodsFor: 'as yet unclassified' stamp: 'CJF 11/22/2023 21:05:15' prior: 50654801 overrides: 50654637!
+selectAllOfType: aType 
+	^customers select: [ :aCustomer | aCustomer isKindOf: aType ].! !
+
+!testRun: #ImportTest #test01Import stamp: 'CJF 11/22/2023 21:05:21'!
+ERROR!
+
+!testRun: #ImportTest #test01Import stamp: 'CJF 11/22/2023 21:07:17'!
+ERROR!
+!TransientCustomerSystem methodsFor: 'as yet unclassified' stamp: 'CJF 11/22/2023 21:07:27' overrides: 50654617!
+customerWithIdentificationType: anIdType number: anIdNumber 
+	self shouldBeImplemented.! !
+!TransientCustomerSystem methodsFor: 'as yet unclassified' stamp: 'CJF 11/22/2023 21:07:51' prior: 50654821 overrides: 50654617!
+customerWithIdentificationType: anIdType number: anIdNumber 
+		^(customers select: [ :aCustomer | aCustomer identificationType = anIdType and: [ aCustomer identificationNumber = anIdNumber ]]
+		ofType: Customer) anyOne! !
+
+!testRun: #ImportTest #test01Import stamp: 'CJF 11/22/2023 21:08:08'!
+ERROR!
+!TransientCustomerSystem methodsFor: 'as yet unclassified' stamp: 'CJF 11/22/2023 21:08:59' prior: 50654828 overrides: 50654617!
+customerWithIdentificationType: anIdType number: anIdNumber 
+		^(customers select: [ :aCustomer | aCustomer identificationType = anIdType and: [ aCustomer identificationNumber = anIdNumber ] and: [ aCustomer isKindOf: Customer]]
+		ofType: Customer) anyOne! !
+!TransientCustomerSystem methodsFor: 'as yet unclassified' stamp: 'CJF 11/22/2023 21:09:13' prior: 50654842 overrides: 50654617!
+customerWithIdentificationType: anIdType number: anIdNumber 
+		^(customers select: [ :aCustomer | aCustomer identificationType = anIdType and: [ aCustomer identificationNumber = anIdNumber ] and: [ aCustomer isKindOf: Customer]]) anyOne! !
+
+!testRun: #ImportTest #test01Import stamp: 'CJF 11/22/2023 21:09:19'!
+PASSED!
+
+!testRun: #ImportTest #test01Import stamp: 'CJF 11/22/2023 21:09:19'!
+PASSED!
+!TransientCustomerSystem methodsFor: 'as yet unclassified' stamp: 'CJF 11/22/2023 21:09:31' overrides: 50654613!
+commit
+	self shouldBeImplemented.! !
+!TransientCustomerSystem methodsFor: 'as yet unclassified' stamp: 'CJF 11/22/2023 21:09:39' prior: 50654871 overrides: 50654613!
+commit
+	! !
+!TransientCustomerSystem methodsFor: 'as yet unclassified' stamp: 'CJF 11/22/2023 21:09:49' overrides: 50654609!
+close
+	self shouldBeImplemented.! !
+!TransientCustomerSystem methodsFor: 'as yet unclassified' stamp: 'CJF 11/22/2023 21:09:51' prior: 50654881 overrides: 50654609!
+close
+	! !
+
+!testRun: #ImportTest #test01Import stamp: 'CJF 11/22/2023 21:09:56'!
+PASSED!
+
+!testRun: #ImportTest #test02CustomerRecordsHasLessThanFiveFields stamp: 'CJF 11/22/2023 21:09:59'!
+PASSED!
+
+!testRun: #ImportTest #test03CustomerRecordsHasMoreThanFiveFields stamp: 'CJF 11/22/2023 21:10:02'!
+PASSED!
+
+!testRun: #ImportTest #test04AddressRecordsHasLessThanSixFields stamp: 'CJF 11/22/2023 21:10:04'!
+PASSED!
+
+!testRun: #ImportTest #test05AddressRecordsHasMoreThanSixFields stamp: 'CJF 11/22/2023 21:10:05'!
+PASSED!
+
+!testRun: #ImportTest #test06FirstLetterMustRepresentACustomerOrAddress stamp: 'CJF 11/22/2023 21:10:07'!
+PASSED!
+
+!testRun: #ImportTest #test07firstRecordMustBeCustomer stamp: 'CJF 11/22/2023 21:10:08'!
+PASSED!
+
+!testRun: #ImportTest #test08FirstFieldMustContainSingleCharacters stamp: 'CJF 11/22/2023 21:10:10'!
+PASSED!
+
+----SNAPSHOT----(22 November 2023 21:10:23) CuisUniversity-5981.image priorSource: 10333901!
+
+!testRun: #ImportTest #test01Import stamp: 'CJF 11/22/2023 21:11:09'!
+PASSED!
+
+!testRun: #ImportTest #test02CustomerRecordsHasLessThanFiveFields stamp: 'CJF 11/22/2023 21:11:09'!
+PASSED!
+
+!testRun: #ImportTest #test03CustomerRecordsHasMoreThanFiveFields stamp: 'CJF 11/22/2023 21:11:09'!
+PASSED!
+
+!testRun: #ImportTest #test04AddressRecordsHasLessThanSixFields stamp: 'CJF 11/22/2023 21:11:09'!
+PASSED!
+
+!testRun: #ImportTest #test05AddressRecordsHasMoreThanSixFields stamp: 'CJF 11/22/2023 21:11:09'!
+PASSED!
+
+!testRun: #ImportTest #test06FirstLetterMustRepresentACustomerOrAddress stamp: 'CJF 11/22/2023 21:11:09'!
+PASSED!
+
+!testRun: #ImportTest #test07firstRecordMustBeCustomer stamp: 'CJF 11/22/2023 21:11:09'!
+PASSED!
+
+!testRun: #ImportTest #test08FirstFieldMustContainSingleCharacters stamp: 'CJF 11/22/2023 21:11:09'!
+PASSED!
+
+----QUIT----(22 November 2023 21:14:06) CuisUniversity-5981.image priorSource: 10344492!
+
+----STARTUP---- (22 November 2023 22:30:57) as C:\Users\crist\Desktop\ASF7\CuisUniversity-5981.image!
+
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'CJF 11/22/2023 22:31:45' prior: 50654727 overrides: 16961394!
+setUp
+
+	system := (TransientCustomerSystem new).
+	system beginTransaction.
+! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'CJF 11/22/2023 22:31:53' prior: 50654952 overrides: 16961394!
+setUp
+
+	system := TransientCustomerSystem new.
+	system beginTransaction.
+! !
+
+!classDefinition: #Enviroment category: 'CustomerImporter' stamp: 'CJF 11/22/2023 22:32:52'!
+Object subclass: #Enviroment
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'CJF 11/22/2023 22:32:46' prior: 50654958 overrides: 16961394!
+setUp
+
+	"system := TransientCustomerSystem new."
+	system := Enviroment current createCustomerSystem.
+	system beginTransaction.
+! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'CJF 11/22/2023 22:33:27' prior: 50654971 overrides: 16961394!
+setUp
+
+	"system := TransientCustomerSystem new."
+	system := Enviroment current createCustomerSystem.
+	system beginTransaction.
+! !
+!Enviroment class methodsFor: 'instance creation' stamp: 'CJF 11/22/2023 22:34:28'!
+current
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeCurrent! !
+!Enviroment class methodsFor: 'instance creation' stamp: 'CJF 11/22/2023 22:37:19' prior: 50654986!
+current
+	^self allSubclasses 
+			detect: [ :anEnvironmentClass | anEnvironmentClass isCurrent ]
+			ifFound: [ :anEnvironmentClass | anEnvironmentClass new]
+			ifNone: [ self error: 'No environment found' ]! !
+
+Enviroment subclass: #DevelopmentEnviroment
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #DevelopmentEnviroment category: 'CustomerImporter' stamp: 'CJF 11/22/2023 22:38:54'!
+Enviroment subclass: #DevelopmentEnviroment
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+Enviroment subclass: #IntegrationEnviroment
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #IntegrationEnviroment category: 'CustomerImporter' stamp: 'CJF 11/22/2023 22:39:00'!
+Enviroment subclass: #IntegrationEnviroment
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!DevelopmentEnviroment class methodsFor: 'category-name' stamp: 'CJF 11/22/2023 22:39:43'!
+isCurrent
+	self shouldBeImplemented.! !
+!DevelopmentEnviroment class methodsFor: 'category-name' stamp: 'CJF 11/22/2023 22:40:15' prior: 50655029!
+isCurrent
+	^IntegrationEnviroment isCurrent not.! !
+!IntegrationEnviroment class methodsFor: 'category-name' stamp: 'CJF 11/22/2023 22:40:29'!
+isCurrent
+	self shouldBeImplemented.! !
+!IntegrationEnviroment class methodsFor: 'category-name' stamp: 'CJF 11/22/2023 22:40:38' prior: 50655039!
+isCurrent
+	^true! !
+!IntegrationEnviroment methodsFor: 'category-name' stamp: 'CJF 11/22/2023 22:40:51'!
+createCustomerSystem
+	self shouldBeImplemented.! !
+!IntegrationEnviroment methodsFor: 'category-name' stamp: 'CJF 11/22/2023 22:41:09' prior: 50655048!
+createCustomerSystem
+	^PersistentCustomerSystem new.! !
+
+!testRun: #ImportTest #test01Import stamp: 'CJF 11/22/2023 22:41:13'!
+PASSED!
+
+!testRun: #ImportTest #test01Import stamp: 'CJF 11/22/2023 22:41:15'!
+PASSED!
+
+!testRun: #ImportTest #test02CustomerRecordsHasLessThanFiveFields stamp: 'CJF 11/22/2023 22:41:15'!
+PASSED!
+
+!testRun: #ImportTest #test03CustomerRecordsHasMoreThanFiveFields stamp: 'CJF 11/22/2023 22:41:15'!
+PASSED!
+
+!testRun: #ImportTest #test04AddressRecordsHasLessThanSixFields stamp: 'CJF 11/22/2023 22:41:15'!
+PASSED!
+
+!testRun: #ImportTest #test05AddressRecordsHasMoreThanSixFields stamp: 'CJF 11/22/2023 22:41:16'!
+PASSED!
+
+!testRun: #ImportTest #test06FirstLetterMustRepresentACustomerOrAddress stamp: 'CJF 11/22/2023 22:41:16'!
+PASSED!
+
+!testRun: #ImportTest #test07firstRecordMustBeCustomer stamp: 'CJF 11/22/2023 22:41:16'!
+PASSED!
+
+!testRun: #ImportTest #test08FirstFieldMustContainSingleCharacters stamp: 'CJF 11/22/2023 22:41:16'!
+PASSED!
+!IntegrationEnviroment class methodsFor: 'category-name' stamp: 'CJF 11/22/2023 22:41:30' prior: 50655044!
+isCurrent
+	^false! !
+!DevelopmentEnviroment methodsFor: 'category-name' stamp: 'CJF 11/22/2023 22:41:53'!
+createCustomerSystem
+	self shouldBeImplemented.! !
+!DevelopmentEnviroment methodsFor: 'category-name' stamp: 'CJF 11/22/2023 22:42:03' prior: 50655091!
+createCustomerSystem
+	^TransientCustomerSystem new.! !
+
+!testRun: #ImportTest #test01Import stamp: 'CJF 11/22/2023 22:42:06'!
+PASSED!
+
+!testRun: #ImportTest #test01Import stamp: 'CJF 11/22/2023 22:42:09'!
+PASSED!
+
+!testRun: #ImportTest #test02CustomerRecordsHasLessThanFiveFields stamp: 'CJF 11/22/2023 22:42:10'!
+PASSED!
+
+!testRun: #ImportTest #test03CustomerRecordsHasMoreThanFiveFields stamp: 'CJF 11/22/2023 22:42:10'!
+PASSED!
+
+!testRun: #ImportTest #test04AddressRecordsHasLessThanSixFields stamp: 'CJF 11/22/2023 22:42:10'!
+PASSED!
+
+!testRun: #ImportTest #test05AddressRecordsHasMoreThanSixFields stamp: 'CJF 11/22/2023 22:42:10'!
+PASSED!
+
+!testRun: #ImportTest #test06FirstLetterMustRepresentACustomerOrAddress stamp: 'CJF 11/22/2023 22:42:10'!
+PASSED!
+
+!testRun: #ImportTest #test07firstRecordMustBeCustomer stamp: 'CJF 11/22/2023 22:42:10'!
+PASSED!
+
+!testRun: #ImportTest #test08FirstFieldMustContainSingleCharacters stamp: 'CJF 11/22/2023 22:42:10'!
+PASSED!
+!Enviroment class methodsFor: 'category-name' stamp: 'CJF 11/22/2023 22:44:04'!
+isCurrent
+
+	self subclassResponsibility! !
+!Enviroment methodsFor: 'category-name' stamp: 'CJF 11/22/2023 22:44:12'!
+createCustomerSystem
+
+	self subclassResponsibility! !
+
+----SNAPSHOT----(22 November 2023 22:44:37) CuisUniversity-5981.image priorSource: 10345420!
+
+!testRun: #ImportTest #test01Import stamp: 'CJF 11/22/2023 22:57:04'!
+PASSED!
+
+!testRun: #ImportTest #test02CustomerRecordsHasLessThanFiveFields stamp: 'CJF 11/22/2023 22:57:04'!
+PASSED!
+
+!testRun: #ImportTest #test03CustomerRecordsHasMoreThanFiveFields stamp: 'CJF 11/22/2023 22:57:04'!
+PASSED!
+
+!testRun: #ImportTest #test04AddressRecordsHasLessThanSixFields stamp: 'CJF 11/22/2023 22:57:04'!
+PASSED!
+
+!testRun: #ImportTest #test05AddressRecordsHasMoreThanSixFields stamp: 'CJF 11/22/2023 22:57:04'!
+PASSED!
+
+!testRun: #ImportTest #test06FirstLetterMustRepresentACustomerOrAddress stamp: 'CJF 11/22/2023 22:57:04'!
+PASSED!
+
+!testRun: #ImportTest #test07firstRecordMustBeCustomer stamp: 'CJF 11/22/2023 22:57:05'!
+PASSED!
+
+!testRun: #ImportTest #test08FirstFieldMustContainSingleCharacters stamp: 'CJF 11/22/2023 22:57:05'!
+PASSED!
+
+----SNAPSHOT----(22 November 2023 22:57:15) CuisUniversity-5981.image priorSource: 10351573!
+
+----QUIT----(22 November 2023 22:57:43) CuisUniversity-5981.image priorSource: 10352501!
