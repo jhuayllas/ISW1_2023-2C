@@ -1,0 +1,3608 @@
+
+
+----QUIT----(13 August 2023 19:14:09) CuisUniversity-5981.image priorSource: 5713367!
+
+----STARTUP---- (13 August 2023 19:14:10) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5981.image!
+
+
+----QUIT----(13 August 2023 19:14:10) CuisUniversity-5981.image priorSource: 10197065!
+
+----STARTUP---- (22 November 2023 19:26:09) as C:\Users\crist\Desktop\ASF7\Nueva carpeta\CuisUniversity-5981.image!
+
+
+----End fileIn of C:\Users\crist\Desktop\ASF7\Nueva carpeta\CustomerImporter-60.st----!
+
+----STARTUP---- (23 November 2023 17:27:54) as C:\Users\crist\Desktop\ASF7\Nueva carpeta\CuisUniversity-5981.image!
+
+
+----End fileIn of C:\Users\crist\Desktop\ASF7\Nueva carpeta\CustomerImporter-3.st----!
+!DevelopmentEnvironment class methodsFor: 'current' stamp: 'CJF 11/23/2023 18:22:13' prior: 50651968 overrides: 50651916!
+isCurrent
+
+	
+	self makeCurrent
+	
+	^self environmentVariable = self identifier! !
+!DevelopmentEnvironment class methodsFor: 'current' stamp: 'CJF 11/23/2023 18:23:47' prior: 50652017 overrides: 50651916!
+isCurrent
+
+	
+	"self makeCurrent"
+	
+	^self environmentVariable = self identifier! !
+
+DevelopmentEnvironment current !
+
+DevelopmentEnvironment makeCurrent !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 18:25:14'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'CJF 11/23/2023 18:25:14'!
+PASSED!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'CJF 11/23/2023 18:25:14'!
+PASSED!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'CJF 11/23/2023 18:25:14'!
+PASSED!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'CJF 11/23/2023 18:25:14'!
+PASSED!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'CJF 11/23/2023 18:25:14'!
+PASSED!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'CJF 11/23/2023 18:25:14'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'CJF 11/23/2023 18:25:14'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'CJF 11/23/2023 18:25:14'!
+PASSED!
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/23/2023 18:27:01'!
+test01! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/23/2023 18:28:56' prior: 50651035!
+test01ValidDataIsImportedCorrectly
+
+	"SupplierImporter valueFrom: self validSupplierData into: system.."
+"
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly "! !
+
+!methodRemoval: ImportTest #test01 stamp: 'CJF 11/23/2023 18:29:10'!
+test01!
+
+!classDefinition: #SupplierImporter category: 'CustomerImporter' stamp: 'CJF 11/23/2023 18:29:26'!
+CustomerImporter subclass: #SupplierImporter
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/23/2023 18:29:18' prior: 50652068!
+test01ValidDataIsImportedCorrectly
+
+	SupplierImporter valueFrom: self validSupplierData into: system.
+"
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly "! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 18:29:32'!
+ERROR!
+!ImportTest methodsFor: 'test supplier - data' stamp: 'CJF 11/23/2023 18:29:50'!
+validSupplierData
+	self shouldBeImplemented.! !
+!ImportTest methodsFor: 'test supplier - data' stamp: 'CJF 11/23/2023 18:30:58' prior: 50652103!
+validSupplierData
+	ReadStream on: 
+	'S,Supplier1,D,123			
+	NC,Pepe,Sanchez,D,22333444
+	EC,D,5456774		
+	A,San Martin,3322,Olivos,1636,BsAs	
+	A,Maipu,888,Florida,1122,Buenos Aires	'
+
+! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 18:31:03'!
+ERROR!
+!ImportTest methodsFor: 'test supplier - data' stamp: 'CJF 11/23/2023 18:32:07' prior: 50652108!
+validSupplierData
+	^ReadStream on: 
+	'S,Supplier1,D,123			
+	NC,Pepe,Sanchez,D,22333444
+	EC,D,5456774		
+	A,San Martin,3322,Olivos,1636,BsAs	
+	A,Maipu,888,Florida,1122,Buenos Aires	'
+
+! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 18:32:18'!
+ERROR!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 18:32:18'!
+ERROR!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 18:32:45'!
+ERROR!
+!CustomerImporter methodsFor: 'evaluating - private' stamp: 'CJF 11/23/2023 18:34:28' prior: 50651516!
+importRecord
+
+	self assertRecordNotEmpty.
+
+	self isCustomerRecord ifTrue: [ ^self importCustomer ].
+	self isAddressRecord ifTrue: [ ^self importAddress ].
+	self isSupplierRecord ifTrue: [^self importSupplier].
+	self error: self class invalidRecordTypeErrorDescription! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 18:34:40'!
+ERROR!
+!SupplierImporter methodsFor: 'evaluating - private' stamp: 'CJF 11/23/2023 18:34:55'!
+isSupplierRecord
+	self shouldBeImplemented.! !
+!SupplierImporter methodsFor: 'evaluating - private' stamp: 'CJF 11/23/2023 18:35:10' prior: 50652154!
+isSupplierRecord
+	! !
+!CustomerImporter methodsFor: 'evaluating - private' stamp: 'CJF 11/23/2023 18:37:09' prior: 50652139!
+importRecord
+
+	self assertRecordNotEmpty.
+
+	self isCustomerRecord ifTrue: [ ^self importCustomer ].
+	self isAddressRecord ifTrue: [ ^self importAddress ].
+	self error: self class invalidRecordTypeErrorDescription! !
+!SupplierImporter methodsFor: 'evaluating - private' stamp: 'CJF 11/23/2023 18:37:40' overrides: 50652163!
+importRecord
+	
+	self isSupplierRecord ifTrue: [^self importSupplier].! !
+!SupplierImporter methodsFor: 'evaluating - private' stamp: 'CJF 11/23/2023 18:38:07' prior: 50652174 overrides: 50652163!
+importRecord
+	self assertRecordNotEmpty .
+	self isSupplierRecord ifTrue: [^self importSupplier].! !
+!SupplierImporter methodsFor: 'evaluating - private' stamp: 'CJF 11/23/2023 18:39:32' prior: 50652159!
+isSupplierRecord
+	^ record first = 'S'.! !
+!SupplierImporter methodsFor: 'category-name' stamp: 'CJF 11/23/2023 18:40:10'!
+importSupplier
+	self shouldBeImplemented.! !
+!SupplierImporter methodsFor: 'category-name' stamp: 'CJF 11/23/2023 18:44:10' prior: 50652192!
+importSupplier
+	|newSupplier|
+	
+	newSupplier  := Supplier named: record second identificationType: record third identificationNumber: record fourth.
+	system add: newSupplier.! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 18:44:38'!
+ERROR!
+
+Supplier!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 18:47:25'!
+ERROR!
+
+!classDefinition: #Suplier category: 'CustomerImporter' stamp: 'CJF 11/23/2023 18:49:47'!
+Customer subclass: #Suplier
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!SupplierImporter methodsFor: 'category-name' stamp: 'CJF 11/23/2023 18:49:24' prior: 50652197!
+importSupplier
+	|newSupplier|
+	
+	newSupplier  := Suplier named: record second identificationType: record third identificationNumber: record fourth.
+	system add: newSupplier.! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 18:49:50'!
+ERROR!
+!Suplier class methodsFor: 'instance creation' stamp: 'CJF 11/23/2023 18:49:56'!
+named: aRenameMe1 identificationType: aRenameMe2 identificationNumber: aRenameMe3 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeNamed: aRenameMe1 identificationType: aRenameMe2 identificationNumber: aRenameMe3 ! !
+!Suplier class methodsFor: 'instance creation' stamp: 'CJF 11/23/2023 18:50:24' prior: 50652232!
+named: aName identificationType: anIdentificacionType identificationNumber: anIdentificationNumber 
+
+	^self new initializeNamed: aName identificationType: anIdentificacionType identificationNumber: anIdentificationNumber ! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 18:50:25'!
+ERROR!
+
+!classDefinition: #Suplier category: 'CustomerImporter' stamp: 'CJF 11/23/2023 18:50:31'!
+Customer subclass: #Suplier
+	instanceVariableNames: 'name'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #Suplier category: 'CustomerImporter' stamp: 'CJF 11/23/2023 18:50:31'!
+Customer subclass: #Suplier
+	instanceVariableNames: 'name identificacionType'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!Suplier methodsFor: 'initialization' stamp: 'CJF 11/23/2023 18:50:31'!
+initializeNamed: aName identificationType: anIdentificacionType identificationNumber: anIdentificationNumber 
+	self shouldBeImplemented.
+	name := aName.
+	identificacionType := anIdentificacionType.
+	identificationNumber := anIdentificationNumber.! !
+!Suplier methodsFor: 'initialization' stamp: 'CJF 11/23/2023 18:50:37' prior: 50652272!
+initializeNamed: aName identificationType: anIdentificacionType identificationNumber: anIdentificationNumber 
+	
+	name := aName.
+	identificacionType := anIdentificacionType.
+	identificationNumber := anIdentificationNumber.! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 18:50:38'!
+PASSED!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 18:50:42'!
+PASSED!
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/23/2023 18:53:45' prior: 50652089!
+test01ValidDataIsImportedCorrectly
+
+	SupplierImporter valueFrom: self validSupplierData into: system.
+	
+	self assert: 1 equals: system numberOfCustomers.
+"
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly "! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 18:53:48'!
+PASSED!
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/23/2023 18:55:19' prior: 50652300!
+test01ValidDataIsImportedCorrectly
+
+	SupplierImporter valueFrom: self validSupplierData into: system.
+	
+	self assert: 1 equals: system numberOfCustomers.
+	self assertSupplierImportedCorrectly.
+"
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly "! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 18:55:21'!
+ERROR!
+!ImportTest methodsFor: 'tests' stamp: 'CJF 11/23/2023 18:55:31'!
+assertSupplierImportedCorrectly
+	self shouldBeImplemented.! !
+!ImportTest methodsFor: 'tests' stamp: 'CJF 11/23/2023 18:57:42' prior: 50652332!
+assertSupplierImportedCorrectly
+	|importedSupplier|
+	importedSupplier := system customerWithIdentificationType: 'D' number: 123.
+	self assert: 'Supplier1' equals: importedSupplier name. 
+! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 18:57:43'!
+ERROR!
+!Suplier methodsFor: 'nil' stamp: 'CJF 11/23/2023 19:02:56' overrides: 50651401!
+identificationType
+	^identificacionType .! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 19:03:02'!
+ERROR!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 19:03:56'!
+ERROR!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 19:04:22'!
+ERROR!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 19:04:56'!
+ERROR!
+!ImportTest methodsFor: 'test supplier - data' stamp: 'CJF 11/23/2023 19:05:28' prior: 50652120!
+validSupplierData
+	^ReadStream on: 
+	'S,Supplier1,D,123
+	NC,Pepe,Sanchez,D,22333444
+	EC,D,5456774
+	A,San Martin,3322,Olivos,1636,BsAs
+	A,Maipu,888,Florida,1122,Buenos Aires	'
+
+! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 19:05:38'!
+ERROR!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 19:05:38'!
+ERROR!
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/23/2023 19:06:03' prior: 50652337!
+assertSupplierImportedCorrectly
+	|importedSupplier|
+	importedSupplier := system customerWithIdentificationType: 'D' number: '123'.
+	self assert: 'Supplier1' equals: importedSupplier name. 
+! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 19:06:08'!
+FAILURE!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 19:06:16'!
+FAILURE!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 19:06:16'!
+FAILURE!
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/23/2023 19:06:52' prior: 50652381!
+assertSupplierImportedCorrectly
+	|importedSupplier|
+	importedSupplier := system customerWithIdentificationType: 'D' number: '123'.
+	self assert: 'Supplier1' equals: importedSupplier name. 
+! !
+!Suplier methodsFor: 'nil' stamp: 'CJF 11/23/2023 19:08:02' overrides: 16903442!
+name
+	^name! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 19:08:13'!
+PASSED!
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/23/2023 19:12:36' prior: 50652316!
+test01ValidDataIsImportedCorrectly
+
+	SupplierImporter valueFrom: self validSupplierData into: system.
+	
+	self assert: 1 equals: system numberOfCustomers.
+	self assertSupplierImportedCorrectly.
+	
+"
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly "! !
+!ImportTest methodsFor: 'test supplier - data' stamp: 'CJF 11/23/2023 19:12:59' prior: 50652366!
+validSupplierData
+	^ReadStream on: 
+	'S,Supplier1,D,123
+	NC,Pepe,Sanchez,D,'
+	"EC,D,5456774
+	A,San Martin,3322,Olivos,1636,BsAs
+	A,Maipu,888,Florida,1122,Buenos Aires	'"
+
+! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/23/2023 19:13:37' prior: 50652416!
+test01ValidDataIsImportedCorrectly
+
+	SupplierImporter valueFrom: self validSupplierData into: system.
+	
+	self assert: 1 equals: system numberOfCustomers.
+	self assertSupplierImportedCorrectly.
+	self assertSupplierHasNewCustomerClient.
+"
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly "! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 19:13:40'!
+ERROR!
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/23/2023 19:13:47'!
+assertSupplierHasNewCustomerClient
+	self shouldBeImplemented.! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/23/2023 19:15:32' prior: 50652457!
+assertSupplierHasNewCustomerClient
+	|importedSupplier|
+	importedSupplier := system customerWithIdentificationType: 'D' number: '123'.
+	self assert: importedSupplier numberOfCustomers equals: 1.! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 19:15:34'!
+ERROR!
+!Suplier methodsFor: 'as yet unclassified' stamp: 'CJF 11/23/2023 19:15:44'!
+numberOfCustomers
+	self shouldBeImplemented.! !
+
+!classDefinition: #Suplier category: 'CustomerImporter' stamp: 'CJF 11/23/2023 19:16:26'!
+Customer subclass: #Suplier
+	instanceVariableNames: 'name identificacionType supplierCustomers'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!Suplier methodsFor: 'as yet unclassified' stamp: 'CJF 11/23/2023 19:16:24' prior: 50652474!
+numberOfCustomers
+	^supplierCustomers size.! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 19:16:30'!
+ERROR!
+!Suplier methodsFor: 'initialization' stamp: 'CJF 11/23/2023 19:17:04' prior: 50652283!
+initializeNamed: aName identificationType: anIdentificacionType identificationNumber: anIdentificationNumber 
+	
+	name := aName.
+	identificacionType := anIdentificacionType.
+	identificationNumber := anIdentificationNumber.
+	supplierCustomers := OrderedCollection new.! !
+!ImportTest methodsFor: 'test supplier - data' stamp: 'CJF 11/23/2023 19:18:34' prior: 50652430!
+validSupplierData
+	^ReadStream on: 
+	'S,Supplier1,D,123
+NC,Pepe,Sanchez,D,'
+	"EC,D,5456774
+	A,San Martin,3322,Olivos,1636,BsAs
+	A,Maipu,888,Florida,1122,Buenos Aires	'"
+
+! !
+!SupplierImporter methodsFor: 'evaluating - private' stamp: 'CJF 11/23/2023 19:20:34' prior: 50652181 overrides: 50652163!
+importRecord
+	self assertRecordNotEmpty .
+	self isSupplierRecord ifTrue: [^self importSupplier].
+	self isNewCustomerRecord ifTrue: [^ self importNewCustomer]! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 19:20:38'!
+ERROR!
+!SupplierImporter methodsFor: 'category-name' stamp: 'CJF 11/23/2023 19:20:48'!
+isNewCustomerRecord
+	self shouldBeImplemented.! !
+!SupplierImporter methodsFor: 'category-name' stamp: 'CJF 11/23/2023 19:21:00' prior: 50652528!
+isNewCustomerRecord
+	^record first = 'NC'! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 19:21:02'!
+ERROR!
+!SupplierImporter methodsFor: 'category-name' stamp: 'CJF 11/23/2023 19:21:09'!
+importNewCustomer
+	self shouldBeImplemented.! !
+!SupplierImporter methodsFor: 'category-name' stamp: 'CJF 11/23/2023 19:24:05' prior: 50652541!
+importNewCustomer
+	|newSupplierCustomer|
+	newSupplierCustomer := Customer named: record second withLastName: record third identificationType: record fourth indentificationNumber: record fifth .
+	! !
+!SupplierImporter methodsFor: 'as yet unclassified' stamp: 'CJF 11/23/2023 19:24:54' prior: 50652220!
+importSupplier
+	 
+	
+	newSupplier  := Suplier named: record second identificationType: record third identificationNumber: record fourth.
+	system add: newSupplier.! !
+
+!classDefinition: #SupplierImporter category: 'CustomerImporter' stamp: 'CJF 11/23/2023 19:24:54'!
+CustomerImporter subclass: #SupplierImporter
+	instanceVariableNames: 'newSupplier'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 19:25:32'!
+ERROR!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 19:28:38'!
+ERROR!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 19:28:47'!
+ERROR!
+!SupplierImporter methodsFor: 'category-name' stamp: 'CJF 11/23/2023 19:30:29' prior: 50652546!
+importNewCustomer
+	|newSupplierCustomer|
+	newSupplierCustomer := Customer named: record second withLastName: record third identificationType: record fourth indentificationNumber: record fifth .
+	newSupplier addNewCustomer: newSupplierCustomer .
+	! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 19:30:36'!
+ERROR!
+!SupplierImporter methodsFor: 'category-name' stamp: 'CJF 11/23/2023 19:54:59' prior: 50652582!
+importNewCustomer
+	|newSupplierCustomer|
+	newSupplierCustomer := Customer named: (record second) withLastName: (record third) identificationType: (record fourth) indentificationNumber: (record fifth) .
+	newSupplier addNewCustomer: newSupplierCustomer .
+	! !
+!SupplierImporter methodsFor: 'category-name' stamp: 'CJF 11/23/2023 19:55:16' prior: 50652596!
+importNewCustomer
+	|newSupplierCustomer|
+	newSupplierCustomer := nil.
+	Customer named: (record second) withLastName: (record third) identificationType: (record fourth) indentificationNumber: (record fifth) .
+	newSupplier addNewCustomer: newSupplierCustomer .
+	! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 19:55:21'!
+ERROR!
+!ImportTest methodsFor: 'test supplier - data' stamp: 'CJF 11/23/2023 19:56:25' prior: 50652507!
+validSupplierData
+	^ReadStream on: 
+	'S,Supplier1,D,123
+NC,Pepe,Sanchez,D,22333444'
+	"EC,D,5456774
+	A,San Martin,3322,Olivos,1636,BsAs
+	A,Maipu,888,Florida,1122,Buenos Aires	'"
+
+! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 19:56:34'!
+ERROR!
+!Customer class methodsFor: 'instance creation' stamp: 'CJF 11/23/2023 19:56:40'!
+named: aRenameMe1 withLastName: aRenameMe2 identificationType: aRenameMe3 indentificationNumber: aRenameMe4 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeNamed: aRenameMe1 withLastName: aRenameMe2 identificationType: aRenameMe3 indentificationNumber: aRenameMe4 ! !
+!Customer class methodsFor: 'instance creation' stamp: 'CJF 11/23/2023 19:57:16' prior: 50652635!
+named: aName withLastName: aLastName identificationType: anIdType indentificationNumber: anIdNumber 
+
+	^self new initializeNamed: aName withLastName: aLastName identificationType: anIdType indentificationNumber: anIdNumber ! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 19:57:20'!
+ERROR!
+!Customer methodsFor: 'identification' stamp: 'CJF 11/23/2023 19:59:19'!
+initializeNamed: aName withLastName: aLastName identificationType: anIdType indentificationNumber: anIdNumber 
+	firstName := aName.
+	lastName := aLastName .
+	identificationType := anIdType .
+	identificationNumber := anIdNumber .! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 19:59:32'!
+ERROR!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 19:59:32'!
+ERROR!
+!Suplier methodsFor: 'as yet unclassified' stamp: 'CJF 11/23/2023 19:59:38'!
+addNewCustomer: newSupplierCustomer 
+	self shouldBeImplemented.! !
+!Suplier methodsFor: 'as yet unclassified' stamp: 'CJF 11/23/2023 19:59:51' prior: 50652678!
+addNewCustomer: newSupplierCustomer 
+	supplierCustomers add: newSupplierCustomer .! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 19:59:52'!
+PASSED!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 19:59:55'!
+PASSED!
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/23/2023 20:00:44' prior: 50652439!
+test01ValidDataIsImportedCorrectly
+
+	SupplierImporter valueFrom: self validSupplierData into: system.
+	
+	self assert: 1 equals: system numberOfCustomers.
+	self assertSupplierImportedCorrectly.
+	self assertSupplierHasNewCustomerClient.
+	self assertNewCustomerIsPepeSanchez.
+"
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly "! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 20:00:47'!
+ERROR!
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/23/2023 20:00:52'!
+assertNewCustomerIsPepeSanchez
+	self shouldBeImplemented.! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/23/2023 20:03:16' prior: 50652714!
+assertNewCustomerIsPepeSanchez
+	|newSupplier|
+	newSupplier := system customerWithIdentificationType: 'D' number: '123'.
+	self assert: (newSupplier hasCustomer:( Customer named: 'Pepe' withLastName: 'Sanchez' identificationType: 'D'  indentificationNumber: '22333444' ) )! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 20:03:22'!
+ERROR!
+!Suplier methodsFor: 'as yet unclassified' stamp: 'CJF 11/23/2023 20:03:27'!
+hasCustomer: aRenameMe1 
+	self shouldBeImplemented.! !
+!Suplier methodsFor: 'as yet unclassified' stamp: 'CJF 11/23/2023 20:03:44' prior: 50652734!
+hasCustomer: aCustomer 
+	supplierCustomers includes: aCustomer! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 20:03:45'!
+ERROR!
+!Suplier methodsFor: 'as yet unclassified' stamp: 'CJF 11/23/2023 20:04:05' prior: 50652739!
+hasCustomer: aCustomer 
+	^supplierCustomers includes: aCustomer! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 20:04:11'!
+FAILURE!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 20:04:11'!
+FAILURE!
+!Customer methodsFor: 'nil' stamp: 'CJF 11/23/2023 20:06:35' overrides: 16901772!
+= anObject
+	(self isKindOf: anObject class) ifTrue: [
+		^firstName = anObject firstName and: [ lastName = anObject lastName ] and: [ identificationType = anObject identificationType ] and: [ identificationNumber = anObject identificationNumber ].
+		].
+	^false.
+	! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 20:06:46'!
+FAILURE!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 20:06:46'!
+FAILURE!
+!SupplierImporter methodsFor: 'category-name' stamp: 'CJF 11/23/2023 20:07:36' prior: 50652608!
+importNewCustomer
+	|newSupplierCustomer|
+	newSupplierCustomer := Customer named: (record second) withLastName: (record third) identificationType: (record fourth) indentificationNumber: (record fifth) .
+	newSupplier addNewCustomer: newSupplierCustomer .
+	! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 20:07:37'!
+PASSED!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 20:07:41'!
+PASSED!
+!ImportTest methodsFor: 'test supplier - data' stamp: 'CJF 11/23/2023 20:08:30' prior: 50652623!
+validSupplierData
+	^ReadStream on: 
+	'S,Supplier1,D,123
+NC,Pepe,Sanchez,D,22333444
+EC,D,5456774'
+"	A,San Martin,3322,Olivos,1636,BsAs
+	A,Maipu,888,Florida,1122,Buenos Aires	'"
+
+! !
+
+----SNAPSHOT----(23 November 2023 20:18:43) CuisUniversity-5981.image priorSource: 10197292!
+
+Object subclass: #TextImporter
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #TextImporter category: 'CustomerImporter' stamp: 'CJF 11/23/2023 20:19:18'!
+Object subclass: #TextImporter
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+TextImporter subclass: #CustomerImporter
+	instanceVariableNames: 'readStream newCustomer line record system'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #CustomerImporter category: 'CustomerImporter' stamp: 'CJF 11/23/2023 20:19:28'!
+TextImporter subclass: #CustomerImporter
+	instanceVariableNames: 'readStream newCustomer line record system'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+TextImporter subclass: #SupplierImporter
+	instanceVariableNames: 'newSupplier'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #SupplierImporter category: 'CustomerImporter' stamp: 'CJF 11/23/2023 20:20:20'!
+TextImporter subclass: #SupplierImporter
+	instanceVariableNames: 'newSupplier'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!TextImporter methodsFor: 'evaluating - private' stamp: 'CJF 11/23/2023 20:20:38'!
+importRecord
+
+	self subclassResponsibility! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 20:21:24'!
+ERROR!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 20:21:24'!
+ERROR!
+!TextImporter class methodsFor: 'importing' stamp: 'CJF 11/23/2023 20:21:55'!
+valueFrom: aReadStream into: aCustomerSystem
+
+	^(self from: aReadStream into: aCustomerSystem) value! !
+
+!methodRemoval: CustomerImporter class #valueFrom:into: stamp: 'CJF 11/23/2023 20:21:55'!
+valueFrom: aReadStream into: aCustomerSystem
+
+	^(self from: aReadStream into: aCustomerSystem) value!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 20:22:12'!
+ERROR!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 20:22:12'!
+ERROR!
+!TextImporter class methodsFor: 'instance creation' stamp: 'CJF 11/23/2023 20:22:29'!
+from: aReadStream into: aCustomerSystem
+
+	^self new initializeFrom: aReadStream into: aCustomerSystem! !
+
+!methodRemoval: CustomerImporter class #from:into: stamp: 'CJF 11/23/2023 20:22:30'!
+from: aReadStream into: aCustomerSystem
+
+	^self new initializeFrom: aReadStream into: aCustomerSystem!
+!TextImporter class methodsFor: 'error messages' stamp: 'CJF 11/23/2023 20:22:36'!
+canNotImportAddressWithoutCustomerErrorDescription
+
+	^'Cannot import address without customer'! !
+
+!methodRemoval: CustomerImporter class #canNotImportAddressWithoutCustomerErrorDescription stamp: 'CJF 11/23/2023 20:22:36'!
+canNotImportAddressWithoutCustomerErrorDescription
+
+	^'Cannot import address without customer'!
+!TextImporter class methodsFor: 'error messages' stamp: 'CJF 11/23/2023 20:22:40'!
+invalidRecordTypeErrorDescription
+
+	^'Invalid record type'! !
+
+!methodRemoval: CustomerImporter class #invalidRecordTypeErrorDescription stamp: 'CJF 11/23/2023 20:22:40'!
+invalidRecordTypeErrorDescription
+
+	^'Invalid record type'!
+
+!classDefinition: #CustomerImporter category: 'CustomerImporter' stamp: 'CJF 11/23/2023 20:23:29'!
+TextImporter subclass: #CustomerImporter
+	instanceVariableNames: 'newCustomer line record system'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #TextImporter category: 'CustomerImporter' stamp: 'CJF 11/23/2023 20:23:29'!
+Object subclass: #TextImporter
+	instanceVariableNames: 'readStream'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #CustomerImporter category: 'CustomerImporter' stamp: 'CJF 11/23/2023 20:23:29'!
+TextImporter subclass: #CustomerImporter
+	instanceVariableNames: 'newCustomer line record'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #TextImporter category: 'CustomerImporter' stamp: 'CJF 11/23/2023 20:23:29'!
+Object subclass: #TextImporter
+	instanceVariableNames: 'readStream system'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!TextImporter methodsFor: 'initialization' stamp: 'CJF 11/23/2023 20:23:29'!
+initializeFrom: aReadStream into: aCustomerSystem
+
+	readStream := aReadStream.
+	system := aCustomerSystem ! !
+
+!methodRemoval: CustomerImporter #initializeFrom:into: stamp: 'CJF 11/23/2023 20:23:29'!
+initializeFrom: aReadStream into: aCustomerSystem
+
+	readStream := aReadStream.
+	system := aCustomerSystem !
+!TextImporter methodsFor: 'evaluating' stamp: 'CJF 11/23/2023 20:23:38' overrides: 16902254!
+value
+
+	[ self hasLineToImport ] whileTrue: [
+		self createRecord.
+		self importRecord ].
+
+	! !
+
+!methodRemoval: CustomerImporter #value stamp: 'CJF 11/23/2023 20:23:38'!
+value
+
+	[ self hasLineToImport ] whileTrue: [
+		self createRecord.
+		self importRecord ].
+
+	!
+
+!classDefinition: #CustomerImporter category: 'CustomerImporter' stamp: 'CJF 11/23/2023 20:23:51'!
+TextImporter subclass: #CustomerImporter
+	instanceVariableNames: 'newCustomer record'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #TextImporter category: 'CustomerImporter' stamp: 'CJF 11/23/2023 20:23:51'!
+Object subclass: #TextImporter
+	instanceVariableNames: 'readStream system line'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!TextImporter methodsFor: 'evaluating - private' stamp: 'CJF 11/23/2023 20:23:51'!
+hasLineToImport
+
+	line := readStream nextLine.
+	^line notNil! !
+
+!methodRemoval: CustomerImporter #hasLineToImport stamp: 'CJF 11/23/2023 20:23:51'!
+hasLineToImport
+
+	line := readStream nextLine.
+	^line notNil!
+
+!classDefinition: #CustomerImporter category: 'CustomerImporter' stamp: 'CJF 11/23/2023 20:24:00'!
+TextImporter subclass: #CustomerImporter
+	instanceVariableNames: 'newCustomer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #TextImporter category: 'CustomerImporter' stamp: 'CJF 11/23/2023 20:24:00'!
+Object subclass: #TextImporter
+	instanceVariableNames: 'readStream system line record'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!TextImporter methodsFor: 'evaluating - private' stamp: 'CJF 11/23/2023 20:24:00'!
+createRecord
+
+	^ record := line findTokens: $,! !
+
+!methodRemoval: CustomerImporter #createRecord stamp: 'CJF 11/23/2023 20:24:00'!
+createRecord
+
+	^ record := line findTokens: $,!
+!TextImporter methodsFor: 'evaluating - private' stamp: 'CJF 11/23/2023 20:24:12'!
+assertRecordNotEmpty
+
+	record isEmpty ifTrue: [ self error: self class invalidRecordTypeErrorDescription ]! !
+
+!methodRemoval: CustomerImporter #assertRecordNotEmpty stamp: 'CJF 11/23/2023 20:24:12'!
+assertRecordNotEmpty
+
+	record isEmpty ifTrue: [ self error: self class invalidRecordTypeErrorDescription ]!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 20:24:32'!
+PASSED!
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/23/2023 20:28:55' prior: 50652695!
+test01ValidDataIsImportedCorrectly
+
+	SupplierImporter valueFrom: self validSupplierData into: system.
+	
+	self assert: 1 equals: system numberOfCustomers.
+	self assertSupplierImportedCorrectly.
+	self assertSupplierHasNewCustomerClient.
+	self assertNewCustomerIsPepeSanchez.
+"
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly "! !
+!SupplierImporter methodsFor: 'category-name' stamp: 'CJF 11/23/2023 20:30:24' prior: 50652778!
+importNewCustomer
+	|newSupplierCustomer|
+	newSupplierCustomer := Customer named: (record second) withLastName: (record third) identificationType: (record fourth) indentificationNumber: (record fifth) .
+	newSupplier addNewCustomer: newSupplierCustomer .
+	system add: newSupplierCustomer.! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 20:30:58'!
+FAILURE!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 20:30:58'!
+FAILURE!
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/23/2023 20:31:59' prior: 50653035!
+test01ValidDataIsImportedCorrectly
+
+	SupplierImporter valueFrom: self validSupplierData into: system.
+	
+	self assert: 1 equals: system numberOfSuppliers.
+	self assertSupplierImportedCorrectly.
+	self assertSupplierHasNewCustomerClient.
+	self assertNewCustomerIsPepeSanchez.
+"
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly "! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 20:32:03'!
+ERROR!
+!TransientCustomerSystem methodsFor: 'category-name' stamp: 'CJF 11/23/2023 20:32:15'!
+numberOfSuppliers
+	self shouldBeImplemented.! !
+!TransientCustomerSystem methodsFor: 'category-name' stamp: 'CJF 11/23/2023 20:33:03' prior: 50653089!
+numberOfSuppliers
+	^(customers select: [ :aCustomer | aCustomer isKindOf: Suplier ]) size! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 20:33:05'!
+PASSED!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 20:33:05'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'CJF 11/23/2023 20:33:05'!
+PASSED!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'CJF 11/23/2023 20:33:05'!
+PASSED!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'CJF 11/23/2023 20:33:05'!
+PASSED!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'CJF 11/23/2023 20:33:05'!
+PASSED!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'CJF 11/23/2023 20:33:05'!
+PASSED!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'CJF 11/23/2023 20:33:05'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'CJF 11/23/2023 20:33:05'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'CJF 11/23/2023 20:33:05'!
+PASSED!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 20:33:11'!
+PASSED!
+!TransientCustomerSystem methodsFor: 'customers' stamp: 'CJF 11/23/2023 20:33:31' prior: 50651713 overrides: 50651589!
+numberOfCustomers
+
+	^(customers select: [ :aCustomer | aCustomer isKindOf: Customer ]) size! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/23/2023 20:34:03'!
+test02
+
+	SupplierImporter valueFrom: self validSupplierDataWithExistingCustomer into: system.
+	
+	self assert: 1 equals: system numberOfSuppliers.
+	self assertSupplierImportedCorrectly.
+	self assertSupplierHasNewCustomerClient.
+	self assertNewCustomerIsPepeSanchez.
+"
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly "! !
+
+!testRun: #ImportTest #test02 stamp: 'CJF 11/23/2023 20:34:09'!
+ERROR!
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'CJF 11/23/2023 20:36:19'!
+validSupplierDataWithExistingCustomer
+	self shouldBeImplemented.! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/23/2023 20:38:44' prior: 50653146!
+test02
+	CustomerImporter valueFrom: self validImportData into: system.
+	SupplierImporter valueFrom: self validSupplierDataWithExistingCustomer into: system.
+	
+	self assert: 1 equals: system numberOfSuppliers.
+	self assertSupplierImportedCorrectly.
+	self assertSupplierHasNewCustomerClient.
+	self assertNewCustomerIsPepeSanchez.
+"
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly "! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/23/2023 20:39:08' prior: 50653170!
+test02
+	CustomerImporter valueFrom: self validImportData2 into: system.
+	SupplierImporter valueFrom: self validSupplierDataWithExistingCustomer into: system.
+	
+	
+	"
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly "! !
+!ImportTest methodsFor: 'test data' stamp: 'CJF 11/23/2023 20:40:03'!
+validImportData2
+
+	^ ReadStream on:
+'C,Mariano,Sanchez,D,5456774
+A,San Martin,3322,Olivos,1636,BsAs'! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/23/2023 20:41:23' prior: 50653188!
+test02
+	CustomerImporter valueFrom: self validImportData2 into: system.
+	SupplierImporter valueFrom: self validSupplierDataWithExistingCustomer into: system.
+	
+	self assert: system numberOfCustomers equals: 2.
+	"
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly "! !
+!ImportTest methodsFor: 'test supplier - data' stamp: 'CJF 11/23/2023 20:42:51'!
+suplierWithEC
+	^ReadStream on: 
+	'S,Supplier1,D,123
+EC,D,5456774'! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/23/2023 20:44:50' prior: 50653207!
+test02
+	CustomerImporter valueFrom: self validImportData2 into: system.
+	SupplierImporter valueFrom: self suplierWithEC into: system.
+	
+	self assert: system numberOfCustomers equals: 1.
+	self assert: system numberOfSuppliers equals: 1.
+	"self assertNewC"
+	"
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly "! !
+!ImportTest methodsFor: 'test data' stamp: 'CJF 11/23/2023 20:45:09' prior: 50653200!
+validImportData2
+
+	^ ReadStream on:
+'C,Pepe,Sanchez,D,22333444
+A,San Martin,3322,Olivos,1636,BsAs'! !
+!ImportTest methodsFor: 'test supplier - data' stamp: 'CJF 11/23/2023 20:45:31' prior: 50653221!
+suplierWithEC
+	^ReadStream on: 
+	'S,Supplier1,D,123
+EC,D,22333444'! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/23/2023 20:45:44' prior: 50653227!
+test02
+	CustomerImporter valueFrom: self validImportData2 into: system.
+	SupplierImporter valueFrom: self suplierWithEC into: system.
+	
+	self assert: system numberOfCustomers equals: 1.
+	self assert: system numberOfSuppliers equals: 1.
+	self assertNewCustomerIsPepeSanchez.
+	"
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly "! !
+
+!testRun: #ImportTest #test02 stamp: 'CJF 11/23/2023 20:45:45'!
+FAILURE!
+!SupplierImporter methodsFor: 'evaluating - private' stamp: 'CJF 11/23/2023 20:47:43' prior: 50652517 overrides: 50652847!
+importRecord
+	self assertRecordNotEmpty .
+	self isSupplierRecord ifTrue: [^self importSupplier].
+	self isNewCustomerRecord ifTrue: [^ self importNewCustomer].
+	self isECRecord ifTrue: [ ^ self importEC ]! !
+
+!testRun: #ImportTest #test02 stamp: 'CJF 11/23/2023 20:47:48'!
+ERROR!
+!SupplierImporter methodsFor: 'category-name' stamp: 'CJF 11/23/2023 20:47:56'!
+isECRecord
+	self shouldBeImplemented.! !
+!SupplierImporter methodsFor: 'category-name' stamp: 'CJF 11/23/2023 20:48:11' prior: 50653287!
+isECRecord
+	^record first = 'EC'! !
+
+!testRun: #ImportTest #test02 stamp: 'CJF 11/23/2023 20:48:12'!
+ERROR!
+!SupplierImporter methodsFor: 'category-name' stamp: 'CJF 11/23/2023 20:48:32'!
+importEC
+	self shouldBeImplemented.! !
+!SupplierImporter methodsFor: 'category-name' stamp: 'CJF 11/23/2023 20:52:04' prior: 50653298!
+importEC
+	|customer|
+	customer := system customerWithIdentificationType: record second number: record third .
+	newSupplier addNewCustomer: customer. 
+! !
+
+!testRun: #ImportTest #test02 stamp: 'CJF 11/23/2023 20:52:05'!
+FAILURE!
+!TransientCustomerSystem methodsFor: 'customers' stamp: 'CJF 11/23/2023 20:58:16' prior: 50653140 overrides: 50651589!
+numberOfCustomers
+
+	^(customers select: [ :aCustomer | aCustomer class == Customer ]) size! !
+
+!testRun: #ImportTest #test02 stamp: 'CJF 11/23/2023 20:58:21'!
+PASSED!
+
+!testRun: #ImportTest #test02 stamp: 'CJF 11/23/2023 20:58:25'!
+PASSED!
+
+!testRun: #ImportTest #test02 stamp: 'CJF 11/23/2023 20:59:42'!
+PASSED!
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/23/2023 21:00:48'!
+test03
+	SupplierImporter valueFrom: self into: system.
+	
+	self assert: system numberOfCustomers equals: 1.
+	self assert: system numberOfSuppliers equals: 1.
+	self assertNewCustomerIsPepeSanchez.
+	"
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly "! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/23/2023 21:02:18' prior: 50653327!
+test03
+	SupplierImporter valueFrom: self validSupplierData into: system.
+	
+	self assertSupplierHasTwoAddresses.! !
+
+!testRun: #ImportTest #test03 stamp: 'CJF 11/23/2023 21:02:24'!
+ERROR!
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/23/2023 21:02:39' prior: 50653341!
+test03
+	SupplierImporter valueFrom: self validSupplierData into: system.
+	
+	self assertSupplierHasTwoAddresses! !
+
+!testRun: #ImportTest #test03 stamp: 'CJF 11/23/2023 21:02:44'!
+ERROR!
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/23/2023 21:03:27' prior: 50653350!
+test03
+	SupplierImporter valueFrom: self validSupplierData into: system.
+	
+	! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/23/2023 21:04:14'!
+assertSupplierHasTwoAddresses
+	|importedSupplier|
+	importedSupplier := system customerWithIdentificationType: 'D' number: '123'.
+	self assert: importedSupplier numberOfAddresses equals: 2.! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/23/2023 21:04:24' prior: 50653359!
+test03
+	SupplierImporter valueFrom: self validSupplierData into: system.
+	self assertSupplierHasTwoAddresses
+	
+	! !
+
+!testRun: #ImportTest #test03 stamp: 'CJF 11/23/2023 21:04:25'!
+ERROR!
+!ImportTest methodsFor: 'test supplier - data' stamp: 'CJF 11/23/2023 21:05:35' prior: 50652796!
+validSupplierData
+	^ReadStream on: 
+	'S,Supplier1,D,123
+	A,San Martin,3322,Olivos,1636,BsAs
+	A,Maipu,888,Florida,1122,Buenos Aires	'
+
+! !
+!ImportTest methodsFor: 'test supplier - data' stamp: 'CJF 11/23/2023 21:06:12'!
+suplierWithAddresses
+	^ReadStream on: 
+	'S,Supplier1,D,123
+A,San Martin,3322,Olivos,1636,BsAs
+A,Maipu,888,Florida,1122,Buenos Aires	'
+
+! !
+
+!testRun: #ImportTest #test03 stamp: 'CJF 11/23/2023 21:06:19'!
+ERROR!
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/23/2023 21:06:27' prior: 50653373!
+test03
+	SupplierImporter valueFrom: self suplierWithAddresses into: system.
+	self assertSupplierHasTwoAddresses
+	
+	! !
+
+!testRun: #ImportTest #test03 stamp: 'CJF 11/23/2023 21:06:29'!
+ERROR!
+!Suplier methodsFor: 'as yet unclassified' stamp: 'CJF 11/23/2023 21:06:36'!
+numberOfAddresses
+	self shouldBeImplemented.! !
+!Suplier methodsFor: 'as yet unclassified' stamp: 'CJF 11/23/2023 21:06:45' prior: 50653408!
+numberOfAddresses
+	^addresses size! !
+
+!testRun: #ImportTest #test03 stamp: 'CJF 11/23/2023 21:06:47'!
+FAILURE!
+!SupplierImporter methodsFor: 'evaluating - private' stamp: 'CJF 11/23/2023 21:07:40' prior: 50653275 overrides: 50652847!
+importRecord
+	self assertRecordNotEmpty .
+	self isSupplierRecord ifTrue: [^self importSupplier].
+	self isNewCustomerRecord ifTrue: [^ self importNewCustomer].
+	self isECRecord ifTrue: [ ^ self importEC ].
+	self isAddressRecord: [ ^ self importAddress ].! !
+
+!testRun: #ImportTest #test03 stamp: 'CJF 11/23/2023 21:07:42'!
+ERROR!
+!SupplierImporter methodsFor: 'evaluating' stamp: 'CJF 11/23/2023 21:07:51'!
+isAddressRecord: aRenameMe1 
+	self shouldBeImplemented.! !
+!SupplierImporter methodsFor: 'evaluating - private' stamp: 'CJF 11/23/2023 21:08:33' prior: 50653421 overrides: 50652847!
+importRecord
+	self assertRecordNotEmpty .
+	self isSupplierRecord ifTrue: [^self importSupplier].
+	self isNewCustomerRecord ifTrue: [^ self importNewCustomer].
+	self isECRecord ifTrue: [ ^ self importEC ].
+	self isAddressRecord ifTrue: [ ^ self importAddress ].! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 21:08:35'!
+ERROR!
+
+!testRun: #ImportTest #test02 stamp: 'CJF 11/23/2023 21:08:35'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'CJF 11/23/2023 21:08:35'!
+PASSED!
+
+!testRun: #ImportTest #test03 stamp: 'CJF 11/23/2023 21:08:35'!
+ERROR!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'CJF 11/23/2023 21:08:35'!
+PASSED!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'CJF 11/23/2023 21:08:35'!
+PASSED!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'CJF 11/23/2023 21:08:35'!
+PASSED!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'CJF 11/23/2023 21:08:35'!
+PASSED!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'CJF 11/23/2023 21:08:35'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'CJF 11/23/2023 21:08:35'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'CJF 11/23/2023 21:08:35'!
+PASSED!
+
+!methodRemoval: SupplierImporter #isAddressRecord: stamp: 'CJF 11/23/2023 21:08:56'!
+isAddressRecord: aRenameMe1 
+	self shouldBeImplemented.!
+
+!testRun: #ImportTest #test03 stamp: 'CJF 11/23/2023 21:09:12'!
+ERROR!
+!SupplierImporter methodsFor: 'evaluating' stamp: 'CJF 11/23/2023 21:09:18'!
+isAddressRecord
+	self shouldBeImplemented.! !
+!SupplierImporter methodsFor: 'evaluating' stamp: 'CJF 11/23/2023 21:09:34' prior: 50653494!
+isAddressRecord
+	^record first = 'A'! !
+
+!testRun: #ImportTest #test03 stamp: 'CJF 11/23/2023 21:09:36'!
+ERROR!
+!SupplierImporter methodsFor: 'category-name' stamp: 'CJF 11/23/2023 21:09:45'!
+importAddress
+	self shouldBeImplemented.! !
+!SupplierImporter methodsFor: 'category-name' stamp: 'CJF 11/23/2023 21:11:43' prior: 50653505!
+importAddress
+	|newAddress|
+	newAddress := Address withStreetName: record second streetNumber: record third asNumber town: record fourth zipCode: record fifth province: record sixth .
+	newSupplier addAddress: newAddress .! !
+
+!testRun: #ImportTest #test03 stamp: 'CJF 11/23/2023 21:11:50'!
+ERROR!
+!Address class methodsFor: 'instance creation' stamp: 'CJF 11/23/2023 21:11:55'!
+withStreetName: aRenameMe1 streetNumber: aRenameMe2 town: aRenameMe3 zipCode: aRenameMe4 province: aRenameMe5 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeWithStreetName: aRenameMe1 streetNumber: aRenameMe2 town: aRenameMe3 zipCode: aRenameMe4 province: aRenameMe5 ! !
+!Address class methodsFor: 'instance creation' stamp: 'CJF 11/23/2023 21:12:40' prior: 50653522!
+withStreetName: aStreetName streetNumber: aStreetNumber town: aTown zipCode: aZipCode province: aProvince 
+	
+	^self new initializeWithStreetName: aStreetName streetNumber: aStreetNumber town: aTown zipCode: aZipCode province: aProvince ! !
+
+!testRun: #ImportTest #test03 stamp: 'CJF 11/23/2023 21:12:44'!
+ERROR!
+!Address methodsFor: 'initialization' stamp: 'CJF 11/23/2023 21:12:54'!
+initializeWithStreetName: aStreetName streetNumber: aStreetNumber town: aTown zipCode: aZipCode province: aProvince 
+	self shouldBeImplemented.
+	streetName := aStreetName.
+	streetNumber := aStreetNumber.
+	town := aTown.
+	zipCode := aZipCode.
+	province := aProvince.! !
+!Address methodsFor: 'initialization' stamp: 'CJF 11/23/2023 21:13:04' prior: 50653548!
+initializeWithStreetName: aStreetName streetNumber: aStreetNumber town: aTown zipCode: aZipCode province: aProvince 
+	
+	streetName := aStreetName.
+	streetNumber := aStreetNumber.
+	town := aTown.
+	zipCode := aZipCode.
+	province := aProvince.! !
+
+!testRun: #ImportTest #test03 stamp: 'CJF 11/23/2023 21:13:06'!
+PASSED!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 21:13:06'!
+FAILURE!
+
+!testRun: #ImportTest #test02 stamp: 'CJF 11/23/2023 21:13:06'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'CJF 11/23/2023 21:13:06'!
+PASSED!
+
+!testRun: #ImportTest #test03 stamp: 'CJF 11/23/2023 21:13:06'!
+PASSED!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'CJF 11/23/2023 21:13:06'!
+PASSED!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'CJF 11/23/2023 21:13:06'!
+PASSED!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'CJF 11/23/2023 21:13:06'!
+PASSED!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'CJF 11/23/2023 21:13:06'!
+PASSED!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'CJF 11/23/2023 21:13:06'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'CJF 11/23/2023 21:13:06'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'CJF 11/23/2023 21:13:06'!
+PASSED!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/23/2023 21:13:06'!
+FAILURE!
+
+!testRun: #ImportTest #test03 stamp: 'CJF 11/23/2023 21:17:27'!
+PASSED!
+
+----SNAPSHOT----(24 November 2023 22:56:29) CuisUniversity-5981.image priorSource: 10276916!
+
+----QUIT----(24 November 2023 22:56:41) CuisUniversity-5981.image priorSource: 10302850!
+
+----STARTUP---- (26 November 2023 12:00:29) as C:\Users\crist\Desktop\ASF7\Nueva carpeta\CuisUniversity-5981.image!
+
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/26/2023 19:05:22'!
+FAILURE!
+
+!testRun: #ImportTest #test02 stamp: 'CJF 11/26/2023 19:05:22'!
+PASSED!
+
+!testRun: #ImportTest #test03 stamp: 'CJF 11/26/2023 19:05:22'!
+PASSED!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/26/2023 19:05:22'!
+FAILURE!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/26/2023 19:05:31'!
+FAILURE!
+
+!testRun: #ImportTest #test02 stamp: 'CJF 11/26/2023 19:05:31'!
+PASSED!
+
+!testRun: #ImportTest #test03 stamp: 'CJF 11/26/2023 19:05:31'!
+PASSED!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/26/2023 19:05:31'!
+FAILURE!
+
+DevelopmentEnvironment makeCurrent !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/26/2023 19:06:22'!
+FAILURE!
+
+!testRun: #ImportTest #test02 stamp: 'CJF 11/26/2023 19:06:22'!
+PASSED!
+
+!testRun: #ImportTest #test03 stamp: 'CJF 11/26/2023 19:06:22'!
+PASSED!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/26/2023 19:06:22'!
+FAILURE!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/26/2023 19:06:37'!
+FAILURE!
+!ImportTest methodsFor: 'test supplier - data' stamp: 'CJF 11/26/2023 19:09:42' prior: 50653382!
+validSupplierData
+	^ReadStream on:  'S,Supplier1,D,123
+NC,Pepe,Sanchez,D,22333444
+EC,D,5456774
+A,San Martin,3322,Olivos,1636,BsAs
+A,Maipu,888,Florida,1122,Buenos Aires'
+
+! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/26/2023 19:09:48'!
+ERROR!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/26/2023 19:09:48'!
+ERROR!
+!ImportTest methodsFor: 'test supplier - data' stamp: 'CJF 11/26/2023 19:10:11' prior: 50653662!
+validSupplierData
+	^ReadStream on:  'S,Supplier1,D,123
+NC,Pepe,Sanchez,D,22333444'
+
+! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/26/2023 19:10:16'!
+PASSED!
+
+!testRun: #ImportTest #test02 stamp: 'CJF 11/26/2023 19:10:21'!
+PASSED!
+
+!testRun: #ImportTest #test03 stamp: 'CJF 11/26/2023 19:11:01'!
+PASSED!
+!ImportTest methodsFor: 'test supplier - data' stamp: 'CJF 11/26/2023 19:11:22'!
+supplierWithOneNewCustomer
+	^ReadStream on:  'S,Supplier1,D,123
+NC,Pepe,Sanchez,D,22333444'
+
+! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'CJF 11/26/2023 19:11:22' prior: 50653070!
+test01ValidDataIsImportedCorrectly
+
+	SupplierImporter valueFrom: self supplierWithOneNewCustomer into: system.
+	
+	self assert: 1 equals: system numberOfSuppliers.
+	self assertSupplierImportedCorrectly.
+	self assertSupplierHasNewCustomerClient.
+	self assertNewCustomerIsPepeSanchez.
+"
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly "! !
+
+!methodRemoval: ImportTest #validSupplierData stamp: 'CJF 11/26/2023 19:11:22'!
+validSupplierData
+	^ReadStream on:  'S,Supplier1,D,123
+NC,Pepe,Sanchez,D,22333444'
+
+!
+!ImportTest methodsFor: 'test supplier - data' stamp: 'CJF 11/26/2023 19:12:05'!
+customerImporterWithAddress
+
+	^ ReadStream on:
+'C,Pepe,Sanchez,D,22333444
+A,San Martin,3322,Olivos,1636,BsAs'! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'CJF 11/26/2023 19:12:05' prior: 50653255!
+test02
+	CustomerImporter valueFrom: self customerImporterWithAddress into: system.
+	SupplierImporter valueFrom: self suplierWithEC into: system.
+	
+	self assert: system numberOfCustomers equals: 1.
+	self assert: system numberOfSuppliers equals: 1.
+	self assertNewCustomerIsPepeSanchez.
+	"
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly "! !
+
+!methodRemoval: ImportTest #validImportData2 stamp: 'CJF 11/26/2023 19:12:05'!
+validImportData2
+
+	^ ReadStream on:
+'C,Pepe,Sanchez,D,22333444
+A,San Martin,3322,Olivos,1636,BsAs'!
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/26/2023 19:13:04'!
+test02validDataWithExistingCustomerImportedCorrectly
+	CustomerImporter valueFrom: self customerImporterWithAddress into: system.
+	SupplierImporter valueFrom: self suplierWithEC into: system.
+	
+	self assert: system numberOfCustomers equals: 1.
+	self assert: system numberOfSuppliers equals: 1.
+	self assertNewCustomerIsPepeSanchez.
+	"
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly "! !
+
+!methodRemoval: ImportTest #test02 stamp: 'CJF 11/26/2023 19:13:05'!
+test02
+	CustomerImporter valueFrom: self customerImporterWithAddress into: system.
+	SupplierImporter valueFrom: self suplierWithEC into: system.
+	
+	self assert: system numberOfCustomers equals: 1.
+	self assert: system numberOfSuppliers equals: 1.
+	self assertNewCustomerIsPepeSanchez.
+	"
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly "!
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/26/2023 19:13:27'!
+test03supplierWithAddressesImportedCorrectly
+	SupplierImporter valueFrom: self suplierWithAddresses into: system.
+	self assertSupplierHasTwoAddresses
+	
+	! !
+
+!methodRemoval: ImportTest #test03 stamp: 'CJF 11/26/2023 19:13:27'!
+test03
+	SupplierImporter valueFrom: self suplierWithAddresses into: system.
+	self assertSupplierHasTwoAddresses
+	
+	!
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/26/2023 19:14:17'!
+test04supplierMustHaveOnlyFourFields
+	! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/26/2023 19:14:47' prior: 50653794!
+test04supplierMustHaveOnlyFourFields
+	SupplierImporter valueFrom: 'D' into: system.
+! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/26/2023 19:17:04' prior: 50653799!
+test04supplierMustHaveOnlyFourFields
+	self should:[
+	SupplierImporter valueFrom: 'S, ,D,123' into: system.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [ :anError | 
+		self assert: anError messageText equals: Suplier 
+		]
+! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/26/2023 19:18:21' prior: 50653805!
+test04supplierMustHaveOnlyFourFields
+	self should:[
+	SupplierImporter valueFrom: 'S, ,D,123' into: system.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [ :anError | 
+		self assert: anError messageText equals: SupplierImporter supplierRecordNumberFieldsErrorMessage.
+		]
+! !
+
+!testRun: #ImportTest #test04supplierMustHaveOnlyFourFields stamp: 'CJF 11/26/2023 19:18:54'!
+ERROR!
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/26/2023 19:19:26' prior: 50653816!
+test04supplierMustHaveOnlyFourFields
+	self should:[
+	SupplierImporter valueFrom: (ReadStream on: 'S, ,D,123') into: system.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [ :anError | 
+		self assert: anError messageText equals: SupplierImporter supplierRecordNumberFieldsErrorMessage.
+		]
+! !
+
+record size!
+
+record size!
+
+record size!
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/26/2023 19:21:16' prior: 50653832!
+test04supplierMustHaveOnlyFourFields
+	self should:[
+	SupplierImporter valueFrom: (ReadStream on: 'S,,D,123') into: system.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [ :anError | 
+		self assert: anError messageText equals: SupplierImporter supplierRecordNumberFieldsErrorMessage.
+		]
+! !
+!SupplierImporter methodsFor: 'category-name' stamp: 'CJF 11/26/2023 19:22:14' prior: 50652556!
+importSupplier
+	 
+	
+	(record size = 4) ifFalse: [ self error: SupplierImporter supplierRecordNumberFieldsErrorMessage].
+	
+	newSupplier  := Suplier named: record second identificationType: record third identificationNumber: record fourth.
+	system add: newSupplier.! !
+
+!testRun: #ImportTest #test04supplierMustHaveOnlyFourFields stamp: 'CJF 11/26/2023 19:22:23'!
+ERROR!
+!SupplierImporter class methodsFor: 'error messages' stamp: 'CJF 11/26/2023 19:22:33'!
+supplierRecordNumberFieldsErrorMessage
+	self shouldBeImplemented.! !
+!SupplierImporter class methodsFor: 'error messages' stamp: 'CJF 11/26/2023 19:23:18' prior: 50653874!
+supplierRecordNumberFieldsErrorMessage
+	^'supplier record must have four fields'! !
+
+!testRun: #ImportTest #test04supplierMustHaveOnlyFourFields stamp: 'CJF 11/26/2023 19:23:19'!
+PASSED!
+
+!testRun: #ImportTest #test04supplierMustHaveOnlyFourFields stamp: 'CJF 11/26/2023 19:23:24'!
+PASSED!
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/26/2023 19:24:16'!
+test05supplierRecordMustStartWithSingleS
+	
+! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/26/2023 19:27:34' prior: 50653892!
+test05supplierRecordMustStartWithSingleS
+	self should: [	
+	SupplierImporter valueFrom: (ReadStream on: 'SS, Supplier1,D,123') into: system. ]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: SupplierImporter supplierRecordMustStartWithS.
+		 ]! !
+!SupplierImporter methodsFor: 'evaluating - private' stamp: 'CJF 11/26/2023 19:31:47' prior: 50653440 overrides: 50652847!
+importRecord
+	self assertRecordNotEmpty .
+	self isSupplierRecord ifTrue: [^self importSupplier].
+	self isNewCustomerRecord ifTrue: [^ self importNewCustomer].
+	self isECRecord ifTrue: [ ^ self importEC ].
+	self isAddressRecord ifTrue: [ ^ self importAddress ].
+	
+	self error: self class supplierRecordMustStartWithS! !
+
+!testRun: #ImportTest #test05supplierRecordMustStartWithSingleS stamp: 'CJF 11/26/2023 19:31:53'!
+ERROR!
+
+!testRun: #ImportTest #test05supplierRecordMustStartWithSingleS stamp: 'CJF 11/26/2023 19:31:58'!
+ERROR!
+!SupplierImporter class methodsFor: 'error messages' stamp: 'CJF 11/26/2023 19:32:06'!
+supplierRecordMustStartWithS
+	self shouldBeImplemented.! !
+!SupplierImporter class methodsFor: 'error messages' stamp: 'CJF 11/26/2023 19:33:37' prior: 50653931!
+supplierRecordMustStartWithS
+"	invalidRecordTypeErrorDescription"
+
+	^'Invalid record type'! !
+
+!testRun: #ImportTest #test05supplierRecordMustStartWithSingleS stamp: 'CJF 11/26/2023 19:33:42'!
+FAILURE!
+
+!testRun: #ImportTest #test05supplierRecordMustStartWithSingleS stamp: 'CJF 11/26/2023 19:34:47'!
+PASSED!
+
+!testRun: #ImportTest #test05supplierRecordMustStartWithSingleS stamp: 'CJF 11/26/2023 19:34:50'!
+PASSED!
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/26/2023 19:36:40'!
+test06supplierRecordFieldsMustNotBeEmpty
+	self should: [	
+	SupplierImporter valueFrom: (ReadStream on: 'SS, Supplier1, ,123') into: system. ]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: SupplierImporter supplierRecordMustStartWithS.
+		 ]! !
+
+!testRun: #ImportTest #test06supplierRecordFieldsMustNotBeEmpty stamp: 'CJF 11/26/2023 19:38:25'!
+PASSED!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/26/2023 19:38:25'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'CJF 11/26/2023 19:38:25'!
+PASSED!
+
+!testRun: #ImportTest #test02validDataWithExistingCustomerImportedCorrectly stamp: 'CJF 11/26/2023 19:38:25'!
+PASSED!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'CJF 11/26/2023 19:38:25'!
+PASSED!
+
+!testRun: #ImportTest #test03supplierWithAddressesImportedCorrectly stamp: 'CJF 11/26/2023 19:38:25'!
+PASSED!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'CJF 11/26/2023 19:38:25'!
+PASSED!
+
+!testRun: #ImportTest #test04supplierMustHaveOnlyFourFields stamp: 'CJF 11/26/2023 19:38:25'!
+PASSED!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'CJF 11/26/2023 19:38:25'!
+PASSED!
+
+!testRun: #ImportTest #test05supplierRecordMustStartWithSingleS stamp: 'CJF 11/26/2023 19:38:25'!
+PASSED!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'CJF 11/26/2023 19:38:25'!
+PASSED!
+
+!testRun: #ImportTest #test06supplierRecordFieldsMustNotBeEmpty stamp: 'CJF 11/26/2023 19:38:25'!
+PASSED!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'CJF 11/26/2023 19:38:25'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'CJF 11/26/2023 19:38:25'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'CJF 11/26/2023 19:38:25'!
+PASSED!
+
+!testRun: #ImportTest #test06supplierRecordFieldsMustNotBeEmpty stamp: 'CJF 11/26/2023 19:38:31'!
+PASSED!
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/26/2023 19:38:58' prior: 50653953!
+test06supplierRecordFieldsMustNotBeEmpty
+	self should: [	
+	SupplierImporter valueFrom: (ReadStream on: 'S, Supplier1, ,123') into: system. ]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: SupplierImporter supplierRecordMustStartWithS.
+		 ]! !
+
+!testRun: #ImportTest #test06supplierRecordFieldsMustNotBeEmpty stamp: 'CJF 11/26/2023 19:39:03'!
+FAILURE!
+
+!testRun: #ImportTest #test06supplierRecordFieldsMustNotBeEmpty stamp: 'CJF 11/26/2023 19:39:03'!
+FAILURE!
+
+!testRun: #ImportTest #test06supplierRecordFieldsMustNotBeEmpty stamp: 'CJF 11/26/2023 19:39:13'!
+FAILURE!
+!SupplierImporter methodsFor: 'category-name' stamp: 'CJF 11/26/2023 19:41:31' prior: 50653859!
+importSupplier
+	 
+	
+	(record size = 4) ifFalse: [ self error: SupplierImporter supplierRecordNumberFieldsErrorMessage].
+	record detect: [:aField | (aField includes: ' ' ) ifTrue: [self error: SupplierImporter supplierRecordNumberFieldsErrorMessage] ].
+	
+	newSupplier  := Suplier named: record second identificationType: record third identificationNumber: record fourth.
+	system add: newSupplier.! !
+
+!testRun: #ImportTest #test06supplierRecordFieldsMustNotBeEmpty stamp: 'CJF 11/26/2023 19:41:33'!
+FAILURE!
+
+!testRun: #ImportTest #test06supplierRecordFieldsMustNotBeEmpty stamp: 'CJF 11/26/2023 19:41:42'!
+FAILURE!
+
+!testRun: #ImportTest #test06supplierRecordFieldsMustNotBeEmpty stamp: 'CJF 11/26/2023 19:41:42'!
+FAILURE!
+!SupplierImporter methodsFor: 'category-name' stamp: 'CJF 11/26/2023 19:42:14' prior: 50654045!
+importSupplier
+	 
+	
+	(record size = 4) ifFalse: [ self error: SupplierImporter supplierRecordNumberFieldsErrorMessage].
+	record detect: [:aField | (aField includes: ' ' ) ifTrue: [self error: SupplierImporter supplierRecordMustStartWithS] ].
+	
+	newSupplier  := Suplier named: record second identificationType: record third identificationNumber: record fourth.
+	system add: newSupplier.! !
+
+!testRun: #ImportTest #test06supplierRecordFieldsMustNotBeEmpty stamp: 'CJF 11/26/2023 19:42:22'!
+FAILURE!
+
+!testRun: #ImportTest #test06supplierRecordFieldsMustNotBeEmpty stamp: 'CJF 11/26/2023 19:42:22'!
+FAILURE!
+
+!testRun: #ImportTest #test06supplierRecordFieldsMustNotBeEmpty stamp: 'CJF 11/26/2023 19:43:00'!
+FAILURE!
+!SupplierImporter methodsFor: 'category-name' stamp: 'CJF 11/26/2023 19:45:42' prior: 50654071!
+importSupplier
+	 
+	
+	(record size = 4) ifFalse: [ self error: SupplierImporter supplierRecordNumberFieldsErrorMessage].
+	record detect: [:aField | (aField ==' ' ) ifTrue: [self error: SupplierImporter supplierRecordMustStartWithS] ].
+	
+	newSupplier  := Suplier named: record second identificationType: record third identificationNumber: record fourth.
+	system add: newSupplier.! !
+!SupplierImporter methodsFor: 'category-name' stamp: 'CJF 11/26/2023 19:45:44' prior: 50654097!
+importSupplier
+	 
+	
+	(record size = 4) ifFalse: [ self error: SupplierImporter supplierRecordNumberFieldsErrorMessage].
+	record detect: [:aField | (aField =' ' ) ifTrue: [self error: SupplierImporter supplierRecordMustStartWithS] ].
+	
+	newSupplier  := Suplier named: record second identificationType: record third identificationNumber: record fourth.
+	system add: newSupplier.! !
+
+!testRun: #ImportTest #test06supplierRecordFieldsMustNotBeEmpty stamp: 'CJF 11/26/2023 19:45:47'!
+FAILURE!
+
+!testRun: #ImportTest #test06supplierRecordFieldsMustNotBeEmpty stamp: 'CJF 11/26/2023 19:45:47'!
+FAILURE!
+
+!testRun: #ImportTest #test06supplierRecordFieldsMustNotBeEmpty stamp: 'CJF 11/26/2023 19:47:43'!
+FAILURE!
+!SupplierImporter methodsFor: 'category-name' stamp: 'CJF 11/26/2023 19:51:13' prior: 50654112!
+importSupplier
+	|temp| 
+	
+	(record size = 4) ifFalse: [ self error: SupplierImporter supplierRecordNumberFieldsErrorMessage].
+	
+	record detect: [:aField | (aField =' ' ) ifTrue: [self error: SupplierImporter supplierRecordMustStartWithS] ].
+	
+	newSupplier  := Suplier named: record second identificationType: record third identificationNumber: record fourth.
+	system add: newSupplier.! !
+!SupplierImporter methodsFor: 'category-name' stamp: 'CJF 11/26/2023 19:51:16' prior: 50654137!
+importSupplier
+	 
+	
+	(record size = 4) ifFalse: [ self error: SupplierImporter supplierRecordNumberFieldsErrorMessage].
+	
+	record detect: [:aField | (aField == ' ' ) ifTrue: [self error: SupplierImporter supplierRecordMustStartWithS] ].
+	
+	newSupplier  := Suplier named: record second identificationType: record third identificationNumber: record fourth.
+	system add: newSupplier.! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/26/2023 19:51:21'!
+ERROR!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'CJF 11/26/2023 19:51:21'!
+PASSED!
+
+!testRun: #ImportTest #test02validDataWithExistingCustomerImportedCorrectly stamp: 'CJF 11/26/2023 19:51:21'!
+ERROR!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'CJF 11/26/2023 19:51:21'!
+PASSED!
+
+!testRun: #ImportTest #test03supplierWithAddressesImportedCorrectly stamp: 'CJF 11/26/2023 19:51:21'!
+ERROR!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'CJF 11/26/2023 19:51:21'!
+PASSED!
+
+!testRun: #ImportTest #test04supplierMustHaveOnlyFourFields stamp: 'CJF 11/26/2023 19:51:21'!
+PASSED!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'CJF 11/26/2023 19:51:21'!
+PASSED!
+
+!testRun: #ImportTest #test05supplierRecordMustStartWithSingleS stamp: 'CJF 11/26/2023 19:51:21'!
+PASSED!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'CJF 11/26/2023 19:51:21'!
+PASSED!
+
+!testRun: #ImportTest #test06supplierRecordFieldsMustNotBeEmpty stamp: 'CJF 11/26/2023 19:51:21'!
+FAILURE!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'CJF 11/26/2023 19:51:21'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'CJF 11/26/2023 19:51:21'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'CJF 11/26/2023 19:51:21'!
+PASSED!
+
+!testRun: #ImportTest #test06supplierRecordFieldsMustNotBeEmpty stamp: 'CJF 11/26/2023 19:51:33'!
+FAILURE!
+
+!testRun: #ImportTest #test06supplierRecordFieldsMustNotBeEmpty stamp: 'CJF 11/26/2023 19:51:33'!
+FAILURE!
+!SupplierImporter methodsFor: 'category-name' stamp: 'CJF 11/26/2023 19:54:50' prior: 50654153!
+importSupplier
+	 
+	
+	(record size = 4) ifFalse: [ self error: SupplierImporter supplierRecordNumberFieldsErrorMessage].
+	
+	record detect: [:aField | (aField) ifEmpty: [self error: SupplierImporter supplierRecordMustStartWithS] ].
+	
+	newSupplier  := Suplier named: record second identificationType: record third identificationNumber: record fourth.
+	system add: newSupplier.! !
+
+!testRun: #ImportTest #test06supplierRecordFieldsMustNotBeEmpty stamp: 'CJF 11/26/2023 19:54:52'!
+FAILURE!
+
+' ' includes: ' '!
+
+' ' = ' '!
+
+'  ' includes: ' '!
+!SupplierImporter methodsFor: 'category-name' stamp: 'CJF 11/26/2023 19:57:43' prior: 50654224!
+importSupplier
+	 
+	
+	(record size = 4) ifFalse: [ self error: SupplierImporter supplierRecordNumberFieldsErrorMessage].
+	
+	record detect: [:aField | (aField = ' ' ) ifEmpty: [^self error: SupplierImporter supplierRecordMustStartWithS] ].
+	
+	newSupplier  := Suplier named: record second identificationType: record third identificationNumber: record fourth.
+	system add: newSupplier.
+	
+	'  ' includes: ' ' false .! !
+
+!testRun: #ImportTest #test06supplierRecordFieldsMustNotBeEmpty stamp: 'CJF 11/26/2023 19:57:47'!
+ERROR!
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/26/2023 20:00:07'!
+test06newCustomerInSupplierEntryMustNotExistInCustomersSystem
+	! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/26/2023 20:01:58' prior: 50654263!
+test06newCustomerInSupplierEntryMustNotExistInCustomersSystem
+	CustomerImporter valueFrom: (ReadStream on: 'C,Pedro,Sanchez,D,22333444') into: system.
+	SupplierImporter valueFrom: self suplierWithEC into: system.! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/26/2023 20:02:02' prior: 50654268!
+test06newCustomerInSupplierEntryMustNotExistInCustomersSystem
+	CustomerImporter valueFrom: (ReadStream on: 'C,Pedro,Sanchez,D,22333444') into: system.
+	"SupplierImporter valueFrom: self suplierWithEC into: system."! !
+
+!testRun: #ImportTest #test06newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/26/2023 20:02:03'!
+PASSED!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/26/2023 20:02:03'!
+ERROR!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'CJF 11/26/2023 20:02:03'!
+PASSED!
+
+!testRun: #ImportTest #test02validDataWithExistingCustomerImportedCorrectly stamp: 'CJF 11/26/2023 20:02:03'!
+ERROR!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'CJF 11/26/2023 20:02:03'!
+PASSED!
+
+!testRun: #ImportTest #test03supplierWithAddressesImportedCorrectly stamp: 'CJF 11/26/2023 20:02:03'!
+ERROR!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'CJF 11/26/2023 20:02:03'!
+PASSED!
+
+!testRun: #ImportTest #test04supplierMustHaveOnlyFourFields stamp: 'CJF 11/26/2023 20:02:03'!
+PASSED!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'CJF 11/26/2023 20:02:03'!
+PASSED!
+
+!testRun: #ImportTest #test05supplierRecordMustStartWithSingleS stamp: 'CJF 11/26/2023 20:02:03'!
+PASSED!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'CJF 11/26/2023 20:02:03'!
+PASSED!
+
+!testRun: #ImportTest #test06newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/26/2023 20:02:03'!
+PASSED!
+
+!testRun: #ImportTest #test06supplierRecordFieldsMustNotBeEmpty stamp: 'CJF 11/26/2023 20:02:03'!
+ERROR!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'CJF 11/26/2023 20:02:03'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'CJF 11/26/2023 20:02:03'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'CJF 11/26/2023 20:02:03'!
+PASSED!
+
+!testRun: #ImportTest #test06newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/26/2023 20:02:10'!
+PASSED!
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/26/2023 20:02:21' prior: 50654278!
+test06newCustomerInSupplierEntryMustNotExistInCustomersSystem
+	CustomerImporter valueFrom: (ReadStream on: 'C,Pedro,Sanchez,D,22333444') into: system.
+	SupplierImporter valueFrom: self suplierWithEC into: system.! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/26/2023 20:02:29' prior: 50654022!
+test06supplierRecordFieldsMustNotBeEmpty
+"	self should: [	
+	SupplierImporter valueFrom: (ReadStream on: 'S, Supplier1, ,123') into: system. ]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: SupplierImporter supplierRecordMustStartWithS.
+		 ]"! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/26/2023 20:04:37' prior: 50654349!
+test06newCustomerInSupplierEntryMustNotExistInCustomersSystem
+	CustomerImporter valueFrom: (ReadStream on: 'C,Pedro,Sanchez,D,22333444') into: system.
+	SupplierImporter valueFrom: (ReadStream on: 'S,Supplier1,D,123
+NC,Paco,Perez,D,33222444') into: system.! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/26/2023 20:07:40' prior: 50654372!
+test06newCustomerInSupplierEntryMustNotExistInCustomersSystem
+	CustomerImporter valueFrom: (ReadStream on: 'C,Pedro,Sanchez,D,22333444') into: system.
+	self should: [SupplierImporter valueFrom: (ReadStream on: 'S,Supplier1,D,123
+NC,Pedro,Sanchez,D,22333444') into: system.]
+	raise: Error - MessageNotUnderstood 
+	withExecptionDo:[ :anError |
+			self assert: anError messageText equals: CustomerImporter newCustomerAlreadyExistInSystem
+			
+		]! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/26/2023 20:08:44' prior: 50654383!
+test06newCustomerInSupplierEntryMustNotExistInCustomersSystem
+	CustomerImporter valueFrom: (ReadStream on: 'C,Pedro,Sanchez,D,22333444') into: system.
+	self should: [SupplierImporter valueFrom: (ReadStream on: 'S,Supplier1,D,123
+NC,Pedro,Sanchez,D,22333444') into: system.]
+	raise: Error - MessageNotUnderstood 
+	withExecptionDo:[ :anError |
+			self assert: anError messageText equals: CustomerImporter newCustomerAlreadyExistInSystem.
+			self assertSupplierHasNoClients.
+		]! !
+
+!testRun: #ImportTest #test06newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/26/2023 20:08:47'!
+ERROR!
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/26/2023 20:09:13' prior: 50654400!
+test06newCustomerInSupplierEntryMustNotExistInCustomersSystem
+	CustomerImporter valueFrom: (ReadStream on: 'C,Pedro,Sanchez,D,22333444') into: system.
+	self should: [SupplierImporter valueFrom: (ReadStream on: 'S,Supplier1,D,123
+NC,Pedro,Sanchez,D,22333444') into: system.]
+	raise: Error - MessageNotUnderstood 
+	withExecptionDo:[ :anError |
+			self assert: anError messageText equals: CustomerImporter newCustomerAlreadyExistInSystem.
+			self assertSupplierHasNoClients.
+		].! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/26/2023 20:10:06' prior: 50654422!
+test06newCustomerInSupplierEntryMustNotExistInCustomersSystem
+	CustomerImporter valueFrom: (ReadStream on: 'C,Pepe,Sanchez,D,22333444') into: system.
+	self should: [SupplierImporter valueFrom: (ReadStream on: 'S,Supplier1,D,123
+NC,Pepe,Sanchez,D,22333444') into: system.]
+	raise: Error - MessageNotUnderstood 
+	withExecptionDo:[ :anError |
+			self assert: anError messageText equals: CustomerImporter newCustomerAlreadyExistInSystem.
+			self assertSupplierHasNoClients.
+		].! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/26/2023 20:10:36' prior: 50654440!
+test06newCustomerInSupplierEntryMustNotExistInCustomersSystem
+	CustomerImporter valueFrom: (ReadStream on: 'C,Pepe,Sanchez,D,22333444') into: system.
+	self should: [SupplierImporter valueFrom: self validSupplierDataWithExistingCustomer into: system.]
+	raise: Error - MessageNotUnderstood 
+	withExecptionDo:[ :anError |
+			self assert: anError messageText equals: CustomerImporter newCustomerAlreadyExistInSystem.
+			self assertSupplierHasNoClients.
+		].! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/26/2023 20:10:55' prior: 50654458!
+test06newCustomerInSupplierEntryMustNotExistInCustomersSystem
+	CustomerImporter valueFrom: (ReadStream on: 'C,Pepe,Sanchez,D,22333444') into: system.
+	self should: [SupplierImporter valueFrom: self supplierWithOneNewCustomer into: system.]
+	raise: Error - MessageNotUnderstood 
+	withExecptionDo:[ :anError |
+			self assert: anError messageText equals: CustomerImporter newCustomerAlreadyExistInSystem.
+			self assertSupplierHasNoClients.
+		].! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/26/2023 20:11:39' prior: 50654476!
+test06newCustomerInSupplierEntryMustNotExistInCustomersSystem
+	CustomerImporter valueFrom: (ReadStream on: 'C,Pepe,Sanchez,D,22333444') into: system.
+	
+	self should: [
+		SupplierImporter valueFrom: self supplierWithOneNewCustomer into: system.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [ :anError |
+			self assert: anError messageText equals: CustomerImporter newCustomerAlreadyExistInSystem.
+			self assertSupplierHasNoClients.
+		].! !
+
+!testRun: #ImportTest #test06newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/26/2023 20:11:42'!
+ERROR!
+
+!testRun: #ImportTest #test06newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/26/2023 20:12:14'!
+ERROR!
+!SupplierImporter methodsFor: 'category-name' stamp: 'CJF 11/26/2023 20:12:50' prior: 50654244!
+importSupplier
+	 
+	
+	(record size = 4) ifFalse: [ self error: SupplierImporter supplierRecordNumberFieldsErrorMessage].
+	
+	"record detect: [:aField | (aField = ' ' ) ifEmpty: [^self error: SupplierImporter supplierRecordMustStartWithS] ]."
+	
+	newSupplier  := Suplier named: record second identificationType: record third identificationNumber: record fourth.
+	system add: newSupplier.
+	
+	'  ' includes: ' ' false .! !
+!SupplierImporter methodsFor: 'category-name' stamp: 'CJF 11/26/2023 20:13:00' prior: 50654519!
+importSupplier
+	 
+	
+	(record size = 4) ifFalse: [ self error: SupplierImporter supplierRecordNumberFieldsErrorMessage].
+	
+	"record detect: [:aField | (aField = ' ' ) ifEmpty: [^self error: SupplierImporter supplierRecordMustStartWithS] ]."
+	
+	newSupplier  := Suplier named: record second identificationType: record third identificationNumber: record fourth.
+	system add: newSupplier.
+	
+! !
+!SupplierImporter methodsFor: 'category-name' stamp: 'CJF 11/26/2023 20:17:07' prior: 50653051!
+importNewCustomer
+	|newSupplierCustomer allCustomers |
+	newSupplierCustomer := Customer named: (record second) withLastName: (record third) identificationType: (record fourth) indentificationNumber: (record fifth) .
+	allCustomers := system selectAllOfType: Customer. 
+	(allCustomers includes: newSupplierCustomer) ifTrue:[ self error: SupplierImporter newCustomerAlreadyExistInSystem ].
+	newSupplier addNewCustomer: newSupplierCustomer .
+	system add: newSupplierCustomer.! !
+
+!testRun: #ImportTest #test06newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/26/2023 20:17:24'!
+ERROR!
+!SupplierImporter methodsFor: 'category-name' stamp: 'CJF 11/26/2023 20:20:59' prior: 50654552!
+importNewCustomer
+	|newSupplierCustomer |
+	newSupplierCustomer := Customer named: (record second) withLastName: (record third) identificationType: (record fourth) indentificationNumber: (record fifth) .
+	system customerWithIdentificationType: (record fourth ) number: (record fifth ).
+	newSupplier addNewCustomer: newSupplierCustomer .
+	system add: newSupplierCustomer.! !
+!SupplierImporter methodsFor: 'category-name' stamp: 'CJF 11/26/2023 20:22:32' prior: 50654574!
+importNewCustomer
+	|newSupplierCustomer |
+	newSupplierCustomer := Customer named: (record second) withLastName: (record third) identificationType: (record fourth) indentificationNumber: (record fifth) .
+	(system customerWithIdentificationType: (record fourth ) number: (record fifth ) = newSupplierCustomer ) ifTrue: [ SupplierImporter newCustomerAlreadyExistInSystem].
+	newSupplier addNewCustomer: newSupplierCustomer .
+	system add: newSupplierCustomer.! !
+
+!testRun: #ImportTest #test06newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/26/2023 20:24:12'!
+ERROR!
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/26/2023 20:24:35' prior: 50654493!
+test06newCustomerInSupplierEntryMustNotExistInCustomersSystem
+	CustomerImporter valueFrom: (ReadStream on: 'C,Pepe,Sanchez,D,22333444') into: system.
+	
+	self should: [
+		SupplierImporter valueFrom: self supplierWithOneNewCustomer into: system.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [ :anError |
+			self assert: anError messageText equals: SupplierImporter newCustomerAlreadyExistInSystem.
+			self assertSupplierHasNoClients.
+		].! !
+!SupplierImporter methodsFor: 'category-name' stamp: 'CJF 11/26/2023 20:24:55' prior: 50654589!
+importNewCustomer
+	|newSupplierCustomer |
+	newSupplierCustomer := Customer named: (record second) withLastName: (record third) identificationType: (record fourth) indentificationNumber: (record fifth) .
+	(system customerWithIdentificationType: (record fourth ) number: (record fifth ) == newSupplierCustomer ) ifTrue: [ SupplierImporter newCustomerAlreadyExistInSystem].
+	newSupplier addNewCustomer: newSupplierCustomer .
+	system add: newSupplierCustomer.! !
+!SupplierImporter methodsFor: 'category-name' stamp: 'CJF 11/26/2023 20:27:01' prior: 50654629!
+importNewCustomer
+	|newSupplierCustomer |
+	newSupplierCustomer := Customer named: (record second) withLastName: (record third) identificationType: (record fourth) indentificationNumber: (record fifth) .
+	( ( system customerWithIdentificationType: (record fourth ) number: (record fifth ) ) == newSupplierCustomer ) ifTrue: [ SupplierImporter newCustomerAlreadyExistInSystem].
+	newSupplier addNewCustomer: newSupplierCustomer .
+	system add: newSupplierCustomer.! !
+
+!testRun: #ImportTest #test06newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/26/2023 20:27:08'!
+FAILURE!
+
+!testRun: #ImportTest #test06newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/26/2023 20:27:08'!
+FAILURE!
+!SupplierImporter methodsFor: 'category-name' stamp: 'CJF 11/26/2023 20:28:13' prior: 50654647!
+importNewCustomer
+	|newSupplierCustomer |
+	newSupplierCustomer := Customer named: (record second) withLastName: (record third) identificationType: (record fourth) indentificationNumber: (record fifth) .
+	( ( system customerWithIdentificationType: (record fourth ) number: (record fifth ) ) = newSupplierCustomer ) ifTrue: [ SupplierImporter newCustomerAlreadyExistInSystem].
+	newSupplier addNewCustomer: newSupplierCustomer .
+	system add: newSupplierCustomer.! !
+
+!testRun: #ImportTest #test06newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/26/2023 20:29:30'!
+ERROR!
+!SupplierImporter class methodsFor: 'error messages' stamp: 'CJF 11/26/2023 20:29:35'!
+newCustomerAlreadyExistInSystem
+	self shouldBeImplemented.! !
+!SupplierImporter class methodsFor: 'error messages' stamp: 'CJF 11/26/2023 20:29:54' prior: 50654695!
+newCustomerAlreadyExistInSystem
+	^'new customer already exist in system'! !
+
+!testRun: #ImportTest #test06newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/26/2023 20:29:55'!
+FAILURE!
+
+!testRun: #ImportTest #test06newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/26/2023 20:30:03'!
+FAILURE!
+
+!testRun: #ImportTest #test06newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/26/2023 20:30:03'!
+FAILURE!
+
+!testRun: #ImportTest #test06newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/26/2023 20:30:42'!
+FAILURE!
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/26/2023 20:31:12'!
+assertSupplierHasNoClients
+	! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/26/2023 20:31:48' prior: 50654722!
+assertSupplierHasNoClients
+	|importedSupplier|
+	importedSupplier := system customerWithIdentificationType: 'D' number: '123'.
+	self assert: importedSupplier numberOfCustomers equals: 0.! !
+
+!testRun: #ImportTest #test06newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/26/2023 20:31:56'!
+FAILURE!
+
+!testRun: #ImportTest #test06newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/26/2023 20:31:56'!
+FAILURE!
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/26/2023 20:33:15' prior: 50654726!
+assertSupplierHasNoClients
+	|importedSupplier|
+	self halt.
+	importedSupplier := system customerWithIdentificationType: 'D' number: '123'.
+	self assert: importedSupplier numberOfCustomers equals: 0.! !
+
+!testRun: #ImportTest #test06newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/26/2023 20:33:22'!
+FAILURE!
+
+!testRun: #ImportTest #test06newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/26/2023 20:33:22'!
+FAILURE!
+!SupplierImporter methodsFor: 'category-name' stamp: 'CJF 11/26/2023 20:34:27' prior: 50654673!
+importNewCustomer
+	|newSupplierCustomer |
+	newSupplierCustomer := Customer named: (record second) withLastName: (record third) identificationType: (record fourth) indentificationNumber: (record fifth) .
+	( ( system customerWithIdentificationType: (record fourth ) number: (record fifth ) ) = newSupplierCustomer ) ifTrue: [ self error: SupplierImporter newCustomerAlreadyExistInSystem].
+	newSupplier addNewCustomer: newSupplierCustomer .
+	system add: newSupplierCustomer.! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/26/2023 20:35:01' prior: 50654743!
+assertSupplierHasNoClients
+	|importedSupplier|
+	importedSupplier := system customerWithIdentificationType: 'D' number: '123'.
+	self assert: importedSupplier numberOfCustomers equals: 0.! !
+
+!testRun: #ImportTest #test06newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/26/2023 20:35:05'!
+PASSED!
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/26/2023 20:36:04'!
+test07supplierWithExistingCustomerMustExistInSystem
+	
+	self should: [
+		SupplierImporter valueFrom: self supplierWithOneNewCustomer into: system.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [ :anError |
+			self assert: anError messageText equals: SupplierImporter newCustomerAlreadyExistInSystem.
+			self assertSupplierHasNoClients.
+		].! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/26/2023 20:36:53' prior: 50654792!
+test07supplierWithExistingCustomerMustExistInSystem
+	
+	self should: [
+		SupplierImporter valueFrom: self suplierWithEC into: system.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [ :anError |
+			self assert: anError messageText equals: SupplierImporter existingCustomerDoesNotExists.
+			self assertSupplierHasNoClients.
+		].! !
+
+!testRun: #ImportTest #test07supplierWithExistingCustomerMustExistInSystem stamp: 'CJF 11/26/2023 20:36:59'!
+ERROR!
+!SupplierImporter class methodsFor: 'error messages' stamp: 'CJF 11/26/2023 20:37:14'!
+existingCustomerDoesNotExists
+	self shouldBeImplemented.! !
+!SupplierImporter class methodsFor: 'error messages' stamp: 'CJF 11/26/2023 20:37:39' prior: 50654823!
+existingCustomerDoesNotExists
+	^'customer does not exist in system'! !
+
+!testRun: #ImportTest #test07supplierWithExistingCustomerMustExistInSystem stamp: 'CJF 11/26/2023 20:37:40'!
+FAILURE!
+
+!testRun: #ImportTest #test07supplierWithExistingCustomerMustExistInSystem stamp: 'CJF 11/26/2023 20:39:32'!
+FAILURE!
+!SupplierImporter methodsFor: 'category-name' stamp: 'CJF 11/26/2023 20:40:22' prior: 50653303!
+importEC
+	|customer|
+	customer := system customerWithIdentificationType: record second number: record third .
+	customer ifNil: [ self error:  SupplierImporter existingCustomerDoesNotExists].
+	newSupplier addNewCustomer: customer. 
+! !
+
+!testRun: #ImportTest #test07supplierWithExistingCustomerMustExistInSystem stamp: 'CJF 11/26/2023 20:40:41'!
+FAILURE!
+
+!testRun: #ImportTest #test07supplierWithExistingCustomerMustExistInSystem stamp: 'CJF 11/26/2023 20:42:41'!
+FAILURE!
+!TransientCustomerSystem methodsFor: 'customers' stamp: 'CJF 11/26/2023 20:46:26' prior: 50651703 overrides: 50651583!
+customerWithIdentificationType: anIdType number: anIdNumber
+
+	^(customers select: [ :aCustomer | aCustomer class == Customer ])
+			detect: [ :aCustomer | aCustomer identificationType = anIdType and: [ aCustomer identificationNumber = anIdNumber ]]! !
+!TransientCustomerSystem methodsFor: 'customers' stamp: 'CJF 11/26/2023 20:48:28' prior: 50654861 overrides: 50651583!
+customerWithIdentificationType: anIdType number: anIdNumber
+
+	^customers detect: [ :aCustomer | aCustomer identificationType = anIdType and: [ aCustomer identificationNumber = anIdNumber ]]! !
+!TransientCustomerSystem methodsFor: 'customers' stamp: 'CJF 11/26/2023 20:49:19' prior: 50654873 overrides: 50651583!
+customerWithIdentificationType: anIdType number: anIdNumber
+
+	^customers detect: [ :aCustomer | aCustomer identificationType = anIdType and: [ aCustomer identificationNumber = anIdNumber ]] ifNone: [ self error: 'un error' ]! !
+!SupplierImporter methodsFor: 'category-name' stamp: 'CJF 11/26/2023 20:50:54' prior: 50654842!
+importEC
+	|customer|
+	self should: [
+	customer := system customerWithIdentificationType: record second number: record third .]
+	raise: Error withExceptionDo: [  :anError | self error:  SupplierImporter existingCustomerDoesNotExists  ].
+	"customer ifNil: [ self error:  SupplierImporter existingCustomerDoesNotExists]."
+	newSupplier addNewCustomer: customer. 
+! !
+
+!testRun: #ImportTest #test07supplierWithExistingCustomerMustExistInSystem stamp: 'CJF 11/26/2023 20:51:11'!
+ERROR!
+!SupplierImporter methodsFor: 'category-name' stamp: 'CJF 11/26/2023 20:52:13' prior: 50654894!
+importEC
+	|customer|
+	[customer := system customerWithIdentificationType: record second number: record third .] 
+	on: Error do: [  :anError | self error:  SupplierImporter existingCustomerDoesNotExists  ].
+	"customer ifNil: [ self error:  SupplierImporter existingCustomerDoesNotExists]."
+	newSupplier addNewCustomer: customer. 
+! !
+
+!testRun: #ImportTest #test07supplierWithExistingCustomerMustExistInSystem stamp: 'CJF 11/26/2023 20:52:52'!
+PASSED!
+
+!testRun: #ImportTest #test07supplierWithExistingCustomerMustExistInSystem stamp: 'CJF 11/26/2023 20:52:55'!
+PASSED!
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/26/2023 20:54:50'!
+test08supplierAddressesMustContainSixFieldsInRecord
+	
+	self should: [
+		SupplierImporter valueFrom: self suplierWithEC into: system.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [ :anError |
+			self assert: anError messageText equals: SupplierImporter existingCustomerDoesNotExists.
+			self assertSupplierHasNoClients.
+		].! !
+!ImportTest methodsFor: 'test supplier - data' stamp: 'CJF 11/26/2023 20:55:06' prior: 50653389!
+suplierWithAddresses
+	^ReadStream on: 
+	'S,Supplier1,D,123
+A,San Martin,,Olivos,1636,BsAs'
+
+! !
+!ImportTest methodsFor: 'test supplier - data' stamp: 'CJF 11/26/2023 20:55:49'!
+suplierWithInvalidAddress
+	^ReadStream on: 
+	'S,Supplier1,D,123
+A,San Martin,,Olivos,1636,BsAs'
+
+! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/26/2023 20:56:10' prior: 50654933!
+test08supplierAddressesMustContainSixFieldsInRecord
+	
+	self should: [
+		SupplierImporter valueFrom: self suplierWithInvalidAddress into: system.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [ :anError |
+			self assert: anError messageText equals: SupplierImporter existingCustomerDoesNotExists.
+			self assertSupplierHasNoClients.
+		].! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/26/2023 20:56:52' prior: 50654960!
+test08supplierAddressesMustContainSixFieldsInRecord
+	
+	self should: [
+		SupplierImporter valueFrom: self suplierWithInvalidAddress into: system.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [ :anError |
+			self assert: anError messageText equals: SupplierImporter invalidSupplierAddressesFields.
+			self assertSupplierHasNoClients.
+		].! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/26/2023 20:57:05' prior: 50654974!
+test08supplierAddressesMustContainSixFieldsInRecord
+	
+	self should: [
+		SupplierImporter valueFrom: self suplierWithInvalidAddress into: system.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [ :anError |
+			self assert: anError messageText equals: SupplierImporter invalidSupplierAddressesFields.
+		].! !
+!SupplierImporter methodsFor: 'category-name' stamp: 'CJF 11/26/2023 20:57:55' prior: 50653510!
+importAddress
+	|newAddress|
+	(record size = 6) ifFalse: [ self error: SupplierImporter invalidSupplierAddressesFields].
+	newAddress := Address withStreetName: record second streetNumber: record third asNumber town: record fourth zipCode: record fifth province: record sixth .
+	newSupplier addAddress: newAddress .! !
+
+!testRun: #ImportTest #test08supplierAddressesMustContainSixFieldsInRecord stamp: 'CJF 11/26/2023 20:57:56'!
+ERROR!
+!SupplierImporter class methodsFor: 'error messages' stamp: 'CJF 11/26/2023 20:58:02'!
+invalidSupplierAddressesFields
+	self shouldBeImplemented.! !
+!SupplierImporter class methodsFor: 'error messages' stamp: 'CJF 11/26/2023 20:58:23' prior: 50655018!
+invalidSupplierAddressesFields
+	^'invalid address record size'! !
+
+!testRun: #ImportTest #test08supplierAddressesMustContainSixFieldsInRecord stamp: 'CJF 11/26/2023 20:58:24'!
+PASSED!
+
+Object subclass: #User
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #User category: 'CustomerImporter' stamp: 'CJF 11/26/2023 20:59:52'!
+Object subclass: #User
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+----SNAPSHOT----(26 November 2023 21:00:10) CuisUniversity-5981.image priorSource: 10302944!
+
+User subclass: #Customer
+	instanceVariableNames: 'id firstName lastName identificationType identificationNumber addresses'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #Customer category: 'CustomerImporter' stamp: 'CJF 11/26/2023 21:00:18'!
+User subclass: #Customer
+	instanceVariableNames: 'id firstName lastName identificationType identificationNumber addresses'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+User subclass: #Suplier
+	instanceVariableNames: 'name identificacionType supplierCustomers'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #Suplier category: 'CustomerImporter' stamp: 'CJF 11/26/2023 21:00:37'!
+User subclass: #Suplier
+	instanceVariableNames: 'name identificacionType supplierCustomers'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/26/2023 21:00:43'!
+ERROR!
+
+!testRun: #ImportTest #test02validDataWithExistingCustomerImportedCorrectly stamp: 'CJF 11/26/2023 21:00:43'!
+ERROR!
+
+!testRun: #ImportTest #test03supplierWithAddressesImportedCorrectly stamp: 'CJF 11/26/2023 21:00:43'!
+ERROR!
+
+!testRun: #ImportTest #test04supplierMustHaveOnlyFourFields stamp: 'CJF 11/26/2023 21:00:43'!
+PASSED!
+
+!testRun: #ImportTest #test05supplierRecordMustStartWithSingleS stamp: 'CJF 11/26/2023 21:00:43'!
+PASSED!
+
+!testRun: #ImportTest #test06newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/26/2023 21:00:43'!
+ERROR!
+
+!testRun: #ImportTest #test06supplierRecordFieldsMustNotBeEmpty stamp: 'CJF 11/26/2023 21:00:43'!
+PASSED!
+
+!testRun: #ImportTest #test07supplierWithExistingCustomerMustExistInSystem stamp: 'CJF 11/26/2023 21:00:43'!
+ERROR!
+
+!testRun: #ImportTest #test08supplierAddressesMustContainSixFieldsInRecord stamp: 'CJF 11/26/2023 21:00:43'!
+PASSED!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/26/2023 21:01:09'!
+ERROR!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/26/2023 21:01:18'!
+ERROR!
+!SupplierImporter methodsFor: 'category-name' stamp: 'CJF 11/26/2023 21:02:21' prior: 50654536!
+importSupplier
+	 
+	
+	(record size = 4) ifFalse: [ self error: SupplierImporter supplierRecordNumberFieldsErrorMessage].
+		
+	newSupplier  := Suplier named: record second identificationType: record third identificationNumber: record fourth.
+	system add: newSupplier.
+	
+! !
+
+!classDefinition: #Customer category: 'CustomerImporter' stamp: 'CJF 11/26/2023 21:03:17'!
+User subclass: #Customer
+	instanceVariableNames: 'id firstName lastName identificationType addresses'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/26/2023 21:04:29'!
+ERROR!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/26/2023 21:04:29'!
+ERROR!
+!User methodsFor: 'identification' stamp: 'CJF 11/26/2023 21:05:02'!
+identificationNumber
+
+	^identificationNumber ! !
+
+!methodRemoval: Customer #identificationNumber stamp: 'CJF 11/26/2023 21:05:02'!
+identificationNumber
+
+	^identificationNumber !
+
+----STARTUP---- (26 November 2023 21:06:01) as C:\Users\crist\Desktop\ASF7\Nueva carpeta\CuisUniversity-5981.image!
+
+!Suplier methodsFor: 'initialization' stamp: 'CJF 11/26/2023 21:07:43' prior: 50652495!
+initializeNamed: aName identificationType: anIdentificacionType identificationNumber: anIdentificationNumber 
+	
+	name := aName.
+	identificationType := anIdentificacionType.
+	identificationNumber := anIdentificationNumber.
+	supplierCustomers := OrderedCollection new.! !
+!Suplier methodsFor: 'as yet unclassified' stamp: 'CJF 11/26/2023 21:07:49' prior: 50652349 overrides: 50651401!
+identificationType
+	^identificationType .! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/26/2023 21:08:00'!
+ERROR!
+
+!testRun: #ImportTest #test02validDataWithExistingCustomerImportedCorrectly stamp: 'CJF 11/26/2023 21:08:00'!
+PASSED!
+
+!testRun: #ImportTest #test03supplierWithAddressesImportedCorrectly stamp: 'CJF 11/26/2023 21:08:00'!
+ERROR!
+
+!testRun: #ImportTest #test04supplierMustHaveOnlyFourFields stamp: 'CJF 11/26/2023 21:08:00'!
+PASSED!
+
+!testRun: #ImportTest #test05supplierRecordMustStartWithSingleS stamp: 'CJF 11/26/2023 21:08:00'!
+PASSED!
+
+!testRun: #ImportTest #test06newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/26/2023 21:08:00'!
+PASSED!
+
+!testRun: #ImportTest #test06supplierRecordFieldsMustNotBeEmpty stamp: 'CJF 11/26/2023 21:08:00'!
+PASSED!
+
+!testRun: #ImportTest #test07supplierWithExistingCustomerMustExistInSystem stamp: 'CJF 11/26/2023 21:08:00'!
+PASSED!
+
+!testRun: #ImportTest #test08supplierAddressesMustContainSixFieldsInRecord stamp: 'CJF 11/26/2023 21:08:00'!
+PASSED!
+!SupplierImporter methodsFor: 'category-name' stamp: 'CJF 11/26/2023 21:08:33' prior: 50654536!
+importSupplier
+	 
+	
+	(record size = 4) ifFalse: [ self error: SupplierImporter supplierRecordNumberFieldsErrorMessage].
+		
+	newSupplier  := Suplier named: record second identificationType: record third identificationNumber: record fourth.
+	system add: newSupplier.
+	
+! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/26/2023 21:09:13'!
+ERROR!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/26/2023 21:11:09'!
+ERROR!
+
+!testRun: #ImportTest #test03supplierWithAddressesImportedCorrectly stamp: 'CJF 11/26/2023 21:12:24'!
+ERROR!
+
+!testRun: #ImportTest #test03supplierWithAddressesImportedCorrectly stamp: 'CJF 11/26/2023 21:12:57'!
+ERROR!
+!ImportTest methodsFor: 'test supplier - data' stamp: 'CJF 11/26/2023 21:14:00' prior: 50654947!
+suplierWithAddresses
+	^ReadStream on: 
+	'S,Supplier1,D,123
+A,San Martin,3322,Olivos,1636,BsAs'
+
+! !
+
+!testRun: #ImportTest #test02validDataWithExistingCustomerImportedCorrectly stamp: 'CJF 11/26/2023 21:14:02'!
+PASSED!
+
+!testRun: #ImportTest #test04supplierMustHaveOnlyFourFields stamp: 'CJF 11/26/2023 21:14:02'!
+PASSED!
+
+!testRun: #ImportTest #test05supplierRecordMustStartWithSingleS stamp: 'CJF 11/26/2023 21:14:02'!
+PASSED!
+
+!testRun: #ImportTest #test06newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/26/2023 21:14:02'!
+PASSED!
+
+!testRun: #ImportTest #test06supplierRecordFieldsMustNotBeEmpty stamp: 'CJF 11/26/2023 21:14:02'!
+PASSED!
+
+!testRun: #ImportTest #test07supplierWithExistingCustomerMustExistInSystem stamp: 'CJF 11/26/2023 21:14:02'!
+PASSED!
+
+!testRun: #ImportTest #test08supplierAddressesMustContainSixFieldsInRecord stamp: 'CJF 11/26/2023 21:14:02'!
+PASSED!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/26/2023 21:14:02'!
+ERROR!
+
+!testRun: #ImportTest #test03supplierWithAddressesImportedCorrectly stamp: 'CJF 11/26/2023 21:14:02'!
+FAILURE!
+!ImportTest methodsFor: 'test supplier - data' stamp: 'CJF 11/26/2023 21:14:44' prior: 50655123!
+suplierWithAddresses
+	^ReadStream on: 
+	'S,Supplier1,D,123
+A,San Martin,3322,Olivos,1636,BsAs
+A,Maipu,888,Florida,1122,Buenos Aires'
+
+! !
+
+!testRun: #ImportTest #test03supplierWithAddressesImportedCorrectly stamp: 'CJF 11/26/2023 21:14:48'!
+PASSED!
+
+!testRun: #ImportTest #test02validDataWithExistingCustomerImportedCorrectly stamp: 'CJF 11/26/2023 21:14:50'!
+PASSED!
+
+!testRun: #ImportTest #test04supplierMustHaveOnlyFourFields stamp: 'CJF 11/26/2023 21:14:50'!
+PASSED!
+
+!testRun: #ImportTest #test05supplierRecordMustStartWithSingleS stamp: 'CJF 11/26/2023 21:14:50'!
+PASSED!
+
+!testRun: #ImportTest #test06newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/26/2023 21:14:50'!
+PASSED!
+
+!testRun: #ImportTest #test06supplierRecordFieldsMustNotBeEmpty stamp: 'CJF 11/26/2023 21:14:50'!
+PASSED!
+
+!testRun: #ImportTest #test07supplierWithExistingCustomerMustExistInSystem stamp: 'CJF 11/26/2023 21:14:50'!
+PASSED!
+
+!testRun: #ImportTest #test08supplierAddressesMustContainSixFieldsInRecord stamp: 'CJF 11/26/2023 21:14:50'!
+PASSED!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/26/2023 21:14:50'!
+ERROR!
+
+!testRun: #ImportTest #test03supplierWithAddressesImportedCorrectly stamp: 'CJF 11/26/2023 21:14:50'!
+PASSED!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/26/2023 21:14:50'!
+ERROR!
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/26/2023 21:15:13' prior: 50653697!
+test01ValidDataIsImportedCorrectly
+
+	SupplierImporter valueFrom: self supplierWithOneNewCustomer into: system.
+	
+	self assert: 1 equals: system numberOfSuppliers.
+	self assertSupplierImportedCorrectly.
+	self assertSupplierHasNewCustomerClient.
+	self assertNewCustomerIsPepeSanchez.
+! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/26/2023 21:15:17' prior: 50655207!
+test01ValidDataIsImportedCorrectly
+
+"	SupplierImporter valueFrom: self supplierWithOneNewCustomer into: system.
+	
+	self assert: 1 equals: system numberOfSuppliers.
+	self assertSupplierImportedCorrectly.
+	self assertSupplierHasNewCustomerClient.
+	self assertNewCustomerIsPepeSanchez.
+"! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/26/2023 21:15:20'!
+PASSED!
+
+!testRun: #ImportTest #test02validDataWithExistingCustomerImportedCorrectly stamp: 'CJF 11/26/2023 21:15:20'!
+PASSED!
+
+!testRun: #ImportTest #test03supplierWithAddressesImportedCorrectly stamp: 'CJF 11/26/2023 21:15:20'!
+PASSED!
+
+!testRun: #ImportTest #test04supplierMustHaveOnlyFourFields stamp: 'CJF 11/26/2023 21:15:20'!
+PASSED!
+
+!testRun: #ImportTest #test05supplierRecordMustStartWithSingleS stamp: 'CJF 11/26/2023 21:15:20'!
+PASSED!
+
+!testRun: #ImportTest #test06newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/26/2023 21:15:20'!
+PASSED!
+
+!testRun: #ImportTest #test06supplierRecordFieldsMustNotBeEmpty stamp: 'CJF 11/26/2023 21:15:20'!
+PASSED!
+
+!testRun: #ImportTest #test07supplierWithExistingCustomerMustExistInSystem stamp: 'CJF 11/26/2023 21:15:20'!
+PASSED!
+
+!testRun: #ImportTest #test08supplierAddressesMustContainSixFieldsInRecord stamp: 'CJF 11/26/2023 21:15:20'!
+PASSED!
+
+!classDefinition: #Suplier category: 'CustomerImporter' stamp: 'CJF 11/26/2023 21:15:33'!
+Customer subclass: #Suplier
+	instanceVariableNames: 'name supplierCustomers'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+----SNAPSHOT----(26 November 2023 21:15:46) CuisUniversity-5981.image priorSource: 10348558!
+
+User subclass: #Customer
+	instanceVariableNames: 'id firstName lastName identificationType identificationNumber addresses'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #Customer category: 'CustomerImporter' stamp: 'CJF 11/26/2023 21:16:06'!
+User subclass: #Customer
+	instanceVariableNames: 'id firstName lastName identificationType identificationNumber addresses'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/26/2023 22:10:24' prior: 50655219!
+test01ValidDataIsImportedCorrectly
+	CustomerImporter valueFrom: self customerWithAddress into: system. 
+	SupplierImporter valueFrom: self supplierWithOneNewCustomer into: system.
+	
+	self assert: 1 equals: system numberOfSuppliers.
+	self assertSupplierImportedCorrectly.
+	self assertSupplierHasNewCustomerClient.
+	self assertNewCustomerIsPepeSanchez.
+! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/26/2023 22:11:26'!
+test00validInputImportCorrectly
+	CustomerImporter from: self customerWithSingleAddress into: system.
+	SupplierImporter valueFrom: self supplierWithOneNewCustomer into: system.
+	
+	self assert: 1 equals: system numberOfSuppliers.
+	self assertSupplierImportedCorrectly.
+	self assertSupplierHasNewCustomerClient.
+	self assertNewCustomerIsPepeSanchez.
+! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/26/2023 22:12:17' prior: 50655303!
+test00validInputImportCorrectly
+	CustomerImporter from: self customerWithSingleAddress into: system.
+	SupplierImporter valueFrom: self validSupplierRecords into: system.
+	
+	self assert: 1 equals: system numberOfSuppliers.
+	self assertSupplierImportedCorrectly.
+	self assertSupplierHasNewCustomerClient.
+	self assertNewCustomerIsPepeSanchez.
+! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/26/2023 22:43:39' prior: 50655317!
+test00validInputImportCorrectly
+	CustomerImporter from: self customerWithSingleAddress into: system.
+	SupplierImporter valueFrom: self validSupplierRecords into: system.
+	
+	self assert: 1 equals: system numberOfSuppliers.
+	self assertSupplierImportedCorrectly.
+	self assertSupplierHasTwoClients.
+	 self assertSupplierHasNewCustomerClient.
+	! !
+!ImportTest methodsFor: 'test data' stamp: 'CJF 11/26/2023 22:44:30'!
+customerWithSingleAddress
+
+	^ ReadStream on:
+'C,Pepe,Sanchez,D,22333444
+A,San Martin,3322,Olivos,1636,BsAs'! !
+!ImportTest methodsFor: 'test supplier - data' stamp: 'CJF 11/26/2023 22:46:01'!
+validSupplierRecords
+	ReadStream on:
+'S,Supplier1,D,123
+NC,Pepe,Sanchez,D,22333444
+EC,D,5456774
+A,San Martin,3322,Olivos,1636,BsAs
+A,Maipu,888,Florida,1122,Buenos Aires'! !
+!ImportTest methodsFor: 'test supplier - data' stamp: 'CJF 11/26/2023 22:46:05' prior: 50655350!
+validSupplierRecords
+	^ReadStream on:
+'S,Supplier1,D,123
+NC,Pepe,Sanchez,D,22333444
+EC,D,5456774
+A,San Martin,3322,Olivos,1636,BsAs
+A,Maipu,888,Florida,1122,Buenos Aires'! !
+!ImportTest methodsFor: 'test supplier - data' stamp: 'CJF 11/26/2023 22:48:37' prior: 50653690!
+supplierWithOneNewCustomer
+	^ReadStream on:  'S,Supplier1,D,123
+NC,Juan,Perez,C,23-25666777-9'
+
+! !
+!ImportTest methodsFor: 'test data' stamp: 'CJF 11/26/2023 22:52:10' prior: 50655344!
+customerWithSingleAddress
+
+	^ ReadStream on:
+'C,Juan,Perez,C,23-25666777-9
+A,Alem,1122,CABA,1001,CABA'! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/26/2023 23:34:21' prior: 50655331!
+test00validInputImportCorrectly
+	CustomerImporter from: self customerWithSingleAddress into: system.
+	SupplierImporter valueFrom: self validSupplierRecords into: system.
+	
+	self assert: 1 equals: system numberOfSuppliers.
+	self assertSupplierImportedCorrectly.
+	self assertSupplierHasTwoClients.
+	self assertPepeSanchezWasImportedCorrecty.
+	 self assertSupplierHasNewCustomerClient.
+	! !
+!ImportTest methodsFor: 'test data' stamp: 'CJF 11/26/2023 23:34:32'!
+singleCustomer
+
+	^ ReadStream on:
+'C,Juan,Perez,C,23-25666777-9
+A,Alem,1122,CABA,1001,CABA'! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'CJF 11/26/2023 23:34:32' prior: 50655381!
+test00validInputImportCorrectly
+	CustomerImporter from: self singleCustomer into: system.
+	SupplierImporter valueFrom: self validSupplierRecords into: system.
+	
+	self assert: 1 equals: system numberOfSuppliers.
+	self assertSupplierImportedCorrectly.
+	self assertSupplierHasTwoClients.
+	self assertPepeSanchezWasImportedCorrecty.
+	 self assertSupplierHasNewCustomerClient.
+	! !
+
+!methodRemoval: ImportTest #customerWithSingleAddress stamp: 'CJF 11/26/2023 23:34:32'!
+customerWithSingleAddress
+
+	^ ReadStream on:
+'C,Juan,Perez,C,23-25666777-9
+A,Alem,1122,CABA,1001,CABA'!
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/26/2023 23:41:24' prior: 50655402!
+test00validInputImportCorrectly
+	CustomerImporter from: self singleCustomer into: system.
+	SupplierImporter valueFrom: self validSupplierRecords into: system.
+	
+	self assert: 1 equals: system numberOfSuppliers.
+	self assertSupplierImportedCorrectly.
+	self assertSupplierHasTwoClients.
+	self assertPepeSanchezIsSupplierClientAndNewCustomer.
+	self assertJuanPerezOsSupplierClient.
+	self assertSupplierHasTwoAddresses.
+	self assertSanMartin3322IsSupplierAddress.
+	self assertMaipu888IsSupplierAddres.! !
+
+!testRun: #ImportTest #test00validInputImportCorrectly stamp: 'CJF 11/26/2023 23:47:47'!
+ERROR!
+
+!testRun: #ImportTest #test00validInputImportCorrectly stamp: 'CJF 11/26/2023 23:49:11'!
+ERROR!
+!SupplierImporter methodsFor: 'category-name' stamp: 'CJF 11/26/2023 23:51:03' prior: 50654761!
+importNewCustomer
+	|newSupplierCustomer |
+	newSupplierCustomer := Customer named: (record second) withLastName: (record third) identificationType: (record fourth) indentificationNumber: (record fifth) .
+	"( ( system customerWithIdentificationType: (record fourth ) number: (record fifth ) ) = newSupplierCustomer ) ifTrue: [ self error: SupplierImporter newCustomerAlreadyExistInSystem]."
+	newSupplier addNewCustomer: newSupplierCustomer .
+	system add: newSupplierCustomer.! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/26/2023 23:53:23' prior: 50655423!
+test00validInputImportCorrectly
+	CustomerImporter valueFrom: self singleCustomer into: system.
+
+	SupplierImporter valueFrom: self validSupplierRecords into: system.
+	
+	self assert: 1 equals: system numberOfSuppliers.
+	self assertSupplierImportedCorrectly.
+	self assertSupplierHasTwoClients.
+	self assertPepeSanchezIsSupplierClientAndNewCustomer.
+	self assertJuanPerezOsSupplierClient.
+	self assertSupplierHasTwoAddresses.
+	self assertSanMartin3322IsSupplierAddress.
+	self assertMaipu888IsSupplierAddres.! !
+!ImportTest methodsFor: 'test data' stamp: 'CJF 11/26/2023 23:59:29' prior: 50655396!
+singleCustomer
+
+	^ ReadStream on:
+'C,Juan,Perez,D,5456774
+A,Alem,1122,CABA,1001,CABA'! !
+
+!testRun: #ImportTest #test00validInputImportCorrectly stamp: 'CJF 11/27/2023 00:09:37'!
+ERROR!
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/27/2023 00:09:45'!
+assertSupplierHasTwoClients
+	self shouldBeImplemented.! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/27/2023 00:18:31' prior: 50655494!
+assertSupplierHasTwoClients
+
+	^(( (system customerWithIdentificationType: 'D' number: '123') numberOfCustomers ) = 2)! !
+
+!testRun: #ImportTest #test00validInputImportCorrectly stamp: 'CJF 11/27/2023 00:18:50'!
+ERROR!
+
+!testRun: #ImportTest #test00validInputImportCorrectly stamp: 'CJF 11/27/2023 00:19:15'!
+ERROR!
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/27/2023 00:19:29'!
+assertPepeSanchezIsSupplierClientAndNewCustomer
+	self shouldBeImplemented.! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/27/2023 00:21:03' prior: 50655512!
+assertPepeSanchezIsSupplierClientAndNewCustomer
+	^(system customerWithIdentificationType: 'D' number: '123') includesClient: self pepeSanchezClient.! !
+
+!testRun: #ImportTest #test00validInputImportCorrectly stamp: 'CJF 11/27/2023 00:21:08'!
+ERROR!
+!ImportTest methodsFor: 'test supplier - data' stamp: 'CJF 11/27/2023 00:21:18'!
+pepeSanchezClient
+	self shouldBeImplemented.! !
+!ImportTest methodsFor: 'test supplier - data' stamp: 'CJF 11/27/2023 00:23:13' prior: 50655529!
+pepeSanchezClient
+	^Customer named: 'Pepe' withLastName: 'Sanchez' identificationType: 'D' indentificationNumber: '22333444' ! !
+!Suplier methodsFor: 'testing' stamp: 'CJF 11/27/2023 00:23:49'!
+includesClient: aRenameMe1 
+	self shouldBeImplemented.! !
+!Suplier methodsFor: 'testing' stamp: 'CJF 11/27/2023 00:23:58' prior: 50655541!
+includesClient: aClient 
+	self shouldBeImplemented.! !
+!Suplier methodsFor: 'testing' stamp: 'CJF 11/27/2023 00:24:22' prior: 50655546!
+includesClient: aCustomer 
+	^supplierCustomers includes: aCustomer ! !
+
+!testRun: #ImportTest #test00validInputImportCorrectly stamp: 'CJF 11/27/2023 00:24:55'!
+ERROR!
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/27/2023 00:25:06'!
+assertJuanPerezOsSupplierClient
+	self shouldBeImplemented.! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/27/2023 00:30:30' prior: 50655559!
+assertJuanPerezOsSupplierClient
+	^(system customerWithIdentificationType: 'D' number: '123') includesClient: self juanPerezClient.! !
+
+!testRun: #ImportTest #test00validInputImportCorrectly stamp: 'CJF 11/27/2023 00:30:36'!
+ERROR!
+!ImportTest methodsFor: 'test supplier - data' stamp: 'CJF 11/27/2023 00:30:45'!
+juanPerezClient
+	self shouldBeImplemented.! !
+!ImportTest methodsFor: 'test supplier - data' stamp: 'CJF 11/27/2023 00:31:38' prior: 50655574!
+juanPerezClient
+	^Customer named: 'Juan' withLastName: 'Perez' identificationType: 'D' indentificationNumber: '5456774'! !
+!ImportTest methodsFor: 'test supplier - data' stamp: 'CJF 11/27/2023 00:31:52'!
+juanPerezCustomer
+	^Customer named: 'Juan' withLastName: 'Perez' identificationType: 'D' indentificationNumber: '5456774'! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'CJF 11/27/2023 00:31:52' prior: 50655564!
+assertJuanPerezOsSupplierClient
+	^(system customerWithIdentificationType: 'D' number: '123') includesClient: self juanPerezCustomer.! !
+
+!methodRemoval: ImportTest #juanPerezClient stamp: 'CJF 11/27/2023 00:31:52'!
+juanPerezClient
+	^Customer named: 'Juan' withLastName: 'Perez' identificationType: 'D' indentificationNumber: '5456774'!
+
+!testRun: #ImportTest #test00validInputImportCorrectly stamp: 'CJF 11/27/2023 00:38:41'!
+ERROR!
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/27/2023 00:38:49'!
+assertSanMartin3322IsSupplierAddress
+	self shouldBeImplemented.! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/27/2023 00:39:46' prior: 50655609!
+assertSanMartin3322IsSupplierAddress
+	(system customerWithIdentificationType: 'D' number: '123' ) includesAddress: self sanMartinAddress.! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/27/2023 00:39:53' prior: 50655614!
+assertSanMartin3322IsSupplierAddress
+	^(system customerWithIdentificationType: 'D' number: '123' ) includesAddress: self sanMartinAddress.! !
+
+!testRun: #ImportTest #test00validInputImportCorrectly stamp: 'CJF 11/27/2023 00:39:54'!
+ERROR!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/27/2023 00:39:54'!
+ERROR!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'CJF 11/27/2023 00:39:54'!
+PASSED!
+
+!testRun: #ImportTest #test02validDataWithExistingCustomerImportedCorrectly stamp: 'CJF 11/27/2023 00:39:54'!
+PASSED!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'CJF 11/27/2023 00:39:54'!
+PASSED!
+
+!testRun: #ImportTest #test03supplierWithAddressesImportedCorrectly stamp: 'CJF 11/27/2023 00:39:54'!
+PASSED!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'CJF 11/27/2023 00:39:54'!
+PASSED!
+
+!testRun: #ImportTest #test04supplierMustHaveOnlyFourFields stamp: 'CJF 11/27/2023 00:39:54'!
+PASSED!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'CJF 11/27/2023 00:39:54'!
+PASSED!
+
+!testRun: #ImportTest #test05supplierRecordMustStartWithSingleS stamp: 'CJF 11/27/2023 00:39:54'!
+PASSED!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'CJF 11/27/2023 00:39:54'!
+PASSED!
+
+!testRun: #ImportTest #test06newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/27/2023 00:39:54'!
+FAILURE!
+
+!testRun: #ImportTest #test06supplierRecordFieldsMustNotBeEmpty stamp: 'CJF 11/27/2023 00:39:54'!
+PASSED!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'CJF 11/27/2023 00:39:55'!
+PASSED!
+
+!testRun: #ImportTest #test07supplierWithExistingCustomerMustExistInSystem stamp: 'CJF 11/27/2023 00:39:55'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'CJF 11/27/2023 00:39:55'!
+PASSED!
+
+!testRun: #ImportTest #test08supplierAddressesMustContainSixFieldsInRecord stamp: 'CJF 11/27/2023 00:39:55'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'CJF 11/27/2023 00:39:55'!
+PASSED!
+
+!testRun: #ImportTest #test00validInputImportCorrectly stamp: 'CJF 11/27/2023 00:40:00'!
+ERROR!
+!ImportTest methodsFor: 'test supplier - data' stamp: 'CJF 11/27/2023 00:40:05'!
+sanMartinAddress
+	self shouldBeImplemented.! !
+!ImportTest methodsFor: 'test supplier - data' stamp: 'CJF 11/27/2023 00:41:14' prior: 50655696!
+sanMartinAddress
+	^Address withStreetName: 'San Martin' streetNumber: '3322' town: 'Olivos'  zipCode: '1636' province: 'BsAs'! !
+
+!testRun: #ImportTest #test00validInputImportCorrectly stamp: 'CJF 11/27/2023 00:41:25'!
+ERROR!
+!Suplier methodsFor: 'testing' stamp: 'CJF 11/27/2023 00:41:29'!
+includesAddress: aRenameMe1 
+	self shouldBeImplemented.! !
+!Suplier methodsFor: 'testing' stamp: 'CJF 11/27/2023 00:41:37' prior: 50655711!
+includesAddress: anAddress 
+	self shouldBeImplemented.! !
+!Suplier methodsFor: 'testing' stamp: 'CJF 11/27/2023 00:42:00' prior: 50655716!
+includesAddress: anAddress 
+	^addresses includes: anAddress ! !
+!ImportTest methodsFor: 'test supplier - data' stamp: 'CJF 11/27/2023 00:43:23' prior: 50655701!
+sanMartinAddress
+	^Address withStreetName: 'San Martin' streetNumber: 3322 town: 'Olivos'  zipCode: 1636 province: 'BsAs'! !
+!ImportTest methodsFor: 'test supplier - data' stamp: 'CJF 11/27/2023 00:44:57' prior: 50655727!
+sanMartinAddress
+	^Address withStreetName: 'San Martin' streetNumber: 3322 town: 'Olivos'  zipCode: '1636' province: 'BsAs'! !
+!Address methodsFor: 'nil' stamp: 'CJF 11/27/2023 00:50:24' overrides: 16901772!
+= anObject
+	(self isKindOf: anObject class) ifTrue: [
+		^streetName = anObject streetName and: [ streetNumber = anObject streetNumber ] and: [ town = anObject town ] and: [ zipCode = anObject zipCode ] and:[ province = anObject province ]
+		].
+	^false.
+	! !
+
+!testRun: #ImportTest #test00validInputImportCorrectly stamp: 'CJF 11/27/2023 00:52:34'!
+ERROR!
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/27/2023 00:52:40'!
+assertMaipu888IsSupplierAddres
+	self shouldBeImplemented.! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/27/2023 00:53:34' prior: 50655755!
+assertMaipu888IsSupplierAddres
+	^( system customerWithIdentificationType: 'D' number: '123' ) includesAddress: self alemAddress.! !
+
+!testRun: #ImportTest #test00validInputImportCorrectly stamp: 'CJF 11/27/2023 00:53:39'!
+ERROR!
+!ImportTest methodsFor: 'test supplier - data' stamp: 'CJF 11/27/2023 00:53:47'!
+alemAddress
+	self shouldBeImplemented.! !
+!ImportTest methodsFor: 'test supplier - data' stamp: 'CJF 11/27/2023 00:54:33' prior: 50655770!
+alemAddress
+	^Address withStreetName: 'Alem' streetNumber: 1122 town: 'CABA'  zipCode: '1001'  province: 'CABA'! !
+
+!testRun: #ImportTest #test00validInputImportCorrectly stamp: 'CJF 11/27/2023 00:54:35'!
+PASSED!
+
+!testRun: #ImportTest #test00validInputImportCorrectly stamp: 'CJF 11/27/2023 00:54:40'!
+PASSED!
+
+!methodRemoval: ImportTest #test01ValidDataIsImportedCorrectly stamp: 'CJF 11/27/2023 00:57:14'!
+test01ValidDataIsImportedCorrectly
+	CustomerImporter valueFrom: self customerWithAddress into: system. 
+	SupplierImporter valueFrom: self supplierWithOneNewCustomer into: system.
+	
+	self assert: 1 equals: system numberOfSuppliers.
+	self assertSupplierImportedCorrectly.
+	self assertSupplierHasNewCustomerClient.
+	self assertNewCustomerIsPepeSanchez.
+!
+
+!methodRemoval: ImportTest #test02validDataWithExistingCustomerImportedCorrectly stamp: 'CJF 11/27/2023 00:57:18'!
+test02validDataWithExistingCustomerImportedCorrectly
+	CustomerImporter valueFrom: self customerImporterWithAddress into: system.
+	SupplierImporter valueFrom: self suplierWithEC into: system.
+	
+	self assert: system numberOfCustomers equals: 1.
+	self assert: system numberOfSuppliers equals: 1.
+	self assertNewCustomerIsPepeSanchez.
+	"
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly "!
+
+!methodRemoval: ImportTest #test03supplierWithAddressesImportedCorrectly stamp: 'CJF 11/27/2023 00:57:27'!
+test03supplierWithAddressesImportedCorrectly
+	SupplierImporter valueFrom: self suplierWithAddresses into: system.
+	self assertSupplierHasTwoAddresses
+	
+	!
+
+!testRun: #ImportTest #test00validInputImportCorrectly stamp: 'CJF 11/27/2023 00:57:43'!
+PASSED!
+
+!testRun: #ImportTest #test04supplierMustHaveOnlyFourFields stamp: 'CJF 11/27/2023 00:57:43'!
+PASSED!
+
+!testRun: #ImportTest #test05supplierRecordMustStartWithSingleS stamp: 'CJF 11/27/2023 00:57:43'!
+PASSED!
+
+!testRun: #ImportTest #test06newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/27/2023 00:57:43'!
+FAILURE!
+
+!testRun: #ImportTest #test06supplierRecordFieldsMustNotBeEmpty stamp: 'CJF 11/27/2023 00:57:43'!
+PASSED!
+
+!testRun: #ImportTest #test07supplierWithExistingCustomerMustExistInSystem stamp: 'CJF 11/27/2023 00:57:43'!
+PASSED!
+
+!testRun: #ImportTest #test08supplierAddressesMustContainSixFieldsInRecord stamp: 'CJF 11/27/2023 00:57:43'!
+PASSED!
+
+!testRun: #ImportTest #test06newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/27/2023 00:57:43'!
+FAILURE!
+
+!testRun: #ImportTest #test04supplierMustHaveOnlyFourFields stamp: 'CJF 11/27/2023 00:57:51'!
+PASSED!
+
+!testRun: #ImportTest #test05supplierRecordMustStartWithSingleS stamp: 'CJF 11/27/2023 00:57:53'!
+PASSED!
+
+!testRun: #ImportTest #test06newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/27/2023 00:57:54'!
+FAILURE!
+
+!testRun: #ImportTest #test06newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/27/2023 00:57:54'!
+FAILURE!
+
+!testRun: #ImportTest #test06supplierRecordFieldsMustNotBeEmpty stamp: 'CJF 11/27/2023 00:58:00'!
+PASSED!
+
+!testRun: #ImportTest #test07supplierWithExistingCustomerMustExistInSystem stamp: 'CJF 11/27/2023 00:58:05'!
+PASSED!
+
+!testRun: #ImportTest #test08supplierAddressesMustContainSixFieldsInRecord stamp: 'CJF 11/27/2023 00:58:06'!
+PASSED!
+
+!testRun: #ImportTest #test06newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/27/2023 00:58:11'!
+FAILURE!
+
+!testRun: #ImportTest #test06newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/27/2023 00:58:11'!
+FAILURE!
+
+!testRun: #ImportTest #test04supplierMustHaveOnlyFourFields stamp: 'CJF 11/27/2023 01:06:13'!
+PASSED!
+
+!testRun: #ImportTest #test05supplierRecordMustStartWithSingleS stamp: 'CJF 11/27/2023 01:07:27'!
+PASSED!
+
+!testRun: #ImportTest #test06newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/27/2023 01:07:32'!
+FAILURE!
+
+!testRun: #ImportTest #test06newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/27/2023 01:07:32'!
+FAILURE!
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/27/2023 01:20:31' prior: 50654611!
+test06newCustomerInSupplierEntryMustNotExistInCustomersSystem
+	CustomerImporter valueFrom: (ReadStream on: 'C,Juan,Perez,C,23-25666777-9') into: system.
+	
+	self should: [
+		SupplierImporter valueFrom: self supplierWithOneNewCustomer into: system.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [ :anError |
+			self assert: anError messageText equals: SupplierImporter newCustomerAlreadyExistInSystem.
+			self assertSupplierHasNoClients.
+		].! !
+
+!methodRemoval: ImportTest #test06supplierRecordFieldsMustNotBeEmpty stamp: 'CJF 11/27/2023 01:20:41'!
+test06supplierRecordFieldsMustNotBeEmpty
+"	self should: [	
+	SupplierImporter valueFrom: (ReadStream on: 'S, Supplier1, ,123') into: system. ]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: SupplierImporter supplierRecordMustStartWithS.
+		 ]"!
+
+!testRun: #ImportTest #test06newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/27/2023 01:20:43'!
+FAILURE!
+
+!testRun: #ImportTest #test06newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/27/2023 01:20:43'!
+FAILURE!
+!SupplierImporter methodsFor: 'category-name' stamp: 'CJF 11/27/2023 01:40:37' prior: 50655448!
+importNewCustomer
+	|newSupplierCustomer |
+	newSupplierCustomer := Customer named: (record second) withLastName: (record third) identificationType: (record fourth) indentificationNumber: (record fifth) .
+	( system selectAllOfType: Customer ) includes: newSupplierCustomer .
+	"( ( system customerWithIdentificationType: (record fourth ) number: (record fifth ) ) = newSupplierCustomer ) ifTrue: [ self error: SupplierImporter newCustomerAlreadyExistInSystem]."
+	newSupplier addNewCustomer: newSupplierCustomer .
+	system add: newSupplierCustomer.! !
+
+!testRun: #ImportTest #test06newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/27/2023 01:40:51'!
+ERROR!
+!TransientCustomerSystem methodsFor: 'category-name' stamp: 'CJF 11/27/2023 01:41:04'!
+selectAllOfType: Customer 
+	self shouldBeImplemented.! !
+!TransientCustomerSystem methodsFor: 'category-name' stamp: 'CJF 11/27/2023 01:44:32' prior: 50655968!
+selectAllOfType: aType 
+	^customers collect: [ :aCustomer | aCustomer isKindOf: aType ]! !
+!TransientCustomerSystem methodsFor: 'category-name' stamp: 'CJF 11/27/2023 01:46:16' prior: 50655973!
+selectAllOfType: aType 
+	^customers select: [ :aCustomer | aCustomer isKindOf: aType ]	! !
+
+!testRun: #ImportTest #test06newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/27/2023 01:47:10'!
+FAILURE!
+
+!testRun: #ImportTest #test06newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/27/2023 01:47:10'!
+FAILURE!
+!SupplierImporter methodsFor: 'category-name' stamp: 'CJF 11/27/2023 01:48:38' prior: 50655944!
+importNewCustomer
+	|newSupplierCustomer |
+	newSupplierCustomer := Customer named: (record second) withLastName: (record third) identificationType: (record fourth) indentificationNumber: (record fifth) .
+	( ( system selectAllOfType: Customer ) includes: newSupplierCustomer ) ifTrue: [self error: SupplierImporter newCustomerAlreadyExistInSystem].
+	"( ( system customerWithIdentificationType: (record fourth ) number: (record fifth ) ) = newSupplierCustomer ) ifTrue: [ self error: SupplierImporter newCustomerAlreadyExistInSystem]."
+	newSupplier addNewCustomer: newSupplierCustomer .
+	system add: newSupplierCustomer.! !
+
+!testRun: #ImportTest #test06newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/27/2023 01:49:06'!
+PASSED!
+
+!testRun: #ImportTest #test07supplierWithExistingCustomerMustExistInSystem stamp: 'CJF 11/27/2023 01:49:10'!
+PASSED!
+
+!testRun: #ImportTest #test08supplierAddressesMustContainSixFieldsInRecord stamp: 'CJF 11/27/2023 01:49:11'!
+PASSED!
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/27/2023 01:52:16'!
+test02supplierMustHaveOnlyFourFields
+	self should:[
+	SupplierImporter valueFrom: (ReadStream on: 'S,,D,123') into: system.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [ :anError | 
+		self assert: anError messageText equals: SupplierImporter supplierRecordNumberFieldsErrorMessage.
+		]
+! !
+
+!methodRemoval: ImportTest #test04supplierMustHaveOnlyFourFields stamp: 'CJF 11/27/2023 01:52:16'!
+test04supplierMustHaveOnlyFourFields
+	self should:[
+	SupplierImporter valueFrom: (ReadStream on: 'S,,D,123') into: system.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [ :anError | 
+		self assert: anError messageText equals: SupplierImporter supplierRecordNumberFieldsErrorMessage.
+		]
+!
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/27/2023 01:52:27'!
+test03supplierRecordMustStartWithSingleS
+	self should: [	
+	SupplierImporter valueFrom: (ReadStream on: 'SS, Supplier1,D,123') into: system. ]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: SupplierImporter supplierRecordMustStartWithS.
+		 ]! !
+
+!methodRemoval: ImportTest #test05supplierRecordMustStartWithSingleS stamp: 'CJF 11/27/2023 01:52:27'!
+test05supplierRecordMustStartWithSingleS
+	self should: [	
+	SupplierImporter valueFrom: (ReadStream on: 'SS, Supplier1,D,123') into: system. ]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: SupplierImporter supplierRecordMustStartWithS.
+		 ]!
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/27/2023 01:52:33'!
+test04newCustomerInSupplierEntryMustNotExistInCustomersSystem
+	CustomerImporter valueFrom: (ReadStream on: 'C,Juan,Perez,C,23-25666777-9') into: system.
+	
+	self should: [
+		SupplierImporter valueFrom: self supplierWithOneNewCustomer into: system.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [ :anError |
+			self assert: anError messageText equals: SupplierImporter newCustomerAlreadyExistInSystem.
+			self assertSupplierHasNoClients.
+		].! !
+
+!methodRemoval: ImportTest #test06newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/27/2023 01:52:33'!
+test06newCustomerInSupplierEntryMustNotExistInCustomersSystem
+	CustomerImporter valueFrom: (ReadStream on: 'C,Juan,Perez,C,23-25666777-9') into: system.
+	
+	self should: [
+		SupplierImporter valueFrom: self supplierWithOneNewCustomer into: system.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [ :anError |
+			self assert: anError messageText equals: SupplierImporter newCustomerAlreadyExistInSystem.
+			self assertSupplierHasNoClients.
+		].!
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/27/2023 01:52:38'!
+test05supplierWithExistingCustomerMustExistInSystem
+	
+	self should: [
+		SupplierImporter valueFrom: self suplierWithEC into: system.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [ :anError |
+			self assert: anError messageText equals: SupplierImporter existingCustomerDoesNotExists.
+			self assertSupplierHasNoClients.
+		].! !
+
+!methodRemoval: ImportTest #test07supplierWithExistingCustomerMustExistInSystem stamp: 'CJF 11/27/2023 01:52:38'!
+test07supplierWithExistingCustomerMustExistInSystem
+	
+	self should: [
+		SupplierImporter valueFrom: self suplierWithEC into: system.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [ :anError |
+			self assert: anError messageText equals: SupplierImporter existingCustomerDoesNotExists.
+			self assertSupplierHasNoClients.
+		].!
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/27/2023 01:52:44'!
+test06supplierAddressesMustContainSixFieldsInRecord
+	
+	self should: [
+		SupplierImporter valueFrom: self suplierWithInvalidAddress into: system.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [ :anError |
+			self assert: anError messageText equals: SupplierImporter invalidSupplierAddressesFields.
+		].! !
+
+!methodRemoval: ImportTest #test08supplierAddressesMustContainSixFieldsInRecord stamp: 'CJF 11/27/2023 01:52:44'!
+test08supplierAddressesMustContainSixFieldsInRecord
+	
+	self should: [
+		SupplierImporter valueFrom: self suplierWithInvalidAddress into: system.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [ :anError |
+			self assert: anError messageText equals: SupplierImporter invalidSupplierAddressesFields.
+		].!
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/27/2023 01:52:49'!
+test01validInputImportCorrectly
+	CustomerImporter valueFrom: self singleCustomer into: system.
+
+	SupplierImporter valueFrom: self validSupplierRecords into: system.
+	
+	self assert: 1 equals: system numberOfSuppliers.
+	self assertSupplierImportedCorrectly.
+	self assertSupplierHasTwoClients.
+	self assertPepeSanchezIsSupplierClientAndNewCustomer.
+	self assertJuanPerezOsSupplierClient.
+	self assertSupplierHasTwoAddresses.
+	self assertSanMartin3322IsSupplierAddress.
+	self assertMaipu888IsSupplierAddres.! !
+
+!methodRemoval: ImportTest #test00validInputImportCorrectly stamp: 'CJF 11/27/2023 01:52:50'!
+test00validInputImportCorrectly
+	CustomerImporter valueFrom: self singleCustomer into: system.
+
+	SupplierImporter valueFrom: self validSupplierRecords into: system.
+	
+	self assert: 1 equals: system numberOfSuppliers.
+	self assertSupplierImportedCorrectly.
+	self assertSupplierHasTwoClients.
+	self assertPepeSanchezIsSupplierClientAndNewCustomer.
+	self assertJuanPerezOsSupplierClient.
+	self assertSupplierHasTwoAddresses.
+	self assertSanMartin3322IsSupplierAddress.
+	self assertMaipu888IsSupplierAddres.!
+
+!methodRemoval: ImportTest #assertSupplierHasNewCustomerClient stamp: 'CJF 11/27/2023 01:53:47'!
+assertSupplierHasNewCustomerClient
+	|importedSupplier|
+	importedSupplier := system customerWithIdentificationType: 'D' number: '123'.
+	self assert: importedSupplier numberOfCustomers equals: 1.!
+
+!methodRemoval: ImportTest #validSupplierDataWithExistingCustomer stamp: 'CJF 11/27/2023 01:54:46'!
+validSupplierDataWithExistingCustomer
+	self shouldBeImplemented.!
+
+!methodRemoval: ImportTest #customerImporterWithAddress stamp: 'CJF 11/27/2023 01:55:05'!
+customerImporterWithAddress
+
+	^ ReadStream on:
+'C,Pepe,Sanchez,D,22333444
+A,San Martin,3322,Olivos,1636,BsAs'!
+
+!methodRemoval: ImportTest #suplierWithAddresses stamp: 'CJF 11/27/2023 01:55:32'!
+suplierWithAddresses
+	^ReadStream on: 
+	'S,Supplier1,D,123
+A,San Martin,3322,Olivos,1636,BsAs
+A,Maipu,888,Florida,1122,Buenos Aires'
+
+!
+
+----SNAPSHOT----(27 November 2023 01:58:25) CuisUniversity-5981.image priorSource: 10355816!
+
+IntegrationEnvironment makeCurrent !
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 02:00:17'!
+ERROR!
+
+!testRun: #ImportTest #test02supplierMustHaveOnlyFourFields stamp: 'CJF 11/27/2023 02:00:17'!
+PASSED!
+
+!testRun: #ImportTest #test03supplierRecordMustStartWithSingleS stamp: 'CJF 11/27/2023 02:00:17'!
+PASSED!
+
+!testRun: #ImportTest #test04newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/27/2023 02:00:17'!
+FAILURE!
+
+!testRun: #ImportTest #test05supplierWithExistingCustomerMustExistInSystem stamp: 'CJF 11/27/2023 02:00:17'!
+FAILURE!
+
+!testRun: #ImportTest #test06supplierAddressesMustContainSixFieldsInRecord stamp: 'CJF 11/27/2023 02:00:17'!
+FAILURE!
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 02:00:39'!
+ERROR!
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 02:00:39'!
+ERROR!
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 02:01:04'!
+ERROR!
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 02:01:40'!
+ERROR!
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 02:01:53'!
+ERROR!
+!PersistentCustomerSystem methodsFor: 'transactions' stamp: 'CJF 11/27/2023 02:02:11'!
+selectAllOfType: Customer 
+	self shouldBeImplemented.! !
+!PersistentCustomerSystem methodsFor: 'transactions' stamp: 'CJF 11/27/2023 02:02:37' prior: 50656274!
+selectAllOfType: aCustomer 
+	self shouldBeImplemented.! !
+!PersistentCustomerSystem methodsFor: 'transactions' stamp: 'CJF 11/27/2023 02:03:13' prior: 50656279!
+selectAllOfType: aCustomer 
+	session selectAllOfType: aCustomer .! !
+!PersistentCustomerSystem methodsFor: 'transactions' stamp: 'CJF 11/27/2023 02:03:19' prior: 50656285!
+selectAllOfType: aType 
+	session selectAllOfType: aType .! !
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 02:03:27'!
+ERROR!
+!PersistentCustomerSystem methodsFor: 'transactions' stamp: 'CJF 11/27/2023 02:03:45'!
+includes: newSupplierCustomer 
+	self shouldBeImplemented.! !
+!PersistentCustomerSystem methodsFor: 'transactions' stamp: 'CJF 11/27/2023 02:10:12' prior: 50656299!
+includes: newSupplierCustomer 
+	( session selectAllOfType: newSupplierCustomer class ) includes: newSupplierCustomer ! !
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 02:10:58'!
+ERROR!
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 02:11:25'!
+ERROR!
+
+!testRun: #ImportTest #test02supplierMustHaveOnlyFourFields stamp: 'CJF 11/27/2023 02:11:25'!
+PASSED!
+
+!testRun: #ImportTest #test03supplierRecordMustStartWithSingleS stamp: 'CJF 11/27/2023 02:11:25'!
+PASSED!
+
+!testRun: #ImportTest #test04newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/27/2023 02:11:25'!
+FAILURE!
+
+!testRun: #ImportTest #test05supplierWithExistingCustomerMustExistInSystem stamp: 'CJF 11/27/2023 02:11:25'!
+FAILURE!
+
+!testRun: #ImportTest #test06supplierAddressesMustContainSixFieldsInRecord stamp: 'CJF 11/27/2023 02:11:25'!
+FAILURE!
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 02:11:55'!
+ERROR!
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 02:12:06'!
+ERROR!
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 02:12:41'!
+ERROR!
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 02:14:26'!
+ERROR!
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 02:15:37'!
+ERROR!
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'CJF 11/27/2023 02:20:51' prior: 50651230 overrides: 16961394!
+setUp
+	self halt.
+
+	system := Environment current createCustomerSystem.
+	system start.
+	system beginTransaction.
+! !
+!PersistentCustomerSystem methodsFor: 'system lifecycle' stamp: 'CJF 11/27/2023 02:22:13' prior: 50651655 overrides: 50651601!
+start
+
+	session := DataBaseSession for: (Array with: Address with: Customer with: Suplier ).
+	! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'CJF 11/27/2023 02:22:25' prior: 50656352 overrides: 16961394!
+setUp
+
+	system := Environment current createCustomerSystem.
+	system start.
+	system beginTransaction.
+! !
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 07:34:20'!
+ERROR!
+!SupplierImporter methodsFor: 'category-name' stamp: 'CJF 11/27/2023 07:42:48' prior: 50654912!
+importEC
+	|customer|
+	[customer := system customerWithIdentificationType: record second number: record third .] 
+	on: Error do: [  :anError | self error:  SupplierImporter existingCustomerDoesNotExists  ].
+	newSupplier addNewCustomer: customer. 
+! !
+!SupplierImporter methodsFor: 'category-name' stamp: 'CJF 11/27/2023 07:42:52' prior: 50655994!
+importNewCustomer
+	|newSupplierCustomer |
+	newSupplierCustomer := Customer named: (record second) withLastName: (record third) identificationType: (record fourth) indentificationNumber: (record fifth) .
+	( ( system selectAllOfType: Customer ) includes: newSupplierCustomer ) ifTrue: [self error: SupplierImporter newCustomerAlreadyExistInSystem].
+	newSupplier addNewCustomer: newSupplierCustomer .
+	system add: newSupplierCustomer.! !
+!SupplierImporter methodsFor: 'category-name' stamp: 'CJF 11/27/2023 07:43:11' prior: 50656388!
+importNewCustomer
+	|newSupplierCustomer |
+	newSupplierCustomer := Customer named: (record second) withLastName: (record third) identificationType: (record fourth) indentificationNumber: (record fifth) .
+	( ( system selectAllOfType: Customer ) includes: newSupplierCustomer ) 
+		ifTrue: [self error: SupplierImporter newCustomerAlreadyExistInSystem].
+	newSupplier addNewCustomer: newSupplierCustomer .
+	system add: newSupplierCustomer.! !
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 07:43:51'!
+ERROR!
+!PersistentCustomerSystem methodsFor: 'transactions' stamp: 'CJF 11/27/2023 07:45:02' prior: 50656305!
+includes: newSupplierCustomer 
+	^( session selectAllOfType: newSupplierCustomer class ) includes: newSupplierCustomer ! !
+!PersistentCustomerSystem methodsFor: 'transactions' stamp: 'CJF 11/27/2023 07:47:05'!
+numberOfSuppliers
+	self shouldBeImplemented.! !
+!PersistentCustomerSystem methodsFor: 'transactions' stamp: 'CJF 11/27/2023 07:47:50' prior: 50656432!
+numberOfSuppliers
+	^(session selectAllOfType: Suplier) size! !
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 07:48:04'!
+ERROR!
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/27/2023 07:51:10' prior: 50652400!
+assertSupplierImportedCorrectly
+	|importedSupplier|
+	"importedSupplier := system customerWithIdentificationType: 'D' number: '123'."
+	importedSupplier := system supplierWithIdentificationType: 'D' number: '123'.
+	self assert: 'Supplier1' equals: importedSupplier name. 
+! !
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 07:51:39'!
+ERROR!
+!PersistentCustomerSystem methodsFor: 'transactions' stamp: 'CJF 11/27/2023 07:51:44'!
+supplierWithIdentificationType: aRenameMe1 number: aRenameMe2 
+	self shouldBeImplemented.! !
+!PersistentCustomerSystem methodsFor: 'transactions' stamp: 'CJF 11/27/2023 07:52:01' prior: 50656460!
+supplierWithIdentificationType: anIdType number: anIdNumber 
+		^(session
+		select: [ :aCustomer | aCustomer identificationType = anIdType and: [ aCustomer identificationNumber = anIdNumber ]]
+		ofType: Suplier) anyOne! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/27/2023 07:52:49' prior: 50655499!
+assertSupplierHasTwoClients
+
+	^(( (system supplierWithIdentificationType: 'D' number: '123') numberOfCustomers ) = 2)! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/27/2023 07:53:02' prior: 50655518!
+assertPepeSanchezIsSupplierClientAndNewCustomer
+	^(system supplierWithIdentificationType: 'D' number: '123') includesClient: self pepeSanchezClient.! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/27/2023 07:53:23' prior: 50655593!
+assertJuanPerezOsSupplierClient
+	^(system supplierWithIdentificationType: 'D' number: '123') includesClient: self juanPerezCustomer.! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/27/2023 07:53:41' prior: 50653364!
+assertSupplierHasTwoAddresses
+	|importedSupplier|
+	importedSupplier := system supplierWithIdentificationType: 'D' number: '123'.
+	self assert: importedSupplier numberOfAddresses equals: 2.! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/27/2023 07:53:59' prior: 50655622!
+assertSanMartin3322IsSupplierAddress
+	^(system supplierWithIdentificationType: 'D' number: '123' ) includesAddress: self sanMartinAddress.! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/27/2023 07:54:09' prior: 50655760!
+assertMaipu888IsSupplierAddres
+	^( system supplierWithIdentificationType: 'D' number: '123' ) includesAddress: self alemAddress.! !
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 07:54:19'!
+PASSED!
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 07:54:27'!
+PASSED!
+
+!testRun: #ImportTest #test02supplierMustHaveOnlyFourFields stamp: 'CJF 11/27/2023 07:54:27'!
+PASSED!
+
+!testRun: #ImportTest #test03supplierRecordMustStartWithSingleS stamp: 'CJF 11/27/2023 07:54:27'!
+PASSED!
+
+!testRun: #ImportTest #test04newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/27/2023 07:54:27'!
+FAILURE!
+
+!testRun: #ImportTest #test05supplierWithExistingCustomerMustExistInSystem stamp: 'CJF 11/27/2023 07:54:27'!
+ERROR!
+
+!testRun: #ImportTest #test06supplierAddressesMustContainSixFieldsInRecord stamp: 'CJF 11/27/2023 07:54:28'!
+PASSED!
+
+!testRun: #ImportTest #test04newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/27/2023 07:56:04'!
+ERROR!
+!PersistentCustomerSystem methodsFor: 'transactions' stamp: 'CJF 11/27/2023 07:59:29' prior: 50656291!
+selectAllOfType: aType 
+	^session selectAllOfType: aType .! !
+
+!testRun: #ImportTest #test04newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/27/2023 07:59:34'!
+FAILURE!
+
+!testRun: #ImportTest #test04newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/27/2023 07:59:34'!
+ERROR!
+!Customer methodsFor: 'nil' stamp: 'CJF 11/27/2023 08:10:04' overrides: 16901788!
+hash
+	^firstName hash bitXor: (lastName hash bitXor: (identificationType hash  bitXor: (identificationNumber hash  bitXor: addresses hash ) ) )! !
+
+!testRun: #ImportTest #test04newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/27/2023 08:14:21'!
+ERROR!
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/27/2023 08:15:04' prior: 50654779!
+assertSupplierHasNoClients
+	|importedSupplier|
+	importedSupplier := system supplierWithIdentificationType: 'D' number: '123'.
+	self assert: importedSupplier numberOfCustomers equals: 0.! !
+
+!testRun: #ImportTest #test04newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/27/2023 08:15:09'!
+PASSED!
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 08:15:11'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'CJF 11/27/2023 08:15:11'!
+PASSED!
+
+!testRun: #ImportTest #test02supplierMustHaveOnlyFourFields stamp: 'CJF 11/27/2023 08:15:11'!
+PASSED!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'CJF 11/27/2023 08:15:11'!
+PASSED!
+
+!testRun: #ImportTest #test03supplierRecordMustStartWithSingleS stamp: 'CJF 11/27/2023 08:15:11'!
+PASSED!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'CJF 11/27/2023 08:15:11'!
+PASSED!
+
+!testRun: #ImportTest #test04newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/27/2023 08:15:12'!
+PASSED!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'CJF 11/27/2023 08:15:12'!
+PASSED!
+
+!testRun: #ImportTest #test05supplierWithExistingCustomerMustExistInSystem stamp: 'CJF 11/27/2023 08:15:12'!
+PASSED!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'CJF 11/27/2023 08:15:13'!
+PASSED!
+
+!testRun: #ImportTest #test06supplierAddressesMustContainSixFieldsInRecord stamp: 'CJF 11/27/2023 08:15:13'!
+PASSED!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'CJF 11/27/2023 08:15:13'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'CJF 11/27/2023 08:15:13'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'CJF 11/27/2023 08:15:13'!
+PASSED!
+
+!testRun: #ImportTest #test04newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/27/2023 08:15:19'!
+PASSED!
+
+!testRun: #ImportTest #test05supplierWithExistingCustomerMustExistInSystem stamp: 'CJF 11/27/2023 08:15:22'!
+PASSED!
+
+!testRun: #ImportTest #test06supplierAddressesMustContainSixFieldsInRecord stamp: 'CJF 11/27/2023 08:15:24'!
+PASSED!
+
+DevelopmentEnvironment makeCurrent.!
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 08:16:05'!
+ERROR!
+
+!testRun: #ImportTest #test02supplierMustHaveOnlyFourFields stamp: 'CJF 11/27/2023 08:16:05'!
+PASSED!
+
+!testRun: #ImportTest #test03supplierRecordMustStartWithSingleS stamp: 'CJF 11/27/2023 08:16:05'!
+PASSED!
+
+!testRun: #ImportTest #test04newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/27/2023 08:16:05'!
+ERROR!
+
+!testRun: #ImportTest #test05supplierWithExistingCustomerMustExistInSystem stamp: 'CJF 11/27/2023 08:16:05'!
+ERROR!
+
+!testRun: #ImportTest #test06supplierAddressesMustContainSixFieldsInRecord stamp: 'CJF 11/27/2023 08:16:05'!
+PASSED!
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 08:16:12'!
+ERROR!
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 08:16:12'!
+ERROR!
+!TransientCustomerSystem methodsFor: 'transactions' stamp: 'CJF 11/27/2023 08:16:20'!
+supplierWithIdentificationType: aRenameMe1 number: aRenameMe2 
+	self shouldBeImplemented.! !
+!TransientCustomerSystem methodsFor: 'transactions' stamp: 'CJF 11/27/2023 08:16:36' prior: 50656681!
+supplierWithIdentificationType: aType number: aRenameMe2 
+	self shouldBeImplemented.! !
+!TransientCustomerSystem methodsFor: 'transactions' stamp: 'CJF 11/27/2023 08:16:40' prior: 50656688!
+supplierWithIdentificationType: aType number: aNumber 
+	self shouldBeImplemented.! !
+!TransientCustomerSystem methodsFor: 'transactions' stamp: 'CJF 11/27/2023 08:20:50' prior: 50656694!
+supplierWithIdentificationType: aType number: aNumber 
+	^( customers select: [ :aCustomer | aCustomer isKindOf: Suplier] )anyOne ! !
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 08:22:58'!
+PASSED!
+
+!testRun: #ImportTest #test02supplierMustHaveOnlyFourFields stamp: 'CJF 11/27/2023 08:22:58'!
+PASSED!
+
+!testRun: #ImportTest #test03supplierRecordMustStartWithSingleS stamp: 'CJF 11/27/2023 08:22:58'!
+PASSED!
+
+!testRun: #ImportTest #test04newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/27/2023 08:22:58'!
+PASSED!
+
+!testRun: #ImportTest #test05supplierWithExistingCustomerMustExistInSystem stamp: 'CJF 11/27/2023 08:22:58'!
+PASSED!
+
+!testRun: #ImportTest #test06supplierAddressesMustContainSixFieldsInRecord stamp: 'CJF 11/27/2023 08:22:58'!
+PASSED!
+
+----QUIT----(27 November 2023 08:31:22) CuisUniversity-5981.image priorSource: 10386628!
