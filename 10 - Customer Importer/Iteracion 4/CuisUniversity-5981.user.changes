@@ -3606,3 +3606,779 @@ PASSED!
 PASSED!
 
 ----QUIT----(27 November 2023 08:31:22) CuisUniversity-5981.image priorSource: 10386628!
+
+----STARTUP---- (27 November 2023 13:51:01) as C:\Users\crist\Desktop\ASF7\Nueva carpeta\CuisUniversity-5981.image!
+
+
+DevelopmentEnvironment makeCurrent.!
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 13:51:24'!
+PASSED!
+
+!testRun: #ImportTest #test02supplierMustHaveOnlyFourFields stamp: 'CJF 11/27/2023 13:51:24'!
+PASSED!
+
+!testRun: #ImportTest #test03supplierRecordMustStartWithSingleS stamp: 'CJF 11/27/2023 13:51:24'!
+PASSED!
+
+!testRun: #ImportTest #test04newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/27/2023 13:51:24'!
+PASSED!
+
+!testRun: #ImportTest #test05supplierWithExistingCustomerMustExistInSystem stamp: 'CJF 11/27/2023 13:51:24'!
+PASSED!
+
+!testRun: #ImportTest #test06supplierAddressesMustContainSixFieldsInRecord stamp: 'CJF 11/27/2023 13:51:24'!
+PASSED!
+!CustomerImporter methodsFor: 'customer' stamp: 'CJF 11/27/2023 13:55:49' prior: 50651451!
+importCustomer
+
+	self assertValidCustomerRecord.
+
+	"newCustomer := Customer new.
+	newCustomer firstName: record second.
+	newCustomer lastName: record third.
+	newCustomer identificationType: record fourth.
+	newCustomer identificationNumber: record fifth."
+	system add: ( Customer named: record second  
+						withLastName:  record third
+						identificationType:  record fourth 
+						indentificationNumber: record fifth ).! !
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 13:56:12'!
+ERROR!
+
+!testRun: #ImportTest #test02supplierMustHaveOnlyFourFields stamp: 'CJF 11/27/2023 13:56:12'!
+PASSED!
+
+!testRun: #ImportTest #test03supplierRecordMustStartWithSingleS stamp: 'CJF 11/27/2023 13:56:12'!
+PASSED!
+
+!testRun: #ImportTest #test04newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/27/2023 13:56:12'!
+PASSED!
+
+!testRun: #ImportTest #test05supplierWithExistingCustomerMustExistInSystem stamp: 'CJF 11/27/2023 13:56:12'!
+PASSED!
+
+!testRun: #ImportTest #test06supplierAddressesMustContainSixFieldsInRecord stamp: 'CJF 11/27/2023 13:56:12'!
+PASSED!
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 13:56:12'!
+ERROR!
+!CustomerImporter methodsFor: 'customer' stamp: 'HAW 5/22/2022 21:13:47' prior: 50656757!
+importCustomer
+
+	self assertValidCustomerRecord.
+
+	newCustomer := Customer new.
+	newCustomer firstName: record second.
+	newCustomer lastName: record third.
+	newCustomer identificationType: record fourth.
+	newCustomer identificationNumber: record fifth.
+	system add: newCustomer! !
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 13:58:48'!
+PASSED!
+
+!testRun: #ImportTest #test02supplierMustHaveOnlyFourFields stamp: 'CJF 11/27/2023 13:58:48'!
+PASSED!
+
+!testRun: #ImportTest #test03supplierRecordMustStartWithSingleS stamp: 'CJF 11/27/2023 13:58:48'!
+PASSED!
+
+!testRun: #ImportTest #test04newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/27/2023 13:58:48'!
+PASSED!
+
+!testRun: #ImportTest #test05supplierWithExistingCustomerMustExistInSystem stamp: 'CJF 11/27/2023 13:58:48'!
+PASSED!
+
+!testRun: #ImportTest #test06supplierAddressesMustContainSixFieldsInRecord stamp: 'CJF 11/27/2023 13:58:48'!
+PASSED!
+!CustomerImporter methodsFor: 'customer' stamp: 'CJF 11/27/2023 13:59:33' prior: 50656798!
+importCustomer
+
+	self assertValidCustomerRecord.
+	newCustomer := Customer named: record second  
+						withLastName:  record third
+						identificationType:  record fourth 
+						indentificationNumber: record fifth.
+	system add: newCustomer! !
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 13:59:40'!
+PASSED!
+
+!testRun: #ImportTest #test02supplierMustHaveOnlyFourFields stamp: 'CJF 11/27/2023 13:59:40'!
+PASSED!
+
+!testRun: #ImportTest #test03supplierRecordMustStartWithSingleS stamp: 'CJF 11/27/2023 13:59:40'!
+PASSED!
+
+!testRun: #ImportTest #test04newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/27/2023 13:59:40'!
+PASSED!
+
+!testRun: #ImportTest #test05supplierWithExistingCustomerMustExistInSystem stamp: 'CJF 11/27/2023 13:59:40'!
+PASSED!
+
+!testRun: #ImportTest #test06supplierAddressesMustContainSixFieldsInRecord stamp: 'CJF 11/27/2023 13:59:40'!
+PASSED!
+
+!methodRemoval: Customer #lastName: stamp: 'CJF 11/27/2023 14:00:17'!
+lastName: aLastName
+
+	lastName := aLastName
+!
+
+!methodRemoval: Customer #firstName: stamp: 'CJF 11/27/2023 14:00:20'!
+firstName: aName
+
+	firstName := aName!
+
+!methodRemoval: Customer #identificationNumber: stamp: 'CJF 11/27/2023 14:00:31'!
+identificationNumber: anIdentificationNumber
+
+	identificationNumber := anIdentificationNumber!
+
+!methodRemoval: Customer #identificationType: stamp: 'CJF 11/27/2023 14:00:36'!
+identificationType: anIdentificationType
+
+	identificationType := anIdentificationType!
+
+!methodRemoval: Customer #addresses stamp: 'CJF 11/27/2023 14:02:22'!
+addresses
+
+	^ addresses!
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 14:02:50'!
+PASSED!
+
+!testRun: #ImportTest #test02supplierMustHaveOnlyFourFields stamp: 'CJF 11/27/2023 14:02:50'!
+PASSED!
+
+!testRun: #ImportTest #test03supplierRecordMustStartWithSingleS stamp: 'CJF 11/27/2023 14:02:50'!
+PASSED!
+
+!testRun: #ImportTest #test04newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/27/2023 14:02:50'!
+PASSED!
+
+!testRun: #ImportTest #test05supplierWithExistingCustomerMustExistInSystem stamp: 'CJF 11/27/2023 14:02:50'!
+PASSED!
+
+!testRun: #ImportTest #test06supplierAddressesMustContainSixFieldsInRecord stamp: 'CJF 11/27/2023 14:02:50'!
+PASSED!
+
+----SNAPSHOT----(27 November 2023 14:04:47) CuisUniversity-5981.image priorSource: 10402468!
+
+!classDefinition: #Customer category: 'CustomerImporter' stamp: 'CJF 11/27/2023 14:06:06'!
+User subclass: #Customer
+	instanceVariableNames: 'id firstName lastName identificationNumber addresses'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #User category: 'CustomerImporter' stamp: 'CJF 11/27/2023 14:06:06'!
+Object subclass: #User
+	instanceVariableNames: 'identificationType'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #Customer category: 'CustomerImporter' stamp: 'CJF 11/27/2023 14:06:20'!
+User subclass: #Customer
+	instanceVariableNames: 'id firstName lastName addresses'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #User category: 'CustomerImporter' stamp: 'CJF 11/27/2023 14:06:20'!
+Object subclass: #User
+	instanceVariableNames: 'identificationType identificationNumber'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 14:06:46'!
+PASSED!
+
+!testRun: #ImportTest #test02supplierMustHaveOnlyFourFields stamp: 'CJF 11/27/2023 14:06:46'!
+PASSED!
+
+!testRun: #ImportTest #test03supplierRecordMustStartWithSingleS stamp: 'CJF 11/27/2023 14:06:46'!
+PASSED!
+
+!testRun: #ImportTest #test04newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/27/2023 14:06:46'!
+PASSED!
+
+!testRun: #ImportTest #test05supplierWithExistingCustomerMustExistInSystem stamp: 'CJF 11/27/2023 14:06:46'!
+PASSED!
+
+!testRun: #ImportTest #test06supplierAddressesMustContainSixFieldsInRecord stamp: 'CJF 11/27/2023 14:06:46'!
+PASSED!
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 15:00:45'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'CJF 11/27/2023 15:00:45'!
+PASSED!
+
+!testRun: #ImportTest #test02supplierMustHaveOnlyFourFields stamp: 'CJF 11/27/2023 15:00:45'!
+PASSED!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'CJF 11/27/2023 15:00:45'!
+PASSED!
+
+!testRun: #ImportTest #test03supplierRecordMustStartWithSingleS stamp: 'CJF 11/27/2023 15:00:45'!
+PASSED!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'CJF 11/27/2023 15:00:45'!
+PASSED!
+
+!testRun: #ImportTest #test04newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/27/2023 15:00:45'!
+PASSED!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'CJF 11/27/2023 15:00:45'!
+PASSED!
+
+!testRun: #ImportTest #test05supplierWithExistingCustomerMustExistInSystem stamp: 'CJF 11/27/2023 15:00:45'!
+PASSED!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'CJF 11/27/2023 15:00:45'!
+PASSED!
+
+!testRun: #ImportTest #test06supplierAddressesMustContainSixFieldsInRecord stamp: 'CJF 11/27/2023 15:00:45'!
+PASSED!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'CJF 11/27/2023 15:00:45'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'CJF 11/27/2023 15:00:45'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'CJF 11/27/2023 15:00:45'!
+PASSED!
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 15:00:51'!
+PASSED!
+
+!testRun: #ImportTest #test02supplierMustHaveOnlyFourFields stamp: 'CJF 11/27/2023 15:00:51'!
+PASSED!
+
+!testRun: #ImportTest #test03supplierRecordMustStartWithSingleS stamp: 'CJF 11/27/2023 15:00:51'!
+PASSED!
+
+!testRun: #ImportTest #test04newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/27/2023 15:00:51'!
+PASSED!
+
+!testRun: #ImportTest #test05supplierWithExistingCustomerMustExistInSystem stamp: 'CJF 11/27/2023 15:00:51'!
+PASSED!
+
+!testRun: #ImportTest #test06supplierAddressesMustContainSixFieldsInRecord stamp: 'CJF 11/27/2023 15:00:51'!
+PASSED!
+
+----SNAPSHOT----(27 November 2023 15:01:12) CuisUniversity-5981.image priorSource: 10408113!
+
+User subclass: #Suplier
+	instanceVariableNames: 'name supplierCustomers'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #Suplier category: 'CustomerImporter' stamp: 'CJF 11/27/2023 15:01:29'!
+User subclass: #Suplier
+	instanceVariableNames: 'name supplierCustomers'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 15:01:32'!
+ERROR!
+
+!testRun: #ImportTest #test02supplierMustHaveOnlyFourFields stamp: 'CJF 11/27/2023 15:01:32'!
+PASSED!
+
+!testRun: #ImportTest #test03supplierRecordMustStartWithSingleS stamp: 'CJF 11/27/2023 15:01:32'!
+PASSED!
+
+!testRun: #ImportTest #test04newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/27/2023 15:01:32'!
+PASSED!
+
+!testRun: #ImportTest #test05supplierWithExistingCustomerMustExistInSystem stamp: 'CJF 11/27/2023 15:01:32'!
+PASSED!
+
+!testRun: #ImportTest #test06supplierAddressesMustContainSixFieldsInRecord stamp: 'CJF 11/27/2023 15:01:32'!
+PASSED!
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 15:01:32'!
+ERROR!
+
+!classDefinition: #Customer category: 'CustomerImporter' stamp: 'CJF 11/27/2023 15:02:35'!
+User subclass: #Customer
+	instanceVariableNames: 'firstName lastName addresses'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #User category: 'CustomerImporter' stamp: 'CJF 11/27/2023 15:02:35'!
+Object subclass: #User
+	instanceVariableNames: 'identificationType identificationNumber id'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+----STARTUP---- (27 November 2023 15:03:01) as C:\Users\crist\Desktop\ASF7\Nueva carpeta\CuisUniversity-5981.image!
+
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 15:03:17'!
+PASSED!
+
+!testRun: #ImportTest #test02supplierMustHaveOnlyFourFields stamp: 'CJF 11/27/2023 15:03:18'!
+PASSED!
+
+!testRun: #ImportTest #test03supplierRecordMustStartWithSingleS stamp: 'CJF 11/27/2023 15:03:18'!
+PASSED!
+
+!testRun: #ImportTest #test04newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/27/2023 15:03:18'!
+PASSED!
+
+!testRun: #ImportTest #test05supplierWithExistingCustomerMustExistInSystem stamp: 'CJF 11/27/2023 15:03:18'!
+PASSED!
+
+!testRun: #ImportTest #test06supplierAddressesMustContainSixFieldsInRecord stamp: 'CJF 11/27/2023 15:03:18'!
+PASSED!
+
+!classDefinition: #Customer category: 'CustomerImporter' stamp: 'CJF 11/27/2023 15:03:35'!
+User subclass: #Customer
+	instanceVariableNames: 'firstName lastName addresses'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #User category: 'CustomerImporter' stamp: 'CJF 11/27/2023 15:03:35'!
+Object subclass: #User
+	instanceVariableNames: 'identificationType identificationNumber id'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #Customer category: 'CustomerImporter' stamp: 'CJF 11/27/2023 15:03:49'!
+User subclass: #Customer
+	instanceVariableNames: 'lastName addresses'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #User category: 'CustomerImporter' stamp: 'CJF 11/27/2023 15:03:49'!
+Object subclass: #User
+	instanceVariableNames: 'identificationType identificationNumber id firstName'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 15:04:01'!
+PASSED!
+
+!testRun: #ImportTest #test02supplierMustHaveOnlyFourFields stamp: 'CJF 11/27/2023 15:04:01'!
+PASSED!
+
+!testRun: #ImportTest #test03supplierRecordMustStartWithSingleS stamp: 'CJF 11/27/2023 15:04:01'!
+PASSED!
+
+!testRun: #ImportTest #test04newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/27/2023 15:04:01'!
+PASSED!
+
+!testRun: #ImportTest #test05supplierWithExistingCustomerMustExistInSystem stamp: 'CJF 11/27/2023 15:04:01'!
+PASSED!
+
+!testRun: #ImportTest #test06supplierAddressesMustContainSixFieldsInRecord stamp: 'CJF 11/27/2023 15:04:01'!
+PASSED!
+
+User subclass: #Suplier
+	instanceVariableNames: 'name supplierCustomers'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #Suplier category: 'CustomerImporter' stamp: 'CJF 11/27/2023 15:04:11'!
+User subclass: #Suplier
+	instanceVariableNames: 'name supplierCustomers'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 15:04:20'!
+ERROR!
+
+!testRun: #ImportTest #test02supplierMustHaveOnlyFourFields stamp: 'CJF 11/27/2023 15:04:20'!
+PASSED!
+
+!testRun: #ImportTest #test03supplierRecordMustStartWithSingleS stamp: 'CJF 11/27/2023 15:04:20'!
+PASSED!
+
+!testRun: #ImportTest #test04newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/27/2023 15:04:20'!
+PASSED!
+
+!testRun: #ImportTest #test05supplierWithExistingCustomerMustExistInSystem stamp: 'CJF 11/27/2023 15:04:20'!
+PASSED!
+
+!testRun: #ImportTest #test06supplierAddressesMustContainSixFieldsInRecord stamp: 'CJF 11/27/2023 15:04:20'!
+PASSED!
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 15:04:20'!
+ERROR!
+!Suplier methodsFor: 'as yet unclassified' stamp: 'CJF 11/27/2023 15:04:27'!
+addAddress: newAddress 
+	self shouldBeImplemented.! !
+
+----STARTUP---- (27 November 2023 15:05:26) as C:\Users\crist\Desktop\ASF7\Nueva carpeta\CuisUniversity-5981.image!
+
+
+User subclass: #Customer
+	instanceVariableNames: 'id firstName lastName'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #Customer category: 'CustomerImporter' stamp: 'CJF 11/27/2023 15:05:34'!
+User subclass: #Customer
+	instanceVariableNames: 'id firstName lastName'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+Object subclass: #User
+	instanceVariableNames: 'identificationType identificationNumber addresses'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #User category: 'CustomerImporter' stamp: 'CJF 11/27/2023 15:05:43'!
+Object subclass: #User
+	instanceVariableNames: 'identificationType identificationNumber addresses'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 15:05:56'!
+PASSED!
+
+!testRun: #ImportTest #test02supplierMustHaveOnlyFourFields stamp: 'CJF 11/27/2023 15:05:56'!
+PASSED!
+
+!testRun: #ImportTest #test03supplierRecordMustStartWithSingleS stamp: 'CJF 11/27/2023 15:05:56'!
+PASSED!
+
+!testRun: #ImportTest #test04newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/27/2023 15:05:56'!
+PASSED!
+
+!testRun: #ImportTest #test05supplierWithExistingCustomerMustExistInSystem stamp: 'CJF 11/27/2023 15:05:56'!
+PASSED!
+
+!testRun: #ImportTest #test06supplierAddressesMustContainSixFieldsInRecord stamp: 'CJF 11/27/2023 15:05:56'!
+PASSED!
+
+User subclass: #Suplier
+	instanceVariableNames: 'name supplierCustomers'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #Suplier category: 'CustomerImporter' stamp: 'CJF 11/27/2023 15:06:05'!
+User subclass: #Suplier
+	instanceVariableNames: 'name supplierCustomers'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 15:06:10'!
+ERROR!
+
+!testRun: #ImportTest #test02supplierMustHaveOnlyFourFields stamp: 'CJF 11/27/2023 15:06:10'!
+PASSED!
+
+!testRun: #ImportTest #test03supplierRecordMustStartWithSingleS stamp: 'CJF 11/27/2023 15:06:10'!
+PASSED!
+
+!testRun: #ImportTest #test04newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/27/2023 15:06:10'!
+PASSED!
+
+!testRun: #ImportTest #test05supplierWithExistingCustomerMustExistInSystem stamp: 'CJF 11/27/2023 15:06:10'!
+PASSED!
+
+!testRun: #ImportTest #test06supplierAddressesMustContainSixFieldsInRecord stamp: 'CJF 11/27/2023 15:06:10'!
+PASSED!
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 15:06:10'!
+ERROR!
+!Suplier methodsFor: 'as yet unclassified' stamp: 'CJF 11/27/2023 15:06:16'!
+addAddress: newAddress 
+	self shouldBeImplemented.! !
+!Suplier methodsFor: 'as yet unclassified' stamp: 'CJF 11/27/2023 15:06:24' prior: 50657121!
+addAddress: newAddress 
+	addresses add: newAddress ! !
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 15:06:24'!
+ERROR!
+!Suplier methodsFor: 'initialization' stamp: 'CJF 11/27/2023 15:07:22' prior: 50655050!
+initializeNamed: aName identificationType: anIdentificacionType identificationNumber: anIdentificationNumber 
+	
+	name := aName.
+	identificationType := anIdentificacionType.
+	identificationNumber := anIdentificationNumber.
+	supplierCustomers := OrderedCollection new.
+	addresses := OrderedCollection new.! !
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 15:07:32'!
+PASSED!
+
+!testRun: #ImportTest #test02supplierMustHaveOnlyFourFields stamp: 'CJF 11/27/2023 15:07:32'!
+PASSED!
+
+!testRun: #ImportTest #test03supplierRecordMustStartWithSingleS stamp: 'CJF 11/27/2023 15:07:32'!
+PASSED!
+
+!testRun: #ImportTest #test04newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/27/2023 15:07:32'!
+PASSED!
+
+!testRun: #ImportTest #test05supplierWithExistingCustomerMustExistInSystem stamp: 'CJF 11/27/2023 15:07:32'!
+PASSED!
+
+!testRun: #ImportTest #test06supplierAddressesMustContainSixFieldsInRecord stamp: 'CJF 11/27/2023 15:07:32'!
+PASSED!
+
+IntegrationEnvironment makeCurrent.
+!
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 15:08:11'!
+ERROR!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'CJF 11/27/2023 15:08:11'!
+PASSED!
+
+!testRun: #ImportTest #test02supplierMustHaveOnlyFourFields stamp: 'CJF 11/27/2023 15:08:11'!
+PASSED!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'CJF 11/27/2023 15:08:11'!
+PASSED!
+
+!testRun: #ImportTest #test03supplierRecordMustStartWithSingleS stamp: 'CJF 11/27/2023 15:08:11'!
+PASSED!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'CJF 11/27/2023 15:08:12'!
+PASSED!
+
+!testRun: #ImportTest #test04newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/27/2023 15:08:12'!
+FAILURE!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'CJF 11/27/2023 15:08:12'!
+PASSED!
+
+!testRun: #ImportTest #test05supplierWithExistingCustomerMustExistInSystem stamp: 'CJF 11/27/2023 15:08:12'!
+FAILURE!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'CJF 11/27/2023 15:08:13'!
+PASSED!
+
+!testRun: #ImportTest #test06supplierAddressesMustContainSixFieldsInRecord stamp: 'CJF 11/27/2023 15:08:13'!
+FAILURE!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'CJF 11/27/2023 15:08:13'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'CJF 11/27/2023 15:08:13'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'CJF 11/27/2023 15:08:13'!
+PASSED!
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 15:08:41'!
+ERROR!
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 15:08:41'!
+ERROR!
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 15:09:42'!
+ERROR!
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 15:11:46'!
+ERROR!
+
+User subclass: #Customer
+	instanceVariableNames: 'firstName lastName'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #Customer category: 'CustomerImporter' stamp: 'CJF 11/27/2023 15:12:00'!
+User subclass: #Customer
+	instanceVariableNames: 'firstName lastName'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+Object subclass: #User
+	instanceVariableNames: 'id identificationType identificationNumber addresses'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #User category: 'CustomerImporter' stamp: 'CJF 11/27/2023 15:12:05'!
+Object subclass: #User
+	instanceVariableNames: 'id identificationType identificationNumber addresses'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 15:12:09'!
+ERROR!
+
+!testRun: #ImportTest #test02supplierMustHaveOnlyFourFields stamp: 'CJF 11/27/2023 15:12:09'!
+PASSED!
+
+!testRun: #ImportTest #test03supplierRecordMustStartWithSingleS stamp: 'CJF 11/27/2023 15:12:09'!
+PASSED!
+
+!testRun: #ImportTest #test04newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/27/2023 15:12:10'!
+ERROR!
+
+!testRun: #ImportTest #test05supplierWithExistingCustomerMustExistInSystem stamp: 'CJF 11/27/2023 15:12:10'!
+ERROR!
+
+!testRun: #ImportTest #test06supplierAddressesMustContainSixFieldsInRecord stamp: 'CJF 11/27/2023 15:12:10'!
+PASSED!
+
+DevelopmentEnvironment makeCurrent.!
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 15:12:33'!
+PASSED!
+
+!testRun: #ImportTest #test02supplierMustHaveOnlyFourFields stamp: 'CJF 11/27/2023 15:12:33'!
+PASSED!
+
+!testRun: #ImportTest #test03supplierRecordMustStartWithSingleS stamp: 'CJF 11/27/2023 15:12:33'!
+PASSED!
+
+!testRun: #ImportTest #test04newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/27/2023 15:12:33'!
+PASSED!
+
+!testRun: #ImportTest #test05supplierWithExistingCustomerMustExistInSystem stamp: 'CJF 11/27/2023 15:12:33'!
+PASSED!
+
+!testRun: #ImportTest #test06supplierAddressesMustContainSixFieldsInRecord stamp: 'CJF 11/27/2023 15:12:33'!
+PASSED!
+
+IntegrationEnvironment makeCurrent.
+!
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 15:12:43'!
+ERROR!
+
+!testRun: #ImportTest #test02supplierMustHaveOnlyFourFields stamp: 'CJF 11/27/2023 15:12:43'!
+PASSED!
+
+!testRun: #ImportTest #test03supplierRecordMustStartWithSingleS stamp: 'CJF 11/27/2023 15:12:43'!
+PASSED!
+
+!testRun: #ImportTest #test04newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/27/2023 15:12:43'!
+ERROR!
+
+!testRun: #ImportTest #test05supplierWithExistingCustomerMustExistInSystem stamp: 'CJF 11/27/2023 15:12:43'!
+ERROR!
+
+!testRun: #ImportTest #test06supplierAddressesMustContainSixFieldsInRecord stamp: 'CJF 11/27/2023 15:12:44'!
+PASSED!
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'CJF 11/27/2023 15:13:23' prior: 50656367 overrides: 16961394!
+setUp
+self halt.
+	system := Environment current createCustomerSystem.
+	system start.
+	system beginTransaction.
+! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'CJF 11/27/2023 15:14:58' prior: 50657323 overrides: 16961394!
+setUp
+	system := Environment current createCustomerSystem.
+	system start.
+	system beginTransaction.
+! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/27/2023 15:15:18' prior: 50656168!
+test01validInputImportCorrectly
+self halt.
+	CustomerImporter valueFrom: self singleCustomer into: system.
+
+	SupplierImporter valueFrom: self validSupplierRecords into: system.
+	
+	self assert: 1 equals: system numberOfSuppliers.
+	self assertSupplierImportedCorrectly.
+	self assertSupplierHasTwoClients.
+	self assertPepeSanchezIsSupplierClientAndNewCustomer.
+	self assertJuanPerezOsSupplierClient.
+	self assertSupplierHasTwoAddresses.
+	self assertSanMartin3322IsSupplierAddress.
+	self assertMaipu888IsSupplierAddres.! !
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/27/2023 15:15:34' prior: 50657338!
+test01validInputImportCorrectly
+	CustomerImporter valueFrom: self singleCustomer into: system.
+
+	SupplierImporter valueFrom: self validSupplierRecords into: system.
+	
+	self assert: 1 equals: system numberOfSuppliers.
+	self assertSupplierImportedCorrectly.
+	self assertSupplierHasTwoClients.
+	self assertPepeSanchezIsSupplierClientAndNewCustomer.
+	self assertJuanPerezOsSupplierClient.
+	self assertSupplierHasTwoAddresses.
+	self assertSanMartin3322IsSupplierAddress.
+	self assertMaipu888IsSupplierAddres.! !
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 15:15:38'!
+ERROR!
+!Suplier methodsFor: 'as yet unclassified' stamp: 'CJF 11/27/2023 15:16:05'!
+identificationNumber
+	self shouldBeImplemented.! !
+!Suplier methodsFor: 'as yet unclassified' stamp: 'CJF 11/27/2023 15:16:13' prior: 50657380!
+identificationNumber
+	^identificationNumber ! !
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 15:16:17'!
+PASSED!
+
+!testRun: #ImportTest #test01validInputImportCorrectly stamp: 'CJF 11/27/2023 15:16:19'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'CJF 11/27/2023 15:16:19'!
+PASSED!
+
+!testRun: #ImportTest #test02supplierMustHaveOnlyFourFields stamp: 'CJF 11/27/2023 15:16:19'!
+PASSED!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'CJF 11/27/2023 15:16:19'!
+PASSED!
+
+!testRun: #ImportTest #test03supplierRecordMustStartWithSingleS stamp: 'CJF 11/27/2023 15:16:19'!
+PASSED!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'CJF 11/27/2023 15:16:19'!
+PASSED!
+
+!testRun: #ImportTest #test04newCustomerInSupplierEntryMustNotExistInCustomersSystem stamp: 'CJF 11/27/2023 15:16:19'!
+PASSED!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'CJF 11/27/2023 15:16:20'!
+PASSED!
+
+!testRun: #ImportTest #test05supplierWithExistingCustomerMustExistInSystem stamp: 'CJF 11/27/2023 15:16:20'!
+PASSED!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'CJF 11/27/2023 15:16:20'!
+PASSED!
+
+!testRun: #ImportTest #test06supplierAddressesMustContainSixFieldsInRecord stamp: 'CJF 11/27/2023 15:16:21'!
+PASSED!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'CJF 11/27/2023 15:16:21'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'CJF 11/27/2023 15:16:21'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'CJF 11/27/2023 15:16:21'!
+PASSED!
+
+----QUIT----(27 November 2023 15:26:37) CuisUniversity-5981.image priorSource: 10412162!

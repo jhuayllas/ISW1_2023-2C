@@ -210,9 +210,8 @@ shouldFailImporting: aReadStream messageText: anErrorMessageText asserting: anAs
 	! !
 
 
-!ImportTest methodsFor: 'setUp/tearDown' stamp: 'CJF 11/27/2023 02:22:25'!
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'CJF 11/27/2023 15:14:58'!
 setUp
-
 	system := Environment current createCustomerSystem.
 	system start.
 	system beginTransaction.
@@ -335,7 +334,7 @@ assertSupplierImportedCorrectly
 	self assert: 'Supplier1' equals: importedSupplier name. 
 ! !
 
-!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/27/2023 01:52:49'!
+!ImportTest methodsFor: 'tests - supplier' stamp: 'CJF 11/27/2023 15:15:34'!
 test01validInputImportCorrectly
 	CustomerImporter valueFrom: self singleCustomer into: system.
 
@@ -1074,16 +1073,14 @@ assertValidCustomerRecord
 
 	^ record size ~= 5 ifTrue: [ self error: self class invalidCustomerRecordErrorDescription ]! !
 
-!CustomerImporter methodsFor: 'customer' stamp: 'HAW 5/22/2022 21:13:47'!
+!CustomerImporter methodsFor: 'customer' stamp: 'CJF 11/27/2023 13:59:33'!
 importCustomer
 
 	self assertValidCustomerRecord.
-
-	newCustomer := Customer new.
-	newCustomer firstName: record second.
-	newCustomer lastName: record third.
-	newCustomer identificationType: record fourth.
-	newCustomer identificationNumber: record fifth.
+	newCustomer := Customer named: record second  
+						withLastName:  record third
+						identificationType:  record fourth 
+						indentificationNumber: record fifth.
 	system add: newCustomer! !
 
 !CustomerImporter methodsFor: 'customer' stamp: 'HAW 5/22/2022 19:23:55'!
@@ -1253,7 +1250,7 @@ supplierRecordNumberFieldsErrorMessage
 
 !classDefinition: #User category: 'CustomerImporter'!
 Object subclass: #User
-	instanceVariableNames: ''
+	instanceVariableNames: 'id identificationType identificationNumber addresses'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'CustomerImporter'!
@@ -1261,7 +1258,7 @@ Object subclass: #User
 
 !classDefinition: #Customer category: 'CustomerImporter'!
 User subclass: #Customer
-	instanceVariableNames: 'id firstName lastName identificationType identificationNumber addresses'
+	instanceVariableNames: 'firstName lastName'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'CustomerImporter'!
@@ -1276,11 +1273,6 @@ addressAt: aStreetName ifNone: aNoneBlock
 
 	^addresses detect: [ :address | address isAt: aStreetName ] ifNone: aNoneBlock ! !
 
-!Customer methodsFor: 'addresses' stamp: 'HAW 5/22/2022 00:19:29'!
-addresses
-
-	^ addresses! !
-
 !Customer methodsFor: 'addresses' stamp: 'HAW 5/22/2022 19:38:32'!
 isAddressesEmpty
 
@@ -1293,20 +1285,9 @@ firstName
 	^firstName ! !
 
 !Customer methodsFor: 'name' stamp: 'HAW 5/22/2022 00:19:29'!
-firstName: aName
-
-	firstName := aName! !
-
-!Customer methodsFor: 'name' stamp: 'HAW 5/22/2022 00:19:29'!
 lastName
 
 	^lastName ! !
-
-!Customer methodsFor: 'name' stamp: 'HAW 5/22/2022 00:19:29'!
-lastName: aLastName
-
-	lastName := aLastName
-! !
 
 
 !Customer methodsFor: 'identification' stamp: 'HAW 5/22/2022 00:19:29'!
@@ -1315,19 +1296,9 @@ identificationNumber
 	^identificationNumber ! !
 
 !Customer methodsFor: 'identification' stamp: 'HAW 5/22/2022 00:19:29'!
-identificationNumber: anIdentificationNumber
-
-	identificationNumber := anIdentificationNumber! !
-
-!Customer methodsFor: 'identification' stamp: 'HAW 5/22/2022 00:19:29'!
 identificationType
 
 	^identificationType ! !
-
-!Customer methodsFor: 'identification' stamp: 'HAW 5/22/2022 00:19:29'!
-identificationType: anIdentificationType
-
-	identificationType := anIdentificationType! !
 
 !Customer methodsFor: 'identification' stamp: 'CJF 11/23/2023 19:59:19'!
 initializeNamed: aName withLastName: aLastName identificationType: anIdType indentificationNumber: anIdNumber 
@@ -1370,20 +1341,25 @@ named: aName withLastName: aLastName identificationType: anIdType indentificatio
 
 
 !classDefinition: #Suplier category: 'CustomerImporter'!
-Customer subclass: #Suplier
+User subclass: #Suplier
 	instanceVariableNames: 'name supplierCustomers'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'CustomerImporter'!
 
-!Suplier methodsFor: 'initialization' stamp: 'CJF 11/26/2023 21:07:43'!
+!Suplier methodsFor: 'initialization' stamp: 'CJF 11/27/2023 15:07:22'!
 initializeNamed: aName identificationType: anIdentificacionType identificationNumber: anIdentificationNumber 
 	
 	name := aName.
 	identificationType := anIdentificacionType.
 	identificationNumber := anIdentificationNumber.
-	supplierCustomers := OrderedCollection new.! !
+	supplierCustomers := OrderedCollection new.
+	addresses := OrderedCollection new.! !
 
+
+!Suplier methodsFor: 'as yet unclassified' stamp: 'CJF 11/27/2023 15:06:24'!
+addAddress: newAddress 
+	addresses add: newAddress ! !
 
 !Suplier methodsFor: 'as yet unclassified' stamp: 'CJF 11/23/2023 19:59:51'!
 addNewCustomer: newSupplierCustomer 
@@ -1392,6 +1368,10 @@ addNewCustomer: newSupplierCustomer
 !Suplier methodsFor: 'as yet unclassified' stamp: 'CJF 11/23/2023 20:04:05'!
 hasCustomer: aCustomer 
 	^supplierCustomers includes: aCustomer! !
+
+!Suplier methodsFor: 'as yet unclassified' stamp: 'CJF 11/27/2023 15:16:13'!
+identificationNumber
+	^identificationNumber ! !
 
 !Suplier methodsFor: 'as yet unclassified' stamp: 'CJF 11/26/2023 21:07:49'!
 identificationType
